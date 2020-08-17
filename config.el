@@ -37,7 +37,7 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/orgzly/")
+(setq org-directory "~/org/")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -81,13 +81,13 @@
 (setq org-priority-lowest ?F)
 (setq org-default-priority ?E)
 (setq org-priority-default ?E)
-(setq org-directory "~/orgzly")
+(setq org-directory "~/org")
 )
 (use-package org-roam
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/orgzly")
+      (org-roam-directory "~/org")
       :bind (:map org-roam-mode-map
               (("C-c n l" . org-roam)
                ("C-c n f" . org-roam-find-file)
