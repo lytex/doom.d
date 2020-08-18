@@ -107,3 +107,7 @@
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format "%Y-%m-%d.org")
   (org-journal-dir "~/org/journal"))
+
+;; SPC is implicitly included
+(map! :leader
+      :desc "Open today's journal file and start a new entry." "jn" #'org-journal-new-entry)
