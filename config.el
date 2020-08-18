@@ -67,7 +67,11 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package org-roam-server neotree fira-code-mode zygospore org-roam org-plus-contrib))))
+    (use-package org-roam-server neotree fira-code-mode zygospore org-roam org-plus-contrib
+    org-bullets))))
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
