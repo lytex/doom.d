@@ -102,10 +102,8 @@
               (("C-c n i" . org-roam-insert))))
 
 (use-package org-journal
-  :bind
-  ("C-c j n" . org-journal-new-entry)
   :custom
   (org-journal-date-prefix "* ")
-  (org-journal-date-format "%A %d/%B/%Y")
+  (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format "%Y-%m-%d.org")
   (org-journal-dir "~/org/journal"))
