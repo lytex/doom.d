@@ -103,7 +103,7 @@
 
 (use-package org-journal
   :bind
-  ("C-c n j" . org-journal-new-entry)
+  ("C-c j n" . org-journal-new-entry)
   :custom
   (org-journal-date-prefix "* ")
   (org-journal-date-format "%A %d/%B/%Y")
