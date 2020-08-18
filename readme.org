@@ -1,0 +1,5 @@
+* org-journal
+** use it to create a note with the current date
+* org-capture
+** use it to capture a new note
+- You can start from the current note
