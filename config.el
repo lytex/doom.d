@@ -80,7 +80,7 @@
  )
 (after! org
 (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(t)" "|" "DONE(d)")))
+	'((sequence "IDEA(i) TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(t)" "|" "DONE(d)")))
 (setq org-priority-highest ?A)
 (setq org-priority-lowest ?F)
 (setq org-default-priority ?E)
@@ -110,4 +110,10 @@
 
 ;; SPC is implicitly included
 (map! :leader
-      :desc "Open today's journal file and start a new entry." "jn" #'org-journal-new-entry)
+      :desc "Open today's journal file and start a new entry." "mj" #'org-journal-new-entry)
+(setq org-default-notes-file (concat org-directory "/Inbox.org"))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file "~/org/Inbox.org" )
+         "* TODO %?\n  %i\n  %a")
+        ("t" "Idea" entry (file "~/org/Inbox.org" )
+         "* IDEA %?\n  %i\n  %a")))
