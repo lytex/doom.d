@@ -80,7 +80,7 @@
  )
 (after! org
 (setq org-todo-keywords
-	'((sequence "IDEA(i)" "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "|" "DONE(d)")))
+	'((sequence "TODO(t)" "IDEA(i)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "|" "DONE(d)")))
 (setq org-priority-highest ?A)
 (setq org-priority-lowest ?F)
 (setq org-default-priority ?E)
