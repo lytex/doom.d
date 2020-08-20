@@ -99,7 +99,7 @@
       :desc (documentation 'org-roam) "ro" #'org-roam)
 (map! :leader
       :map org-roam-mode-map
-      :desc (documentation 'org-roam) "rg" #'org-roam-graph)
+      :desc (documentation 'org-roam-graph)) "rg" #'org-roam-graph)
 (map! :leader
       :map org-roam-mode-map
       :desc (documentation 'org-roam-capture) "rc" #'org-roam-capture)
