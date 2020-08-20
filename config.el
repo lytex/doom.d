@@ -125,4 +125,13 @@
          "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
 
- (load "~/.doom.d/jira.el")
+(map! :leader
+      :map helm-org-rifle-map
+      :desc (documentation 'helm-org-rifle)  "nrr" #'helm-org-rifle)
+(map! :leader
+      :map helm-org-rifle-map
+      :desc (documentation 'helm-org-rifle-directories)  "nrd" #'helm-org-rifle-directories)
+
+(load "~/.doom.d/jira.el")
+
+;; (require 'org-vcard) ;; Only needed when loading contacts
