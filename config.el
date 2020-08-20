@@ -122,3 +122,4 @@
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/Inbox.org" )
          "* TODO %?\n  %i\n  %a")))
+(require 'helm-org-rifle)
