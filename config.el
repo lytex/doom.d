@@ -91,7 +91,8 @@
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/org"))
+      (org-roam-directory "~/org")
+      (org-roam-file-exclude-regexp  "home/julian/org/jira/*"))
 
 ;; SPC is implicitly included
 (map! :leader
@@ -123,3 +124,5 @@
       '(("t" "Todo" entry (file "~/org/Inbox.org" )
          "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
+
+ (load "~/.doom.d/jira.el")
