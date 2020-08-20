@@ -80,7 +80,7 @@
  )
 (after! org
 (setq org-todo-keywords
-	'((sequence "TODO(t)" "IDEA(i)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
+	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
 (setq org-priority-highest ?A)
 (setq org-priority-lowest ?F)
 (setq org-default-priority ?E)
@@ -124,6 +124,4 @@
 (setq org-default-notes-file (concat org-directory "/Inbox.org"))
 (setq org-capture-templates
       '(("t" "Todo" entry (file "~/org/Inbox.org" )
-         "* TODO %?\n  %i\n  %a")
-        ("t" "Idea" entry (file "~/org/Inbox.org" )
-         "* IDEA %?\n  %i\n  %a")))
+         "* TODO %?\n  %i\n  %a")))
