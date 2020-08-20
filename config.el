@@ -91,14 +91,8 @@
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/org")
-      :bind (:map org-roam-mode-map
-              (
-               ("C-c n f" . org-roam-find-file)
-               ("C-c n j" . org-roam-jump-to-index)
-               ("C-c n b" . org-roam-switch-to-buffer)
-              :map org-mode-map
-              (("C-c n i" . org-roam-insert)))))
+      (org-roam-directory "~/org"))
+
 ;; SPC is implicitly included
 (map! :leader
       :map org-roam-mode-map
@@ -109,6 +103,9 @@
 (map! :leader
       :map org-roam-mode-map
       :desc (documentation 'org-roam-capture) "rc" #'org-roam-capture)
+(map! :leader
+      :map org-mode-map
+      :desc (documentation 'org-roam-insert) "ri" #'org-roam-insert)
 
 
 (use-package org-journal
