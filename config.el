@@ -114,14 +114,14 @@
   (org-journal-date-prefix "* ")
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir "~/org/journal"))
+  (org-journal-dir "~/org/work_journal"))
 
 ;; SPC is implicitly included
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
-(setq org-default-notes-file (concat org-directory "/Inbox.org"))
+(setq org-default-notes-file (concat org-directory "/Work_Inbox.org"))
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/org/Inbox.org" )
+      '(("t" "Todo" entry (file "~/org/Work_Inbox.org" )
          "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
 
