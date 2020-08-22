@@ -1,13 +1,18 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+(setq WORK_ENV nil)
+
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
 
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-(setq user-full-name "Julian Lopez"
-      user-mail-address "julianlpc15@gmail.com")
+(setq user-full-name "Julian Lopez Carballal")
+(if WORK_ENV
+    (setq user-mail-address "julopezc@acciona.com")
+    (setq user-mail-address "julianlpc15@gmail.com"))
+
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -67,7 +72,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (use-package org-roam-server neotree fira-code-mode zygospore org-roam org-plus-contrib
+    (use-package org-roam-server neotree fira-code-mode org-roam org-plus-contrib
     org-bullets))))
 (require 'org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
@@ -132,6 +137,6 @@
       :map helm-org-rifle-map
       :desc (documentation 'helm-org-rifle-directories)  "nrd" #'helm-org-rifle-directories)
 
-(load "~/.doom.d/jira.el")
+;; (load! "~/.doom.d/jira.el")
 
-;; (require 'org-vcard) ;; Only needed when loading contacts
+;; (use-package! 'org-vcard) ;; Only needed when loading contacts
