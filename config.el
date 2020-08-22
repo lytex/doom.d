@@ -144,6 +144,7 @@
       :map helm-org-rifle-map
       :desc (documentation 'helm-org-rifle-directories)  "nrd" #'helm-org-rifle-directories)
 
-;; (load! "~/.doom.d/jira.el")
+(if WORK_ENV
+  (load! "~/.doom.d/jira.el"))
 
-;; (use-package! 'org-vcard) ;; Only needed when loading contacts
+;; (require 'org-vcard) ;; Only needed when loading contacts
