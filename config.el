@@ -42,7 +42,18 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-directory "~/org/")
+(if WORK_ENV
+    (setq org-id-locations-file (concat org-directory ".orgids_work"))
+    (setq org-id-locations-file (concat org-directory ".orgids")))
+(after! org
+(setq org-todo-keywords
+	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
+    (setq org-priority-highest ?A)
+    (setq org-priority-lowest ?F)
+    (setq org-default-priority ?E)
+    (setq org-priority-default ?E))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -83,23 +94,15 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(after! org
-(setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
-(setq org-priority-highest ?A)
-(setq org-priority-lowest ?F)
-(setq org-default-priority ?E)
-(setq org-priority-default ?E)
-(setq org-directory "~/org")
-)
 (use-package org-roam
       :hook
       (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/org")
       (org-roam-file-exclude-regexp  "home/julian/org/jira/*"))
+(after! org-roam
+(setq org-id-extra-files (org-roam--list-all-files)))
 
-;; SPC is implicitly included
 (map! :leader
       :map org-roam-mode-map
       :desc (documentation 'org-roam) "ro" #'org-roam)
@@ -118,15 +121,19 @@
   :custom
   (org-journal-date-prefix "* ")
   (org-journal-date-format "%A, %d de %B de %Y")
-  (org-journal-file-format "%Y-%m-%d.org")
-  (org-journal-dir "~/org/work_journal"))
+  (org-journal-file-format "%Y-%m-%d.org"))
+(if WORK_ENV
+  (setq org-journal-dir "~/org/work_journal")
+  (setq org-journal-dir "~/org/journal"))
+(if WORK_ENV
+  (setq inbox-file "~/org/Work_Inbox.org")
+  (setq inbox-file "~/org/Inbox.org"))
 
-;; SPC is implicitly included
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
-(setq org-default-notes-file (concat org-directory "/Work_Inbox.org"))
+(setq org-default-notes-file (concat org-directory inbox-file))
 (setq org-capture-templates
-      '(("t" "Todo" entry (file "~/org/Work_Inbox.org" )
+      '(("t" "Todo" entry (file (concat org-directory inbox-file))
          "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
 
