@@ -1,0 +1,14 @@
+!Trabajo.org
+!Mejora_profesional.org
+!doom/
+!Obsidian/
+!work_journal/
+!Work_Inbox.org
+extra.txt
+#include extra.txt
+*.org
+Inbox.org
+org-roam.db
+.orgids
+*~
+**
