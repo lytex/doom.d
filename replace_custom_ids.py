@@ -44,7 +44,7 @@ for path in glob("/home/julian/org/**/*.org", recursive=True):
     custom_id = recursive_filter(lambda x: x.properties.get('custom_id') is not None, get_children(root))
 
     for item in custom_id:
-        uuid = str(uuid4())
+        uuid = custom_id.properties.get('ID', str(uuid4())) # Create id if not exists only
         custom_to_id.update({item.properties['custom_id']: uuid})
         item.properties.update({'ID': uuid})
 
