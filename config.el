@@ -114,6 +114,9 @@
 (map! :leader
       :map org-mode-map
       :desc (documentation 'org-roam-insert) "ri" #'org-roam-insert)
+(map! :leader
+      :map org-mode-map
+      :desc (documentation 'org-roam-insert) "ru" #'org-roam-unlinked-references)
 
 
 (use-package! org-journal
