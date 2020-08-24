@@ -36,37 +36,37 @@ def get_children(parent):
 # with open("test.org", "w") as f:
 #     f.write(r)
 
-
-custom_to_id = {}
+# This dictionary maps each custom_id to their id (either existent id or newly generated id)
+custom_to_id = {} 
 
 for path in glob("/home/julian/org/**/*.org", recursive=True):
     root = load(path)
     custom_id = recursive_filter(lambda x: x.properties.get('custom_id') is not None, get_children(root))
 
     for item in custom_id:
-        uuid = custom_id.properties.get('ID', str(uuid4())) # Create id if not exists only
+        uuid = item.properties.get('ID', str(uuid4())) # Create id if not exists only
         custom_to_id.update({item.properties['custom_id']: uuid})
         item.properties.update({'ID': uuid})
 
 for path in glob("/home/julian/org/**/*.org", recursive=True):
-    # print(f"Opening {path}")
-    with open(path, "r") as f:
+    with open(path, "w") as f:
         content = f.read()
+
         for custom, uuid in custom_to_id.items():
-            # print(f"Iterating on {custom}")
-            content2 = re.sub(r"\[\[#"+custom+"\]\]", f"[[id:{uuid}[{custom}]]", content)
+            # Match simple links [[#link]]
             matches = re.findall(r"\[\[#"+custom+"\]\]", content)
             for match in matches:
-                content2 = content.replace(match, f"[[id:{uuid}[{custom}]]")
-                print(match, "\n", f"[[id:{uuid}[{custom}]]")
+                content = content.replace(match, f"[[id:{uuid}[{custom}]]")
 
-
-            matches = re.findall(r"\[\[#"+custom+"\[([\w\s-])+\]\]", content)
-            content3 = re.sub(r"\[\[#"+custom+"\[[\w\s-]+\]\]", f"[[id:{uuid}[{custom}]]", content)
+            # Match links with names [[#link][name]]
+            matches = re.findall(r"\[\[#"+custom+"\]\[[ \w\d-]+\]\]", content)
             for match in matches:
-                content3 = content.replace(match, f"[[id:{uuid}[{custom}]]")
-                print(match, "\n", f"[[id:{uuid}[{custom}]]")
-                breakpoint()
+                content = content.replace(match, f"[[id:{uuid}[{custom}]]")
+
+        f.write(content)
+
+        
+
 
 
             
