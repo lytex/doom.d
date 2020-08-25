@@ -53,7 +53,9 @@
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
-    (setq org-priority-default ?E))
+    (setq org-priority-default ?E)
+    (map! :leader
+      :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto))
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -102,6 +104,25 @@
 (after! org-roam
 (setq org-id-extra-files (org-roam--list-all-files)))
 
+(require 'company-org-roam)
+    (use-package company-org-roam
+      :when (featurep! :completion company)
+      :after org-roam
+      :config
+      (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
+
+(if WORK_ENV
+  (setq org-roam-capture-directory "work_roam/")
+  (setq org-roam-capture-directory "roam/"))
+(setq org-roam-capture-path (concat org-roam-capture-directory "%<%Y%m%d%H%M%S>-${slug}"))
+
+(setq org-roam-capture-templates
+    '(("d" "default" plain (function org-roam--capture-get-point)
+        "%?"
+        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
+        :head "#+title: ${title}\n"
+        :unnarrowed t)))
+
 (map! :leader
       :map org-roam-mode-map
       :desc (documentation 'org-roam) "ro" #'org-roam)
@@ -133,9 +154,9 @@
 
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
-(setq org-default-notes-file (concat org-directory inbox-file))
+(setq org-default-notes-file inbox-file)
 (setq org-capture-templates
-      '(("t" "Todo" entry (file (concat org-directory inbox-file))
+      '(("t" "Todo" entry (file inbox-file)
          "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
 
