@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq WORK_ENV nil)
+(load! "~/.doom.d/work.el")
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; sync' after modifying this file!
@@ -97,8 +97,8 @@
       :hook
       (after-init . org-roam-mode)
       :custom
-      (org-roam-directory "~/org")
-      (org-roam-file-exclude-regexp  "home/julian/org/jira/*"))
+      (org-roam-directory "~/org/")
+      (org-roam-file-exclude-regexp  "~/org/jira/*"))
 (after! org-roam
 (setq org-id-extra-files (org-roam--list-all-files)))
 
@@ -125,11 +125,11 @@
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format "%Y-%m-%d.org"))
 (if WORK_ENV
-  (setq org-journal-dir "~/org/work_journal")
-  (setq org-journal-dir "~/org/journal"))
+  (setq org-journal-dir (concat org-directory "work_journal/"))
+  (setq org-journal-dir (concat org-directory "journal/")))
 (if WORK_ENV
-  (setq inbox-file "~/org/Work_Inbox.org")
-  (setq inbox-file "~/org/Inbox.org"))
+  (setq inbox-file "Work_Inbox.org")
+  (setq inbox-file "Inbox.org"))
 
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
