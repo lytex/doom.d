@@ -1,3 +1,4 @@
+// Ignore by default personal notes
 journal/
 Introspección/
 0rganización.org
@@ -7,10 +8,21 @@ Inbox.org
 Links.org
 Mantenimiento.org
 Notas.org
-Trabajo.org
 Transporte.org
 Trucos.org
+org-roam.db
+.orgids
 
+// Include only work notes
+!Trabajo.org
+!Mejora_profesional.org
+!doom/
+!Obsidian/
+!work_journal/
+!Work_Inbox.org
+
+
+// Exclude everything else by default
 *~
 **~
 **
