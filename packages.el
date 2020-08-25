@@ -19,6 +19,7 @@
 (package! org-bullets)
 (package! org-journal)
 (package! org-roam)
+(package! company-org-roam)
 (package! helm-org-rifle)
 (if WORK_ENV
 (package! ejira
