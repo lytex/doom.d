@@ -85,7 +85,7 @@
  ;; If there is more than one, they won't work right.
  )
 
-(require 'org-bullets)
+(use-package! org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
 (custom-set-faces
