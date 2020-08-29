@@ -123,22 +123,14 @@
         :head "#+title: ${title}\n"
         :unnarrowed t)))
 
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam) "ro" #'org-roam)
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam-graph) "rg" #'org-roam-graph)
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam-capture) "rc" #'org-roam-capture)
-(map! :leader
-      :map org-mode-map
-      :desc (documentation 'org-roam-insert) "ri" #'org-roam-insert)
-(map! :leader
-      :map org-mode-map
-      :desc (documentation 'org-roam-insert) "ru" #'org-roam-unlinked-references)
-
+(after! org-roam
+      (map! :leader
+            :prefix "r"
+            :desc (documentation 'org-roam) "o" #'org-roam
+            :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+            :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
+            :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
+            :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references))
 
 (use-package! org-journal
   :custom
@@ -161,11 +153,9 @@
 (require 'helm-org-rifle)
 
 (map! :leader
-      :map helm-org-rifle-map
-      :desc (documentation 'helm-org-rifle)  "nrr" #'helm-org-rifle)
-(map! :leader
-      :map helm-org-rifle-map
-      :desc (documentation 'helm-org-rifle-directories)  "nrd" #'helm-org-rifle-directories)
+      :prefix "n"
+      :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
+      :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
