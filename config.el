@@ -123,10 +123,34 @@
         :head "#+title: ${title}\n"
         :unnarrowed t)))
 
+(defun org-roam-open-buffer-at(position)  
+  (setq old-org-roam-buffer-position org-roam-buffer-position)
+  (setq org-roam-buffer-position position)
+  (org-roam)
+  (setq org-roam-buffer-position old-org-roam-buffer-position))
+
+(defun org-roam-open-buffer-at-bottom ()
+  "Open a new roam buffer at the bottom while keeping current org-roam-buffer-position"
+  (interactive)
+  (org-roam-open-buffer-at 'bottom))
+
+(defun org-open-new-buffer ()
+  "Open link in a new left window and open org-roam-buffer at the bottom"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (setq old-org-roam-buffer-height org-roam-buffer-height)
+  (setq org-roam-buffer-height 0.35)
+  (org-roam-open-buffer-at 'bottom)
+  (setq org-roam-buffer-height old-org-roam-buffer-height)
+  (org-open-at-point))
+
 (after! org-roam
       (map! :leader
             :prefix "r"
             :desc (documentation 'org-roam) "o" #'org-roam
+            :desc (documentation 'org-roam) "j" #'org-roam-open-buffer-at-bottom
+            :desc (documentation 'org-roam) "n" #'org-open-new-buffer
             :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
             :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
             :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
