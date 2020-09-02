@@ -3,10 +3,7 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (esup helm-swoop zygospore use-package url-http-ntlm org-roam-server org-ql org-plus-contrib org-journal neotree nadvice helm-org-rifle fsm fira-code-mode)))
- '(safe-local-variable-values (quote ((eval require (quote org-roam-dev))))))
+ '(package-selected-packages (quote (dash))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
