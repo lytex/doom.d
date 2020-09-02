@@ -123,7 +123,7 @@
         :head "#+title: ${title}\n"
         :unnarrowed t)))
 
-(defun org-roam-open-buffer-at(position)  
+(defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
   (setq org-roam-buffer-position position)
   (org-roam)
@@ -159,7 +159,7 @@
             :desc (documentation 'org-roam) "o" #'org-roam
             :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
             :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
-            :desc (documentation org-follow-link-to-the-side') "s" #'org-follow-link-to-the-side
+            :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
             :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
             :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
             :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
@@ -189,6 +189,9 @@
       :prefix "n"
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
+
+(use-package! org-recent-headings
+  :config (org-recent-headings-mode))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
