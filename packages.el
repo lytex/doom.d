@@ -19,6 +19,7 @@
 (package! org-bullets)
 (package! company-org-roam)
 (package! helm-org-rifle)
+(package! org-recent-headings)
 (if WORK_ENV
     (package! ejira
         :recipe (:host github :repo "nyyManni/ejira")))
