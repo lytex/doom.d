@@ -134,23 +134,32 @@
   (interactive)
   (org-roam-open-buffer-at 'bottom))
 
+
+(defun org-follow-link-to-the-side ()
+  "Follow link in a new buffer to the right"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (org-open-at-point))
+
 (defun org-open-new-buffer ()
   "Open link in a new left window and open org-roam-buffer at the bottom"
   (interactive)
   (evil-window-vsplit)
   (evil-window-right 1)
+  (org-open-at-point)
   (setq old-org-roam-buffer-height org-roam-buffer-height)
   (setq org-roam-buffer-height 0.35)
   (org-roam-open-buffer-at 'bottom)
-  (setq org-roam-buffer-height old-org-roam-buffer-height)
-  (org-open-at-point))
+  (setq org-roam-buffer-height old-org-roam-buffer-height))
 
 (after! org-roam
       (map! :leader
             :prefix "r"
             :desc (documentation 'org-roam) "o" #'org-roam
-            :desc (documentation 'org-roam) "j" #'org-roam-open-buffer-at-bottom
-            :desc (documentation 'org-roam) "n" #'org-open-new-buffer
+            :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
+            :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
+            :desc (documentation org-follow-link-to-the-side') "s" #'org-follow-link-to-the-side
             :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
             :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
             :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
