@@ -3,3 +3,11 @@
 * org-capture
 ** use it to capture a new note
 - You can start from the current note
+* org-roam
+
+** Dependencies
+*** [[https://github.com/hlissner/doom-emacs][doom emacs]]
+After installing run =~/.emacs.d/bin/doom sync=
+*** org-roam
+- [[https://github.com/org-roam/org-roam/issues/1064][ripgrep custom]]
+- sqlite
