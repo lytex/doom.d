@@ -56,6 +56,8 @@
     (setq org-priority-default ?E)
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto))
+(setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
+(setq  org-startup-folded t)        ;; Start with folded view
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
