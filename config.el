@@ -198,6 +198,7 @@
 
 (require 'org-notify)
 (org-notify-start)
+(org-notify-add 'default '(:time "1m" :actions -notify/window :duration 36000))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
