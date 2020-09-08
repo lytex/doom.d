@@ -122,8 +122,9 @@
     '(("d" "default" plain (function org-roam--capture-get-point)
         "%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
-        :head "#+title: ${title}\n#+CREATED:%T\n#+custom_id: ${title}\n"
-        :unnarrowed t)))
+        :head "#+title: ${title}\n* ${title}\nCREATED:%T\n:PROPERTIES:\n:custom_id: ${title}\n:END:\n"
+        :unnarrowed t
+        :jump-to-captured nil)))
 
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
