@@ -49,7 +49,7 @@
     (setq org-id-locations-file (concat org-directory ".orgids")))
 (after! org
 (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
+	'((sequence "REFILE(r)" "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
@@ -120,7 +120,7 @@
     '(("d" "default" plain (function org-roam--capture-get-point)
         "%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
-        :head "#+title: ${title}\n"
+        :head "#+title: ${title}\n#+CREATED:%T\n#+custom_id: ${title}\n"
         :unnarrowed t)))
 
 (defun org-roam-open-buffer-at (position)
@@ -192,6 +192,9 @@
 
 (use-package! org-recent-headings
   :config (org-recent-headings-mode))
+
+(require 'org-notify)
+(org-notify-start)
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
