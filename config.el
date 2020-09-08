@@ -204,3 +204,16 @@
   (load! "~/.doom.d/jira.el"))
 
 ;; (require 'org-vcard) ;; Only needed when loading contacts
+
+;; WIP org-roam from headings
+
+(defun temp-title-buffer (title)
+  (switch-to-buffer (find-file-noselect (concat "~/org/roam/" title ".org") nil nil nil))
+  (erase-buffer)
+  (insert (concat "#+TITLE: " title)))
+
+(defun org-roam-headings ()
+  (interactive)
+  (setq heading (nth 4 (org-heading-components)))
+  (temp-title-buffer heading)
+  (org-roam))
