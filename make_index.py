@@ -10,7 +10,6 @@ from orgparse import loads
 from orgparse.node import OrgBaseNode
 
 ORG_DIRECTORY = os.environ.get("ORG_DIRECTORY")
-ORGZLY_ROOT = os.environ.get("ORGZLY_ROOT", "orgzly")
 
 def ls(path: str):
     files_and_dirs = os.listdir(path)
