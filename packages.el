@@ -20,6 +20,7 @@
 (package! company-org-roam)
 (package! helm-org-rifle)
 (package! org-recent-headings)
+(package! org-plus-contrib)
 (if WORK_ENV
     (package! ejira
         :recipe (:host github :repo "nyyManni/ejira")))
