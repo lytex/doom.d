@@ -27,6 +27,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "FuraMono Nerd Font" :size 12))
+(setq doom-unicode-font (font-spec :name "FuraMono Nerd Font" :size 12))
 ;;(require 'fira-code-mode)
 ;; (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 
@@ -124,6 +125,18 @@
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
         :head "#+title: ${title}\n* ${title}\nCREATED:%T\n:PROPERTIES:\n:custom_id: ${title}\n:END:\n"
         :unnarrowed t
+        :jump-to-captured nil)
+      ("j" "journal" plain (function org-roam--capture-get-point)
+        "%?"
+        :file-name "journal/%<%Y-%m-%d>"
+        :head "* %<%A, %d de %B de %Y>\n** %<%H:%M>\n"
+        :unnarrowed t
+        :jump-to-captured nil)
+      ("i" "introspección" plain (function org-roam--capture-get-point)
+        "%?"
+        :file-name "Introspección/%<%Y-%m-%d>"
+        :head "* %<%A, %d de %B de %Y>\n** %<%H:%M>\n"
+        :unnarrowed t
         :jump-to-captured nil)))
 
 (defun org-roam-open-buffer-at (position)
@@ -196,9 +209,6 @@
 (use-package! org-recent-headings
   :config (org-recent-headings-mode))
 
-(require 'org-notify)
-(org-notify-start)
-(org-notify-add 'default '(:time "1m" :actions -notify/window :duration 36000))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
@@ -217,3 +227,5 @@
   (setq heading (nth 4 (org-heading-components)))
   (temp-title-buffer heading)
   (org-roam))
+
+(turn-on-undo-tree-mode)

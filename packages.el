@@ -20,11 +20,10 @@
 (package! company-org-roam)
 (package! helm-org-rifle)
 (package! org-recent-headings)
-(package! org-plus-contrib)
 (if WORK_ENV
     (package! ejira
         :recipe (:host github :repo "nyyManni/ejira")))
-(package! org-vcard)
+;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
