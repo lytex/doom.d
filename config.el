@@ -46,8 +46,9 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-directory "~/org/")
 (load-library "find-lisp")
+
 (setq org-agenda-files
-   (find-lisp-find-files org-directory "\.org$"))
+   '("~/org" "~/org/roam" "~/org/journal"))
 (if WORK_ENV
     (setq org-id-locations-file (concat org-directory ".orgids_work"))
     (setq org-id-locations-file (concat org-directory ".orgids")))
@@ -230,5 +231,10 @@
   (setq heading (nth 4 (org-heading-components)))
   (temp-title-buffer heading)
   (org-roam))
+
+(use-package! org-pdftools
+  :hook ((org-load . org-pdftools-setup-link))
+          (pdf-tools-enable-minor-mode))
+(pdf-loader-install)
 
 (turn-on-undo-tree-mode)
