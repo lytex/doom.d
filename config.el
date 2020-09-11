@@ -45,6 +45,9 @@
 ;; change `org-directory'. It must be set before org loads!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-directory "~/org/")
+(load-library "find-lisp")
+(setq org-agenda-files
+   (find-lisp-find-files org-directory "\.org$"))
 (if WORK_ENV
     (setq org-id-locations-file (concat org-directory ".orgids_work"))
     (setq org-id-locations-file (concat org-directory ".orgids")))
