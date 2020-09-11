@@ -127,7 +127,7 @@
     '(("d" "default" plain (function org-roam--capture-get-point)
         "%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
-        :head "#+title: ${title}\n* ${title}\nCREATED:%T\n:PROPERTIES:\n:custom_id: ${title}\n:END:\n"
+        :head "#+title: ${title}\n* ${title}\nCREATED:%T\n"
         :unnarrowed t
         :jump-to-captured nil)
       ("j" "journal" plain (function org-roam--capture-get-point)
