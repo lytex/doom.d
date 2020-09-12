@@ -123,23 +123,40 @@
   (setq org-roam-capture-directory "roam/"))
 (setq org-roam-capture-path (concat org-roam-capture-directory "%<%Y%m%d%H%M%S>-${slug}"))
 
+(use-package! org-journal
+  :custom
+  (org-journal-date-prefix "* ")
+  (org-journal-date-format "%A, %d de %B de %Y")
+  (org-journal-file-format "%Y-%m-%d.org"))
+(if WORK_ENV
+  (setq org-journal-dir (concat org-directory "work_journal/"))
+  (setq org-journal-dir (concat org-directory "journal/")))
+
+(map! :leader
+      :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
+
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t))
+
 (setq org-roam-capture-templates
-    '(("d" "default" plain (function org-roam--capture-get-point)
+    '(("d" "default" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
         :head "#+title: ${title}\n"
         :unnarrowed t
         :jump-to-captured nil)
-      ("j" "journal" plain (function org-roam--capture-get-point)
-        "%?"
+      ("j" "journal" plain (function org-journal-find-location)
+        "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
         :file-name "journal/%<%Y-%m-%d>"
-        :head "* %<%A, %d de %B de %Y>\n** %<%H:%M>\n"
+        :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
         :jump-to-captured nil)
-      ("i" "introspección" plain (function org-roam--capture-get-point)
-        "%?"
+      ("i" "introspección" plain (function org-roam-capture--get-point)
+        "** %<%H:%M> %^{Title}\n%i%?"
         :file-name "Introspección/%<%Y-%m-%d>"
-        :head "* %<%A, %d de %B de %Y>\n** %<%H:%M>\n"
+        :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
         :jump-to-captured nil)))
 
@@ -185,24 +202,7 @@
             :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
             :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references))
 
-(use-package! org-journal
-  :custom
-  (org-journal-date-prefix "* ")
-  (org-journal-date-format "%A, %d de %B de %Y")
-  (org-journal-file-format "%Y-%m-%d.org"))
-(if WORK_ENV
-  (setq org-journal-dir (concat org-directory "work_journal/"))
-  (setq org-journal-dir (concat org-directory "journal/")))
-(if WORK_ENV
-  (setq inbox-file "Work_Inbox.org")
-  (setq inbox-file "Inbox.org"))
 
-(map! :leader
-      :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
-(setq org-default-notes-file inbox-file)
-(setq org-capture-templates
-      '(("t" "Todo" entry (file inbox-file)
-         "* TODO %?\n  %i\n  %a")))
 (require 'helm-org-rifle)
 
 (map! :leader
