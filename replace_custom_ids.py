@@ -11,9 +11,7 @@ from orgparse.node import OrgBaseNode
 ORG_DIRECTORY = os.environ.get("ORG_DIRECTORY")
 
 
-def recursive_filter(
-    condition: Callable[[OrgBaseNode], bool], root: Iterable[OrgBaseNode]
-) -> Iterable[OrgBaseNode]:
+def recursive_filter(condition: Callable[[OrgBaseNode], bool], root: Iterable[OrgBaseNode]) -> Iterable[OrgBaseNode]:
     """recursively trasvese all possible nodes from root and return only those for which
         condition returns True
 
@@ -43,8 +41,11 @@ custom_to_id = {}
 
 
 def add_id(node):
-    if (node.properties.get("custom_id") in custom_to_id.keys()) and 
-    set(node.properties.keys()).intersection(set(("id", "ID", "iD", "Id"))) == set():
+    if node.heading == "notes narrowing by current subheading":
+        breakpoint()
+    if (node.properties.get("custom_id") in custom_to_id.keys()) and (
+        set(node.properties.keys()).intersection(set(("id", "ID", "iD", "Id"))) == set()
+    ):
         return re.sub(
             r"(:custom_id: " + node.properties["custom_id"] + r")",
             r"\1\n:ID: " + custom_to_id[node.properties["custom_id"]],
@@ -58,14 +59,11 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
     with open(path, "r") as f:
         root = loads(f.read())
 
-    custom_id = recursive_filter(
-        lambda x: x.properties.get("custom_id") is not None, get_children(root)
-    )
+    custom_id = recursive_filter(lambda x: x.properties.get("custom_id") is not None, get_children(root))
 
     for item in custom_id:
         uuid = item.properties.get("ID", str(uuid4()))  # Create id if not exists only
         custom_to_id.update({item.properties["custom_id"]: uuid})
-        item.properties.update({"ID": uuid})
 
     result = str(root[0]) + "\n".join([add_id(x) for x in root[1:]])
 
@@ -82,9 +80,7 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
     for custom, uuid in custom_to_id.items():
 
         # Substitute simple links [[#link]]
-        content = re.sub(
-            r"\[\[#" + custom + "\]\]", f"[[id:{uuid}][{custom}]]", content
-        )
+        content = re.sub(r"\[\[#" + custom + "\]\]", f"[[id:{uuid}][{custom}]]", content)
 
         # Substitute links with names [[#link][name]]
         content = re.sub(
