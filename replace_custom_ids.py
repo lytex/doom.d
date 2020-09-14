@@ -6,14 +6,14 @@ from uuid import uuid4
 import os
 
 from orgparse import loads
-from orgparse.node import OrgRootNode
+from orgparse.node import OrgBaseNode
 
 ORG_DIRECTORY = os.environ.get("ORG_DIRECTORY")
 
 
 def recursive_filter(
-    condition: Callable[[OrgRootNode], bool], root: Iterable[OrgRootNode]
-) -> Iterable[OrgRootNode]:
+    condition: Callable[[OrgBaseNode], bool], root: Iterable[OrgBaseNode]
+) -> Iterable[OrgBaseNode]:
     """recursively trasvese all possible nodes from root and return only those for which
         condition returns True
 
@@ -30,7 +30,7 @@ def recursive_filter(
             yield from recursive_filter(condition, node.children)
 
 
-def get_children(parent: OrgRootNode) -> Iterable[OrgRootNode]:
+def get_children(parent: OrgBaseNode) -> Iterable[OrgBaseNode]:
     if parent.children:
         for node in parent.children:
             yield node
@@ -41,8 +41,21 @@ def get_children(parent: OrgRootNode) -> Iterable[OrgRootNode]:
 # This dictionary maps each custom_id to their id (either existent id or newly generated id)
 custom_to_id = {}
 
+
+def add_id(node):
+    if (node.properties.get("custom_id") in custom_to_id.keys()) and 
+    set(node.properties.keys()).intersection(set(("id", "ID", "iD", "Id"))) == set():
+        return re.sub(
+            r"(:custom_id: " + node.properties["custom_id"] + r")",
+            r"\1\n:ID: " + custom_to_id[node.properties["custom_id"]],
+            str(node),
+        )
+    else:
+        return str(node)
+
+
 for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
-    with open(path) as f:
+    with open(path, "r") as f:
         root = loads(f.read())
 
     custom_id = recursive_filter(
@@ -54,25 +67,33 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
         custom_to_id.update({item.properties["custom_id"]: uuid})
         item.properties.update({"ID": uuid})
 
-for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
-    with open(path, "r+") as f:
+    result = str(root[0]) + "\n".join([add_id(x) for x in root[1:]])
 
+    with open(path, "w") as f:
+        # Overwrite content
+        f.seek(0)
+        f.write(result)
+
+for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
+
+    with open(path, "r") as f:
         content = f.read()
 
-        for custom, uuid in custom_to_id.items():
+    for custom, uuid in custom_to_id.items():
 
-            # Substitute simple links [[#link]]
-            content = re.sub(
-                r"\[\[#" + custom + "\]\]", f"[[id:{uuid}][{custom}]]", content
-            )
+        # Substitute simple links [[#link]]
+        content = re.sub(
+            r"\[\[#" + custom + "\]\]", f"[[id:{uuid}][{custom}]]", content
+        )
 
-            # Substitute links with names [[#link][name]]
-            content = re.sub(
-                r"\[\[#" + custom + "\]\[([ \w\d-]+)\]\]",
-                "[[id:" + uuid + r"][\1]]",
-                content,
-            )
+        # Substitute links with names [[#link][name]]
+        content = re.sub(
+            r"\[\[#" + custom + "\]\[([ \w\d-]+)\]\]",
+            "[[id:" + uuid + r"][\1]]",
+            content,
+        )
 
+    with open(path, "w") as f:
         # Overwrite content
         f.seek(0)
         f.write(content)

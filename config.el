@@ -27,6 +27,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 (setq doom-font (font-spec :family "FuraMono Nerd Font" :size 12))
+(setq doom-unicode-font (font-spec :name "FuraMono Nerd Font" :size 12))
 ;;(require 'fira-code-mode)
 ;; (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 
@@ -44,18 +45,24 @@
 ;; change `org-directory'. It must be set before org loads!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-directory "~/org/")
+(load-library "find-lisp")
+
+(setq org-agenda-files
+   '("~/org" "~/org/roam" "~/org/journal"))
 (if WORK_ENV
     (setq org-id-locations-file (concat org-directory ".orgids_work"))
     (setq org-id-locations-file (concat org-directory ".orgids")))
 (after! org
 (setq org-todo-keywords
-	'((sequence "TODO(t)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
+	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
     (setq org-priority-default ?E)
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto))
+(setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
+(setq  org-startup-folded t)        ;; Start with folded view
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -116,30 +123,6 @@
   (setq org-roam-capture-directory "roam/"))
 (setq org-roam-capture-path (concat org-roam-capture-directory "%<%Y%m%d%H%M%S>-${slug}"))
 
-(setq org-roam-capture-templates
-    '(("d" "default" plain (function org-roam--capture-get-point)
-        "%?"
-        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
-        :head "#+title: ${title}\n"
-        :unnarrowed t)))
-
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam) "ro" #'org-roam)
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam-graph) "rg" #'org-roam-graph)
-(map! :leader
-      :map org-roam-mode-map
-      :desc (documentation 'org-roam-capture) "rc" #'org-roam-capture)
-(map! :leader
-      :map org-mode-map
-      :desc (documentation 'org-roam-insert) "ri" #'org-roam-insert)
-(map! :leader
-      :map org-mode-map
-      :desc (documentation 'org-roam-insert) "ru" #'org-roam-unlinked-references)
-
-
 (use-package! org-journal
   :custom
   (org-journal-date-prefix "* ")
@@ -148,26 +131,97 @@
 (if WORK_ENV
   (setq org-journal-dir (concat org-directory "work_journal/"))
   (setq org-journal-dir (concat org-directory "journal/")))
-(if WORK_ENV
-  (setq inbox-file "Work_Inbox.org")
-  (setq inbox-file "Inbox.org"))
 
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
-(setq org-default-notes-file inbox-file)
-(setq org-capture-templates
-      '(("t" "Todo" entry (file inbox-file)
-         "* TODO %?\n  %i\n  %a")))
+
+(defun org-journal-find-location ()
+  ;; Open today's journal, but specify a non-nil prefix argument in order to
+  ;; inhibit inserting the heading; org-capture will insert the heading.
+  (org-journal-new-entry t))
+
+(setq org-roam-capture-templates
+    '(("d" "default" plain (function org-roam-capture--get-point)
+        "%?"
+        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
+        :head "#+title: ${title}\n"
+        :unnarrowed t
+        :jump-to-captured nil)
+      ("j" "journal" plain (function org-journal-find-location)
+        "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
+        :file-name "journal/%<%Y-%m-%d>"
+        :head "* %<%A, %d de %B de %Y>\n"
+        :unnarrowed t
+        :jump-to-captured nil)
+      ("i" "introspección" plain (function org-roam-capture--get-point)
+        "** %<%H:%M> %^{Title}\n%i%?"
+        :file-name "Introspección/%<%Y-%m-%d>"
+        :head "* %<%A, %d de %B de %Y>\n"
+        :unnarrowed t
+        :jump-to-captured nil)))
+
+(defun org-roam-open-buffer-at (position)
+  (setq old-org-roam-buffer-position org-roam-buffer-position)
+  (setq org-roam-buffer-position position)
+  (org-roam)
+  (setq org-roam-buffer-position old-org-roam-buffer-position))
+
+(defun org-roam-open-buffer-at-bottom ()
+  "Open a new roam buffer at the bottom while keeping current org-roam-buffer-position"
+  (interactive)
+  (org-roam-open-buffer-at 'bottom))
+
+
+(defun org-follow-link-to-the-side ()
+  "Follow link in a new buffer to the right"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (org-open-at-point))
+
+(defun org-open-new-buffer ()
+  "Open link in a new left window and open org-roam-buffer at the bottom"
+  (interactive)
+  (evil-window-vsplit)
+  (evil-window-right 1)
+  (org-open-at-point)
+  (setq old-org-roam-buffer-height org-roam-buffer-height)
+  (setq org-roam-buffer-height 0.35)
+  (org-roam-open-buffer-at 'bottom)
+  (setq org-roam-buffer-height old-org-roam-buffer-height))
+
+(after! org-roam
+      (map! :leader
+            :prefix "r"
+            :desc (documentation 'org-roam) "o" #'org-roam
+            :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
+            :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
+            :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
+            :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+            :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
+            :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
+            :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references))
+
+
 (require 'helm-org-rifle)
 
 (map! :leader
-      :map helm-org-rifle-map
-      :desc (documentation 'helm-org-rifle)  "nrr" #'helm-org-rifle)
-(map! :leader
-      :map helm-org-rifle-map
-      :desc (documentation 'helm-org-rifle-directories)  "nrd" #'helm-org-rifle-directories)
+      :prefix "n"
+      :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
+      :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
+
+(use-package! org-recent-headings
+  :config (org-recent-headings-mode))
+
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
 
 ;; (require 'org-vcard) ;; Only needed when loading contacts
+
+(use-package! org-pdftools
+  :hook ((org-load . org-pdftools-setup-link))
+          (pdf-tools-enable-minor-mode))
+(pdf-loader-install)
+
+(turn-on-undo-tree-mode)

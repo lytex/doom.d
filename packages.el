@@ -17,14 +17,15 @@
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
 (package! org-bullets)
-(package! org-journal)
-(package! org-roam)
 (package! company-org-roam)
 (package! helm-org-rifle)
+(package! org-recent-headings)
+(package! pdf-tools)
+(package! org-pdftools)
 (if WORK_ENV
-(package! ejira
-    :recipe (:host github :repo "nyyManni/ejira")))
-(package! org-vcard)
+    (package! ejira
+        :recipe (:host github :repo "nyyManni/ejira")))
+;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
 ;; file, or is located in a subdirectory of the repo, you'll need to specify
