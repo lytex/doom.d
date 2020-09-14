@@ -2,3 +2,4 @@
 .vscode/
 jira.el
 work.el
+custom.el
