@@ -123,14 +123,19 @@
   (setq org-roam-capture-directory "roam/"))
 (setq org-roam-capture-path (concat org-roam-capture-directory "%<%Y%m%d%H%M%S>-${slug}"))
 
+;; Workaround to work with orgzly -> each file must have a unique name
+(if WORK_ENV
+  (setq org-journal-dir (concat org-directory "work_journal/"))
+  (setq org-journal-dir (concat org-directory "journal/")))
+(if WORK_ENV
+  (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
+  (setq orgzly-org-journal-file-format "%Y-%m-%d.org"))
+
 (use-package! org-journal
   :custom
   (org-journal-date-prefix "* ")
   (org-journal-date-format "%A, %d de %B de %Y")
-  (org-journal-file-format "%Y-%m-%d.org"))
-(if WORK_ENV
-  (setq org-journal-dir (concat org-directory "work_journal/"))
-  (setq org-journal-dir (concat org-directory "journal/")))
+  (org-journal-file-format orgzly-org-journal-file-format))
 
 (map! :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
@@ -149,13 +154,13 @@
         :jump-to-captured nil)
       ("j" "journal" plain (function org-journal-find-location)
         "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
-        :file-name "journal/%<%Y-%m-%d>"
+        :file-name "journal/%<%Y-%m-%d>" ;; TODO use org-roam-journal-path
         :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
         :jump-to-captured nil)
       ("i" "introspección" plain (function org-roam-capture--get-point)
         "** %<%H:%M> %^{Title}\n%i%?"
-        :file-name "Introspección/%<%Y-%m-%d>"
+        :file-name "Introspección/%<%Y-%m-%d>I"
         :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
         :jump-to-captured nil)))
