@@ -15,7 +15,7 @@
 ;; (get-recent-heading-link (nth 1 org-recent-headings-list))
 
 (defun write-recent-heading (recent-heading)
-      (insert get-recent-heading-link recent-heading))
+      (insert (get-recent-heading-link recent-heading)))
 
 (defun save-recent-headings ()
     (interactive)
