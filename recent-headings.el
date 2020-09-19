@@ -4,6 +4,8 @@
 ;; add requirements (org-recent-headings, s)
 ;; write to buffer on the background
 ;; run as a service each x min (x=5 for example)
+;; Doesn't work with priorities ([#A] is included in the heading)
+;; Doesn't work with headings which contain links in the heading
 
 (setq org-directory-truename (file-truename org-directory))
 (defun get-recent-heading-link (x)
@@ -21,5 +23,4 @@
     (interactive)
     (switch-to-buffer (find-file-noselect "~/org/1Recent.org" nil nil ""))
     (erase-buffer)
-    ;; TODO Doesn't work with headings which contain links
     (mapcar 'write-recent-heading org-recent-headings-list))
