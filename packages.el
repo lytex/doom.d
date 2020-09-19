@@ -22,6 +22,7 @@
 (package! org-recent-headings)
 (package! pdf-tools)
 (package! org-pdftools)
+(package! org-noter)
 (if WORK_ENV
     (package! ejira
         :recipe (:host github :repo "nyyManni/ejira")))
