@@ -229,4 +229,26 @@
           (pdf-tools-enable-minor-mode))
 (pdf-loader-install)
 
+(after! pdf-tools
+(map! :leader
+      :mode (pdf-view-mode)
+      :prefix "a"
+      :desc (documentation 'pdf-annot-add-markup-annotation)  "m" #'pdf-annot-add-markup-annotation
+      :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)  "g" #'pdf-annot-add-squiggly-markup-annotation
+      :desc (documentation 'pdf-annot-add-highlight-markup-annotation)  "h" #'pdf-annot-add-highlight-markup-annotation
+      :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)  "s" #'pdf-annot-add-strikeout-markup-annotation
+      :desc (documentation 'pdf-annot-add-underline-markup-annotation)  "u" #'pdf-annot-add-underline-markup-annotation
+      :desc (documentation 'pdf-annot-add-text-annotation)  "t" #'pdf-annot-add-text-annotation)
+(map! :leader
+      :mode (pdf-view-mode)
+      :prefix "p"
+      :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
+      :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
+
+(use-package! org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
 (turn-on-undo-tree-mode)
