@@ -40,9 +40,9 @@ def get_children(parent: OrgBaseNode) -> Iterable[OrgBaseNode]:
 custom_to_id = {}
 
 
-def add_id(node):
-    if node.heading == "notes narrowing by current subheading":
-        breakpoint()
+def add_id(node: OrgBaseNode) -> str:
+    """add id if not exists to the str representation of an OrgBaseNode, using custom_to_id dict"""
+
     if (node.properties.get("custom_id") in custom_to_id.keys()) and (
         set(node.properties.keys()).intersection(set(("id", "ID", "iD", "Id"))) == set()
     ):
@@ -55,6 +55,7 @@ def add_id(node):
         return str(node)
 
 
+# First pass, create ID if not exists for each heading with custom_id
 for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
     with open(path, "r") as f:
         root = loads(f.read())
@@ -72,6 +73,7 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
         f.seek(0)
         f.write(result)
 
+# Second pass, substitute links with the custom_to_id mapping
 for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
 
     with open(path, "r") as f:
