@@ -1,3 +1,10 @@
+;; TODOs
+;; Optional variable for s-replacing
+;; save-recent-headings use variable
+;; add requirements (org-recent-headings, s)
+;; write to buffer on the background
+;; run as a service each x min (x=5 for example)
+
 (setq org-directory-truename (file-truename org-directory))
 (defun get-recent-heading-link (x)
   "extract a list of org-mode link strings: file:<note.org>::*<heading>"
