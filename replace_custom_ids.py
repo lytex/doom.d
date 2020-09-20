@@ -1,4 +1,3 @@
-import json
 import re
 from glob import glob
 from typing import Callable, Iterable
@@ -9,6 +8,12 @@ from orgparse import loads
 from orgparse.node import OrgBaseNode
 
 ORG_DIRECTORY = os.environ.get("ORG_DIRECTORY")
+
+
+# Global variables specifying what whe mean when we say directorypath, orgfile, linkname, ...
+directorypath_regex = r"([ \w\d_-]*/)*"
+orgfile_regex = r"[ \w\d_\.-]*\.org"
+linkname_regex = r"[ \w\d_\.-]+"
 
 
 def recursive_filter(condition: Callable[[OrgBaseNode], bool], root: Iterable[OrgBaseNode]) -> Iterable[OrgBaseNode]:
@@ -55,6 +60,29 @@ def add_id(node: OrgBaseNode) -> str:
         return str(node)
 
 
+def add_orgzly_flat_links(node: OrgBaseNode) -> str:
+    """Strips the directories out of file links to work with orgzly, flattening the directory structure in one big
+    directory so that orgzly can work with it
+    Also retains the previous links with \g<0> so that everything works as normal in emacs"""
+    content = str(node)
+
+    # Substitute simple links [[file:folder1/folder2/my.org]] -> [[file:my.org]]
+    # fmt:off
+    content = re.sub(
+        r"\[\[file:" + directorypath_regex + r"(" + orgfile_regex + r")\]\]",
+        r"\g<0>\n[[file:\2]]",
+        content
+    )
+    # fmt: on
+
+    # Substitute links with names [[file:folder1/folder2/my.org][name]] ->[[file:my.org][name]]
+    content = re.sub(
+        r"\[\[file:" + directorypath_regex + r"(" + orgfile_regex + r")\]\[(" + linkname_regex + r"\])\]",
+        r"\g<0>\n[[file:\2][\3]]",
+        content,
+    )
+
+
 # First pass, create ID if not exists for each heading with custom_id
 for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
     with open(path, "r") as f:
@@ -82,11 +110,11 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
     for custom, uuid in custom_to_id.items():
 
         # Substitute simple links [[#link]]
-        content = re.sub(r"\[\[#" + custom + "\]\]", f"[[id:{uuid}][{custom}]]", content)
+        content = re.sub(r"\[\[#" + custom + r"\]\]", f"[[id:{uuid}][{custom}]]", content)
 
         # Substitute links with names [[#link][name]]
         content = re.sub(
-            r"\[\[#" + custom + "\]\[([ \w\d-]+)\]\]",
+            r"\[\[#" + custom + r"\]\[([ \w\d-]+)\]\]",
             "[[id:" + uuid + r"][\1]]",
             content,
         )
