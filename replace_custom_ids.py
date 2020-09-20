@@ -60,11 +60,22 @@ def add_id(node: OrgBaseNode) -> str:
         return str(node)
 
 
-def add_orgzly_flat_links(node: OrgBaseNode) -> str:
+def substitute_customid_links(content: str) -> str:
+    # Substitute simple links [[#link]]
+    content = re.sub(r"\[\[#" + custom + r"\]\]", f"[[id:{uuid}][{custom}]]", content)
+
+    # Substitute links with names [[#link][name]]
+    content = re.sub(
+        r"\[\[#" + custom + r"\]\[(" + linkname_regex + r")\]\]",
+        "[[id:" + uuid + r"][\1]]",
+        content,
+    )
+
+
+def add_orgzly_flat_links(content: str) -> str:
     """Strips the directories out of file links to work with orgzly, flattening the directory structure in one big
     directory so that orgzly can work with it
     Also retains the previous links with \g<0> so that everything works as normal in emacs"""
-    content = str(node)
 
     # Substitute simple links [[file:folder1/folder2/my.org]] -> [[file:my.org]]
     # fmt:off
@@ -108,16 +119,8 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
         content = f.read()
 
     for custom, uuid in custom_to_id.items():
-
-        # Substitute simple links [[#link]]
-        content = re.sub(r"\[\[#" + custom + r"\]\]", f"[[id:{uuid}][{custom}]]", content)
-
-        # Substitute links with names [[#link][name]]
-        content = re.sub(
-            r"\[\[#" + custom + r"\]\[([ \w\d-]+)\]\]",
-            "[[id:" + uuid + r"][\1]]",
-            content,
-        )
+        content = substitute_customid_links(content)
+        content = add_orgzly_flat_links(content)
 
     with open(path, "w") as f:
         # Overwrite content
