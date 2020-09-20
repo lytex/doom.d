@@ -14,6 +14,7 @@ ORG_DIRECTORY = os.environ.get("ORG_DIRECTORY")
 directorypath_regex = r"([ \w\d_-]*/)*"
 orgfile_regex = r"[ \w\d_\.-]*\.org"
 linkname_regex = r"[ \w\d_\.-]+"
+linksearch_regex = r"[\*#]" + linkname_regex
 
 
 def recursive_filter(condition: Callable[[OrgBaseNode], bool], root: Iterable[OrgBaseNode]) -> Iterable[OrgBaseNode]:
@@ -80,17 +81,23 @@ def add_orgzly_flat_links(content: str) -> str:
     Also retains the previous links with \g<0> so that everything works as normal in emacs"""
 
     # Substitute simple links [[file:folder1/folder2/my.org]] -> [[file:my.org]]
-    # fmt:off
     content = re.sub(
-        r"\[\[file:" + directorypath_regex + r"(" + orgfile_regex + r")\]\]",
-        r"\g<0>\n[[file:\2]]",
-        content
+        r"\[\[file:" + directorypath_regex + r"(" + orgfile_regex + r")(::" + linksearch_regex + r")?\]\]",
+        r"\g<0>\n[[file:\2\3]]",
+        content,
     )
-    # fmt: on
 
     # Substitute links with names [[file:folder1/folder2/my.org][name]] ->[[file:my.org][name]]
     content = re.sub(
-        r"\[\[file:" + directorypath_regex + r"(" + orgfile_regex + r")\]\[(" + linkname_regex + r"\])\]",
+        r"\[\[file:"
+        + directorypath_regex
+        + r"("
+        + orgfile_regex
+        + r")(::"
+        + linksearch_regex
+        + r")?\]\[("
+        + linkname_regex
+        + r"\])\]",
         r"\g<0>\n[[file:\2][\3]]",
         content,
     )
@@ -109,7 +116,7 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
         uuid = item.properties.get("ID", str(uuid4()))  # Create id if not exists only
         custom_to_id.update({item.properties["custom_id"]: uuid})
 
-    result = str(root[0]) + "\n".join([add_id(x) for x in root[1:]])
+    result = str(root[0]) + "\n".join([add_orgzly_flat_links(add_id(x)) for x in root[1:]])
 
     with open(path, "w") as f:
         # Overwrite content
@@ -124,7 +131,6 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
 
     for custom, uuid in custom_to_id.items():
         content = substitute_customid_links(content)
-        content = add_orgzly_flat_links(content)
 
     with open(path, "w") as f:
         # Overwrite content
