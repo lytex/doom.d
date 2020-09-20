@@ -107,7 +107,7 @@
       (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "~/org/jira/*"))
+      (org-roam-file-exclude-regexp  "~/org/[j1][iR][re][ac]\\(ent\\)?"))
 (after! org-roam
 (setq org-id-extra-files (org-roam--list-all-files)))
 
