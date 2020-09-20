@@ -130,7 +130,7 @@ for path in glob(f"{ORG_DIRECTORY}/**/*.org", recursive=True):
         content = f.read()
 
     for custom, uuid in custom_to_id.items():
-        content = substitute_customid_links(content)
+        content = substitute_customid_links(content)  # TODO Try to do it node by node, seems faster
 
     with open(path, "w") as f:
         # Overwrite content
