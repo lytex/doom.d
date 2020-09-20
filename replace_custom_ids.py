@@ -71,6 +71,8 @@ def substitute_customid_links(content: str) -> str:
         content,
     )
 
+    return content
+
 
 def add_orgzly_flat_links(content: str) -> str:
     """Strips the directories out of file links to work with orgzly, flattening the directory structure in one big
@@ -92,6 +94,8 @@ def add_orgzly_flat_links(content: str) -> str:
         r"\g<0>\n[[file:\2][\3]]",
         content,
     )
+
+    return content
 
 
 # First pass, create ID if not exists for each heading with custom_id
