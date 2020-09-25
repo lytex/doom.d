@@ -145,6 +145,7 @@
   ;; inhibit inserting the heading; org-capture will insert the heading.
   (org-journal-new-entry t))
 
+(after! org-roam
 (setq org-roam-capture-templates
     '(("d" "default" plain (function org-roam-capture--get-point)
         "%?"
@@ -163,7 +164,7 @@
         :file-name "Introspección/%<%Y-%m-%d>I"
         :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
-        :jump-to-captured nil)))
+        :jump-to-captured nil))))
 
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
