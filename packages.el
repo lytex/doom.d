@@ -21,6 +21,7 @@
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! pdf-tools)
+(package! pdf-view-restore)
 (package! org-pdftools)
 (package! org-noter-pdftools)
 (package! org-noter)
