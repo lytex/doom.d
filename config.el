@@ -224,6 +224,13 @@
 
 ;; (require 'org-vcard) ;; Only needed when loading contacts
 
+(use-package pdf-view-restore
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-view-restore-mode))
+
+(setq pdf-view-restore-filename "~/.emacs.d/.pdf-view-restore")
+
 (use-package! org-pdftools
   :hook ((org-load . org-pdftools-setup-link))
           (pdf-tools-enable-minor-mode))
