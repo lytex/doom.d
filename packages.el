@@ -16,6 +16,7 @@
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
+(package! org-wild-notifier)
 (package! org-bullets)
 (package! company-org-roam)
 (package! helm-org-rifle)
@@ -25,9 +26,12 @@
 (package! org-pdftools)
 (package! org-noter-pdftools)
 (package! org-noter)
+(package! org-web-tools)
 (if WORK_ENV
     (package! ejira
         :recipe (:host github :repo "nyyManni/ejira")))
+;; (package! fzf
+;;     :recipe (:host github :repo "seenaburns/fzf.el"))
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
