@@ -107,7 +107,7 @@
       (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "~/org/[j1][iR][re][ac]\\(ent\\)?"))
+      (org-roam-file-exclude-regexp  "jira/.*"))
 (after! org-roam
 (setq org-id-extra-files (org-roam--list-all-files)))
 
@@ -265,10 +265,11 @@
 ;;   (with-eval-after-load 'pdf-annot
 ;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
-(use-package! org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+(add-hook 'ediff-load-hook
+               (lambda ()
+                 (set-face-background
+                   ediff-current-diff-face-A  "red")
+                 (set-face-background
+                   ediff-current-diff-face-B "blue")))
 
 (turn-on-undo-tree-mode)
