@@ -237,6 +237,12 @@
           (pdf-tools-enable-minor-mode))
 (pdf-loader-install)
 
+(require 'org-web-tools)
+
+(after! org-wild-notifier
+  (org-wild-notifier-mode))
+(setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
+
 ;; (after! pdf-tools
 ;; (map! :leader
 ;;       :mode (pdf-view-mode)

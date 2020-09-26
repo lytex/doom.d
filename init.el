@@ -50,7 +50,7 @@
        ;;zen               ; distraction-free coding or writing
 
        :editor
-       (evil +everywhere +easymotion); come to the dark side, we have cookies
+       (evil +everywhere +easymotion +surround); come to the dark side, we have cookies
        file-templates    ; auto-snippets for empty files
        fold              ; (nigh) universal code folding
        ;;(format +onsave)  ; automated prettiness
