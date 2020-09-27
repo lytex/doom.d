@@ -164,7 +164,13 @@
         :file-name "Introspección/%<%Y-%m-%d>I"
         :head "* %<%A, %d de %B de %Y>\n"
         :unnarrowed t
-        :jump-to-captured nil))))
+        :jump-to-captured nil)
+      ("p" "project" plain (function org-roam-capture--get-point)
+        "%?"
+        :file-name "project/${slug}" ;; TODO use org-roam-capture-path
+        :head "#+title: ${title}\n"
+        :unnarrowed t
+        :jump-to-captured t))))
 
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
