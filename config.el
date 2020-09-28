@@ -151,26 +151,32 @@
         "%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
         :head "#+title: ${title}\n"
-        :unnarrowed t
-        :jump-to-captured nil)
+        :unnarrowed t)
       ("j" "journal" plain (function org-journal-find-location)
         "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
         :file-name "journal/%<%Y-%m-%d>" ;; TODO use org-roam-journal-path
         :head "* %<%A, %d de %B de %Y>\n"
-        :unnarrowed t
-        :jump-to-captured nil)
+        :unnarrowed t)
       ("i" "introspección" plain (function org-roam-capture--get-point)
         "** %<%H:%M> %^{Title}\n%i%?"
         :file-name "Introspección/%<%Y-%m-%d>I"
         :head "* %<%A, %d de %B de %Y>\n"
-        :unnarrowed t
-        :jump-to-captured nil)
+        :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
         "%?"
-        :file-name "project/${slug}" ;; TODO use org-roam-capture-path
+        :file-name "project/${slug}" 
         :head "#+title: ${title}\n"
-        :unnarrowed t
-        :jump-to-captured t))))
+        :unnarrowed t))))
+
+(after! org-roam
+(setq org-roam-capture-ref-templates
+      '(("r" "ref" plain (function org-roam-capture--get-point)
+        "%?"
+        :file-name "roam/${slug}" ;; TODO use org-roam-capture-path
+        :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}"
+        :unnarrowed t))))
+
+(require 'org-roam-protocol)
 
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)

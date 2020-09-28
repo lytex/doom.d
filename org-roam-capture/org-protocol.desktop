@@ -1,0 +1,10 @@
+# https://www.orgroam.com/manual/Installation-_00281_0029.html
+# vim ~/.local/share/applications/org-protocol.desktop
+# emacsclient -c opens a client even if none is running
+[Desktop Entry]
+Name=Org-Protocol
+Exec= emacsclient -c %u
+Icon=emacs-icon
+Type=Application
+Terminal=false
+MimeType=x-scheme-handler/org-protocol
