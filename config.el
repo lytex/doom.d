@@ -272,11 +272,11 @@
 ;;       :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
 ;;       :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
 
-;; (use-package! org-noter-pdftools
-;;   :after org-noter
-;;   :config
-;;   (with-eval-after-load 'pdf-annot
-;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+(use-package! org-noter-pdftools
+  :after org-noter
+  :config
+  (with-eval-after-load 'pdf-annot
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
 (add-hook 'ediff-load-hook
                (lambda ()
