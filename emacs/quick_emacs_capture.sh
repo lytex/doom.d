@@ -1,12 +1,9 @@
 #!/bin/bash
 
 if pgrep emacsclient; then
-    # There is an open emacsclient
+    # There is an open emacsclient, open in existing frame
     emacsclient "$@"
-elif pgrep emacs; then
-    # There is no open emacsclient but emacs daemon is running
-    emacsclient -c "$@"
 else
-    # Start emacs daemon and client
-    emacsclient -a '' -c "$@"
+    # There is no open emacsclient, create a new frame
+    emacsclient -a "" -c "$@"
 fi
