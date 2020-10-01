@@ -252,6 +252,8 @@
 
 (require 'org-web-tools)
 
+(use-package! org-wild-notifier)
+
 (after! org-wild-notifier
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
