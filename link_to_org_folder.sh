@@ -10,7 +10,9 @@ for source_dir in ${!org_links[@]}; do
     for ((i=0; i<${#files[@]}; i++)); do
         file=${files[i]}
         pushd ${org_links[$source_dir]} >> /dev/null
-            ln -s "$file"
+            if [ ! -f "$file" ]; then
+                ln -s "$file"
+            fi
         popd >> /dev/null
     done
 done
