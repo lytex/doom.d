@@ -14,6 +14,7 @@ for source_dir in ${!org_links[@]}; do
             # because it cannot open the .org file associated with the .pdf  properly
             # If do a soft link org -> Documents, then org-roam doesn't work
             # because it cannot create a new roam file if you write a non-existing link
+            # Also set find-file-existing-other-name, find-file-visit-truename to nil
         popd >> /dev/null
     done
 done
