@@ -164,7 +164,7 @@
         :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
         "%?"
-        :file-name "project/${slug}" 
+        :file-name "projects/${slug}" 
         :head "#+title: ${title}\n"
         :unnarrowed t))))
 
