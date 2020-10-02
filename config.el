@@ -1,5 +1,9 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+;;; Allow hardlinks to be opened in its own directory
+(setq find-file-existing-other-name nil)
+(setq find-file-visit-truename nil)
+
 (load! "~/.doom.d/work.el")
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -288,3 +292,4 @@
                    ediff-current-diff-face-B "blue")))
 
 (turn-on-undo-tree-mode)
+
