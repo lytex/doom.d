@@ -153,7 +153,7 @@
 (setq org-roam-capture-templates
     '(("d" "default" plain (function org-roam-capture--get-point)
         "%?"
-        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}" ;; TODO use org-roam-capture-path
+        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
         :head "#+title: ${title}\n"
         :unnarrowed t)
       ("j" "journal" plain (function org-journal-find-location)
@@ -176,7 +176,7 @@
 (setq org-roam-capture-ref-templates
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "%?"
-        :file-name "roam/${slug}" ;; TODO use org-roam-capture-path
+        :file-name "roam/${slug}"
         :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}"
         :unnarrowed t))))
 
@@ -266,11 +266,22 @@
 
 (require 'org-web-tools)
 
+(after! org-web-tools
+  (map! :leader
+        :prefix "m"
+        :desc (documentation 'org-web-tools-insert-web-page-as-entry) "w" 
+                #'org-web-tools-insert-web-page-as-entry))
+
 (use-package! org-wild-notifier)
 
 (after! org-wild-notifier
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
+
+(after! counsel-fzf
+  (map! :leader
+        :prefix "f"
+        :desc (documentation 'counsel-fzf) "z" #'counsel-fzf))
 
 ;; (after! pdf-tools
 ;; (map! :leader
