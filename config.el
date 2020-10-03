@@ -212,6 +212,15 @@
   (org-roam-open-buffer-at 'bottom)
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
+(defun org-link-and-refile ()
+  "Replace a heading with a link and refile it"
+  (interactive)
+  (call-interactively 'org-store-link)
+  (org-insert-heading)
+  (org-insert-link)
+  (org-previous-visible-heading 1)
+  (call-interactively 'org-refile))
+
 (after! org-roam
       (map! :leader
             :prefix "r"
@@ -219,6 +228,7 @@
             :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
             :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
             :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
+            :desc (documentation 'org-link-and-refile) "r" #'org-link-and-refile
             :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
             :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
             :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
