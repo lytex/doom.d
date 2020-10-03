@@ -8,6 +8,7 @@ for source_dir in ${!org_links[@]}; do
     readarray -t files <<< $(find "$source_dir" -iname "*.org")
     for ((i=0; i<${#files[@]}; i++)); do
         file=${files[i]}
+        filename="${file%"."*}"
         pushd ${org_links[$source_dir]} >> /dev/null
             ln "$file"  # It has to be a hard link
             # If do a soft link Documents -> org, then org-noter doesn't work
@@ -15,6 +16,7 @@ for source_dir in ${!org_links[@]}; do
             # If do a soft link org -> Documents, then org-roam doesn't work
             # because it cannot create a new roam file if you write a non-existing link
             # Also set find-file-existing-other-name, find-file-visit-truename to nil
+            ln "$filename.pdf"  # Hard link to the pdf also so that org-noter can open it
         popd >> /dev/null
     done
 done
