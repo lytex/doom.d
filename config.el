@@ -278,7 +278,7 @@
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
 
-(after! counsel-fzf
+(after! counsel 
   (map! :leader
         :prefix "f"
         :desc (documentation 'counsel-fzf) "z" #'counsel-fzf))
