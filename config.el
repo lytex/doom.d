@@ -115,17 +115,12 @@
 (after! org-roam
 (setq org-id-extra-files (org-roam--list-all-files)))
 
-(require 'company-org-roam)
-    (use-package company-org-roam
-      :when (featurep! :completion company)
-      :after org-roam
-      :config
-      (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
+(use-package! company-org-roam
+  :when (featurep! :completion company)
+  :after org-roam
+  :config
+  (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
 
-(if WORK_ENV
-  (setq org-roam-capture-directory "work_roam/")
-  (setq org-roam-capture-directory "roam/"))
-(setq org-roam-capture-path (concat org-roam-capture-directory "%<%Y%m%d%H%M%S>-${slug}"))
 
 ;; Workaround to work with orgzly -> each file must have a unique name
 (if WORK_ENV
@@ -141,7 +136,9 @@
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format orgzly-org-journal-file-format))
 
-(map! :leader
+(map! 
+      :after org-journal
+      :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
 
 (defun org-journal-find-location ()
@@ -180,7 +177,7 @@
         :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}"
         :unnarrowed t))))
 
-(require 'org-roam-protocol)
+(use-package! org-roam-protocol)
 
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
@@ -221,23 +218,24 @@
   (org-previous-visible-heading 1)
   (call-interactively 'org-refile))
 
-(after! org-roam
-      (map! :leader
-            :prefix "r"
-            :desc (documentation 'org-roam) "o" #'org-roam
-            :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
-            :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
-            :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
-            :desc (documentation 'org-link-and-refile) "r" #'org-link-and-refile
-            :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
-            :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
-            :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
-            :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references))
+(map! :after org-roam
+      :leader
+      :prefix "r"
+      :desc (documentation 'org-roam) "o" #'org-roam
+      :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
+      :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
+      :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
+      :desc (documentation 'org-link-and-refile) "r" #'org-link-and-refile
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+      :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
+      :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
+      :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references)
 
 
-(require 'helm-org-rifle)
+(use-package! helm-org-rifle)
 
-(map! :leader
+(map! :after helm-org-rifle
+      :leader
       :prefix "n"
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
@@ -266,11 +264,11 @@
 
 (require 'org-web-tools)
 
-(after! org-web-tools
-  (map! :leader
-        :prefix "m"
-        :desc (documentation 'org-web-tools-insert-web-page-as-entry) "w" 
-                #'org-web-tools-insert-web-page-as-entry))
+(map! :after org-web-tools
+      :leader
+      :prefix "m"
+      :desc (documentation 'org-web-tools-insert-web-page-as-entry) "w" 
+                #'org-web-tools-insert-web-page-as-entry)
 
 (use-package! org-wild-notifier)
 
@@ -278,10 +276,10 @@
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
 
-(after! counsel 
-  (map! :leader
-        :prefix "f"
-        :desc (documentation 'counsel-fzf) "z" #'counsel-fzf))
+(map! :after counsel
+      :leader
+      :prefix "f"
+      :desc (documentation 'counsel-fzf) "z" #'counsel-fzf)
 
 ;; (after! pdf-tools
 ;; (map! :leader
