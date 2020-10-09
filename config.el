@@ -218,6 +218,33 @@
   (org-previous-visible-heading 1)
   (call-interactively 'org-refile))
 
+;; (defun org-link-and-refile (file)
+;;   "Replace a heading with a link and refile it"
+;;   (call-interactively 'org-store-link)
+;;   (org-insert-heading)
+;;   (org-insert-link)
+;;   (org-previous-visible-heading 1)
+;;   my/refile ())
+
+
+;; From https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
+(defun my/refile (file headline)
+  (let ((pos (save-excursion
+               (find-file file)
+               (org-find-exact-headline-in-buffer headline))))
+    (org-refile nil nil (list headline file nil pos))))
+
+(defun org-refile-to-new-file ()
+  (interactive)
+  ;; (org-roam-capture)
+  (setq new-file (org-roam-capture--capture))
+  (insert new-file)
+  ;; (save-buffer)
+  ;; (delete-window)
+  ;; (my/refile new-file "default")
+  ;; My/refile works interactively but not within the script
+)
+
 (map! :after org-roam
       :leader
       :prefix "r"
@@ -225,7 +252,6 @@
       :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
       :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
       :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
-      :desc (documentation 'org-link-and-refile) "r" #'org-link-and-refile
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
@@ -239,6 +265,14 @@
       :prefix "n"
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
+
+
+(map! :leader
+      :prefix "r"
+      :desc (documentation 'org-link-and-refile) "rl" #'org-link-and-refile
+      :desc (documentation 'org-refile-subtree-to-file) "rn" #'org-refile-subtree-to-file
+      )
+
 
 ;; (require 'helm-source)
 ;; (after! helm-source
