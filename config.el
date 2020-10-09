@@ -343,6 +343,3 @@
                    ediff-current-diff-face-A  "red")
                  (set-face-background
                    ediff-current-diff-face-B "blue")))
-
-(turn-on-undo-tree-mode)
-
