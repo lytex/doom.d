@@ -22,18 +22,18 @@
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! pdf-tools)
-(package! pdf-continuous-scroll-mode
-    :recipe (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
+(package! pdf-continuous-scroll-mode :recipe
+        (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! pdf-view-restore)
 (package! org-pdftools)
 (package! org-noter-pdftools)
 (package! org-noter)
 (package! org-web-tools)
 (if WORK_ENV
-    (package! ejira
-        :recipe (:host github :repo "nyyManni/ejira")))
-(package! fzf
-    :recipe (:host github :repo "seenaburns/fzf.el"))
+    (package! ejira :recipe
+            (:host github :repo "nyyManni/ejira")))
+(package! fzf :recipe
+        (:host github :repo "seenaburns/fzf.el"))
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
