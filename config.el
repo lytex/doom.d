@@ -270,7 +270,7 @@
 (map! :leader
       :prefix "r"
       :desc (documentation 'org-link-and-refile) "rl" #'org-link-and-refile
-      :desc (documentation 'org-refile-subtree-to-file) "rn" #'org-refile-subtree-to-file
+      ;; :desc (documentation 'org-refile-subtree-to-file) "rn" #'org-refile-subtree-to-file
       )
 
 
