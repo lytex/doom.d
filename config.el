@@ -247,9 +247,9 @@
 
 (map! :leader
       :prefix "r"
-      :desc (documentation 'org-link-and-refile) "ll" #'org-link-and-refile
-      :desc (documentation 'org-refile-to-capture) "cc" #'org-refile-subtree-to-file
-      :desc (documentation 'org-link-and-refile-to-capture) "lc" #'org-link-and-refile-to-capture)
+      :desc (documentation 'org-link-and-refile) "fl" #'org-link-and-refile
+      :desc (documentation 'org-refile-to-capture) "fc" #'org-refile-subtree-to-file
+      :desc (documentation 'org-link-and-refile-to-capture) "fb" #'org-link-and-refile-to-capture)
 
 (map! :after org-roam
       :leader
@@ -262,6 +262,31 @@
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
       :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references)
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun org-roam-heading-unlinked-references ()
+  "Get unlinked references for current heading"
+  (interactive)
+  (setq heading (nth 4 (org-heading-components)))
+  (temp-title-buffer heading)
+  (org-roam-unlinked-references))
+
+(defun org-roam-heading-backlinks ()
+  "Narrow backlinks by current heading id"
+  (interactive)
+  (setq id (org-id-copy))
+  (org-roam)
+  (evil-window-right 1)
+  (org-occur id)
+  (evil-window-left 1))
+
+(map! :after org-roam
+      :leader
+      :prefix "r"
+      :desc (documentation 'org-roam-heading-backlinks) "ho" #'org-roam-heading-backlinks
+      :desc (documentation 'org-roam-heading-unlinked-references) "hu" #'org-roam-heading-unlinked-references)
 
 
 (use-package! helm-org-rifle)
