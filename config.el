@@ -248,7 +248,7 @@
 (map! :leader
       :prefix "r"
       :desc (documentation 'org-link-and-refile) "fl" #'org-link-and-refile
-      :desc (documentation 'org-refile-to-capture) "fc" #'org-refile-subtree-to-file
+      :desc (documentation 'org-refile-to-capture) "fc" #'org-refile-to-capture
       :desc (documentation 'org-link-and-refile-to-capture) "fb" #'org-link-and-refile-to-capture)
 
 (map! :after org-roam
