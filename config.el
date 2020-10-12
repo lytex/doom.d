@@ -179,6 +179,7 @@
 
 (use-package! org-roam-protocol)
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam open buffer ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defun org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
   (setq org-roam-buffer-position position)
@@ -189,7 +190,6 @@
   "Open a new roam buffer at the bottom while keeping current org-roam-buffer-position"
   (interactive)
   (org-roam-open-buffer-at 'bottom))
-
 
 (defun org-follow-link-to-the-side ()
   "Follow link in a new buffer to the right"
@@ -209,6 +209,9 @@
   (org-roam-open-buffer-at 'bottom)
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam link and refile ;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun org-link-and-refile ()
   "Replace a heading with a link and refile it"
   (interactive)
@@ -218,15 +221,6 @@
   (org-previous-visible-heading 1)
   (call-interactively 'org-refile))
 
-;; (defun org-link-and-refile (file)
-;;   "Replace a heading with a link and refile it"
-;;   (call-interactively 'org-store-link)
-;;   (org-insert-heading)
-;;   (org-insert-link)
-;;   (org-previous-visible-heading 1)
-;;   my/refile ())
-
-
 ;; From https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
 (defun my/refile (file headline)
   (let ((pos (save-excursion
@@ -234,16 +228,28 @@
                (org-find-exact-headline-in-buffer headline))))
     (org-refile nil nil (list headline file nil pos))))
 
-(defun org-refile-to-new-file ()
+(defun org-refile-to-capture ()
+  "Refile a heading to a new file using org-roam-capture"
   (interactive)
-  ;; (org-roam-capture)
-  (setq new-file (org-roam-capture--capture))
-  (insert new-file)
-  ;; (save-buffer)
-  ;; (delete-window)
-  ;; (my/refile new-file "default")
-  ;; My/refile works interactively but not within the script
-)
+  (org-roam-capture)
+  (setq new-file (org-roam-capture--get :file-path))
+  (save-buffer)
+  (delete-window)
+  (my/refile new-file ""))
+
+(defun org-link-and-refile-to-capture ()
+  (interactive)
+  (call-interactively 'org-store-link)
+  (org-insert-heading)
+  (org-insert-link)
+  (org-previous-visible-heading 1)
+  (org-refile-to-capture))
+
+(map! :leader
+      :prefix "r"
+      :desc (documentation 'org-link-and-refile) "ll" #'org-link-and-refile
+      :desc (documentation 'org-refile-to-capture) "cc" #'org-refile-subtree-to-file
+      :desc (documentation 'org-link-and-refile-to-capture) "lc" #'org-link-and-refile-to-capture)
 
 (map! :after org-roam
       :leader
@@ -266,14 +272,6 @@
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
 
-
-(map! :leader
-      :prefix "r"
-      :desc (documentation 'org-link-and-refile) "rl" #'org-link-and-refile
-      ;; :desc (documentation 'org-refile-subtree-to-file) "rn" #'org-refile-subtree-to-file
-      )
-
-
 ;; (require 'helm-source)
 ;; (after! helm-source
 ;; (use-package! org-recent-headings
@@ -284,6 +282,8 @@
 
 ;; (require 'org-vcard) ;; Only needed when loading contacts
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; pdf and notes ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (use-package! pdf-view-restore
   :after pdf-tools
   :config
