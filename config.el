@@ -298,10 +298,10 @@
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
 
-;; (require 'helm-source)
-;; (after! helm-source
-;; (use-package! org-recent-headings
-;;   :config (org-recent-headings-mode)))
+(require 'helm-source)
+(after! helm-source
+(use-package! org-recent-headings
+  :config (org-recent-headings-mode)))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
