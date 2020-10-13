@@ -277,10 +277,11 @@
   "Narrow backlinks by current heading id"
   (interactive)
   (setq id (org-id-copy))
-  (org-roam)
-  (evil-window-right 1)
+  (setq old-buffer (buffer-name))
+  (unless (org-roam) (org-roam))
+  (switch-to-buffer-other-window (get-buffer "*org-roam*"))
   (org-occur id)
-  (evil-window-left 1))
+  (switch-to-buffer-other-window old-buffer))
 
 (map! :after org-roam
       :leader
