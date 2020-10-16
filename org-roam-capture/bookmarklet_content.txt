@@ -1,0 +1,1 @@
+javascript:location.href='org-protocol://roam-ref?template=c&ref='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title)
