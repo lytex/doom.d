@@ -169,13 +169,23 @@
         :head "#+title: ${title}\n"
         :unnarrowed t))))
 
+
 (after! org-roam
+;; Use a standard template for ref without content
+;; For ref with content, save and focus on the new note
 (setq org-roam-capture-ref-templates
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
         :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}"
-        :unnarrowed t))))
+        :unnarrowed t)
+        ("c" "content" plain (function org-roam-capture--get-point)
+        "%?"
+        :file-name "roam/${slug}"
+        :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :unnarrowed t
+        :immediate-finish t
+        :jump-to-captured t))))
 
 (use-package! org-roam-protocol)
 
@@ -298,10 +308,10 @@
       :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
 
-;; (require 'helm-source)
-;; (after! helm-source
-;; (use-package! org-recent-headings
-;;   :config (org-recent-headings-mode)))
+(require 'helm-source)
+(after! helm-source
+(use-package! org-recent-headings
+  :config (org-recent-headings-mode)))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
