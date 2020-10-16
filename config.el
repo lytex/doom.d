@@ -271,7 +271,7 @@
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
-      :desc (documentation 'org-roam-insert) "u" #'org-roam-unlinked-references)
+      :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
