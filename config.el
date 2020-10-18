@@ -49,7 +49,6 @@
 ;; change `org-directory'. It must be set before org loads!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (setq org-directory "~/org/")
-(load-library "find-lisp")
 
 (setq org-agenda-files
   '("~/org" "~/org/roam" "~/org/journal" "~/org/projects"))
@@ -63,6 +62,7 @@
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
     (setq org-priority-default ?E)
+    (org-indent-mode)
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto))
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
