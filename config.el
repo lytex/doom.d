@@ -57,7 +57,7 @@
     (setq org-id-locations-file (concat org-directory ".orgids")))
 (after! org
 (setq org-todo-keywords
-	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)")))
+	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" "ARCHIVED(a)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
@@ -366,6 +366,11 @@
   :hook ((org-load . org-pdftools-setup-link))
           (pdf-tools-enable-minor-mode))
 (pdf-loader-install)
+
+(use-package! pdf-continuous-scroll-mode
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode))
 
 (require 'org-web-tools)
 
