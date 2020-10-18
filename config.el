@@ -330,6 +330,7 @@
   (my/org-refile-to-capture))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;; org-roam & related mappings ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (map! :after org-roam
       :leader
