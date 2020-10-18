@@ -272,6 +272,7 @@
   (my/refile new-file ""))
 
 (defun org-link-and-refile-to-capture ()
+  "Replace a heading with a link and refile to a new file using org-roam-capture"
   (interactive)
   (call-interactively 'org-store-link)
   (org-insert-heading)
@@ -396,6 +397,12 @@
   :config
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+(use-package! highlight-indent-guides
+  :ensure t
+  :hook (prog-mode . highlight-indent-guides-mode)
+  :init
+  (setq highlight-indent-guides-method 'character))
 
 (add-hook 'ediff-load-hook
                (lambda ()

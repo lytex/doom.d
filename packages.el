@@ -16,6 +16,7 @@
 ;; https://github.com/raxod502/straight.el#the-recipe-format
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
+(package! highlight-indent-guides)
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! company-org-roam)
