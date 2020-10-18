@@ -20,6 +20,8 @@
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! company-org-roam)
+(package! org-transclusion :recipe
+        (:host github :repo "nobiot/org-transclusion"))
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! org-sticky-header :recipe

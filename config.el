@@ -425,3 +425,23 @@
                    ediff-current-diff-face-A  "red")
                  (set-face-background
                    ediff-current-diff-face-B "blue")))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-transclusion (wip) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; TODO Workaround for dark theme, remove later
+(defface org-transclusion-source-block
+  '((((class color) (min-colors 88) (background light))
+     :background "#fff3da" :extend t)
+    (((class color) (min-colors 88) (background dark))
+     :background "#000c25" :extend t))
+  "Face for transcluded block.")
+
+(defface org-transclusion-block
+  '((((class color) (min-colors 88) (background light))
+     :background "#f3f3ff" :extend t)
+    (((class color) (min-colors 88) (background dark))
+     :background "#0c0c00" :extend t))
+  "Face for transcluded block.")
+
+(use-package! org-transclusion)
