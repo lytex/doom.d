@@ -96,8 +96,18 @@
  ;; If there is more than one, they won't work right.
  )
 
-(use-package! org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+(use-package! org-bullets
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+
 (defun my/revert-buffer-close-roam ()
     (interactive)
     (revert-buffer)
@@ -106,13 +116,6 @@
       :after org-roam
       :leader
       "bo" #'my/revert-buffer-close-roam)
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
 (use-package! org-roam
       :hook
@@ -130,6 +133,7 @@
   (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
 
 
+;;;;;;;;;;;;;;;;;;;;;;;; org-journal & org-roam-capture ;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Workaround to work with orgzly -> each file must have a unique name
 (if WORK_ENV
   (setq org-journal-dir (concat org-directory "work_journal/"))
@@ -221,26 +225,69 @@
 
 (use-package! org-roam-protocol)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun my/org-roam-heading-unlinked-references ()
+  "Get unlinked references for current heading"
+  (interactive)
+  (setq heading (nth 4 (org-heading-components)))
+  (temp-title-buffer heading)
+  (org-roam-unlinked-references))
+
+(defun my/org-roam-heading-backlinks ()
+  "Narrow backlinks by current heading id"
+  (interactive)
+  (setq id (org-id-copy))
+  (setq old-buffer (buffer-name))
+  (unless (org-roam) (org-roam))
+  (switch-to-buffer-other-window (get-buffer "*org-roam*"))
+  (org-occur id)
+  (switch-to-buffer-other-window old-buffer))
+
+(map! :after org-roam
+      :leader
+      :prefix "r"
+      :desc (documentation 'my/org-roam-heading-backlinks) "ho" #'my/org-roam-heading-backlinks
+      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references)
+
+
+(use-package! helm-org-rifle)
+
+(map! :after helm-org-rifle
+      :leader
+      :prefix "n"
+      :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
+      :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
+
+(require 'helm-source)
+(after! helm-source
+(use-package! org-recent-headings
+  :config (org-recent-headings-mode)))
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam open buffer ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defun org-roam-open-buffer-at (position)
+
+(defun my/org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
   (setq org-roam-buffer-position position)
   (org-roam)
   (setq org-roam-buffer-position old-org-roam-buffer-position))
 
-(defun org-roam-open-buffer-at-bottom ()
+(defun my/org-roam-open-buffer-at-bottom ()
   "Open a new roam buffer at the bottom while keeping current org-roam-buffer-position"
   (interactive)
-  (org-roam-open-buffer-at 'bottom))
+  (my/org-roam-open-buffer-at 'bottom))
 
-(defun org-follow-link-to-the-side ()
+(defun my/org-follow-link-to-the-side ()
   "Follow link in a new buffer to the right"
   (interactive)
   (evil-window-vsplit)
   (evil-window-right 1)
   (org-open-at-point))
 
-(defun org-open-new-buffer ()
+(defun my/org-open-new-buffer ()
   "Open link in a new right window and open org-roam-buffer at the bottom"
   (interactive)
   (evil-window-vsplit)
@@ -248,13 +295,13 @@
   (org-open-at-point)
   (setq old-org-roam-buffer-height org-roam-buffer-height)
   (setq org-roam-buffer-height 0.35)
-  (org-roam-open-buffer-at 'bottom)
+  (my/org-roam-open-buffer-at 'bottom)
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam link and refile ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun org-link-and-refile ()
+(defun my/org-link-and-refile ()
   "Replace a heading with a link and refile it"
   (interactive)
   (call-interactively 'org-store-link)
@@ -270,7 +317,7 @@
                (org-find-exact-headline-in-buffer headline))))
     (org-refile nil nil (list headline file nil pos))))
 
-(defun org-refile-to-capture ()
+(defun my/org-refile-to-capture ()
   "Refile a heading to a new file using org-roam-capture"
   (interactive)
   (org-roam-capture)
@@ -279,74 +326,35 @@
   (delete-window)
   (my/refile new-file ""))
 
-(defun org-link-and-refile-to-capture ()
+(defun my/org-link-and-refile-to-capture ()
   "Replace a heading with a link and refile to a new file using org-roam-capture"
   (interactive)
   (call-interactively 'org-store-link)
   (org-insert-heading)
   (org-insert-link)
   (org-previous-visible-heading 1)
-  (org-refile-to-capture))
+  (my/org-refile-to-capture))
 
 (use-package! org-sticky-header)
 
 (map! :leader
       :prefix "r"
-      :desc (documentation 'org-link-and-refile) "fl" #'org-link-and-refile
-      :desc (documentation 'org-refile-to-capture) "fc" #'org-refile-to-capture
-      :desc (documentation 'org-link-and-refile-to-capture) "fb" #'org-link-and-refile-to-capture)
+      :desc (documentation 'my/org-link-and-refile) "fl" #'my/org-link-and-refile
+      :desc (documentation 'my/org-refile-to-capture) "fc" #'my/org-refile-to-capture
+      :desc (documentation 'my/org-link-and-refile-to-capture) "fb" #'my/org-link-and-refile-to-capture)
 
 (map! :after org-roam
       :leader
       :prefix "r"
       :desc (documentation 'org-roam) "o" #'org-roam
-      :desc (documentation 'org-roam-open-buffer-at-bottom) "j" #'org-roam-open-buffer-at-bottom
-      :desc (documentation 'org-open-new-buffer) "n" #'org-open-new-buffer
-      :desc (documentation 'org-follow-link-to-the-side) "s" #'org-follow-link-to-the-side
+      :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
+      :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
+      :desc (documentation 'my/org-follow-link-to-the-side) "s" #'my/org-follow-link-to-the-side
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
       :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references)
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defun org-roam-heading-unlinked-references ()
-  "Get unlinked references for current heading"
-  (interactive)
-  (setq heading (nth 4 (org-heading-components)))
-  (temp-title-buffer heading)
-  (org-roam-unlinked-references))
-
-(defun org-roam-heading-backlinks ()
-  "Narrow backlinks by current heading id"
-  (interactive)
-  (setq id (org-id-copy))
-  (setq old-buffer (buffer-name))
-  (unless (org-roam) (org-roam))
-  (switch-to-buffer-other-window (get-buffer "*org-roam*"))
-  (org-occur id)
-  (switch-to-buffer-other-window old-buffer))
-
-(map! :after org-roam
-      :leader
-      :prefix "r"
-      :desc (documentation 'org-roam-heading-backlinks) "ho" #'org-roam-heading-backlinks
-      :desc (documentation 'org-roam-heading-unlinked-references) "hu" #'org-roam-heading-unlinked-references)
-
-
-(use-package! helm-org-rifle)
-
-(map! :after helm-org-rifle
-      :leader
-      :prefix "n"
-      :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
-      :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
-
-(require 'helm-source)
-(after! helm-source
-(use-package! org-recent-headings
-  :config (org-recent-headings-mode)))
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
