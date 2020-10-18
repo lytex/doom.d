@@ -241,7 +241,7 @@
   (org-open-at-point))
 
 (defun org-open-new-buffer ()
-  "Open link in a new left window and open org-roam-buffer at the bottom"
+  "Open link in a new right window and open org-roam-buffer at the bottom"
   (interactive)
   (evil-window-vsplit)
   (evil-window-right 1)
