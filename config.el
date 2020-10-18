@@ -136,10 +136,34 @@
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format orgzly-org-journal-file-format))
 
+(defun my/set-org-journal (option)
+(if (string= option "J")
+    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
+            (setq org-journal-dir (concat org-directory "journal/"))))
+(if (string= option "I")
+    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
+            (setq org-journal-dir (concat org-directory "Introspección/"))))
+(if (string= option "W")
+    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
+            (setq org-journal-dir (concat org-directory "work_journal/")))))
+
+(defun my/set-org-journal-J ()
+    (interactive)
+    (my/set-org-journal "J"))
+(defun my/set-org-journal-I ()
+    (interactive)
+    (my/set-org-journal "I"))
+(defun my/set-org-journal-W ()
+    (interactive)
+    (my/set-org-journal "W"))
+
 (map! 
       :after org-journal
       :leader
-      :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry)
+      :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry
+      "jj" #'my/set-org-journal-J
+      "ji" #'my/set-org-journal-I
+      "jw" #'my/set-org-journal-W)
 
 (defun org-journal-find-location ()
   ;; Open today's journal, but specify a non-nil prefix argument in order to
