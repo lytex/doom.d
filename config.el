@@ -245,12 +245,6 @@
   (org-occur id)
   (switch-to-buffer-other-window old-buffer))
 
-(map! :after org-roam
-      :leader
-      :prefix "r"
-      :desc (documentation 'my/org-roam-heading-backlinks) "ho" #'my/org-roam-heading-backlinks
-      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references)
-
 
 (use-package! helm-org-rifle)
 
@@ -335,28 +329,31 @@
   (org-previous-visible-heading 1)
   (my/org-refile-to-capture))
 
-(use-package! org-sticky-header)
 
-(map! :leader
-      :prefix "r"
-      :desc (documentation 'my/org-link-and-refile) "fl" #'my/org-link-and-refile
-      :desc (documentation 'my/org-refile-to-capture) "fc" #'my/org-refile-to-capture
-      :desc (documentation 'my/org-link-and-refile-to-capture) "fb" #'my/org-link-and-refile-to-capture)
 
 (map! :after org-roam
       :leader
-      :prefix "r"
+      :prefix ("r" . "org-roam")
       :desc (documentation 'org-roam) "o" #'org-roam
+      :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
+      :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
+      :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
       :desc (documentation 'my/org-follow-link-to-the-side) "s" #'my/org-follow-link-to-the-side
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
-      :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
-      :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
-      :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references)
+
+      :desc (documentation 'my/org-link-and-refile) "fl" #'my/org-link-and-refile
+      :desc (documentation 'my/org-refile-to-capture) "fc" #'my/org-refile-to-capture
+      :desc (documentation 'my/org-link-and-refile-to-capture) "fb" #'my/org-link-and-refile-to-capture
+      
+      :desc (documentation 'my/org-roam-heading-backlinks) "ho" #'my/org-roam-heading-backlinks
+      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; misc org plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! org-sticky-header)
 
 (use-package! org-web-tools)
 
@@ -428,7 +425,7 @@
 (after! (pdf-tools)
 (map! :leader
       :mode (pdf-view-mode)
-      :prefix "a"
+      :prefix ("a" . "annotations in pdf")
       :desc (documentation 'pdf-annot-add-markup-annotation) 
       "m" #'my/pdf-annot-add-markup-annotation
       :desc (documentation 'pdf-annot-add-squiggly-markup-annotation) 
