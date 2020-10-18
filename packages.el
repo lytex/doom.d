@@ -22,6 +22,8 @@
 (package! company-org-roam)
 (package! helm-org-rifle)
 (package! org-recent-headings)
+(package! org-sticky-header :recipe
+        (:host github :repo "alphapapa/org-sticky-header"))
 (package! pdf-tools)
 (package! pdf-continuous-scroll-mode :recipe
         (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))

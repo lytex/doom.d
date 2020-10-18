@@ -98,6 +98,14 @@
 
 (use-package! org-bullets)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(defun my/revert-buffer-close-roam ()
+    (interactive)
+    (revert-buffer)
+    (org-roam))
+(map!
+      :after org-roam
+      :leader
+      "bo" #'my/revert-buffer-close-roam)
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -279,6 +287,8 @@
   (org-insert-link)
   (org-previous-visible-heading 1)
   (org-refile-to-capture))
+
+(use-package! org-sticky-header)
 
 (map! :leader
       :prefix "r"
