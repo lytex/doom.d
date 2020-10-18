@@ -356,6 +356,28 @@
       :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references)
 
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; misc org plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(use-package! org-web-tools)
+
+(map! :after org-web-tools
+      :leader
+      :prefix "m"
+      :desc (documentation 'org-web-tools-insert-web-page-as-entry) "w" 
+                #'org-web-tools-insert-web-page-as-entry)
+
+(use-package! org-wild-notifier)
+
+(after! org-wild-notifier
+  (org-wild-notifier-mode))
+(setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
+
+(map! :after counsel
+      :leader
+      :prefix "f"
+      :desc (documentation 'counsel-fzf) "z" #'counsel-fzf)
+
+
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
 
@@ -380,40 +402,50 @@
   :config
   (add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode))
 
-(require 'org-web-tools)
+(use-package! pdf-history
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-history-minor-mode))
 
-(map! :after org-web-tools
-      :leader
-      :prefix "m"
-      :desc (documentation 'org-web-tools-insert-web-page-as-entry) "w" 
-                #'org-web-tools-insert-web-page-as-entry)
+(use-package! pdf-annot
+  :after pdf-tools
+  :config
+  (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode))
 
-(use-package! org-wild-notifier)
+(defun my/pdf-annot-add-markup-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-markup-annotation))
+(defun my/pdf-annot-add-squiggly-markup-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-squiggly-markup-annotation))
+(defun my/pdf-annot-add-highlight-markup-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-highlight-markup-annotation))
+(defun my/pdf-annot-add-strikeout-markup-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-strikeout-markup-annotation))
+(defun my/pdf-annot-add-underline-markup-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-strikeout-markup-annotation))
+(defun my/pdf-annot-add-text-annotation () (interactive)
+                (call-interactively 'pdf-annot-add-text-annotation))
 
-(after! org-wild-notifier
-  (org-wild-notifier-mode))
-(setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
-
-(map! :after counsel
-      :leader
-      :prefix "f"
-      :desc (documentation 'counsel-fzf) "z" #'counsel-fzf)
-
-;; (after! pdf-tools
-;; (map! :leader
-;;       :mode (pdf-view-mode)
-;;       :prefix "a"
-;;       :desc (documentation 'pdf-annot-add-markup-annotation)  "m" #'pdf-annot-add-markup-annotation
-;;       :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)  "g" #'pdf-annot-add-squiggly-markup-annotation
-;;       :desc (documentation 'pdf-annot-add-highlight-markup-annotation)  "h" #'pdf-annot-add-highlight-markup-annotation
-;;       :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)  "s" #'pdf-annot-add-strikeout-markup-annotation
-;;       :desc (documentation 'pdf-annot-add-underline-markup-annotation)  "u" #'pdf-annot-add-underline-markup-annotation
-;;       :desc (documentation 'pdf-annot-add-text-annotation)  "t" #'pdf-annot-add-text-annotation)
-;; (map! :leader
-;;       :mode (pdf-view-mode)
-;;       :prefix "p"
-;;       :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
-;;       :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
+(after! (pdf-tools)
+(map! :leader
+      :mode (pdf-view-mode)
+      :prefix "a"
+      :desc (documentation 'pdf-annot-add-markup-annotation) 
+      "m" #'my/pdf-annot-add-markup-annotation
+      :desc (documentation 'pdf-annot-add-squiggly-markup-annotation) 
+      "g" #'my/pdf-annot-add-squiggly-markup-annotation
+      :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
+      "h" #'my/pdf-annot-add-highlight-markup-annotation
+      :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
+      "s" #'my/pdf-annot-add-strikeout-markup-annotation
+      :desc (documentation 'pdf-annot-add-underline-markup-annotation)
+      "u" #'my/pdf-annot-add-underline-markup-annotation
+      :desc (documentation 'pdf-annot-add-text-annotation)
+      "t" #'my/pdf-annot-add-text-annotation)
+(map! :leader
+      :mode (pdf-view-mode)
+      :prefix "p"
+      :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
+      :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
 
 (use-package! org-noter-pdftools
   :after org-noter
