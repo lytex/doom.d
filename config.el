@@ -354,7 +354,9 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; misc org plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(use-package! org-sticky-header)
+(use-package! org-sticky-header
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-sticky-header-mode 1))))
 
 (use-package! org-web-tools)
 
