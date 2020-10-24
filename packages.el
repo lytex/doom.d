@@ -31,6 +31,7 @@
         (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! pdf-view-restore)
 (package! org-pdftools)
+(package! nov)
 (package! org-noter-pdftools)
 (package! org-noter)
 (package! org-web-tools)

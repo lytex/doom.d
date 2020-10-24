@@ -452,6 +452,9 @@
   :config
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+  
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(use-package! nov)
 
 (use-package! highlight-indent-guides
   :ensure t
