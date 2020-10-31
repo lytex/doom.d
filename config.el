@@ -455,6 +455,11 @@
   :config
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+
+(defun my/clean-skeleton ()
+  (interactive)
+;;  (loop for annotation in ("Highlights" "Underlines" "Squigglies" "Text notes" "Strikeouts" "Links"))
+  (replace-regexp "[ \*]+ Underline on page [0-9]+\n[ ]*:PROPERTIES:\n:NOTER_PAGE:.*\n:ID:.*\n:END:\n[ \*]+ Contents\n" ""))
   
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
