@@ -121,13 +121,10 @@
       "bo" #'my/revert-buffer-close-roam)
 
 (use-package! org-roam
-      :hook
-      (after-init . org-roam-mode)
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "jira/.*"))
-(after! org-roam
-(setq org-id-extra-files (org-roam--list-all-files)))
+      (org-roam-file-exclude-regexp  "jira/.*")
+      (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
 
 (use-package! company-org-roam
   :when (featurep! :completion company)
@@ -363,6 +360,10 @@
 
 (use-package! org-web-tools)
 
+(defun my/clean-xtra-newlines ()
+  (interactive)
+  (replace-regexp "\n\n+" "\n"))
+
 (map! :after org-web-tools
       :leader
       :prefix "m"
@@ -480,19 +481,4 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-transclusion (wip) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; TODO Workaround for dark theme, remove later
-(defface org-transclusion-source-block
-  '((((class color) (min-colors 88) (background light))
-     :background "#fff3da" :extend t)
-    (((class color) (min-colors 88) (background dark))
-     :background "#000c25" :extend t))
-  "Face for transcluded block.")
-
-(defface org-transclusion-block
-  '((((class color) (min-colors 88) (background light))
-     :background "#f3f3ff" :extend t)
-    (((class color) (min-colors 88) (background dark))
-     :background "#0c0c00" :extend t))
-  "Face for transcluded block.")
-
-(use-package! org-transclusion)
+;; (use-package! org-transclusion)
