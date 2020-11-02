@@ -48,6 +48,9 @@
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-mode config ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; (with-eval-after-load "org"
+;;     (setq org-emphasis-alist (cons (cons "!"  '(:foreground "Yellow")) org-emphasis-alist)))
+
 (setq org-directory "~/org/")
 
 (setq org-agenda-files
@@ -92,20 +95,10 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
 
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
+;; highlight words between ! ... !
+(font-lock-add-keywords 'org-mode
+  '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
 
 (defun my/revert-buffer-close-roam ()
     (interactive)
@@ -487,4 +480,4 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-transclusion (wip) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; (use-package! org-transclusion)
+(use-package! org-transclusion)
