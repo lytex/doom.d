@@ -73,7 +73,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -107,10 +107,6 @@
  )
 
 
-(use-package! org-bullets
-    :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
-
 (defun my/revert-buffer-close-roam ()
     (interactive)
     (revert-buffer)
@@ -121,10 +117,13 @@
       "bo" #'my/revert-buffer-close-roam)
 
 (use-package! org-roam
+      :ensure t
       :custom
       (org-roam-directory "~/org/")
       (org-roam-file-exclude-regexp  "jira/.*")
       (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
+;; (after! org-roam
+;; (setq org-id-extra-files (org-roam--list-all-files)))
 
 (use-package! company-org-roam
   :when (featurep! :completion company)
@@ -384,6 +383,13 @@
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
+
+
+;; org-bullets has to be loaded AFTER org-roam
+;; otherwise it breaks org-roam
+(use-package! org-bullets
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
 
 ;; (require 'org-vcard) ;; Only needed when loading contacts
 
