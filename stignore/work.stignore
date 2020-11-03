@@ -15,13 +15,16 @@ org-roam.db
 // Include only work notes
 !0rganización.org
 !Trabajo.org
+!Inbox.org
 !Mejora_profesional.org
+!Meta.org
 !doom/
 !Obsidian/
 !roam/
 !projects/
 !work_journal/
 !Work_Inbox.org
+!wiki.org
 
 
 // Exclude everything else by default
