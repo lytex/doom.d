@@ -103,7 +103,8 @@
 (defun my/revert-buffer-close-roam ()
     (interactive)
     (revert-buffer)
-    (org-roam))
+    (org-roam)
+    (org-mode))
 (map!
       :after org-roam
       :leader
@@ -134,6 +135,14 @@
   (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
   (setq orgzly-org-journal-file-format "%Y-%m-%d.org"))
 
+(map!
+      :after org-journal
+      :leader
+      "jm" #'org-journal-mode)
+(map!
+      :leader
+      "jo" #'org-mode)
+
 (use-package! org-journal
   :custom
   (org-journal-date-prefix "* ")
@@ -143,12 +152,15 @@
 (defun my/set-org-journal (option)
 (if (string= option "J")
     (progn  (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
+            (setq org-journal-file-format orgzly-org-journal-file-format)
             (setq org-journal-dir (concat org-directory "journal/"))))
 (if (string= option "I")
     (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
+            (setq org-journal-file-format orgzly-org-journal-file-format)
             (setq org-journal-dir (concat org-directory "Introspección/"))))
 (if (string= option "W")
     (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
+            (setq org-journal-file-format orgzly-org-journal-file-format)
             (setq org-journal-dir (concat org-directory "work_journal/")))))
 
 (defun my/set-org-journal-J ()
