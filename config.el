@@ -132,12 +132,14 @@
         (setq org-journal-dir (concat org-directory "work_journal/"))
         ;; Workaround to work with orgzly -> each file must have a unique name
         (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
+        (setq org-journal-file-format orgzly-org-journal-file-format)
         ;; All work journal files have the tag "work"
         (setq org-journal-file-header "#+FILETAGS: :work:"))
 
 (defun my/set-personal-journal ()
         (setq org-journal-dir (concat org-directory "journal/"))
         (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
+        (setq org-journal-file-format orgzly-org-journal-file-format)
         (setq org-journal-file-header ""))
 
 (defun my/set-introspection-journal ()
