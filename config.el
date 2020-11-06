@@ -127,21 +127,27 @@
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;; org-journal & org-roam-capture ;;;;;;;;;;;;;;;;;;;;;;;;
-;; Workaround to work with orgzly -> each file must have a unique name
-(if WORK_ENV
-  (setq org-journal-dir (concat org-directory "work_journal/"))
-  (setq org-journal-dir (concat org-directory "journal/")))
-(if WORK_ENV
-  (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
-  (setq orgzly-org-journal-file-format "%Y-%m-%d.org"))
 
-(map!
-      :after org-journal
-      :leader
-      "jm" #'org-journal-mode)
-(map!
-      :leader
-      "jo" #'org-mode)
+(defun my/set-work-journal ()
+        (setq org-journal-dir (concat org-directory "work_journal/"))
+        ;; Workaround to work with orgzly -> each file must have a unique name
+        (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
+        ;; All work journal files have the tag "work"
+        (setq org-journal-file-header "#+FILETAGS: :work:"))
+
+(defun my/set-personal-journal ()
+        (setq org-journal-dir (concat org-directory "journal/"))
+        (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
+        (setq org-journal-file-header ""))
+
+(defun my/set-introspection-journal ()
+        (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
+        (setq org-journal-file-format orgzly-org-journal-file-format)
+        (setq org-journal-dir (concat org-directory "Introspección/")))
+
+(if WORK_ENV
+    (my/set-work-journal)
+    (my/set-personal-journal))
 
 (use-package! org-journal
   :custom
@@ -151,17 +157,11 @@
 
 (defun my/set-org-journal (option)
 (if (string= option "J")
-    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
-            (setq org-journal-file-format orgzly-org-journal-file-format)
-            (setq org-journal-dir (concat org-directory "journal/"))))
-(if (string= option "I")
-    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
-            (setq org-journal-file-format orgzly-org-journal-file-format)
-            (setq org-journal-dir (concat org-directory "Introspección/"))))
+    (my/set-personal-journal))
 (if (string= option "W")
-    (progn  (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
-            (setq org-journal-file-format orgzly-org-journal-file-format)
-            (setq org-journal-dir (concat org-directory "work_journal/")))))
+    (my/set-work-journal))
+(if (string= option "I")
+    (my/set-introspection-journal)))
 
 (defun my/set-org-journal-J ()
     (interactive)
@@ -172,6 +172,15 @@
 (defun my/set-org-journal-W ()
     (interactive)
     (my/set-org-journal "W"))
+
+
+(map!
+      :after org-journal
+      :leader
+      "jm" #'org-journal-mode)
+(map!
+      :leader
+      "jo" #'org-mode)
 
 (map! 
       :after org-journal
@@ -333,6 +342,17 @@
   (org-previous-visible-heading 1)
   (my/org-refile-to-capture))
 
+
+;;;;;;;;;;;;;; org mode id autocompletion in all org-agenda files ;;;;;;;;;;;;;;
+;; https://emacs.stackexchange.com/questions/12391/insert-org-id-link-at-point-via-outline-path-completion
+;; autocomplete with all links by setting the targets as org-refile-targets
+(defun org-id-complete-link (&optional arg)
+  "Create an id: link using completion"
+  (concat "id:"
+   (org-id-get-with-outline-path-completion org-refile-targets)))
+
+(org-link-set-parameters "id"
+                         :complete 'org-id-complete-link)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; org-roam & related mappings ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
