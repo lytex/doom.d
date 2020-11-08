@@ -111,11 +111,11 @@
       "bo" #'my/revert-buffer-close-roam)
 
 (use-package! org-roam
+      :hook (org-load . org-roam-mode)
       :ensure t
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "jira/.*")
-      (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
+      (org-roam-file-exclude-regexp  "0.org"))
 ;; (after! org-roam
 ;; (setq org-id-extra-files (org-roam--list-all-files)))
 
