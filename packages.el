@@ -35,9 +35,6 @@
 (package! org-noter-pdftools)
 (package! org-noter)
 (package! org-web-tools)
-(if WORK_ENV
-    (package! ejira :recipe
-            (:host github :repo "nyyManni/ejira")))
 (package! fzf :recipe
         (:host github :repo "seenaburns/fzf.el"))
 ;(package! org-vcard)
