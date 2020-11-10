@@ -238,12 +238,12 @@
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
-        :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}"
+        :head "#+title: ${title}\n#+roam_key: ${ref}"
         :unnarrowed t)
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
-        :head "#+TITLE: ${title}\n#+ROAM_KEY: ${ref}\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n%(org-web-tools--url-as-readable-org \"${ref}\")"
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
