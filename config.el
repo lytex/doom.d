@@ -418,10 +418,6 @@
       :desc (documentation 'counsel-fzf) "z" #'counsel-fzf)
 
 
-(if WORK_ENV
-  (load! "~/.doom.d/jira.el"))
-
-
 ;; org-bullets has to be loaded AFTER org-roam
 ;; otherwise it breaks org-roam
 (use-package! org-bullets
