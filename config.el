@@ -412,6 +412,9 @@
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
 
+
+(use-package! counsel)
+
 (map! :after counsel
       :leader
       :prefix "f"
