@@ -396,6 +396,8 @@
 
 (use-package! org-web-tools)
 
+(use-package! org-ql)
+
 (defun my/clean-xtra-newlines ()
   (interactive)
   (replace-regexp "\n\n+" "\n"))
@@ -503,6 +505,12 @@
   (interactive)
 ;;  (loop for annotation in ("Highlights" "Underlines" "Squigglies" "Text notes" "Strikeouts" "Links"))
   (replace-regexp "[ \*]+ Underline on page [0-9]+\n[ ]*:PROPERTIES:\n:NOTER_PAGE:.*\n:ID:.*\n:END:\n[ \*]+ Contents\n" ""))
+
+(defun my/clean-weird-characters ()
+  (interactive)
+  (replace-regexp "ﬃ" "ffi") 
+  (replace-regexp "ﬁ" "fi") 
+  (replace-regexp "ﬀ" "ff"))
   
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
