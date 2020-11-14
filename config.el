@@ -54,8 +54,14 @@
 
 (setq org-directory "~/org/")
 
+(setq org-cycle-open-archived-trees t)
+
+(if WORK_ENV
 (setq org-agenda-files
-  '("~/org" "~/org/roam" "~/org/journal" "~/org/projects"))
+  '("~/org" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
+(setq org-agenda-files
+  '("~/org" "~/org/roam" "~/org/journal" "~/org/projects")))
+
 (if WORK_ENV
     (setq org-id-locations-file (concat org-directory ".orgids_work"))
     (setq org-id-locations-file (concat org-directory ".orgids")))
