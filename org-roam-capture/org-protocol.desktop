@@ -1,4 +1,4 @@
-# https://www.orgroam.com/manual/Installation-_00281_0029.html
+# https://www.orgroam.com/manual.html#Installation-_00281_0029
 # vim ~/.local/share/applications/org-protocol.desktop
 # xdg-mime default org-protocol.desktop x-scheme-handler/org-protocol # afterwards
 # emacsclient -c opens a client even if none is running
