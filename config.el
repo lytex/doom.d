@@ -77,7 +77,8 @@
     (setq org-priority-default ?E)
     (org-indent-mode)
     (map! :leader
-      :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto))
+      :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto
+      :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
 (setq  org-startup-folded t)        ;; Start with folded view
 
