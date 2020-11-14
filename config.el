@@ -30,9 +30,9 @@
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
-(setq doom-font (font-spec :family "FuraMono Nerd Font" :size 12))
-(setq doom-unicode-font (font-spec :name "FuraMono Nerd Font" :size 12))
-(setq org-emph-face (font-spec :family "Victor Mono" :size 12))
+(setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
+(setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))
+(setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
 ;;(require 'fira-code-mode)
 ;; (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 
@@ -101,15 +101,16 @@
 (font-lock-add-keywords 'org-mode
   '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
 
-(defun my/revert-buffer-close-roam ()
+(defun my/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
     (org-roam)
-    (org-mode))
+    (org-mode)
+    (org-roam))
 (map!
       :after org-roam
       :leader
-      "bo" #'my/revert-buffer-close-roam)
+      "bo" #'my/revert-buffer-reload-roam)
 
 (use-package! org-roam
       :custom
