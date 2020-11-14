@@ -70,7 +70,7 @@
 "TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
 (after! org
 (setq org-todo-keywords
-	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" "ARCHIVED(a)" )))
+	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
