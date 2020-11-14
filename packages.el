@@ -19,7 +19,6 @@
 (package! highlight-indent-guides)
 (package! org-wild-notifier)
 (package! org-bullets)
-(package! company-org-roam)
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion" :branch "main"))
 (package! helm-org-rifle)

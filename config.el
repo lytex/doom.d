@@ -136,12 +136,6 @@
 ;; (after! org-roam
 ;; (setq org-id-extra-files (org-roam--list-all-files)))
 
-(use-package! company-org-roam
-  :when (featurep! :completion company)
-  :after org-roam
-  :config
-  (set-company-backend! 'org-mode '(company-org-roam company-yasnippet company-dabbrev)))
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;; org-journal & org-roam-capture ;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -254,6 +248,12 @@
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
+
+(after! org-roam
+(setq org-roam-completion-everywhere t))
+
+(after! company
+(add-to-list 'company-backends 'company-capf))
 
 (use-package! org-roam-protocol)
 
