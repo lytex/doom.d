@@ -167,7 +167,9 @@
   :custom
   (org-journal-date-prefix "* ")
   (org-journal-date-format "%A, %d de %B de %Y")
-  (org-journal-file-format orgzly-org-journal-file-format))
+  (org-journal-file-format orgzly-org-journal-file-format)
+  (org-journal-after-entry-create-hook (lambda ()
+    (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]")))))
 
 (defun my/set-org-journal (option)
 (if (string= option "J")
