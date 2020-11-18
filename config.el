@@ -263,6 +263,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun temp-title-buffer (title)
+  (switch-to-buffer (find-file-noselect (concat "~/org/roam/" title ".org") nil nil nil))
+  (erase-buffer)
+  (insert (concat "#+title: " title)))
+
 (defun my/org-roam-heading-unlinked-references ()
   "Get unlinked references for current heading"
   (interactive)
