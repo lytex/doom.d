@@ -340,7 +340,7 @@
                   (if (and (buffer-file-name x)
                            (string-match "\\.org$"
                                          (buffer-file-name x)))
-                      (buffer-file-name x)))
+     finds bugs in your shell scripts.                 (buffer-file-name x)))
                 (buffer-list))))
 
 (setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
@@ -526,16 +526,19 @@
   (with-eval-after-load 'pdf-annot
     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
 
-(defun my/clean-skeleton ()
-  (interactive)
-;;  (loop for annotation in ("Highlights" "Underlines" "Squigglies" "Text notes" "Strikeouts" "Links"))
-  (replace-regexp "[ \*]+ Underline on page [0-9]+\n[ ]*:PROPERTIES:\n:NOTER_PAGE:.*\n:ID:.*\n:END:\n[ \*]+ Contents\n" ""))
 
-(defun my/clean-weird-characters ()
-  (interactive)
+(defun my/clean-pdf-fontifications ()
   (replace-regexp "ﬃ" "ffi") 
   (replace-regexp "ﬁ" "fi") 
-  (replace-regexp "ﬀ" "ff"))
+  (replace-regexp "ﬀ" "ff")
+  (replace-regexp ". . ." "..."))
+
+(defun my/clean-skeleton ()
+  (interactive)
+  (my/clean-xtra-newlines)
+  (my/clean-pdf-fontifications)
+  (replace-regexp "\*\*\*\*\*[\*]* Contents\n" "")
+  (my/clean-xtra-newlines))
   
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
