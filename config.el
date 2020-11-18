@@ -330,6 +330,21 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam link and refile ;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+
+;; from https://yiming.dev/blog/2018/03/02/my-org-refile-workflow/
+;; refile-targets are only opened files
+(defun +org/opened-buffer-files ()
+  "Return the list of files currently opened in emacs"
+  (delq nil
+        (mapcar (lambda (x)
+                  (if (and (buffer-file-name x)
+                           (string-match "\\.org$"
+                                         (buffer-file-name x)))
+                      (buffer-file-name x)))
+                (buffer-list))))
+
+(setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
+
 (defun my/org-link-and-refile ()
   "Replace a heading with a link and refile it"
   (interactive)
