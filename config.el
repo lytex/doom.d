@@ -340,7 +340,7 @@
                   (if (and (buffer-file-name x)
                            (string-match "\\.org$"
                                          (buffer-file-name x)))
-     finds bugs in your shell scripts.                 (buffer-file-name x)))
+                      (buffer-file-name x)))
                 (buffer-list))))
 
 (setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
