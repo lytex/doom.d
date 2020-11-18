@@ -37,6 +37,8 @@
 (package! org-web-tools)
 (package! fzf :recipe
         (:host github :repo "seenaburns/fzf.el"))
+(if WORK_ENV
+  (package! excorporate))
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
