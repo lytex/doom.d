@@ -273,7 +273,9 @@
   (interactive)
   (setq heading (nth 4 (org-heading-components)))
   (temp-title-buffer heading)
-  (org-roam-unlinked-references))
+  (org-roam-unlinked-references)
+  (evil-window-up 1)
+  (previous-buffer))
 
 (defun my/org-roam-heading-backlinks ()
   "Narrow backlinks by current heading id"
@@ -284,6 +286,11 @@
   (switch-to-buffer-other-window (get-buffer "*org-roam*"))
   (org-occur id)
   (switch-to-buffer-other-window old-buffer))
+
+(defun my/org-roam-headings-all ()
+  (interactive)
+  (my/org-roam-heading-unlinked-references)
+  (my/org-roam-heading-backlinks))
 
 
 (use-package! helm-org-rifle)
@@ -415,7 +422,8 @@
       :desc (documentation 'my/org-link-and-refile-to-capture) "fb" #'my/org-link-and-refile-to-capture
       
       :desc (documentation 'my/org-roam-heading-backlinks) "ho" #'my/org-roam-heading-backlinks
-      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references)
+      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references
+      :desc (documentation 'my/org-roam-headings-all) "hl" #'my/org-roam-headings-all)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; misc org plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
