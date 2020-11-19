@@ -108,7 +108,17 @@
 (font-lock-add-keywords 'org-mode
   '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
 
-()
+
+;; In org-mode, $ does not go to the real end of line, it jumps to the end of /visual/ line
+;; Create a real end of line by APPENDING and then going back to normal state
+(defun my/real-end-of-line ()
+      (interactive)
+      (call-interactively 'evil-org-append-line)
+      (call-interactively 'evil-force-normal-state))
+
+(map! 
+      :desc (documentation 'evil-org-end-of-line) :n "$"  #'my/real-end-of-line)
+
 
 (defun my/revert-buffer-reload-roam ()
     (interactive)
