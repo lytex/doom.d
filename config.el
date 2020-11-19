@@ -116,8 +116,9 @@
       (call-interactively 'evil-org-append-line)
       (call-interactively 'evil-force-normal-state))
 
-(map! 
-      :desc (documentation 'evil-org-end-of-line) :n "$"  #'my/real-end-of-line)
+(map!
+    :after evil-org
+    :desc (documentation 'evil-org-end-of-line) :n "$"  #'my/real-end-of-line)
 
 
 (defun my/revert-buffer-reload-roam ()
