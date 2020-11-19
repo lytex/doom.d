@@ -108,6 +108,8 @@
 (font-lock-add-keywords 'org-mode
   '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
 
+()
+
 (defun my/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
@@ -361,9 +363,9 @@
   "Replace a heading with a link and refile it"
   (interactive)
   (call-interactively 'org-store-link)
-  (org-insert-heading)
-  (org-insert-link)
-  (org-previous-visible-heading 1)
+  (save-excursion
+      (org-insert-heading)
+      (org-insert-link))
   (call-interactively 'org-refile))
 
 ;; From https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
