@@ -183,7 +183,8 @@
   (org-journal-date-format "%A, %d de %B de %Y")
   (org-journal-file-format orgzly-org-journal-file-format)
   (org-journal-after-entry-create-hook (lambda ()
-    (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]")))))
+    (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
+    (call-interactively 'org-close-fold))))
 
 (defun my/set-org-journal (option)
 (if (string= option "J")
