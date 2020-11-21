@@ -81,6 +81,7 @@
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
 (setq  org-startup-folded t)        ;; Start with folded view
+(setq org-ellipsis "⤵")
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
