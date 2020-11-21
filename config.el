@@ -211,7 +211,7 @@
       "jm" #'org-journal-mode)
 (map!
       :leader
-      "jo" #'org-mode)
+      "om" #'org-mode)
 
 (map! 
       :after org-journal
