@@ -33,6 +33,20 @@
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
 (setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
+;; Set headline weight to normal instead of bold
+(defun my/org-mode-normal-headlines ()
+  (dolist (face '(org-level-1
+                  org-level-2
+                  org-level-3
+                  org-level-4
+                  org-level-5
+                  org-level-6
+                  org-level-7
+                  org-level-8))
+    (set-face-attribute face nil :weight 'normal)))
+(add-hook 'org-mode-hook 'my/org-mode-normal-headlines)
+
+
 ;;(require 'fira-code-mode)
 ;; (custom-set-variable 'fira-code-mode-disabled-ligatures '("[]" "#{" "#(" "#_" "#_(" "x")) ;; List of ligatures to turn off
 
