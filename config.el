@@ -135,6 +135,9 @@
     :after evil-org
     :desc (documentation 'evil-org-end-of-line) :n "$"  #'my/real-end-of-line)
 
+;; Disable, autoindents when pressing RET on a list
+(add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
+
 
 (defun my/revert-buffer-reload-roam ()
     (interactive)
