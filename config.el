@@ -297,17 +297,17 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun temp-title-buffer (title)
-  (switch-to-buffer (find-file-noselect (concat "~/org/roam/" title ".org") nil nil nil))
-  (erase-buffer)
-  (insert (concat "#+title: " title)))
+  (with-temp-buffer
+      (insert (concat "#+title: " title))))
 
 (defun my/org-roam-heading-unlinked-references ()
   "Get unlinked references for current heading"
   (interactive)
   (setq heading (nth 4 (org-heading-components)))
+  (setq old-buffer (buffer-name))
   (temp-title-buffer heading)
   (org-roam-unlinked-references)
-  (evil-window-up 1)
+  (switch-to-buffer-other-window old-buffer)
   (previous-buffer))
 
 (defun my/org-roam-heading-backlinks ()
