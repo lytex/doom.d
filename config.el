@@ -321,6 +321,7 @@
   (switch-to-buffer-other-window old-buffer))
 
 (defun my/org-roam-headings-all ()
+  "Get both backlinks and unlinked refs for current heading"
   (interactive)
   (my/org-roam-heading-unlinked-references)
   (my/org-roam-heading-backlinks))
@@ -445,18 +446,25 @@
       :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
+      :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
       :desc (documentation 'my/org-follow-link-to-the-side) "s" #'my/org-follow-link-to-the-side
-      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
 
-      :desc (documentation 'my/org-link-and-refile) "fl" #'my/org-link-and-refile
-      :desc (documentation 'my/org-refile-to-capture) "fc" #'my/org-refile-to-capture
-      :desc (documentation 'my/org-link-and-refile-to-capture) "fb" #'my/org-link-and-refile-to-capture
+(map! :after org-roam
+      :leader
+      :prefix ("rf" . "my/org-roam-refile")
+      :desc (documentation 'my/org-link-and-refile) "l" #'my/org-link-and-refile
+      :desc (documentation 'my/org-refile-to-capture) "c" #'my/org-refile-to-capture
+      :desc (documentation 'my/org-link-and-refile-to-capture) "b" #'my/org-link-and-refile-to-capture)
       
-      :desc (documentation 'my/org-roam-heading-backlinks) "ho" #'my/org-roam-heading-backlinks
-      :desc (documentation 'my/org-roam-heading-unlinked-references) "hu" #'my/org-roam-heading-unlinked-references
-      :desc (documentation 'my/org-roam-headings-all) "hl" #'my/org-roam-headings-all)
+(map! :after org-roam
+      :leader
+      :prefix ("rh" . "my/org-roam-heading")
+      :desc (documentation 'my/org-roam-heading-backlinks) "o" #'my/org-roam-heading-backlinks
+      :desc (documentation 'my/org-roam-heading-unlinked-references) "u" #'my/org-roam-heading-unlinked-references
+      :desc (documentation 'my/org-roam-headings-all) "l" #'my/org-roam-headings-all)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; misc org plugins ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
