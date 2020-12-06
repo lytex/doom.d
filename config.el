@@ -356,7 +356,7 @@
   (interactive)
   (my/org-roam-open-buffer-at 'bottom))
 
-(defun my/org-follow-link-to-the-side ()
+(defun my/org-follow-link-vsplit ()
   "Follow link in a new buffer to the right"
   (interactive)
   (evil-window-vsplit)
@@ -450,7 +450,7 @@
       :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
-      :desc (documentation 'my/org-follow-link-to-the-side) "s" #'my/org-follow-link-to-the-side
+      :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
 
 (map! :after org-roam
