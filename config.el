@@ -44,6 +44,7 @@
                   org-level-7
                   org-level-8))
     (set-face-attribute face nil :weight 'normal))
+  (set-face-attribute 'org-ellipsis nil :foreground "orange")
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'my/org-mode-hook)
 
