@@ -78,6 +78,20 @@
 (setq org-agenda-files
   '("~/org" "~/org/roam" "~/org/journal" "~/org/projects")))
 
+(defun my/org-sparse-tree1 ()
+  (interactive)
+  (org-match-sparse-tree nil "+TODO=\"TODO\"|+TODO=\"NEXT\"|+TODO=\"BLOCK\"|+TODO=\"ONGOING\"|+TODO=\"TICKLER\"|+TODO=\"VERIFY\"|+someday|+maybe|+incubate|+idea"))
+
+(defun my/org-sparse-tree2 ()
+  (interactive)
+  (org-match-sparse-tree nil "+TODO=\"TODO\"|+TODO=\"NEXT\"|+TODO=\"BLOCK\"|+TODO=\"ONGOING\"|+TODO=\"TICKLER\"|+TODO=\"VERIFY\"|+someday|+maybe"))
+
+(map! :after org
+      :leader
+      :prefix ("rs" . "my/org-sparse-tree")
+      :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
+      :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
+
 (if WORK_ENV
     (setq org-id-locations-file (concat org-directory ".orgids_work"))
     (setq org-id-locations-file (concat org-directory ".orgids")))
