@@ -35,15 +35,15 @@
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
 ;; Set headline weight to normal instead of bold
 (defun my/org-mode-hook ()
-  (dolist (face '(org-level-1
-                  org-level-2
-                  org-level-3
-                  org-level-4
-                  org-level-5
-                  org-level-6
-                  org-level-7
-                  org-level-8))
-    (set-face-attribute face nil :weight 'normal))
+  ;; (dolist (face '(org-level-1
+  ;;                 org-level-2
+  ;;                 org-level-3
+  ;;                 org-level-4
+  ;;                 org-level-5
+  ;;                 org-level-6
+  ;;                 org-level-7
+  ;;                 org-level-8))
+  ;;   (set-face-attribute face nil :weight 'normal))
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'my/org-mode-hook)
 
@@ -624,7 +624,7 @@
   org-agenda-include-diary t
   )
 ;; activate excorporate and request user/password to start connection
-(excorporate)
+;; (excorporate)
 ;; enable the diary integration (i.e. write exchange calendar to emacs diary file -> ~/.emacs.d/diary must exist)
 (excorporate-diary-enable)
 (defun ab/agenda-update-diary ()
@@ -633,3 +633,31 @@
 
 ;; update the diary every time the org agenda is refreshed
 (add-hook 'org-agenda-cleanup-fancy-diary-hook 'ab/agenda-update-diary )))
+
+(add-to-list 'load-path "/usr/local/share/emacs/site-lisp/mu4e")
+
+;; example configuration for mu4e
+
+;; make sure mu4e is in your load-path
+(require 'mu4e)
+
+;; use mu4e for e-mail in emacs
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; these must start with a "/", and must exist
+;; (i.e.. /home/user/Maildir/sent must exist)
+;; you use e.g. 'mu mkdir' to make the Maildirs if they don't
+;; already exist
+
+;; below are the defaults; if they do not exist yet, mu4e offers to
+;; create them. they can also functions; see their docstrings.
+;; (setq mu4e-sent-folder   "/sent")
+;; (setq mu4e-drafts-folder "/drafts")
+;; (setq mu4e-trash-folder  "/trash")
+
+;; smtp mail setting; these are the same that `gnus' uses.
+(setq
+   message-send-mail-function   'smtpmail-send-it
+   smtpmail-default-smtp-server "smtp.example.com"
+   smtpmail-smtp-server         "smtp.example.com"
+   smtpmail-local-domain        "example.com")
