@@ -37,6 +37,7 @@
 (package! org-web-tools)
 (package! fzf :recipe
         (:host github :repo "seenaburns/fzf.el"))
+(package! beacon)
 (if WORK_ENV
   (package! excorporate))
 ;(package! org-vcard)

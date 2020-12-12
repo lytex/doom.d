@@ -47,6 +47,8 @@
   (set-face-attribute 'org-ellipsis nil :foreground "orange")
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'my/org-mode-hook)
+(beacon-mode 1)
+(setq beacon-color "dark orange")
 
 
 ;;(require 'fira-code-mode)
