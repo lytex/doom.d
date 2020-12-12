@@ -616,8 +616,13 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-transclusion (wip) ;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(auto-save-mode nil)
+(setq make-backup-files nil)
+(setq org-transclusion-include-first-section t)
 (use-package! org-transclusion)
-
+(auto-save-mode nil)
+(setq make-backup-files nil)
+(setq org-transclusion-include-first-section t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; excorporate ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; from https://emacs.stackexchange.com/a/46022
