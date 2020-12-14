@@ -262,15 +262,9 @@
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
         :head "#+title: ${title}\n"
         :unnarrowed t)
-      ("j" "journal" plain (function org-journal-find-location)
-        "** %(format-time-string org-journal-time-format)%^{Title}\n%i%?"
-        :file-name "journal/%<%Y-%m-%d>" ;; TODO use org-roam-journal-path
-        :head "* %<%A, %d de %B de %Y>\n"
-        :unnarrowed t)
-      ("i" "introspección" plain (function org-roam-capture--get-point)
-        "** %<%H:%M> %^{Title}\n%i%?"
-        :file-name "Introspección/%<%Y-%m-%d>I"
-        :head "* %<%A, %d de %B de %Y>\n"
+      ("i" "inbox" plain (function org-roam-capture--get-point)
+        "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
+        :file-name "Inbox"
         :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
         "%?"
@@ -287,6 +281,10 @@
         "%?"
         :file-name "roam/${slug}"
         :head "#+title: ${title}\n#+roam_key: ${ref}"
+        :unnarrowed t)
+        ("i" "inbox" plain (function org-roam-capture--get-point)
+        "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>%]\n:END:\n${ref}%?"
+        :file-name "Inbox."
         :unnarrowed t)
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
