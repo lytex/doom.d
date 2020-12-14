@@ -35,15 +35,15 @@
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
 ;; Set headline weight to normal instead of bold
 (defun my/org-mode-hook ()
-  (dolist (face '(org-level-1
-                  org-level-2
-                  org-level-3
-                  org-level-4
-                  org-level-5
-                  org-level-6
-                  org-level-7
-                  org-level-8))
-    (set-face-attribute face nil :weight 'normal))
+  ;; (dolist (face '(org-level-1
+  ;;                 org-level-2
+  ;;                 org-level-3
+  ;;                 org-level-4
+  ;;                 org-level-5
+  ;;                 org-level-6
+  ;;                 org-level-7
+  ;;                 org-level-8))
+  ;;   (set-face-attribute face nil :weight 'normal))
   (set-face-attribute 'org-ellipsis nil :foreground "orange")
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'my/org-mode-hook)
@@ -184,18 +184,21 @@
         (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
         ;; All work journal files have the tag "work"
-        (setq org-journal-file-header "#+FILETAGS: :work:"))
+        (setq org-journal-file-header "#+FILETAGS: :work:")
+        (setq org-journal-date-format "%A, %d de %B de %Y :work:"))
 
 (defun my/set-personal-journal ()
         (setq org-journal-dir (concat org-directory "journal/"))
         (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
-        (setq org-journal-file-header ""))
+        (setq org-journal-file-header "")
+        (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (defun my/set-introspection-journal ()
         (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
-        (setq org-journal-dir (concat org-directory "Introspección/")))
+        (setq org-journal-dir (concat org-directory "Introspección/"))
+        (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (if WORK_ENV
     (my/set-work-journal)
@@ -204,7 +207,9 @@
 (use-package! org-journal
   :custom
   (org-journal-date-prefix "* ")
-  (org-journal-date-format "%A, %d de %B de %Y")
+  (if WORK_ENV
+      (setq org-journal-date-format "%A, %d de %B de %Y :work:")
+      (setq org-journal-date-format "%A, %d de %B de %Y"))
   (org-journal-file-format orgzly-org-journal-file-format)
   (org-journal-after-entry-create-hook (lambda ()
     (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))
