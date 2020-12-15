@@ -272,6 +272,21 @@
         :head "#+title: ${title}\n#+filetags :project:\n"
         :unnarrowed t))))
 
+(defun my/org-capture-inbox ()
+  (interactive)
+  (org-capture nil "i"))
+
+(map! 
+      :after org-capture
+      :leader
+      :desc (documentation 'my/org-capture-inbox) "ii" #'my/org-capture-inbox)
+
+(after! org-capture
+(setq org-capture-templates
+      '(("i" "inbox" entry (file "Inbox.org")
+          "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
+        :unnarrowed t))))
+
 
 (after! org-roam
 ;; Use a standard template for ref without content
@@ -284,7 +299,7 @@
         :unnarrowed t)
         ("i" "inbox" plain (function org-roam-capture--get-point)
         "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>%]\n:END:\n${ref}%?"
-        :file-name "Inbox."
+        :file-name "Inbox"
         :unnarrowed t)
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
