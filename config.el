@@ -99,7 +99,8 @@
     (setq org-id-locations-file (concat org-directory ".orgids")))
 (after! org-journal
 (setq org-journal-carryover-items
-"TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
+"TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
+
 (after! org
 (setq org-todo-keywords
 	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" )))
