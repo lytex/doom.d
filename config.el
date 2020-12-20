@@ -645,6 +645,16 @@
 (setq make-backup-files nil)
 (setq org-transclusion-include-first-section t)
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; xournalpp ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(defun my:org-edit-sketch (sketch-name)
+  (async-start-process "xournalpp-sketch" "xournalpp" nil
+    (concat (format-time-string "~/Documents/xournalpp/%Y%m%d%H%M%S") "-" sketch-name ".xopp" )))
+
+(org-link-set-parameters "sketch" :follow 'my:org-edit-sketch)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; excorporate ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; from https://emacs.stackexchange.com/a/46022
 (if WORK_ENV
