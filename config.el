@@ -299,7 +299,7 @@
         :head "#+title: ${title}\n#+roam_key: ${ref}"
         :unnarrowed t)
         ("i" "inbox" plain (function org-roam-capture--get-point)
-        "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>%]\n:END:\n${ref}%?"
+        "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}%?"
         :file-name "Inbox"
         :unnarrowed t)
         ("c" "content" plain (function org-roam-capture--get-point)
