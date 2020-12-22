@@ -139,11 +139,43 @@
 ;; they are implemented.
 
 ;; highlight words between ! ... !
+;; https://dev.to/gonsie/highlighting-in-org-mode-291h
 (font-lock-add-keywords 'org-mode
   '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
 
+(defface annotation-1
+  '((((class color) (min-colors 88) (background dark)) (:foreground "chocolate1"))
+    (((class color) (min-colors 8)  (background dark)) (:foreground "red"))
+    (t (:bold t :italic t)))
+  "Annotation-1")
 
-;; Disable, autoindents when pressing RET on a list
+(defface annotation-2
+  '((((class color) (min-colors 88) (background dark)) (:foreground "DeepSkyBlue"))
+    (((class color) (min-colors 8)  (background dark)) (:foreground "cyan"))
+    (t (:bold t :italic t)))
+  "Annotation-2")
+
+(font-lock-add-keywords 'org-mode
+  '(("\\W\\(«[^\n\r\t]+»\\)\\W" 1 '(face annotation-1 invisible nil) prepend)) 'append)
+
+(font-lock-add-keywords 'org-mode
+  '(("\\W\\(“[^\n\r\t]+”\\)\\W" 1 '(face annotation-2 invisible nil) prepend)) 'append)
+
+;; Add evil-surround with these new characters
+(use-package! evil-surround)
+(add-hook 'org-mode-hook (lambda ()
+(let
+    ((pairs
+      '((?« "« " . " »")
+        (?» "«" . "»")
+        (?“ "“ " . " ”")
+        (?” "“" . "”"))))
+  (prependq! evil-surround-pairs-alist pairs)
+  (prependq! evil-embrace-evil-surround-keys
+             (mapcar #'car pairs)))))
+
+
+;; Disable autoindents when pressing RET on a list
 (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
 
 
