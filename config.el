@@ -259,7 +259,7 @@
 (after! org-roam
 (setq org-roam-capture-templates
     '(("d" "default" plain (function org-roam-capture--get-point)
-        "%?"
+        "* ${title}\n%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
         :head "#+title: ${title}\n"
         :unnarrowed t)
@@ -268,7 +268,7 @@
         :file-name "Inbox"
         :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
-        "%?"
+        "* ${title}\n%?"
         :file-name "projects/${slug}" 
         :head "#+title: ${title}\n#+filetags :project:\n"
         :unnarrowed t))))
