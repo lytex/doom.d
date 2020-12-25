@@ -17,6 +17,8 @@
 ;(package! another-package
 ;  :recipe (:host github :repo "username/repo"))
 (package! highlight-indent-guides)
+(package! org-roam :recipe
+        (:host github :repo "org-roam/org-roam"))
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe
