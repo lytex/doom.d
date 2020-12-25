@@ -295,9 +295,8 @@
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
         :head "#+title: ${title}\n"
         :unnarrowed t)
-      ("i" "inbox" plain (function org-roam-capture--get-point)
-        "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
-        :file-name "Inbox"
+      ("r" "refile" plain (function org-roam-capture--get-point)
+        "%?"
         :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
