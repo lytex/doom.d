@@ -547,6 +547,11 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;; org-roam & related mappings ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(setq global-sketch nil)
+(defun my/insert-global-sketch ()
+  (interactive)
+  (insert (concat "sketch:" global-sketch)))
+
 (map! :after org-roam
       :leader
       :prefix ("r" . "org-roam")
@@ -558,7 +563,8 @@
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
       :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
-      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+      :desc (documentation 'my/insert-global-sketch) "p" #'my/insert-global-sketch)
 
 (map! :after org-roam
       :leader
@@ -731,12 +737,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; xournalpp ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defun my/org-edit-sketch (sketch-name)
+  (setq global-sketch sketch-name)
+  (setq book-name (car (split-string sketch-name ":"))
+      page (cadr (split-string sketch-name ":")))
+  (setq notebook (concat (format-time-string "/home/julian/Documents/xournalpp/") book-name ".xopp"))
+  (if (equal page nil)
+      (async-start-process "xournalpp-sketch" "xournalpp" nil notebook)
+      (async-start-process "xournalpp-sketch" "xournalpp" nil notebook "-n" page)))
 
-(defun my:org-edit-sketch (sketch-name)
-  (async-start-process "xournalpp-sketch" "xournalpp" nil
-    (concat (format-time-string "~/Documents/xournalpp/%Y%m%d%H%M%S") "-" sketch-name ".xopp" )))
-
-(org-link-set-parameters "sketch" :follow 'my:org-edit-sketch)
+(org-link-set-parameters "sketch" :follow 'my/org-edit-sketch)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; excorporate ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; from https://emacs.stackexchange.com/a/46022
