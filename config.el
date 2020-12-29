@@ -179,6 +179,58 @@
 (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))
 
 
+;; https://emacs.stackexchange.com/questions/60710/is-there-any-way-of-getting-overview-statistics-for-all-checkboxes-in-a-given-or
+;; org-cookies also for subheadings
+(defun aggregate-org-cookies ()
+  (save-excursion
+    (org-back-to-heading t)
+    (let* ((prop (string-match "\\<aggregate\\>"
+                               (or (org-entry-get nil "COOKIE_DATA") ""))))
+      (if prop
+          (let* ((counts (aggregate-one-level))
+                 (numerator (car counts))
+                 (denominator (cadr counts))
+                 (cookie-regex "\\[\\([0-9]*\\)/\\([0-9]*\\)\\]")
+                 (new (format "[%d/%d]" numerator denominator)))
+            (re-search-forward cookie-regex (line-end-position) t)
+            (if (match-beginning 0)
+                (progn
+                  (setq beg (match-beginning 0)
+                        ndel (- (match-end 0) beg))
+                  (goto-char beg)
+                  (insert new)
+                  (delete-region (point) (+ (point) ndel))
+                  ))))
+      (if (org-up-heading-safe)
+          (aggregate-org-cookies)))))
+
+(defun aggregate-one-level ()
+  (save-excursion
+    (let* ((current (point))
+           (next (save-excursion (outline-next-heading) (point)))
+           (numerator 0)
+           (denominator 0)
+           (cookie-regex "\\[\\([0-9]*\\)/\\([0-9]*\\)\\]")
+           )
+      (defun count-one ()
+        (re-search-forward cookie-regex (line-end-position) t)
+        (if (> (match-end 1) (match-beginning 1))
+            `(,(string-to-number (match-string 1))
+              ,(string-to-number (match-string 2)))
+          (0 0 )))
+        (while (> next current)
+          (goto-char next)
+          (setq current next
+                next (save-excursion (org-forward-heading-same-level 1) (point))
+                current_total (count-one)
+                denominator (+ denominator (cadr current_total))
+                numerator (+ numerator (car current_total))))
+          
+        `(,numerator ,denominator))))
+
+(add-hook 'org-checkbox-statistics-hook (function aggregate-org-cookies))
+
+
 (defun my/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
