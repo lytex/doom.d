@@ -666,6 +666,23 @@
 (defun my/pdf-annot-add-text-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-text-annotation))
 
+(defun my/join-org-headline-next ()
+  (interactive)
+  (org-next-visible-heading 1)
+  (evil-next-line)
+  (while (not (eq (car (org-element-at-point)) 'paragraph))
+    ;; Equivalent to daE in normal mode
+    (apply 'evil-delete (evil-org-an-element)))
+  (evil-previous-line)
+  (call-interactively 'evil-delete-whole-line))
+
+(defun my/join-org-headline-previous ()
+  (interactive)
+  (if (eq (car (org-element-at-point)) 'headline)
+      (org-previous-visible-heading 1)
+      (org-previous-visible-heading 2))
+    (my/join-org-headline-next))
+
 (after! (pdf-tools)
 (map! :leader
       :mode (pdf-view-mode)
@@ -680,8 +697,12 @@
       "s" #'my/pdf-annot-add-strikeout-markup-annotation
       :desc (documentation 'pdf-annot-add-underline-markup-annotation)
       "u" #'my/pdf-annot-add-underline-markup-annotation
-      :desc (documentation 'pdf-annot-add-text-annotation)
-      "t" #'my/pdf-annot-add-text-annotation)
+      :desc (documentation 'my/join-org-headline-previous)
+      "p" #'my/join-org-headline-previous
+      :desc (documentation 'my/join-org-headline-next)
+      "n" #'my/join-org-headline-next))
+
+
 (map! :leader
       :mode (pdf-view-mode)
       :prefix "p"
@@ -692,7 +713,8 @@
   :after org-noter
   :config
   (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note)))
+    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note))
+  (setq org-noter-pdftools-insert-content-heading nil))
 
 
 (defun my/clean-pdf-fontifications ()
@@ -701,13 +723,6 @@
   (replace-regexp "ﬀ" "ff")
   (replace-regexp ". . ." "..."))
 
-(defun my/clean-skeleton ()
-  (interactive)
-  (my/clean-xtra-newlines)
-  (my/clean-pdf-fontifications)
-  (replace-regexp "\*\*\*\*\*[\*]* Contents\n" "")
-  (my/clean-xtra-newlines))
-  
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
 
