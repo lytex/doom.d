@@ -700,7 +700,7 @@
       :desc (documentation 'my/join-org-headline-previous)
       "p" #'my/join-org-headline-previous
       :desc (documentation 'my/join-org-headline-next)
-      "n" #'my/join-org-headline-next))
+      "n" #'my/join-org-headline-next)
 
 
 (map! :leader
