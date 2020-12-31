@@ -377,7 +377,7 @@
 ;; For ref with content, save and focus on the new note
 (setq org-roam-capture-ref-templates
       '(("r" "ref" plain (function org-roam-capture--get-point)
-        "%?"
+        "* ${title}\n%?"
         :file-name "roam/${slug}"
         :head "#+title: ${title}\n#+roam_key: ${ref}"
         :unnarrowed t)
