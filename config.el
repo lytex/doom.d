@@ -345,7 +345,7 @@
     '(("d" "default" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
         :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
-        :head "#+title: ${title}\n"
+        :head "#+title: ${title}\n\n"
         :unnarrowed t)
       ("r" "refile" plain (function org-roam-capture--get-point)
         "%?"
@@ -353,7 +353,7 @@
       ("p" "project" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
         :file-name "projects/${slug}" 
-        :head "#+title: ${title}\n#+filetags :project:\n"
+        :head "#+title: ${title}\n#+filetags :project:\n\n"
         :unnarrowed t))))
 
 (defun my/org-capture-inbox ()
@@ -379,16 +379,16 @@
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n"
         :unnarrowed t)
         ("i" "inbox" plain (function org-roam-capture--get-point)
-        "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}%?"
+        "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}\n%?"
         :file-name "Inbox"
         :unnarrowed t)
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
