@@ -34,7 +34,8 @@
 (package! pdf-view-restore)
 (package! org-pdftools)
 (package! nov)
-(package! org-noter-pdftools)
+(package! org-noter-pdftools :recipe
+        (:host github :repo "fuxialexander/org-pdftools"))
 (package! org-noter)
 (package! org-web-tools)
 (package! fzf :recipe
