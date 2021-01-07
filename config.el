@@ -662,7 +662,7 @@
 (defun my/pdf-annot-add-strikeout-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-strikeout-markup-annotation))
 (defun my/pdf-annot-add-underline-markup-annotation () (interactive)
-                (call-interactively 'pdf-annot-add-strikeout-markup-annotation))
+                (call-interactively 'pdf-annot-add-underline-markup-annotation))
 (defun my/pdf-annot-add-text-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-text-annotation))
 
