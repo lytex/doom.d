@@ -41,6 +41,8 @@
 (package! fzf :recipe
         (:host github :repo "seenaburns/fzf.el"))
 (package! beacon)
+(package! evil-quickscope :recipe 
+        (:host github :repo "blorbx/evil-quickscope"))
 (if WORK_ENV
   (package! excorporate))
 ;(package! org-vcard)
