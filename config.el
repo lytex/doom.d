@@ -1,9 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;;; Allow hardlinks to be opened in its own directory
-(setq find-file-existing-other-name nil)
-(setq find-file-visit-truename nil)
-
 (load! "~/.doom.d/work.el")
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -71,6 +67,7 @@
 ;;     (setq org-emphasis-alist (cons (cons "!"  '(:foreground "Yellow")) org-emphasis-alist)))
 
 (setq org-directory "~/org/")
+(setq org-link-file-path-type 'relative) ;; Relative links
 
 (setq org-cycle-open-archived-trees t)
 
