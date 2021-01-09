@@ -548,9 +548,16 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;; org-roam & related mappings ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (setq global-sketch nil)
+(use-package! ido)
 (defun my/insert-global-sketch ()
   (interactive)
+  (unless global-sketch (setq global-sketch (concat (format-time-string "%Y%m%d%H%M%S-") 
+        (ido-completing-read "sketch: " nil))))
   (insert (concat "sketch:" global-sketch)))
+
+(defun my/reset-sketch ()
+  (interactive)
+  (setq global-sketch nil))
 
 (map! :after org-roam
       :leader
@@ -563,8 +570,13 @@
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
       :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
-      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
-      :desc (documentation 'my/insert-global-sketch) "p" #'my/insert-global-sketch)
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
+
+(map! :after org-roam
+      :leader
+      :prefix ("rp" . "my/xournalpp")
+      :desc (documentation 'my/insert-global-sketch) "i" #'my/insert-global-sketch
+      :desc (documentation 'my/reset-sketch) "p" #'my/reset-sketch)
 
 (map! :after org-roam
       :leader
