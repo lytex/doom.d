@@ -1,5 +1,7 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
+(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
+
 (load! "~/.doom.d/work.el")
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -91,9 +93,6 @@
       :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
       :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
 
-(if WORK_ENV
-    (setq org-id-locations-file (concat org-directory ".orgids_work"))
-    (setq org-id-locations-file (concat org-directory ".orgids")))
 (after! org-journal
 (setq org-journal-carryover-items
 "TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
@@ -450,9 +449,15 @@
 
 (map! :after helm-org-rifle
       :leader
-      :prefix "n"
-      :desc (documentation 'helm-org-rifle)  "rr" #'helm-org-rifle
-      :desc (documentation 'helm-org-rifle-directories)  "rd" #'helm-org-rifle-directories)
+      :prefix ("nr" . "helm-org-rifle")
+      :desc (documentation 'helm-org-rifle)  "r" #'helm-org-rifle
+      :desc (documentation 'helm-org-rifle-directories)  "d" #'helm-org-rifle-directories
+      :desc (documentation 'helm-org-rifle-occur)  "o" #'helm-org-rifle-occur
+      )
+
+
+;; (map! :after helm-org-rifle
+;;       :desc (documentation 'helm-org-rifle-occur-goto-entry) [return]  #'helm-org-rifle-occur-goto-entry)
 
 (require 'helm-source)
 (after! helm-source
@@ -711,15 +716,15 @@
       :mode (pdf-view-mode)
       :prefix ("a" . "annotations in pdf")
       :desc (documentation 'pdf-annot-add-markup-annotation) 
-      "m" #'my/pdf-annot-add-markup-annotation
+      "a" #'my/pdf-annot-add-markup-annotation
       :desc (documentation 'pdf-annot-add-squiggly-markup-annotation) 
       "g" #'my/pdf-annot-add-squiggly-markup-annotation
       :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
-      "h" #'my/pdf-annot-add-highlight-markup-annotation
+      "f" #'my/pdf-annot-add-highlight-markup-annotation
       :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
       "s" #'my/pdf-annot-add-strikeout-markup-annotation
       :desc (documentation 'pdf-annot-add-underline-markup-annotation)
-      "u" #'my/pdf-annot-add-underline-markup-annotation
+      "d" #'my/pdf-annot-add-underline-markup-annotation
       :desc (documentation 'my/join-org-headline-previous)
       "p" #'my/join-org-headline-previous
       :desc (documentation 'my/join-org-headline-next)
@@ -816,5 +821,22 @@
 ;; update the diary every time the org agenda is refreshed
 (add-hook 'org-agenda-cleanup-fancy-diary-hook 'ab/agenda-update-diary )))
 
+<<<<<<< Updated upstream
 (if WORK_ENV
   (use-package! org-trello))
+=======
+>>>>>>> Stashed changes
+
+
+;; (use-package! helm-rg)
+;; (map! :after helm-rg
+;;       :leader
+;;       :prefix ("nr" . "helm-org-rifle")
+;;       :desc (documentation 'helm-rg) "g" helm-rg
+;; )
+
+<<<<<<< Updated upstream
+(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
+=======
+(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
+>>>>>>> Stashed changes
