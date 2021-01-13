@@ -45,6 +45,10 @@
         (:host github :repo "blorbx/evil-quickscope"))
 (if WORK_ENV
   (package! excorporate))
+(if WORK_ENV
+  (package! org-trello :recipe
+        (:host github :repo "org-trello/org-trello")))
+
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el

@@ -815,3 +815,6 @@
 
 ;; update the diary every time the org agenda is refreshed
 (add-hook 'org-agenda-cleanup-fancy-diary-hook 'ab/agenda-update-diary )))
+
+(if WORK_ENV
+  (use-package! org-trello))
