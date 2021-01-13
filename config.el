@@ -75,9 +75,9 @@
 
 (if WORK_ENV
 (setq org-agenda-files
-  '("~/org" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
+  '("~/org"  "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
 (setq org-agenda-files
-  '("~/org" "~/org/roam" "~/org/journal" "~/org/projects")))
+  '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects")))
 
 (defun my/org-sparse-tree1 ()
   (interactive)
@@ -361,9 +361,14 @@
         "%?"
         :unnarrowed t)
       ("p" "project" plain (function org-roam-capture--get-point)
-        "* ${title}\n%?"
+        "* ${title} :project:\n%?"
         :file-name "projects/${slug}" 
         :head "#+title: ${title}\n#+filetags :project:\n\n"
+        :unnarrowed t)
+      ("a" "area" plain (function org-roam-capture--get-point)
+        "* ${title} :area:\n%?"
+        :file-name "areas/${slug}" 
+        :head "#+title: ${title}\n#+filetags :area:\n\n"
         :unnarrowed t))))
 
 (defun my/org-capture-inbox ()
