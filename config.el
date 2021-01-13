@@ -821,11 +821,8 @@
 ;; update the diary every time the org agenda is refreshed
 (add-hook 'org-agenda-cleanup-fancy-diary-hook 'ab/agenda-update-diary )))
 
-<<<<<<< Updated upstream
 (if WORK_ENV
   (use-package! org-trello))
-=======
->>>>>>> Stashed changes
 
 
 ;; (use-package! helm-rg)
@@ -835,8 +832,4 @@
 ;;       :desc (documentation 'helm-rg) "g" helm-rg
 ;; )
 
-<<<<<<< Updated upstream
 (setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
-=======
-(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
->>>>>>> Stashed changes
