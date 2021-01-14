@@ -40,14 +40,15 @@
                 (call-interactively 'pdf-annot-add-text-annotation))
 
 (defun my/join-org-headline-next ()
+  ;; ]] j daE k D
   (interactive)
-  (org-next-visible-heading 1)
-  (evil-next-line)
+  (org-next-visible-heading 1) ;; ]]
+  (evil-next-line) ;; j
   (while (not (eq (car (org-element-at-point)) 'paragraph))
     ;; Equivalent to daE in normal mode
     (apply 'evil-delete (evil-org-an-element)))
-  (evil-previous-line)
-  (call-interactively 'evil-delete-whole-line))
+  (evil-previous-line) ;; k
+  (call-interactively 'evil-delete-whole-line)) ;; D
 
 (defun my/join-org-headline-previous ()
   (interactive)
