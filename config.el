@@ -94,7 +94,7 @@
       :desc (documentation 'helm-org-rifle-occur)  "o" #'helm-org-rifle-occur
       )
 
-;; (load! "~/.doom.d/modules/pdf.el")
+(load! "~/.doom.d/modules/pdf.el")
 
 (use-package! highlight-indent-guides
   :hook (prog-mode . highlight-indent-guides-mode)
