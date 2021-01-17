@@ -32,7 +32,10 @@
 
 (after! org-wild-notifier
   (org-wild-notifier-mode))
-(setq alert-user-configuration '((nil libnotify ((:persistent . t)) )) )
+(setq alert-user-configuration '((nil libnotify ((:persistent . t)))))
+
+(if WORK_ENV
+    (setq org-wild-notifier-tags-blacklist '("mantenimiento" "tareas" "relaciones")))
 
 
 (use-package! counsel)
