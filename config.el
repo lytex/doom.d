@@ -116,8 +116,22 @@
 (if WORK_ENV
   (use-package! org-trello))
 
+(setq org-export-exclude-tags '("private" "area"))
+(setq org-export-with-broken-links t)
+
+(defun my/org-export-on-save ()
+      ;; Detecting org-mode is not straightforward:
+      ;; https://emacs.stackexchange.com/questions/53167/check-whether-buffer-is-in-org-mode
+      (if (eq major-mode 'org-mode)
+          (progn
+            (unless org-transclusion-mode (org-transclusion-mode))
+            (org-html-export-to-html))))
+
+(add-hook 'after-save-hook #'my/org-export-on-save)
+
 
 ;; (use-package! helm-rg)
+;; (setq helm-rg-default-directory org-directory)
 ;; (map! :after helm-rg
 ;;       :leader
 ;;       :prefix ("nr" . "helm-org-rifle")
