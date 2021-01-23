@@ -118,6 +118,7 @@
 
 (setq org-export-exclude-tags '("private" "area"))
 (setq org-export-with-broken-links t)
+(setq org-export-preserve-breaks t)
 
 (defun my/org-export-on-save ()
       ;; Detecting org-mode is not straightforward:
