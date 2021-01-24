@@ -1,6 +1,6 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
+(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 
 (load! "~/.doom.d/work.el")
 
@@ -86,13 +86,15 @@
 
 (load! "~/.doom.d/modules/org-misc.el")
 
+(use-package! helm-rg)
+(setq helm-rg-default-directory org-directory)
 (map! :after helm-org-rifle
       :leader
       :prefix ("nr" . "helm-org-rifle")
       :desc (documentation 'helm-org-rifle)  "r" #'helm-org-rifle
       :desc (documentation 'helm-org-rifle-directories)  "d" #'helm-org-rifle-directories
       :desc (documentation 'helm-org-rifle-occur)  "o" #'helm-org-rifle-occur
-      )
+      :desc (documentation 'helm-rg) "g" #'helm-rg)
 
 (load! "~/.doom.d/modules/pdf.el")
 
@@ -132,13 +134,4 @@
 
 (add-hook 'after-save-hook #'my/org-export-on-save)
 
-
-;; (use-package! helm-rg)
-;; (setq helm-rg-default-directory org-directory)
-;; (map! :after helm-rg
-;;       :leader
-;;       :prefix ("nr" . "helm-org-rifle")
-;;       :desc (documentation 'helm-rg) "g" helm-rg
-;; )
-
-(setq org-id-locations-file "/home/julian/.emacs.d/.org-id-locations")
+(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
