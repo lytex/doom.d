@@ -120,6 +120,7 @@
 (setq org-export-with-broken-links t)
 (setq org-export-preserve-breaks t)
 (setq org-export-in-background t)
+(setq org-export-with-properties '("NEXT" "BLOCK" "GOAL"))
 
 (defun my/org-export-on-save ()
       ;; Detecting org-mode is not straightforward:
