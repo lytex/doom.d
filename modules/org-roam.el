@@ -149,7 +149,14 @@
   (org-open-at-point)
   (setq old-org-roam-buffer-height org-roam-buffer-height)
   (setq org-roam-buffer-height 0.35)
-  (my/org-roam-open-buffer-at 'bottom)
+  (if (org-roam)
+    ; if org-roam-buffer is closed, keep it closed
+    (org-roam)
+    ; if org-roam-buffer is opened, reopen at bottom
+    (progn
+      (org-roam)
+      (org-roam)
+      (my/org-roam-open-buffer-at 'bottom)))
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
 
