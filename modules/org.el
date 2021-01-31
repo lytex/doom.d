@@ -160,3 +160,17 @@
 (org-link-set-parameters "id"
                          :complete 'org-id-complete-link)
 
+(defun my/remove-refile (&optional arg default-buffer rfloc msg)
+; if todo keyword at point is equal to REFILE, remove it
+(setq todo-keyword-at-point
+(substring-no-properties
+ (plist-get
+  (plist-get
+   (org-element-at-point)
+   'headline)
+  :todo-keyword)))
+(if (string= todo-keyword-at-point "REFILE")
+  (org-todo "")))
+
+; remove REFILE keyword before refiling a headline
+(advice-add 'org-refile :before 'my/remove-refile)
