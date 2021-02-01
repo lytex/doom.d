@@ -28,10 +28,6 @@
 
 (defun my/org-sparse-tree1 ()
   (interactive)
-  (org-match-sparse-tree nil "+TODO=\"TODO\"|+TODO=\"NEXT\"|+TODO=\"BLOCK\"|+TODO=\"ONGOING\"|+TODO=\"TICKLER\"|+TODO=\"VERIFY\"|+someday|+maybe|+incubate|+idea"))
-
-(defun my/org-sparse-tree1 ()
-  (interactive)
   (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe") (ltags "incubate") (ltags "idea"))))
 
 (defun my/org-sparse-tree2 ()
