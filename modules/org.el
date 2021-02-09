@@ -34,7 +34,9 @@
   (interactive)
   (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe"))))
 
-(map! :after org
+(setq org-highlight-sparse-tree-matches nil)
+
+(map! :after org-ql
       :leader
       :prefix ("rs" . "my/org-sparse-tree")
       :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
