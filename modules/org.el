@@ -40,6 +40,8 @@
       :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
       :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
 
+;; (org-ql-search (org-agenda-files) '(todo "VERIFY"))
+
 (after! org-journal
 (setq org-journal-carryover-items
 "TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
@@ -164,11 +166,13 @@
 ; if todo keyword at point is equal to REFILE, remove it
 (setq todo-keyword-at-point
 (substring-no-properties
+;; concat "" to nil converts it to the empty string
+(concat ""
  (plist-get
   (plist-get
    (org-element-at-point)
    'headline)
-  :todo-keyword)))
+  :todo-keyword))))
 (if (string= todo-keyword-at-point "REFILE")
   (org-todo "")))
 
