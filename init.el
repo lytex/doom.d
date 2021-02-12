@@ -21,6 +21,13 @@
   (setq evil-move-cursor-back nil)
   (setq evil-want-fine-undo t))
 
+(use-package-hook! org
+  :pre-init
+  (setq org-html-head-extra
+"<style> #content{max-width:80%;}</style>
+<style> p{max-width:100%;}</style>
+<style> li{max-width:100%;}</style>"))
+
 (doom! :input
        ;;chinese
        ;;japanese
