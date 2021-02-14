@@ -49,9 +49,6 @@
   (package! org-trello :recipe
         (:host github :repo "org-trello/org-trello")))
 
-(package! elegantt :recipe
-        (:host github :repo "legalnonsense/elgantt"))
-
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
