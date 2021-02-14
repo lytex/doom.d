@@ -118,8 +118,6 @@
 (if WORK_ENV
   (use-package! org-trello))
 
-(load! "~/.doom.d/modules/elgantt.el")
-
 (load! "~/.doom.d/modules/org-export.el")
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
