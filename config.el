@@ -120,4 +120,9 @@
 
 (load! "~/.doom.d/modules/org-export.el")
 
+(defun my/disable-emojify (match &rest ignored)
+  (string= match "↔"))
+
+(add-hook 'emojify-inhibit-functions #'my/disable-emojify)
+
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
