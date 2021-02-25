@@ -34,12 +34,12 @@
       ("p" "project" plain (function org-roam-capture--get-point)
         "* ${title} :project:\n%?"
         :file-name "projects/${slug}" 
-        :head "#+title: ${title}\n#+filetags :project:\n\n"
+        :head "#+title: ${title}\n#+filetags: :project:\n\n"
         :unnarrowed t)
       ("a" "area" plain (function org-roam-capture--get-point)
         "* ${title} :area:\n%?"
         :file-name "areas/${slug}" 
-        :head "#+title: ${title}\n#+filetags :area:\n\n"
+        :head "#+title: ${title}\n#+filetags: :area:\n\n"
         :unnarrowed t))))
 
 (defun my/org-capture-inbox ()
