@@ -25,7 +25,8 @@
         (:host github :repo "nobiot/org-transclusion" :branch "main"))
 (package! helm-org-rifle)
 (package! org-recent-headings)
-(package! org-ql)
+(package! org-ql :recipe
+        (:host github :repo "balaramadurai/org-ql" :branch "patch-1"))
 (package! org-sticky-header :recipe
         (:host github :repo "alphapapa/org-sticky-header"))
 (package! pdf-tools)
