@@ -22,24 +22,24 @@
   (setq evil-want-fine-undo t))
 
 
-(defun my/ox-html-format-drawer (name content backend)
-  "Export :NOTES: and :LOGBOOK: drawers to HTML class"
-  (cond
-    ((string-match "RELATED\\|DEPENDS\\|TAGS" name)
-    (cond
-      ((eq backend 'html)
-      (format "@<div class=\".org-org-drawer\"> %s @</div>" content))
-      (t nil)))
-    (t nil)))
+;; (defun my/ox-html-format-drawer (name content backend)
+;;   "Export :NOTES: and :LOGBOOK: drawers to HTML class"
+;;   (cond
+;;     ((string-match "RELATED\\|DEPENDS\\|TAGS" name)
+;;     (cond
+;;       ((eq backend 'html)
+;;       (format "@<div class=\".org-org-drawer\"> %s @</div>" content))
+;;       (t nil)))
+;;     (t nil)))
 
 
-(use-package-hook! org
-  :pre-init
-  (setq org-html-head-extra
-"<style> #content{max-width:80%;}</style>
-<style> p{max-width:100%;}</style>
-<style> li{max-width:100%;}</style>")
-  (setq org-html-format-drawer-function 'my/ox-html-format-drawer))
+;; (use-package-hook! org
+;;   :pre-init
+;;   (setq org-html-head-extra
+;; "<style> #content{max-width:80%;}</style>
+;; <style> p{max-width:100%;}</style>
+;; <style> li{max-width:100%;}</style>")
+;;   (setq org-html-format-drawer-function 'my/ox-html-format-drawer))
 
 (doom! :input
        ;;chinese

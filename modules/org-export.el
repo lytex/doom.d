@@ -13,3 +13,22 @@
             (org-html-export-to-html))))
 
 (add-hook 'after-save-hook #'my/org-export-on-save)
+
+;; (defun my/ox-html-format-drawer (name content backend)
+;;   "Export :NOTES: and :LOGBOOK: drawers to HTML class"
+;;   (cond
+;;     ((string-match "RELATED\\|DEPENDS\\|TAGS" name)
+;;     (cond
+;;       ((eq backend 'html)
+;;       (format "@<div class=\".org-org-drawer\"> %s @</div>" content))
+;;       (t nil)))
+;;     (t nil)))
+
+
+;; (use-package-hook! org
+;;   :pre-init
+;;   (setq org-html-head-extra
+;; "<style> #content{max-width:79%;}</style>
+;; <style> p{max-width:99%;}</style>
+;; <style> li{max-width:99%;}</style>")
+;;   (setq org-html-format-drawer-function 'my/ox-html-format-drawer))
