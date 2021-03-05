@@ -19,7 +19,11 @@
   (save-window-excursion
     (evil-backward-char 1) ;; h in normal mode
     (org-open-at-point)
-    ;; go to first headline
+    ;; if the file has been opened, it returns next headline of level 1 below the cursor
+    ;; avoid it by going to the first line
+    (evil-goto-first-line)
+    (org-forward-heading-same-level 1)
+    ;; store link to first headline
     (org-element-map
         (org-element-parse-buffer 'greater-element)
         'headline
@@ -29,14 +33,18 @@
       (call-interactively 'org-store-link)))
 
     (if (setq old-org-link-descriptive org-link-descriptive) (org-toggle-link-display))
-      ;; No idea why these two commands are needed, but it breaks otherwise:
+      ;;; Different behavior depending on whether is text after the cursor   ;;;
+      ;;;                          ↓                                         ;;;
+      ;;; Around words [[file:...]] the cursor is ok                         ;;;
+      ;;;                                                          ↓         ;;;
+      ;;; On a empty line, the cursor is one char before [[file:...]]        ;;;
       (evil-forward-char 1)
-      (evil-backward-char 1)
+      (unless (eq ?] (char-after))
+        (evil-backward-char 1))
       ;; Delete [[file:...]] link with da[
       (apply 'evil-delete (evil-a-bracket))
     (if old-org-link-descriptive (org-toggle-link-display))
-    (org-insert-link)
-    )
+    (org-insert-link))
 
 (advice-add 'org-roam-insert :after 'my/replace-link-file-with-id)
 
