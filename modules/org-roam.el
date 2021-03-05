@@ -14,6 +14,34 @@
       (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
 
 
+(defun my/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
+  ;; Doesn't work when linking a file to itself
+  (save-window-excursion
+    (evil-backward-char 1) ;; h in normal mode
+    (org-open-at-point)
+    ;; go to first headline
+    (org-element-map
+        (org-element-parse-buffer 'greater-element)
+        'headline
+      (lambda (hl) (and (= (org-element-property :level hl) 1)
+        (goto-char (org-element-property :begin hl)))
+          :first-match t)
+      (call-interactively 'org-store-link)))
+
+    (if (setq old-org-link-descriptive org-link-descriptive) (org-toggle-link-display))
+      ;; No idea why these two commands are needed, but it breaks otherwise:
+      (evil-forward-char 1)
+      (evil-backward-char 1)
+      ;; Delete [[file:...]] link with da[
+      (apply 'evil-delete (evil-a-bracket))
+    (if old-org-link-descriptive (org-toggle-link-display))
+    (org-insert-link)
+    )
+
+(advice-add 'org-roam-insert :after 'my/replace-link-file-with-id)
+
+
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam-capture templates ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun org-journal-find-location ()
