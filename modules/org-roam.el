@@ -39,7 +39,7 @@
       ;;;                                                          ↓         ;;;
       ;;; On a empty line, the cursor is one char before [[file:...]]        ;;;
       (evil-forward-char 1)
-      (unless (eq ?] (char-after))
+      (unless (eq ?\] (char-after))
         (evil-backward-char 1))
       ;; Delete [[file:...]] link with da[
       (apply 'evil-delete (evil-a-bracket))
