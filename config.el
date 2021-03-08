@@ -116,7 +116,7 @@
 
 (load! "~/.doom.d/modules/org-transclusion.el")
 
-(load! "~/.doom.d/modules/excorporate.el")
+;; (load! "~/.doom.d/modules/excorporate.el")
 
 (if WORK_ENV
   (use-package! org-trello))
