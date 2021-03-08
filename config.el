@@ -110,6 +110,9 @@
                  (set-face-background
                    ediff-current-diff-face-B "blue")))
 
+(use-package! activity-watch-mode)
+(global-activity-watch-mode)
+
 
 (load! "~/.doom.d/modules/org-transclusion.el")
 

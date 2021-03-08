@@ -49,6 +49,8 @@
 (if WORK_ENV
   (package! org-trello :recipe
         (:host github :repo "org-trello/org-trello")))
+(package! activity-watch-mode :recipe
+        (:host github :repo "pauldub/activity-watch-mode"))
 
 ;(package! org-vcard)
 
