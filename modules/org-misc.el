@@ -16,7 +16,6 @@
 
 (use-package! org-web-tools)
 
-(use-package! org-ql)
 
 (defun my/clean-xtra-newlines ()
   (interactive)

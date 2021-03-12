@@ -86,6 +86,18 @@
 
 (load! "~/.doom.d/modules/org-misc.el")
 
+(load! "~/.doom.d/modules/org-ql.el")
+
+(map!
+      :after org-ql-search
+      :leader
+      :prefix ("oq" . "org-ql-search")
+      :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
+      :desc (documentation 'oql/today)  "t" #'oql/today
+      :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
+      :desc (documentation 'oql/refile-not-inbox)  "w" #'oql/week
+      )
+
 (use-package! helm-rg)
 (setq helm-rg-default-directory org-directory)
 (map! :after helm-org-rifle
