@@ -2,6 +2,7 @@
 (use-package! org-ql-search)
 
 (defun oql/refile-not-inbox ()
+"REFILE entries not in Inbox"
 (interactive)
 (org-ql-search
   (org-agenda-files)
@@ -11,6 +12,7 @@
      (tags "inbox")))))
 
 (defun oql/today ()
+"sched for today"
 (interactive)
 (org-ql-search
   (org-agenda-files)
@@ -18,6 +20,7 @@
   :sort 'scheduled))
 
 (defun oql/next-3-days ()
+"sched for next 3 days"
 (interactive)
 (org-ql-search
   (org-agenda-files)
@@ -25,6 +28,7 @@
   :sort 'scheduled))
 
 (defun oql/week ()
+"sched for next 7 days"
 (interactive)
 (org-ql-search
   (org-agenda-files)
