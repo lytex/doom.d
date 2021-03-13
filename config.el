@@ -18,7 +18,7 @@
 (beacon-mode 1)
 (setq beacon-color "dark orange")
 
-(setq doom-theme 'doom-one-light)
+(setq doom-theme 'doom-one)
 
 (load! "~/.doom.d/modules/org.el")
 
