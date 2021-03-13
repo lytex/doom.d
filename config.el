@@ -18,7 +18,7 @@
 (beacon-mode 1)
 (setq beacon-color "dark orange")
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-one-light)
 
 (load! "~/.doom.d/modules/org.el")
 
@@ -95,7 +95,7 @@
       :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
       :desc (documentation 'oql/today)  "t" #'oql/today
       :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
-      :desc (documentation 'oql/refile-not-inbox)  "w" #'oql/week
+      :desc (documentation 'oql/week)  "w" #'oql/week
       )
 
 (use-package! helm-rg)
