@@ -44,6 +44,9 @@
 
 ;; (org-ql-search (org-agenda-files) '(todo "VERIFY"))
 
+
+(setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK
+
 (after! org-journal
 (setq org-journal-carryover-items
 "TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
