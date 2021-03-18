@@ -34,3 +34,8 @@
   (org-agenda-files)
   '(and (todo) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 7))
   :sort 'scheduled))
+
+(defun oql/templates ()
+"templates"
+(interactive)
+(org-ql-search (ltags "template")))

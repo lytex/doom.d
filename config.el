@@ -93,9 +93,10 @@
       :leader
       :prefix ("oq" . "org-ql-search")
       :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
-      :desc (documentation 'oql/today)  "t" #'oql/today
+      :desc (documentation 'oql/today)  "to" #'oql/today
       :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
       :desc (documentation 'oql/week)  "w" #'oql/week
+      :desc (documentation 'oql/template)  "te" #'oql/template
       )
 
 (use-package! helm-rg)
