@@ -36,6 +36,11 @@
   :sort 'scheduled))
 
 (defun oql/templates ()
-"templates"
+"Entries with local tag \"template\""
 (interactive)
-(org-ql-search (ltags "template")))
+(org-ql-search (org-agenda-files) '(ltags "template")))
+
+(defun oql/habits ()
+"Entries with local tag \"habits\""
+(interactive)
+(org-ql-search (org-agenda-files) '(or (ltags "habit") (property "STYLE" "habit"))))
