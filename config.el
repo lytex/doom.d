@@ -96,8 +96,8 @@
       :desc (documentation 'oql/today)  "to" #'oql/today
       :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
       :desc (documentation 'oql/week)  "w" #'oql/week
-      :desc (documentation 'oql/template)  "te" #'oql/template
-      :desc (documentation 'oql/habit)  "ha" #'oql/habit
+      :desc (documentation 'oql/templates)  "te" #'oql/templates
+      :desc (documentation 'oql/habits)  "ha" #'oql/habits
       )
 
 (use-package! helm-rg)
