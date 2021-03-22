@@ -16,7 +16,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  '(todo)
+  '(and (todo) (scheduled 1))
   :sort 'scheduled))
 
 (defun oql/next-3-days ()
