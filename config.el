@@ -138,7 +138,7 @@
 (load! "~/.doom.d/modules/org-export.el")
 
 (defun my/disable-emojify (match &rest ignored)
-  (string= match "↔"))
+  (or (string= match "↔") (string= match "↖") (string= match "↗") (string= match "↘") (string= match "↙")))
 
 (add-hook 'emojify-inhibit-functions #'my/disable-emojify)
 
