@@ -17,7 +17,7 @@
   (interactive)
   (unless global-sketch (setq global-sketch (concat (format-time-string "%Y%m%d%H%M%S-") 
         (ido-completing-read "sketch: " nil))))
-  (insert (concat "sketch:" global-sketch)))
+  (insert (concat "[[sketch:" global-sketch "]]")))
 
 (defun my/reset-sketch ()
   (interactive)
