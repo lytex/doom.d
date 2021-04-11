@@ -7,10 +7,12 @@
 (defun my/org-export-on-save ()
       ;; Detecting org-mode is not straightforward:
       ;; https://emacs.stackexchange.com/questions/53167/check-whether-buffer-is-in-org-mode
-      (if (and (eq major-mode 'org-mode) (not (eq (buffer-name) "Inbox.org"))
+      (if (and (eq major-mode 'org-mode) (not (eq (buffer-name) "Inbox.org")))
           (progn
-            (unless org-transclusion-mode (org-transclusion-mode))
-            (org-html-export-to-html))))
+            (setq old-transclusion-mode org-transclusion-mode)
+            (unless org-transclusion-mode (org-transclusion-mode t))
+            (org-html-export-to-html)
+            (unless old-transclusion-mode (org-transclusion-mode -1)))))
 
 (add-hook 'after-save-hook #'my/org-export-on-save)
 
