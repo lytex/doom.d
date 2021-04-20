@@ -72,7 +72,7 @@ as the default task."
 (defun bh/clock-in-default-task ()
   (save-excursion
     (org-with-point-at org-clock-default-task
-      (org-clock-in)))
+      (org-clock-in))))
 
 (defun bh/clock-in-parent-task ()
   "Move point to the parent (project) task if any and clock in"
