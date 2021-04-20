@@ -12,19 +12,7 @@
 (setq org-clock-report-include-clocking-task t)
 
 
-(defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
-
-(defun bh/clock-in-organization-task-as-default ()
-  (interactive)
-  (org-with-point-at (org-id-find bh/organization-task-id 'marker)
-    (org-clock-in '(16))))
-
-(defun bh/clock-out-maybe ()
-  (when (and bh/keep-clock-running
-             (not org-clock-clocking-in)
-             (marker-buffer org-clock-default-task)
-             (not org-clock-resolving-clocks-due-to-idleness))
-    (bh/clock-in-parent-task)))
+(setq bh/keep-clock-running nil)
 
 
 (defun bh/find-project-task ()
@@ -38,20 +26,16 @@
       (goto-char parent-task)
       parent-task)))
 
-(defun bh/clock-in-parent-task ()
-  "Move point to the parent (project) task if any and clock in"
-  (let ((parent-task))
-    (save-excursion
-      (save-restriction
-        (widen)
-        (while (and (not parent-task) (org-up-heading-safe))
-          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
-            (setq parent-task (point))))
-        (if parent-task
-            (org-with-point-at parent-task
-              (org-clock-in))
-          (when bh/keep-clock-running
-            (bh/clock-in-default-task)))))))
+
+
+(defun bh/clock-out-maybe ()
+  (when (and bh/keep-clock-running
+             (not org-clock-clocking-in)
+             (marker-buffer org-clock-default-task)
+             (not org-clock-resolving-clocks-due-to-idleness))
+    (bh/clock-in-parent-task)))
+
+(add-hook 'org-clock-out-hook 'bh/clock-out-maybe 'append)
 
 (defun bh/punch-in (arg)
   "Start continuous clocking and set the default task to the
@@ -84,3 +68,30 @@ as the default task."
   (when (org-clock-is-active)
     (org-clock-out))
   (org-agenda-remove-restriction-lock))
+
+(defun bh/clock-in-default-task ()
+  (save-excursion
+    (org-with-point-at org-clock-default-task
+      (org-clock-in)))
+
+(defun bh/clock-in-parent-task ()
+  "Move point to the parent (project) task if any and clock in"
+  (let ((parent-task))
+    (save-excursion
+      (save-restriction
+        (widen)
+        (while (and (not parent-task) (org-up-heading-safe))
+          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+            (setq parent-task (point))))
+        (if parent-task
+            (org-with-point-at parent-task
+              (org-clock-in))
+          (when bh/keep-clock-running
+            (bh/clock-in-default-task)))))))
+
+(defvar bh/organization-task-id "eb155a82-92b2-4f25-a3c6-0304591af2f9")
+
+(defun bh/clock-in-organization-task-as-default ()
+  (interactive)
+  (org-with-point-at (org-id-find bh/organization-task-id 'marker)
+    (org-clock-in '(16))))
