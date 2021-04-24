@@ -23,6 +23,17 @@
 (load! "~/.doom.d/modules/LectureNotes.el")
 
 (load! "~/.doom.d/modules/org.el")
+
+(load! "~/.doom.d/modules/org-clock.el")
+
+(map!
+      :after org
+      :leader
+      :desc (documentation 'bh/punch-in) "mcpi" #'bh/punch-in
+      :desc (documentation 'bh/punch-out) "mcpo" #'bh/punch-out
+      )
+
+
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
 
