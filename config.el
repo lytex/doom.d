@@ -84,6 +84,11 @@
       "ji" #'my/set-org-journal-I
       "jw" #'my/set-org-journal-W)
 
+(map! :after org-journal
+      :leader
+      :desc (documentation 'org-journal-previous-entry) "jp" #'org-journal-previous-entry
+      :desc (documentation 'org-journal-next-entry) "jn" #'org-journal-next-entry)
+
 (load! "~/.doom.d/modules/org-misc.el")
 
 (load! "~/.doom.d/modules/org-ql.el")
