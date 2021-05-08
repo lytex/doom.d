@@ -46,6 +46,7 @@
 
 
 (setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK
+(setq org-log-done 'time)
 
 (after! org-journal
 (setq org-journal-carryover-items
