@@ -63,6 +63,8 @@
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
+
+(setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
 (setq  org-startup-folded t)        ;; Start with folded view
 (setq org-ellipsis "↴")
