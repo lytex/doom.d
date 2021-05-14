@@ -26,19 +26,16 @@
 (setq org-agenda-files
   '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects")))
 
-(setq org-highlight-sparse-tree-matches nil)
-
-
 (setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK
 (setq org-log-done 'time)
 
 (after! org-journal
 (setq org-journal-carryover-items
-"TODO=\"TODO\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
+"TODO=\"TODO\"|TODO=\"MAYBE\"|TODO=\"SOMEDAY\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
 
 (after! org
 (setq org-todo-keywords
-	'((sequence  "TODO(t)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" "CANCELLED(c)" )))
+	'((sequence  "TODO(t)" "MAYBE(m)" "SOMEDAY(s)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" "CANCELLED(c)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
@@ -47,6 +44,17 @@
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
+
+(setq org-todo-keyword-faces
+  '(("TODO"  . org-todo)
+  ("MAYBE" . +org-todo-project)
+  ("SOMEDAY" . +org-todo-project)
+  ("REFILE"  . org-todo)
+  ("NEXT"  . org-todo)
+  ("BLOCK"  . org-todo)
+  ("ONGOING"  . org-todo)
+ 	("DONE"  . org-done)
+ 	("CANCELLED"  . org-done)))
 
 (setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file

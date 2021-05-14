@@ -107,9 +107,10 @@
 
 (map! :after org-ql
       :leader
-      :prefix ("rs" . "my/org-sparse-tree")
-      :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
-      :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
+      :prefix ("rt" . "my/org-sparse-tree")
+      :desc (documentation 'my/org-sparse-tree-full) "j" #'my/org-sparse-tree-full
+      :desc (documentation 'my/org-sparse-tree-almost-full) "k" #'my/org-sparse-tree-almost-full
+      :desc (documentation 'my/org-sparse-tree-trimmed) "l" #'my/org-sparse-tree-trimmed)
 
 
 (use-package! helm-rg)
