@@ -105,6 +105,13 @@
       :desc (documentation 'oql/habits)  "ha" #'oql/habits
       )
 
+(map! :after org-ql
+      :leader
+      :prefix ("rs" . "my/org-sparse-tree")
+      :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
+      :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
+
+
 (use-package! helm-rg)
 (setq helm-rg-default-directory org-directory)
 (map! :after helm-org-rifle

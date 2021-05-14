@@ -26,23 +26,7 @@
 (setq org-agenda-files
   '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects")))
 
-(defun my/org-sparse-tree1 ()
-  (interactive)
-  (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe") (ltags "incubate") (ltags "idea"))))
-
-(defun my/org-sparse-tree2 ()
-  (interactive)
-  (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe"))))
-
 (setq org-highlight-sparse-tree-matches nil)
-
-(map! :after org-ql
-      :leader
-      :prefix ("rs" . "my/org-sparse-tree")
-      :desc (documentation 'my/org-sparse-tree1) "f" #'my/org-sparse-tree1
-      :desc (documentation 'my/org-sparse-tree2) "j" #'my/org-sparse-tree2)
-
-;; (org-ql-search (org-agenda-files) '(todo "VERIFY"))
 
 
 (setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK

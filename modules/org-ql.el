@@ -123,3 +123,11 @@
 "Entries with local tag \"habits\""
 (interactive)
 (org-ql-search (org-agenda-files) '(or (ltags "habit") (property "STYLE" "habit"))))
+
+(defun my/org-sparse-tree1 ()
+  (interactive)
+  (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe") (ltags "incubate") (ltags "idea"))))
+
+(defun my/org-sparse-tree2 ()
+  (interactive)
+  (org-ql-sparse-tree '(or (todo) (ltags "someday") (ltags "maybe"))))
