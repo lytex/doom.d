@@ -56,6 +56,7 @@
  	("DONE"  . org-done)
  	("CANCELLED"  . org-done)))
 
+(setq org-log-done 'time)           ;; Log CLOSED time when DONE
 (setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
 (setq  org-startup-folded t)        ;; Start with folded view
@@ -163,7 +164,7 @@
                          :complete 'org-id-complete-link)
 
 (defun my/remove-refile (&optional arg default-buffer rfloc msg)
-; if todo keyword at point is equal to REFILE, remove it
+"If todo keyword at point is equal to REFILE, remove it"
 (setq todo-keyword-at-point
 (substring-no-properties
 ;; concat "" to nil converts it to the empty string
@@ -178,3 +179,7 @@
 
 ; remove REFILE keyword before refiling a headline
 (advice-add 'org-refile :before 'my/remove-refile)
+
+;; Make org-bable templates jinja-like
+(setq org-babel-noweb-wrap-start "{{ ")
+(setq org-babel-noweb-wrap-end " }}")
