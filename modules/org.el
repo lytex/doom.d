@@ -1,6 +1,7 @@
 
 (use-package! org)
 
+(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 (setq org-directory "~/org/")
 (setq org-link-file-path-type 'absolute) ;; Absolute links with ~ when possible
 
@@ -183,3 +184,13 @@
 ;; Make org-bable templates jinja-like
 (setq org-babel-noweb-wrap-start "{{ ")
 (setq org-babel-noweb-wrap-end " }}")
+
+;; Replace all ocurrences of ";; blank" with blank space
+;; There is no way to control blank space AFAIK
+;; https://emacs.stackexchange.com/questions/31738/org-mode-babel-ensure-more-than-one-empty-line-between-tangled-code-blocks-fo
+ (add-hook 'org-babel-post-tangle-hook
+      #'(lambda () (progn
+          (goto-char 0)
+            (while (search-forward ";; blank" nil t)
+                  (replace-match ""))
+          (save-buffer))))

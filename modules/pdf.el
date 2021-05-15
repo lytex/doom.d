@@ -57,31 +57,6 @@
       (org-previous-visible-heading 2))
     (my/join-org-headline-next))
 
-(after! (pdf-tools)
-(map! :leader
-      :mode (pdf-view-mode)
-      :prefix ("a" . "annotations in pdf")
-      :desc (documentation 'pdf-annot-add-markup-annotation) 
-      "a" #'my/pdf-annot-add-markup-annotation
-      :desc (documentation 'pdf-annot-add-squiggly-markup-annotation) 
-      "g" #'my/pdf-annot-add-squiggly-markup-annotation
-      :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
-      "f" #'my/pdf-annot-add-highlight-markup-annotation
-      :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
-      "s" #'my/pdf-annot-add-strikeout-markup-annotation
-      :desc (documentation 'pdf-annot-add-underline-markup-annotation)
-      "d" #'my/pdf-annot-add-underline-markup-annotation
-      :desc (documentation 'my/join-org-headline-previous)
-      "p" #'my/join-org-headline-previous
-      :desc (documentation 'my/join-org-headline-next)
-      "n" #'my/join-org-headline-next)
-
-
-(map! :leader
-      :mode (pdf-view-mode)
-      :prefix "p"
-      :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
-      :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
 
 (use-package! org-noter-pdftools
   :after org-noter

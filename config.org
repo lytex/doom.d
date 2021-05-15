@@ -1,6 +1,24 @@
+:PROPERTIES:
+:ID:       78772c0a-5383-4399-814d-b04630324f90
+:END:
+#+PROPERTY: header-args :tangle yes :padline no :noweb yes
+#+STARTUP: nohideblocks
+
+* Lexical binding
+:PROPERTIES:
+:ID:       fe9639f6-d041-491d-ae35-21754b196591
+:END:
+#+begin_src emacs-lisp
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 
+;; blank
+#+end_src
+* Personal information
+:PROPERTIES:
+:ID:       a2f58232-1e91-4f02-8d19-4265b6eb02e4
+:END:
+#+begin_src emacs-lisp
 
 (load! "~/.doom.d/work.el")
 
@@ -10,7 +28,13 @@
     (setq user-mail-address "julopezc@acciona.com")
     (setq user-mail-address "julianlpc15@gmail.com"))
 
-
+;; blank
+#+end_src
+* Fonts and color themes
+:PROPERTIES:
+:ID:       e67365d5-3d6a-429f-9d0d-90a2fa5eddc7
+:END:
+#+begin_src emacs-lisp
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
 (setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
@@ -19,53 +43,190 @@
 (setq beacon-color "dark orange")
 
 (setq doom-theme 'doom-one)
-
+;; blank
+#+end_src
+* org and evil modules
+:PROPERTIES:
+:ID:       a3c1450f-e71d-4b23-a4c3-fc8aa059a30d
+:END:
+#+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org.el")
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
-
+;; blank
+#+end_src
+* org-roam
+:PROPERTIES:
+:ID:       9ad88b67-8280-4871-8967-2dc4b6c20773
+:END:
+#+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-roam.el")
-
+;; blank
+#+end_src
+** SPC
+*** bo
+:PROPERTIES:
+:ID:       07e92d5e-7202-47d6-b558-6a41c399052c
+:END:
+#+begin_src emacs-lisp
 (map!
       :after org-roam
       :leader
       "bo" #'my/revert-buffer-reload-roam)
-
+;; blank
+#+end_src
+*** r
+:PROPERTIES:
+:ID:       34426c0c-b43f-49e8-b302-93348be263e8
+:END:
+#+begin_src emacs-lisp
 (map! :after org-roam
       :leader
       :prefix ("r" . "org-roam")
+#+end_src
+**** o
+:PROPERTIES:
+:ID:       5b53e429-64ae-420d-905a-048c272796f4
+:END:
+Open org roam sidebar
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam) "o" #'org-roam
+#+end_src
+**** u
+:PROPERTIES:
+:ID:       f5852e15-fb1f-4fd1-8bfb-6ecb3039cc40
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
+#+end_src
+**** c
+:PROPERTIES:
+:ID:       24047197-49d6-4e1c-8af6-d1269d586b81
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
+#+end_src
+#+begin_src emacs-lisp
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
+#+end_src
 
+*** rp
+:PROPERTIES:
+:ID:       a1710a4e-700b-4aab-86f5-572886418f4f
+:END:
+#+begin_src emacs-lisp
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rp" . "my/xournalpp")
+#+end_src
+**** i
+:PROPERTIES:
+:ID:       eaa41495-7c2d-4975-b492-488869847ae8
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/insert-global-sketch) "i" #'my/insert-global-sketch
+#+end_src
+**** p
+:PROPERTIES:
+:ID:       86d86ac1-c55c-4792-b427-abaae0ce0fcc
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/reset-sketch) "p" #'my/reset-sketch)
 
+#+end_src
+*** rf
+:PROPERTIES:
+:ID:       7c00f2db-d6d6-4a71-8985-1a7a89cec0d2
+:END:
+#+begin_src emacs-lisp
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rf" . "my/org-roam-refile")
+#+end_src
+**** l
+:PROPERTIES:
+:ID:       6e9eab60-e404-47f6-a0a0-3015ee1b76c0
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-link-and-refile) "l" #'my/org-link-and-refile
+#+end_src
+**** c
+:PROPERTIES:
+:ID:       53d87e65-0e7e-4f31-a2b0-35692505ab0c
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-refile-to-capture) "c" #'my/org-refile-to-capture
+#+end_src
+**** b
+:PROPERTIES:
+:ID:       b9ab6261-ec50-46fe-b4f1-adef65df33b4
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-link-and-refile-to-capture) "b" #'my/org-link-and-refile-to-capture)
-
+#+end_src
+*** rh
+:PROPERTIES:
+:ID:       a176228c-9352-4083-9dea-95ec6fba413f
+:END:
+#+begin_src emacs-lisp
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rh" . "my/org-roam-heading")
+#+end_src
+**** o
+:PROPERTIES:
+:ID:       398547ee-9f67-40f5-845a-d3b8b0b9eaf9
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-roam-heading-backlinks) "o" #'my/org-roam-heading-backlinks
+#+end_src
+**** u
+:PROPERTIES:
+:ID:       4eedc3e4-2431-48d8-9dd7-b859379bd9f3
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-roam-heading-unlinked-references) "u" #'my/org-roam-heading-unlinked-references
+#+end_src
+**** l
+:PROPERTIES:
+:ID:       754ef9fa-008a-4de6-89ef-43a1a775274c
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'my/org-roam-headings-all) "l" #'my/org-roam-headings-all)
-
+#+end_src
+* org-journal
+:PROPERTIES:
+:ID:       24da4b74-f292-4fa1-b83f-4e3d9670d47e
+:END:
+#+begin_src emacs-lisp
+;; blank
 (load! "~/.doom.d/modules/org-journal.el")
-
+;; blank
+#+end_src
+** SPC
+*** om/jm
+:PROPERTIES:
+:ID:       1124c535-1f8f-4754-a514-a742aa43e178
+:END:
+#+begin_src emacs-lisp
 (map!
       :after org-journal
       :leader
@@ -73,24 +234,75 @@
 (map!
       :leader
       "om" #'org-mode)
-
+;; blank
+#+end_src
+*** mj
+:PROPERTIES:
+:ID:       218c3935-6094-459d-92a7-0b8709de9a78
+:END:
+#+begin_src emacs-lisp
 (map!
       :after org-journal
       :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry
+#+end_src
+*** j
+**** j
+:PROPERTIES:
+:ID:       fb64e2cb-1aa0-4ee9-8258-cf172abb3d6b
+:END:
+#+begin_src emacs-lisp
       "jj" #'my/set-org-journal-J
+#+end_src
+**** i
+:PROPERTIES:
+:ID:       b0cf03c8-175e-41fe-817b-97f74016b6a6
+:END:
+#+begin_src emacs-lisp
       "ji" #'my/set-org-journal-I
+#+end_src
+**** w
+:PROPERTIES:
+:ID:       a042ac59-cb22-4551-99b5-44a7d85dec90
+:END:
+#+begin_src emacs-lisp
       "jw" #'my/set-org-journal-W)
-
+#+end_src
+**** p
+:PROPERTIES:
+:ID:       30da5671-8254-44e9-9272-272a2d86c942
+:END:
+#+begin_src emacs-lisp
+;; blank
 (map! :after org-journal
       :leader
       :desc (documentation 'org-journal-previous-entry) "jp" #'org-journal-previous-entry
+#+end_src
+**** n
+:PROPERTIES:
+:ID:       a617e02f-5dfd-45c1-b456-f3955a577a7d
+:END:
+#+begin_src emacs-lisp
       :desc (documentation 'org-journal-next-entry) "jn" #'org-journal-next-entry)
-
+#+end_src
+* org-misc
+:PROPERTIES:
+:ID:       2726f6d9-1538-4385-9d88-2742fb3d9c45
+:END:
+#+begin_src emacs-lisp
+;; blank
 (load! "~/.doom.d/modules/org-misc.el")
-
+;; blank
+#+end_src
+* org-ql
+:PROPERTIES:
+:ID:       a9a417e5-1971-4669-ba71-96249341c7b9
+:END:
+#+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-ql.el")
-
+;; blank
+#+end_src
+#+begin_src emacs-lisp
 (map!
       :after org-ql-search
       :leader
@@ -102,16 +314,26 @@
       :desc (documentation 'oql/templates)  "te" #'oql/templates
       :desc (documentation 'oql/habits)  "ha" #'oql/habits
       )
-
+#+end_src
+#+begin_src emacs-lisp
+;; blank
 (map! :after org-ql
       :leader
       :prefix ("rt" . "my/org-sparse-tree")
       :desc (documentation 'my/org-sparse-tree-full) "j" #'my/org-sparse-tree-full
       :desc (documentation 'my/org-sparse-tree-almost-full) "k" #'my/org-sparse-tree-almost-full
       :desc (documentation 'my/org-sparse-tree-trimmed) "l" #'my/org-sparse-tree-trimmed)
-
+#+end_src
+* helm-rg
+:PROPERTIES:
+:ID:       f2074ffa-8907-42f4-9205-7d52ebc31d19
+:END:
+#+begin_src emacs-lisp
+;; blank
 
 (use-package! helm-rg)
+#+end_src
+#+begin_src emacs-lisp
 (setq helm-rg-default-directory org-directory)
 (map! :after helm-org-rifle
       :leader
@@ -120,9 +342,17 @@
       :desc (documentation 'helm-org-rifle-directories)  "d" #'helm-org-rifle-directories
       :desc (documentation 'helm-org-rifle-occur)  "o" #'helm-org-rifle-occur
       :desc (documentation 'helm-rg) "g" #'helm-rg)
-
+#+end_src
+* pdf
+:PROPERTIES:
+:ID:       81a0d29e-e514-4cc1-8f98-8c6f9181a5af
+:END:
+#+begin_src emacs-lisp
+;; blank
 (load! "~/.doom.d/modules/pdf.el")
-
+;; blank
+#+end_src
+#+begin_src emacs-lisp
 (after! (pdf-tools)
 (map! :leader
       :mode (pdf-view-mode)
@@ -148,7 +378,14 @@
       :prefix "p"
       :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
       :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
+;; blank
+#+end_src
 
+* misc
+:PROPERTIES:
+:ID:       65f85022-c981-43f8-bd53-b2c691bb00be
+:END:
+#+begin_src emacs-lisp
 (use-package! highlight-indent-guides
   :hook (prog-mode . highlight-indent-guides-mode)
   :init
@@ -180,3 +417,11 @@
 (add-hook 'emojify-inhibit-functions #'my/disable-emojify)
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+#+end_src
+* Local Variables
+Replace all ocurrences of ";; blank" with blank space
+There is no way to control blank space AFAIK:
+https://emacs.stackexchange.com/questions/31738/org-mode-babel-ensure-more-than-one-empty-line-between-tangled-code-blocks-fo
+# Local Variables:
+# eval: (add-hook 'org-babel-post-tangle-hook #'(lambda () (progn (goto-char 0) (while (search-forward ";; blank" nil t) (replace-match "")) (save-buffer))))
+# End:
