@@ -98,9 +98,19 @@
       :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
       :desc (documentation 'oql/today)  "to" #'oql/today
       :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
-      :desc (documentation 'oql/week)  "w" #'oql/week
+      :desc (documentation 'oql/week)  "we" #'oql/week
       :desc (documentation 'oql/templates)  "te" #'oql/templates
       :desc (documentation 'oql/habits)  "ha" #'oql/habits
+      :desc (documentation 'oql/todo)  "td" #'oql/todo
+      :desc (documentation 'oql/ongoing)  "ong" #'oql/ongoing
+      :desc (documentation 'oql/ongoing-left)  "onl" #'oql/ongoing-left
+      :desc (documentation 'oql/ongoing-projects)  "onp" #'oql/ongoing-projects
+      :desc (documentation 'oql/work)  "wo" #'oql/work
+      :desc (documentation 'oql/research)  "re" #'oql/research
+      :desc (documentation 'oql/learn)  "le" #'oql/learn
+      :desc (documentation 'oql/try)  "try" #'oql/try
+      :desc (documentation 'oql/indepth)  "ind" #'oql/indepth
+      :desc (documentation 'oql/refile)  "rff" #'oql/refile
       )
 
 (map! :after org-ql

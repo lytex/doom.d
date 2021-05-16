@@ -16,7 +16,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  '(and (todo) (scheduled 1))
+  '(and (todo) (not (todo "MAYBE" "SOMEDAY")) (scheduled 1))
   :sort 'scheduled))
 
 (defun oql/next-3-days ()
@@ -24,7 +24,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  '(and (todo) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 3))
+  '(and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 3))
   :sort 'scheduled))
 
 (defun oql/week ()
@@ -32,7 +32,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  '(and (todo) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 7))
+  '(and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 7))
   :sort 'scheduled))
 
 (defun oql/todo ()
@@ -40,7 +40,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  '(and (todo) (not (tags "tareas" "habits" "mantenimiento")))))
+  '(and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")))))
 
 (defun oql/ongoing ()
 "ongoing items"
@@ -69,7 +69,7 @@
 (interactive)
 (org-ql-search
   (org-agenda-files)
-  ' (tags "work")))
+  '(and (todo) (tags "work"))))
 
 (defun oql/research ()
 "items not done and not archived with tag research"
