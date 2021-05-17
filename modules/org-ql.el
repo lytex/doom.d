@@ -143,4 +143,4 @@
   "TODOs-MAYBE-SOMEDAY"
   ;; "All TODOs excluding MAYBE, SOMEDAY"
   (interactive)
-  (org-ql-sparse-tree '(and (todo) (not (todo "maybe" "someday")))))
+  (org-ql-sparse-tree '(and (todo) (not (todo "MAYBE" "SOMEDAY")))))
