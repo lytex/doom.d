@@ -54,6 +54,8 @@
   ("NEXT"  . org-todo)
   ("BLOCK"  . org-todo)
   ("ONGOING"  . org-todo)
+  ("TICKLER" . +org-todo-project)
+  ("VERIFY"  . org-todo)
  	("DONE"  . org-done)
  	("CANCELLED"  . org-done)))
 
