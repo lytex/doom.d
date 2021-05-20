@@ -159,6 +159,14 @@
       :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
       :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
 
+(after! org-noter
+      (map! :leader
+      :prefix ("on" . "org-noter")
+      :desc (documentation 'org-noter-sync-current-note) "s" #'org-noter-sync-current-note
+      :desc (documentation 'org-noter-sync-prev-note) "p" #'org-noter-sync-prev-note
+      :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
+      :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note))
+
 (use-package! highlight-indent-guides
   :hook (prog-mode . highlight-indent-guides-mode)
   :init

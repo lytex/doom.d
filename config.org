@@ -469,6 +469,8 @@ Open org roam sidebar
 (load! "~/.doom.d/modules/pdf.el")
 ;; blank
 #+end_src
+All =pdf-annot-add-*-markup= keybindings are in the left hand.
+The idea is to use the left hand to select an annotation and use the mouse on the right hand to select where to place it
 #+begin_src emacs-lisp
 (after! (pdf-tools)
 (map! :leader
@@ -495,6 +497,14 @@ Open org roam sidebar
       :prefix "p"
       :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
       :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
+
+(after! org-noter
+      (map! :leader
+      :prefix ("on" . "org-noter")
+      :desc (documentation 'org-noter-sync-current-note) "s" #'org-noter-sync-current-note
+      :desc (documentation 'org-noter-sync-prev-note) "p" #'org-noter-sync-prev-note
+      :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
+      :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note))
 ;; blank
 #+end_src
 
