@@ -1,5 +1,5 @@
 
-(defun my/revert-buffer-reload-roam ()
+(defun lytex/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
     (org-roam)
@@ -14,7 +14,7 @@
       (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
 
 
-(defun my/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
+(defun lytex/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
   ;; Doesn't work when linking a file to itself
   (save-window-excursion
     (evil-backward-char 1) ;; h in normal mode
@@ -46,7 +46,7 @@
     (if old-org-link-descriptive (org-toggle-link-display))
     (org-insert-link))
 
-(advice-add 'org-roam-insert :after 'my/replace-link-file-with-id)
+(advice-add 'org-roam-insert :after 'lytex/replace-link-file-with-id)
 
 
 
@@ -78,14 +78,14 @@
         :head "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
         :unnarrowed t))))
 
-(defun my/org-capture-inbox ()
+(defun lytex/org-capture-inbox ()
   (interactive)
   (org-capture nil "i"))
 
 (map! 
       :after org-capture
       :leader
-      :desc (documentation 'my/org-capture-inbox) "ii" #'my/org-capture-inbox)
+      :desc (documentation 'lytex/org-capture-inbox) "ii" #'lytex/org-capture-inbox)
 
 (after! org-capture
 (setq org-capture-templates
@@ -130,7 +130,7 @@
   (with-temp-buffer
       (insert (concat "#+title: " title))))
 
-(defun my/org-roam-heading-unlinked-references ()
+(defun lytex/org-roam-heading-unlinked-references ()
   "Get unlinked references for current heading"
   (interactive)
   (setq heading (nth 4 (org-heading-components)))
@@ -140,7 +140,7 @@
   (switch-to-buffer-other-window old-buffer)
   (previous-buffer))
 
-(defun my/org-roam-heading-backlinks ()
+(defun lytex/org-roam-heading-backlinks ()
   "Narrow backlinks by current heading id"
   (interactive)
   (setq id (org-id-copy))
@@ -150,34 +150,34 @@
   (org-occur id)
   (switch-to-buffer-other-window old-buffer))
 
-(defun my/org-roam-headings-all ()
+(defun lytex/org-roam-headings-all ()
   "Get both backlinks and unlinked refs for current heading"
   (interactive)
-  (my/org-roam-heading-unlinked-references)
-  (my/org-roam-heading-backlinks))
+  (lytex/org-roam-heading-unlinked-references)
+  (lytex/org-roam-heading-backlinks))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam open buffer ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun my/org-roam-open-buffer-at (position)
+(defun lytex/org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
   (setq org-roam-buffer-position position)
   (org-roam)
   (setq org-roam-buffer-position old-org-roam-buffer-position))
 
-(defun my/org-roam-open-buffer-at-bottom ()
+(defun lytex/org-roam-open-buffer-at-bottom ()
   "Open a new roam buffer at the bottom while keeping current org-roam-buffer-position"
   (interactive)
-  (my/org-roam-open-buffer-at 'bottom))
+  (lytex/org-roam-open-buffer-at 'bottom))
 
-(defun my/org-follow-link-vsplit ()
+(defun lytex/org-follow-link-vsplit ()
   "Follow link in a new buffer to the right"
   (interactive)
   (evil-window-vsplit)
   (evil-window-right 1)
   (org-open-at-point))
 
-(defun my/org-open-new-buffer ()
+(defun lytex/org-open-new-buffer ()
   "Open link in a new right window and open org-roam-buffer at the bottom"
   (interactive)
   (evil-window-vsplit)
@@ -192,7 +192,7 @@
     (progn
       (org-roam)
       (org-roam)
-      (my/org-roam-open-buffer-at 'bottom)))
+      (lytex/org-roam-open-buffer-at 'bottom)))
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
 
@@ -213,7 +213,7 @@
 
 (setq org-refile-targets '((+org/opened-buffer-files :maxlevel . 9)))
 
-(defun my/org-link-and-refile ()
+(defun lytex/org-link-and-refile ()
   "Replace a heading with a link and refile it"
   (interactive)
   (call-interactively 'org-store-link)
@@ -223,26 +223,26 @@
   (call-interactively 'org-refile))
 
 ;; From https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
-(defun my/refile (file headline)
+(defun lytex/refile (file headline)
   (let ((pos (save-excursion
                (find-file file)
                (org-find-exact-headline-in-buffer headline))))
     (org-refile nil nil (list headline file nil pos))))
 
-(defun my/org-refile-to-capture ()
+(defun lytex/org-refile-to-capture ()
   "Refile a heading to a new file using org-roam-capture"
   (interactive)
   (org-roam-capture)
   (setq new-file (org-roam-capture--get :file-path))
   (save-buffer)
   (delete-window)
-  (my/refile new-file ""))
+  (lytex/refile new-file ""))
 
-(defun my/org-link-and-refile-to-capture ()
+(defun lytex/org-link-and-refile-to-capture ()
   "Replace a heading with a link and refile to a new file using org-roam-capture"
   (interactive)
   (call-interactively 'org-store-link)
   (org-insert-heading)
   (org-insert-link)
   (org-previous-visible-heading 1)
-  (my/org-refile-to-capture))
+  (lytex/org-refile-to-capture))

@@ -26,20 +26,20 @@
   :config
   (add-hook 'pdf-view-mode-hook 'pdf-annot-minor-mode))
 
-(defun my/pdf-annot-add-markup-annotation () (interactive)
+(defun lytex/pdf-annot-add-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-markup-annotation))
-(defun my/pdf-annot-add-squiggly-markup-annotation () (interactive)
+(defun lytex/pdf-annot-add-squiggly-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-squiggly-markup-annotation))
-(defun my/pdf-annot-add-highlight-markup-annotation () (interactive)
+(defun lytex/pdf-annot-add-highlight-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-highlight-markup-annotation))
-(defun my/pdf-annot-add-strikeout-markup-annotation () (interactive)
+(defun lytex/pdf-annot-add-strikeout-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-strikeout-markup-annotation))
-(defun my/pdf-annot-add-underline-markup-annotation () (interactive)
+(defun lytex/pdf-annot-add-underline-markup-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-underline-markup-annotation))
-(defun my/pdf-annot-add-text-annotation () (interactive)
+(defun lytex/pdf-annot-add-text-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-text-annotation))
 
-(defun my/join-org-headline-next ()
+(defun lytex/join-org-headline-next ()
   ;; ]] j daE k D
   (interactive)
   (org-next-visible-heading 1) ;; ]]
@@ -50,12 +50,12 @@
   (evil-previous-line) ;; k
   (call-interactively 'evil-delete-whole-line)) ;; D
 
-(defun my/join-org-headline-previous ()
+(defun lytex/join-org-headline-previous ()
   (interactive)
   (if (eq (car (org-element-at-point)) 'headline)
       (org-previous-visible-heading 1)
       (org-previous-visible-heading 2))
-    (my/join-org-headline-next))
+    (lytex/join-org-headline-next))
 
 
 (use-package! org-noter-pdftools
@@ -66,7 +66,7 @@
   (setq org-noter-pdftools-insert-content-heading nil))
 
 
-(defun my/clean-pdf-fontifications ()
+(defun lytex/clean-pdf-fontifications ()
   (replace-regexp "ﬃ" "ffi") 
   (replace-regexp "ﬁ" "fi") 
   (replace-regexp "ﬀ" "ff")

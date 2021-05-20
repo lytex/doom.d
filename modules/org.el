@@ -7,7 +7,7 @@
 
 (setq org-cycle-open-archived-trees t)
 
-(defun my/org-mode-hook ()
+(defun lytex/org-mode-hook ()
   (dolist (face '(org-level-1
                   org-level-2
                   org-level-3
@@ -19,7 +19,7 @@
    (set-face-attribute face nil :weight 'normal))
   (set-face-attribute 'org-ellipsis nil :foreground "orange")
     (setq tab-width 2))
-(add-hook 'org-mode-hook 'my/org-mode-hook)
+(add-hook 'org-mode-hook 'lytex/org-mode-hook)
 
 (if WORK_ENV
 (setq org-agenda-files
@@ -166,7 +166,7 @@
 (org-link-set-parameters "id"
                          :complete 'org-id-complete-link)
 
-(defun my/remove-refile (&optional arg default-buffer rfloc msg)
+(defun lytex/remove-refile (&optional arg default-buffer rfloc msg)
 "If todo keyword at point is equal to REFILE, remove it"
 (setq todo-keyword-at-point
 (substring-no-properties
@@ -181,7 +181,7 @@
   (org-todo "")))
 
 ; remove REFILE keyword before refiling a headline
-(advice-add 'org-refile :before 'my/remove-refile)
+(advice-add 'org-refile :before 'lytex/remove-refile)
 
 ;; Make org-bable templates jinja-like
 (setq org-babel-noweb-wrap-start "{{ ")

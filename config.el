@@ -29,7 +29,7 @@
 (map!
       :after org-roam
       :leader
-      "bo" #'my/revert-buffer-reload-roam)
+      "bo" #'lytex/revert-buffer-reload-roam)
 
 (map! :after org-roam
       :leader
@@ -39,30 +39,30 @@
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
       :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
-      :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
-      :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
-      :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
+      :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
+      :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
+      :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
 
 (map! :after org-roam
       :leader
-      :prefix ("rp" . "my/xournalpp")
-      :desc (documentation 'my/insert-global-sketch) "i" #'my/insert-global-sketch
-      :desc (documentation 'my/reset-sketch) "p" #'my/reset-sketch)
+      :prefix ("rp" . "lytex/xournalpp")
+      :desc (documentation 'lytex/insert-global-sketch) "i" #'lytex/insert-global-sketch
+      :desc (documentation 'lytex/reset-sketch) "p" #'lytex/reset-sketch)
 
 (map! :after org-roam
       :leader
-      :prefix ("rf" . "my/org-roam-refile")
-      :desc (documentation 'my/org-link-and-refile) "l" #'my/org-link-and-refile
-      :desc (documentation 'my/org-refile-to-capture) "c" #'my/org-refile-to-capture
-      :desc (documentation 'my/org-link-and-refile-to-capture) "b" #'my/org-link-and-refile-to-capture)
+      :prefix ("rf" . "lytex/org-roam-refile")
+      :desc (documentation 'lytex/org-link-and-refile) "l" #'lytex/org-link-and-refile
+      :desc (documentation 'lytex/org-refile-to-capture) "c" #'lytex/org-refile-to-capture
+      :desc (documentation 'lytex/org-link-and-refile-to-capture) "b" #'lytex/org-link-and-refile-to-capture)
 
 (map! :after org-roam
       :leader
-      :prefix ("rh" . "my/org-roam-heading")
-      :desc (documentation 'my/org-roam-heading-backlinks) "o" #'my/org-roam-heading-backlinks
-      :desc (documentation 'my/org-roam-heading-unlinked-references) "u" #'my/org-roam-heading-unlinked-references
-      :desc (documentation 'my/org-roam-headings-all) "l" #'my/org-roam-headings-all)
+      :prefix ("rh" . "lytex/org-roam-heading")
+      :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
+      :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
+      :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 
 (load! "~/.doom.d/modules/org-journal.el")
 
@@ -78,9 +78,9 @@
       :after org-journal
       :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry
-      "jj" #'my/set-org-journal-J
-      "ji" #'my/set-org-journal-I
-      "jw" #'my/set-org-journal-W)
+      "jj" #'lytex/set-org-journal-J
+      "ji" #'lytex/set-org-journal-I
+      "jw" #'lytex/set-org-journal-W)
 
 (map! :after org-journal
       :leader
@@ -115,10 +115,10 @@
 
 (map! :after org-ql
       :leader
-      :prefix ("rt" . "my/org-sparse-tree")
-      :desc (documentation 'my/org-sparse-tree-full) "j" #'my/org-sparse-tree-full
-      :desc (documentation 'my/org-sparse-tree-almost-full) "k" #'my/org-sparse-tree-almost-full
-      :desc (documentation 'my/org-sparse-tree-trimmed) "l" #'my/org-sparse-tree-trimmed)
+      :prefix ("rt" . "lytex/org-sparse-tree")
+      :desc (documentation 'lytex/org-sparse-tree-full) "j" #'lytex/org-sparse-tree-full
+      :desc (documentation 'lytex/org-sparse-tree-almost-full) "k" #'lytex/org-sparse-tree-almost-full
+      :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed)
 
 
 (use-package! helm-rg)
@@ -138,19 +138,19 @@
       :mode (pdf-view-mode)
       :prefix ("a" . "annotations in pdf")
       :desc (documentation 'pdf-annot-add-markup-annotation)
-      "a" #'my/pdf-annot-add-markup-annotation
+      "a" #'lytex/pdf-annot-add-markup-annotation
       :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)
-      "g" #'my/pdf-annot-add-squiggly-markup-annotation
+      "g" #'lytex/pdf-annot-add-squiggly-markup-annotation
       :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
-      "f" #'my/pdf-annot-add-highlight-markup-annotation
+      "f" #'lytex/pdf-annot-add-highlight-markup-annotation
       :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
-      "s" #'my/pdf-annot-add-strikeout-markup-annotation
+      "s" #'lytex/pdf-annot-add-strikeout-markup-annotation
       :desc (documentation 'pdf-annot-add-underline-markup-annotation)
-      "d" #'my/pdf-annot-add-underline-markup-annotation
-      :desc (documentation 'my/join-org-headline-previous)
-      "p" #'my/join-org-headline-previous
-      :desc (documentation 'my/join-org-headline-next)
-      "n" #'my/join-org-headline-next)
+      "d" #'lytex/pdf-annot-add-underline-markup-annotation
+      :desc (documentation 'lytex/join-org-headline-previous)
+      "p" #'lytex/join-org-headline-previous
+      :desc (documentation 'lytex/join-org-headline-next)
+      "n" #'lytex/join-org-headline-next)
 
 
 (map! :leader
@@ -184,9 +184,9 @@
 
 (load! "~/.doom.d/modules/org-export.el")
 
-(defun my/disable-emojify (match &rest ignored)
+(defun lytex/disable-emojify (match &rest ignored)
   (or (string= match "↔") (string= match "↖") (string= match "↗") (string= match "↘") (string= match "↙")))
 
-(add-hook 'emojify-inhibit-functions #'my/disable-emojify)
+(add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")

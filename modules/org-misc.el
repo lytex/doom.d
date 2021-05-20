@@ -17,7 +17,7 @@
 (use-package! org-web-tools)
 
 
-(defun my/clean-xtra-newlines ()
+(defun lytex/clean-xtra-newlines ()
   (interactive)
   (replace-regexp "\n\n+" "\n"))
 

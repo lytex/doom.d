@@ -22,7 +22,7 @@
   (setq evil-want-fine-undo t))
 
 
-;; (defun my/ox-html-format-drawer (name content backend)
+;; (defun lytex/ox-html-format-drawer (name content backend)
 ;;   "Export :NOTES: and :LOGBOOK: drawers to HTML class"
 ;;   (cond
 ;;     ((string-match "RELATED\\|DEPENDS\\|TAGS" name)
@@ -39,7 +39,7 @@
 ;; "<style> #content{max-width:80%;}</style>
 ;; <style> p{max-width:100%;}</style>
 ;; <style> li{max-width:100%;}</style>")
-;;   (setq org-html-format-drawer-function 'my/ox-html-format-drawer))
+;;   (setq org-html-format-drawer-function 'lytex/ox-html-format-drawer))
 
 (doom! :input
        ;;chinese

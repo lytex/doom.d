@@ -72,7 +72,7 @@
 (map!
       :after org-roam
       :leader
-      "bo" #'my/revert-buffer-reload-roam)
+      "bo" #'lytex/revert-buffer-reload-roam)
 ;; blank
 #+end_src
 *** r
@@ -113,13 +113,13 @@ Open org roam sidebar
       :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
 #+end_src
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-roam-open-buffer-at-bottom) "j" #'my/org-roam-open-buffer-at-bottom
+      :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
 #+end_src
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-open-new-buffer) "n" #'my/org-open-new-buffer
+      :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
 #+end_src
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-follow-link-vsplit) "v" #'my/org-follow-link-vsplit
+      :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
 #+end_src
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
@@ -133,21 +133,21 @@ Open org roam sidebar
 ;; blank
 (map! :after org-roam
       :leader
-      :prefix ("rp" . "my/xournalpp")
+      :prefix ("rp" . "lytex/xournalpp")
 #+end_src
 **** i
 :PROPERTIES:
 :ID:       eaa41495-7c2d-4975-b492-488869847ae8
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/insert-global-sketch) "i" #'my/insert-global-sketch
+      :desc (documentation 'lytex/insert-global-sketch) "i" #'lytex/insert-global-sketch
 #+end_src
 **** p
 :PROPERTIES:
 :ID:       86d86ac1-c55c-4792-b427-abaae0ce0fcc
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/reset-sketch) "p" #'my/reset-sketch)
+      :desc (documentation 'lytex/reset-sketch) "p" #'lytex/reset-sketch)
 
 #+end_src
 *** rf
@@ -158,28 +158,28 @@ Open org roam sidebar
 ;; blank
 (map! :after org-roam
       :leader
-      :prefix ("rf" . "my/org-roam-refile")
+      :prefix ("rf" . "lytex/org-roam-refile")
 #+end_src
 **** l
 :PROPERTIES:
 :ID:       6e9eab60-e404-47f6-a0a0-3015ee1b76c0
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-link-and-refile) "l" #'my/org-link-and-refile
+      :desc (documentation 'lytex/org-link-and-refile) "l" #'lytex/org-link-and-refile
 #+end_src
 **** c
 :PROPERTIES:
 :ID:       53d87e65-0e7e-4f31-a2b0-35692505ab0c
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-refile-to-capture) "c" #'my/org-refile-to-capture
+      :desc (documentation 'lytex/org-refile-to-capture) "c" #'lytex/org-refile-to-capture
 #+end_src
 **** b
 :PROPERTIES:
 :ID:       b9ab6261-ec50-46fe-b4f1-adef65df33b4
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-link-and-refile-to-capture) "b" #'my/org-link-and-refile-to-capture)
+      :desc (documentation 'lytex/org-link-and-refile-to-capture) "b" #'lytex/org-link-and-refile-to-capture)
 #+end_src
 *** rh
 :PROPERTIES:
@@ -189,28 +189,28 @@ Open org roam sidebar
 ;; blank
 (map! :after org-roam
       :leader
-      :prefix ("rh" . "my/org-roam-heading")
+      :prefix ("rh" . "lytex/org-roam-heading")
 #+end_src
 **** o
 :PROPERTIES:
 :ID:       398547ee-9f67-40f5-845a-d3b8b0b9eaf9
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-roam-heading-backlinks) "o" #'my/org-roam-heading-backlinks
+      :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
 #+end_src
 **** u
 :PROPERTIES:
 :ID:       4eedc3e4-2431-48d8-9dd7-b859379bd9f3
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-roam-heading-unlinked-references) "u" #'my/org-roam-heading-unlinked-references
+      :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
 #+end_src
 **** l
 :PROPERTIES:
 :ID:       754ef9fa-008a-4de6-89ef-43a1a775274c
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'my/org-roam-headings-all) "l" #'my/org-roam-headings-all)
+      :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 #+end_src
 * org-journal
 :PROPERTIES:
@@ -252,21 +252,21 @@ Open org roam sidebar
 :ID:       fb64e2cb-1aa0-4ee9-8258-cf172abb3d6b
 :END:
 #+begin_src emacs-lisp
-      "jj" #'my/set-org-journal-J
+      "jj" #'lytex/set-org-journal-J
 #+end_src
 **** i
 :PROPERTIES:
 :ID:       b0cf03c8-175e-41fe-817b-97f74016b6a6
 :END:
 #+begin_src emacs-lisp
-      "ji" #'my/set-org-journal-I
+      "ji" #'lytex/set-org-journal-I
 #+end_src
 **** w
 :PROPERTIES:
 :ID:       a042ac59-cb22-4551-99b5-44a7d85dec90
 :END:
 #+begin_src emacs-lisp
-      "jw" #'my/set-org-journal-W)
+      "jw" #'lytex/set-org-journal-W)
 #+end_src
 **** p
 :PROPERTIES:
@@ -436,10 +436,10 @@ Open org roam sidebar
 ;; blank
 (map! :after org-ql
       :leader
-      :prefix ("rt" . "my/org-sparse-tree")
-      :desc (documentation 'my/org-sparse-tree-full) "j" #'my/org-sparse-tree-full
-      :desc (documentation 'my/org-sparse-tree-almost-full) "k" #'my/org-sparse-tree-almost-full
-      :desc (documentation 'my/org-sparse-tree-trimmed) "l" #'my/org-sparse-tree-trimmed)
+      :prefix ("rt" . "lytex/org-sparse-tree")
+      :desc (documentation 'lytex/org-sparse-tree-full) "j" #'lytex/org-sparse-tree-full
+      :desc (documentation 'lytex/org-sparse-tree-almost-full) "k" #'lytex/org-sparse-tree-almost-full
+      :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed)
 #+end_src
 * helm-rg
 :PROPERTIES:
@@ -475,19 +475,19 @@ Open org roam sidebar
       :mode (pdf-view-mode)
       :prefix ("a" . "annotations in pdf")
       :desc (documentation 'pdf-annot-add-markup-annotation)
-      "a" #'my/pdf-annot-add-markup-annotation
+      "a" #'lytex/pdf-annot-add-markup-annotation
       :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)
-      "g" #'my/pdf-annot-add-squiggly-markup-annotation
+      "g" #'lytex/pdf-annot-add-squiggly-markup-annotation
       :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
-      "f" #'my/pdf-annot-add-highlight-markup-annotation
+      "f" #'lytex/pdf-annot-add-highlight-markup-annotation
       :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
-      "s" #'my/pdf-annot-add-strikeout-markup-annotation
+      "s" #'lytex/pdf-annot-add-strikeout-markup-annotation
       :desc (documentation 'pdf-annot-add-underline-markup-annotation)
-      "d" #'my/pdf-annot-add-underline-markup-annotation
-      :desc (documentation 'my/join-org-headline-previous)
-      "p" #'my/join-org-headline-previous
-      :desc (documentation 'my/join-org-headline-next)
-      "n" #'my/join-org-headline-next)
+      "d" #'lytex/pdf-annot-add-underline-markup-annotation
+      :desc (documentation 'lytex/join-org-headline-previous)
+      "p" #'lytex/join-org-headline-previous
+      :desc (documentation 'lytex/join-org-headline-next)
+      "n" #'lytex/join-org-headline-next)
 
 
 (map! :leader
@@ -528,10 +528,10 @@ Open org roam sidebar
 
 (load! "~/.doom.d/modules/org-export.el")
 
-(defun my/disable-emojify (match &rest ignored)
+(defun lytex/disable-emojify (match &rest ignored)
   (or (string= match "↔") (string= match "↖") (string= match "↗") (string= match "↘") (string= match "↙")))
 
-(add-hook 'emojify-inhibit-functions #'my/disable-emojify)
+(add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 #+end_src
