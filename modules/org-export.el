@@ -6,6 +6,7 @@
 
 (defun lytex/org-export-on-save ()
       ;; Widen if the buffer is narrowed
+      (save-restriction
       (if (or (/= (point-max) (+ (buffer-size) 1)) (/= (point-min) 1))
        (widen))
       ;; Detecting org-mode is not straightforward:
@@ -15,7 +16,7 @@
             (setq old-transclusion-mode org-transclusion-mode)
             (unless org-transclusion-mode (org-transclusion-mode t))
             (org-html-export-to-html)
-            (unless old-transclusion-mode (org-transclusion-mode -1)))))
+            (unless old-transclusion-mode (org-transclusion-mode -1))))))
 
 (add-hook 'after-save-hook #'lytex/org-export-on-save)
 
