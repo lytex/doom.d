@@ -198,3 +198,23 @@
 (add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+;; From https://emacs.stackexchange.com/a/33344:
+(defun yf/advice-list (symbol)
+  (let (result)
+    (advice-mapc
+     (lambda (ad props)
+       (push ad result))
+     symbol)
+    (nreverse result)))
+
+(defun yf/kill-advice (symbol advice)
+  "Kill ADVICE from SYMBOL."
+  (interactive (let* ((sym (intern (completing-read "Function: " obarray #'yf/advice-list t)))
+                      (advice (let ((advices-and-their-name
+                                     (mapcar (lambda (ad) (cons (prin1-to-string ad)
+                                                                ad))
+                                             (yf/advice-list sym))))
+                                (cdr (assoc (completing-read "Remove advice: " advices-and-their-name nil t)
+                                            advices-and-their-name)))))
+                 (list sym advice)))
+  (advice-remove symbol advice))
