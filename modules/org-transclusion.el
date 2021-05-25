@@ -14,7 +14,6 @@
 
 ;; Configure org mode to adapt indentation
 ;; https://github.com/nobiot/org-transclusion/issues/78
-(setq org-indent-mode-turns-off-org-adapt-indentation nil)
 (setq org-indent-mode t)
 
 (with-eval-after-load 'org
