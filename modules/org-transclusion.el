@@ -29,6 +29,13 @@
 ;; Delete duplicate lines
 (advice-add 'org-transclusion-mode :after 'lytex/remove-dups)
 
+(defun lytex/reset-org-indent (&optional arg)
+  (org-indent-mode)
+  (org-indent-mode))
+
+(advice-add 'org-transclusion-mode :after 'lytex/reset-org-indent)
+
+
 (advice-add 'org-metaup :before (lambda (&optional arg) (if org-transclusion-mode (org-transclusion-deactivate))))
 (advice-add 'org-metaleft :before (lambda (&optional arg) (if org-transclusion-mode (org-transclusion-deactivate))))
 (advice-add 'org-metadown :before (lambda (&optional arg) (if org-transclusion-mode (org-transclusion-deactivate))))
