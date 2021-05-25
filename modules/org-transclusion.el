@@ -15,7 +15,7 @@
 (defun lytex/remove-dups (&optional arg)
 (save-excursion
   (beginning-of-buffer)
-  (replace-regexp "\\([^\n]+\n\\)\\1+" "\\1")))
+  (replace-regexp "\\(#\\+transclude[^\n]+\n\\)\\1+" "\\1")))
 
 
 ;; Configure org mode to adapt indentation
