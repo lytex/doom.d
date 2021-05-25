@@ -12,6 +12,12 @@
   (setq buffer-read-only t)
   (setq buffer-read-only nil)))
 
+(defun lytex/remove-dups (&optional arg)
+(save-excursion
+  (beginning-of-buffer)
+  (replace-regexp "\\([^\n]+\n\\)\\1+" "\\1")))
+
+
 ;; Configure org mode to adapt indentation
 ;; https://github.com/nobiot/org-transclusion/issues/78
 (setq org-indent-mode t)
@@ -20,6 +26,8 @@
   (define-key global-map (kbd "<f12>") #'org-transclusion-mode))
 
 (advice-add 'org-transclusion-mode :after 'lytex/org-transclusion-read-only)
+;; Delete duplicate lines
+(advice-add 'org-transclusion-mode :after 'lytex/remove-dups)
 
 (advice-add 'org-metaup :before (lambda (&optional arg) (if org-transclusion-mode (org-transclusion-deactivate))))
 (advice-add 'org-metaleft :before (lambda (&optional arg) (if org-transclusion-mode (org-transclusion-deactivate))))
