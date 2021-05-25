@@ -5,6 +5,9 @@
 (setq org-export-with-properties '("NEXT" "BLOCK" "GOAL"))
 
 (defun lytex/org-export-on-save ()
+      ;; Widen if the buffer is narrowed
+      (if (or (/= (point-max) (+ (buffer-size) 1)) (/= (point-min) 1))
+       (widen))
       ;; Detecting org-mode is not straightforward:
       ;; https://emacs.stackexchange.com/questions/53167/check-whether-buffer-is-in-org-mode
       (if (and (eq major-mode 'org-mode) (not (eq (buffer-name) "Inbox.org")))
