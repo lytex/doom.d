@@ -51,7 +51,7 @@
         ("Refile not Inbox" :buffers-files
          org-agenda-files
          :query (and (todo "REFILE") (not (tags "inbox")))
-         :sort (date) :narrow nil :super-groups org-super-agenda-groups :title "Refile not Inbox")
+         :sort (date) :narrow nil :super-groups ((:auto-category)) :title "Refile not Inbox")
 
         ("OnGoing Left" :buffers-files
          org-agenda-files
@@ -97,7 +97,7 @@
          org-agenda-files
          :query
          (or
-          (ltags "habit")
+          (tags "habit")
           (property "STYLE" "habit"))
          :sort (date) :narrow nil :super-groups org-super-agenda-groups :title "Habits")
 
