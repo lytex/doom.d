@@ -309,124 +309,31 @@ Open org roam sidebar
 :END:
 #+begin_src emacs-lisp
 (map!
-      :after org-ql-search
+      :after org-ql
       :leader
       :prefix ("oq" . "org-ql-search")
+
 #+end_src
-**** rfn
+**** w
 :PROPERTIES:
-:ID:       3645d08a-f1b3-4b37-aaf9-a10dcb8bae50
+:ID:       bf63d88d-8623-4636-ac2b-cf28984202f5
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
+      :desc (documentation 'org-ql-view)  "w" #'org-ql-view
 #+end_src
-**** to
+**** s
 :PROPERTIES:
-:ID:       df9d732a-75c7-4102-8e85-0758e3fbe549
+:ID:       c6d877ff-2a21-42ba-801b-ea1d8abffbe5
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'oql/today)  "to" #'oql/today
+      :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
 #+end_src
-**** n3
+**** t
 :PROPERTIES:
-:ID:       6de05398-c1d8-4db7-82a4-10ca1d087e5e
+:ID:       d70c55a7-7fb8-41d6-bc0b-351b5ce21d88
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
-#+end_src
-**** we
-:PROPERTIES:
-:ID:       c46c31d4-d282-4998-95d7-554d8872d02e
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/week)  "we" #'oql/week
-#+end_src
-**** te
-:PROPERTIES:
-:ID:       5062ef90-6b7e-4c69-bdee-041562c96986
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/templates)  "te" #'oql/templates
-#+end_src
-**** ha
-:PROPERTIES:
-:ID:       1a61dc2d-e083-43f0-b965-1c77fb43e699
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/habits)  "ha" #'oql/habits
-#+end_src
-**** td
-:PROPERTIES:
-:ID:       fb24b35a-2b9f-475f-88a2-5b3a2b0d5596
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/todo)  "td" #'oql/todo
-#+end_src
-**** ong
-:PROPERTIES:
-:ID:       4cb44647-df6c-4ab9-af94-f8576060c988
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/ongoing)  "ong" #'oql/ongoing
-#+end_src
-**** onl
-:PROPERTIES:
-:ID:       47428e08-f968-4d71-93bb-a86dd8bb943b
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/ongoing-left)  "onl" #'oql/ongoing-left
-#+end_src
-**** onp
-:PROPERTIES:
-:ID:       aaa1f631-e32f-4ac6-9b4e-3b0684ac70c4
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/ongoing-projects)  "onp" #'oql/ongoing-projects
-#+end_src
-**** wo
-:PROPERTIES:
-:ID:       4588967b-526c-47ea-b919-e70379a31132
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/work)  "wo" #'oql/work
-#+end_src
-**** re
-:PROPERTIES:
-:ID:       f46f1cf9-ae51-4cca-a8c3-5f63ce41c6f0
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/research)  "re" #'oql/research
-#+end_src
-**** le
-:PROPERTIES:
-:ID:       d49b0fbb-b4c3-4d1d-a0a8-340f1d98e4fc
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/learn)  "le" #'oql/learn
-#+end_src
-**** try
-:PROPERTIES:
-:ID:       062de8b2-0104-4c0f-9785-e1d7b43a86aa
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/try)  "try" #'oql/try
-#+end_src
-**** ind
-:PROPERTIES:
-:ID:       879e398d-0254-4cfa-bfa6-6d08dc37fa5a
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/indepth)  "ind" #'oql/indepth
-#+end_src
-**** rff
-:PROPERTIES:
-:ID:       5d50563d-2616-4bb3-9be1-e7730ad4f235
-:END:
-#+begin_src emacs-lisp
-      :desc (documentation 'oql/refile)  "rff" #'oql/refile
-#+end_src
-#+begin_src emacs-lisp
-      )
+      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree)
 #+end_src
 *** rt
 :PROPERTIES:
@@ -547,6 +454,9 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 #+end_src
 * Convenience functions
 ** Remove advice from functions
+:PROPERTIES:
+:ID:       c8b3c827-ae4b-4737-8ca6-69fb1856e05d
+:END:
 #+begin_src emacs-lisp
 ;; From https://emacs.stackexchange.com/a/33344:
 (defun yf/advice-list (symbol)

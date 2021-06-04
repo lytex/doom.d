@@ -92,26 +92,12 @@
 (load! "~/.doom.d/modules/org-ql.el")
 
 (map!
-      :after org-ql-search
+      :after org-ql
       :leader
       :prefix ("oq" . "org-ql-search")
-      :desc (documentation 'oql/refile-not-inbox)  "rfn" #'oql/refile-not-inbox
-      :desc (documentation 'oql/today)  "to" #'oql/today
-      :desc (documentation 'oql/next-3-days)  "n3" #'oql/next-3-days
-      :desc (documentation 'oql/week)  "we" #'oql/week
-      :desc (documentation 'oql/templates)  "te" #'oql/templates
-      :desc (documentation 'oql/habits)  "ha" #'oql/habits
-      :desc (documentation 'oql/todo)  "td" #'oql/todo
-      :desc (documentation 'oql/ongoing)  "ong" #'oql/ongoing
-      :desc (documentation 'oql/ongoing-left)  "onl" #'oql/ongoing-left
-      :desc (documentation 'oql/ongoing-projects)  "onp" #'oql/ongoing-projects
-      :desc (documentation 'oql/work)  "wo" #'oql/work
-      :desc (documentation 'oql/research)  "re" #'oql/research
-      :desc (documentation 'oql/learn)  "le" #'oql/learn
-      :desc (documentation 'oql/try)  "try" #'oql/try
-      :desc (documentation 'oql/indepth)  "ind" #'oql/indepth
-      :desc (documentation 'oql/refile)  "rff" #'oql/refile
-      )
+      :desc (documentation 'org-ql-view)  "w" #'org-ql-view
+      :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
+      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree)
 
 (map! :after org-ql
       :leader
