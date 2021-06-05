@@ -7,10 +7,10 @@
 (setq make-backup-files nil)
 (setq org-transclusion-include-first-section nil)
 
-(defun lytex/org-transclusion-read-only (&optional arg)
-(if org-transclusion-mode
-  (setq buffer-read-only t)
-  (setq buffer-read-only nil)))
+;; (defun lytex/org-transclusion-read-only (&optional arg)
+;; (if org-transclusion-mode
+;;   (setq buffer-read-only t)
+;;   (setq buffer-read-only nil)))
 
 (defun lytex/remove-dups (&optional arg)
 (save-excursion
@@ -25,7 +25,7 @@
 (with-eval-after-load 'org
   (define-key global-map (kbd "<f12>") #'org-transclusion-mode))
 
-(advice-add 'org-transclusion-mode :after 'lytex/org-transclusion-read-only)
+;; (advice-add 'org-transclusion-mode :after 'lytex/org-transclusion-read-only)
 ;; Delete duplicate lines
 (advice-add 'org-transclusion-mode :after 'lytex/remove-dups)
 
