@@ -19,5 +19,5 @@
 (setq org-caldav-url "https://shared03.opsone-cloud.ch/remote.php/dav/calendars/julianlpc15@gmail.com")
 
 (if WORK_ENV
-  (setq org-caldav-calendar "work" org-export-select-tags '("work"))
-  (setq org-caldav-calendar "personal" org-caldav-exclude-tags '("work")))
+  (setq org-caldav-calendar-id "work" org-export-select-tags '("work"))
+  (setq org-caldav-calendar-id "personal" org-caldav-exclude-tags '("work")))
