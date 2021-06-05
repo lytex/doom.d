@@ -15,17 +15,17 @@
 
         ("Today" :buffers-files
          org-agenda-files
-         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) )
+         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) (planning 1))
          :sort (date) :narrow nil :super-groups org-super-agenda-groups nil :title "Today")
 
         ("Next 3 days" :buffers-files
          org-agenda-files
-         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 3))
+         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (planning 3))
          :sort (date) :narrow nil :super-groups org-super-agenda-groups :title "Next 3 days")
 
         ("Week" :buffers-files
          org-agenda-files
-         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (scheduled 7))
+         :query (and (todo) (not (todo "MAYBE" "SOMEDAY")) (not (tags "tareas" "habits" "mantenimiento")) (planning 7))
          :sort (date) :narrow nil :super-groups org-super-agenda-groups :title "Week")
 
         ("To Do" :buffers-files
