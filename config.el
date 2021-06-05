@@ -178,6 +178,8 @@
 
 (load! "~/.doom.d/modules/org-export.el")
 
+(load! "~/.doom.d/modules/org-caldav.el")
+
 (defun lytex/disable-emojify (match &rest ignored)
   (or (string= match "↔") (string= match "↖") (string= match "↗") (string= match "↘") (string= match "↙")))
 

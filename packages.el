@@ -52,6 +52,17 @@
 (package! activity-watch-mode :recipe
         (:host github :repo "pauldub/activity-watch-mode"))
 
+;; (package! calfw :recipe
+;;         (:host github :repo "kiwanami/emacs-calfw"))
+
+;; (package! calfw-org :recipe
+;;         (:host github :repo "kiwanami/emacs-calfw"))
+
+;; (package! org-timeline :recipe
+;;         (:host github :repo "Fuco1/org-timeline"))
+
+(package! org-caldav :recipe
+        (:host github :repo "dengste/org-caldav"))
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el

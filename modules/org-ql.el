@@ -108,6 +108,10 @@
  :after org-ql
  :n "RET" #'org-ql-view-switch)
 
+(define-key org-super-agenda-header-map "j" nil)
+(define-key org-super-agenda-header-map "k" nil)
+(define-key org-super-agenda-header-map "h" nil)
+(define-key org-super-agenda-header-map "l" nil)
 
 (setq org-highlight-sparse-tree-matches nil)
 
