@@ -43,6 +43,8 @@
 (setq beacon-color "dark orange")
 
 (setq doom-theme 'doom-one)
+
+(load! "~/.doom.d/modules/LectureNotes.el")
 ;; blank
 #+end_src
 * org and evil modules

@@ -20,6 +20,8 @@
 
 (setq doom-theme 'doom-one)
 
+(load! "~/.doom.d/modules/LectureNotes.el")
+
 (load! "~/.doom.d/modules/org.el")
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
