@@ -22,7 +22,7 @@
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe
-        (:host github :repo "nobiot/org-transclusion" :branch "main"))
+        (:host github :repo "nobiot/org-transclusion" :branch "dev/0.2.0"))
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! org-ql :recipe

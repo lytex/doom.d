@@ -482,6 +482,20 @@ The idea is to use the left hand to select an annotation and use the mouse on th
                                             advices-and-their-name)))))
                  (list sym advice)))
   (advice-remove symbol advice))
+
+;; blank
+#+end_src
+** Get face at point
+:PROPERTIES:
+:ID:       eec45c81-450d-4eac-9da6-5a71b151c9b7
+:END:
+#+begin_src emacs-lisp
+;; Disable hl-mode or all faces will be the same!
+(defun what-face (pos)
+  (interactive "d")
+  (let ((face (or (get-char-property (point) 'read-face-name)
+                  (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
 #+end_src
 * Local Variables
 Replace all ocurrences of ";; blank" with blank space

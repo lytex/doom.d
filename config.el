@@ -208,3 +208,11 @@
                                             advices-and-their-name)))))
                  (list sym advice)))
   (advice-remove symbol advice))
+
+
+;; Disable hl-mode or all faces will be the same!
+(defun what-face (pos)
+  (interactive "d")
+  (let ((face (or (get-char-property (point) 'read-face-name)
+                  (get-char-property (point) 'face))))
+    (if face (message "Face: %s" face) (message "No face at %d" pos))))
