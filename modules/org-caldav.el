@@ -18,6 +18,17 @@
 ;; Get user id by inspecting network while connecting to Calendar Web Interface
 (setq org-caldav-url "https://shared03.opsone-cloud.ch/remote.php/dav/calendars/julianlpc15@gmail.com")
 
+;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
+;; Also set org-caldav-skip-conditions even if it's unused
+;; (if WORK_ENV
+;; (defun org-caldav-skip-function (backend)
+;;   (when (eq backend 'icalendar)
+;;     (org-map-entries
+;;      (lambda ()
+;;        (let ((pt (save-excursion (apply 'org-agenda-skip-entry-if org-caldav-skip-conditions))))
+;; 		 (when pt (delete-region (point) (- pt 1))))))))
+;; )
+
 (if WORK_ENV
-  (setq org-caldav-calendar-id "work" org-export-select-tags '("work"))
-  (setq org-caldav-calendar-id "personal" org-caldav-exclude-tags '("work")))
+  (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags nil)
+  (setq org-caldav-calendar-id "personal" org-caldav-select-tags nil org-caldav-exclude-tags '("work")))
