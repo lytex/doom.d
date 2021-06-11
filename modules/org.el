@@ -36,8 +36,11 @@
 "TODO=\"TODO\"|TODO=\"MAYBE\"|TODO=\"SOMEDAY\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
 
 (after! org
+;; ! →  log when entering the state
+;; \! → log when entering the state and also when leaving it
+;; https://orgmode.org/manual/Tracking-TODO-state-changes.html#Tracking-TODO-state-changes
 (setq org-todo-keywords
-	'((sequence  "TODO(t)" "MAYBE(m)" "SOMEDAY(s)" "REFILE(r)" "NEXT(n)" "BLOCK(b)" "ONGOING(o)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d)" "CANCELLED(c)" )))
+	'((sequence  "TODO(t!)" "MAYBE(m)" "SOMEDAY(s)" "REFILE(r)" "NEXT(n)" "BLOCK(b\!)" "ONGOING(o!)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d!)" "CANCELLED(c)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
@@ -60,7 +63,7 @@
  	("DONE"  . org-done)
  	("CANCELLED"  . org-done)))
 
-(setq org-log-done 'time)           ;; Log CLOSED time when DONE
+(setq org-log-done nil)             ;; Do not log CLOSED time when DONE
 (setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
 (setq  org-startup-folded t)        ;; Start with folded view
