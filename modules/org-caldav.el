@@ -18,16 +18,27 @@
 ;; Get user id by inspecting network while connecting to Calendar Web Interface
 (setq org-caldav-url "https://shared03.opsone-cloud.ch/remote.php/dav/calendars/julianlpc15@gmail.com")
 
+(defun lytex/org-agenda-skip-entry-if-non-work ()
+(let* (;; (beg (point))
+      (end (if nil (save-excursion (org-end-of-subtree t) (point))
+      (org-entry-end-position)))
+      (planning-end (if nil end (line-end-position 2)))
+      m)
+      (and 
+					(not (string-match-p "work" (substring-no-properties (org-make-tag-string (org-get-tags)))))
+					(re-search-forward org-heading-regexp))))
+
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
-;; (if WORK_ENV
-;; (defun org-caldav-skip-function (backend)
-;;   (when (eq backend 'icalendar)
-;;     (org-map-entries
-;;      (lambda ()
-;;        (let ((pt (save-excursion (apply 'org-agenda-skip-entry-if org-caldav-skip-conditions))))
-;; 		 (when pt (delete-region (point) (- pt 1))))))))
-;; )
+(setq org-caldav-skip-conditions '(notregexp ":work:"))
+
+(if WORK_ENV
+(defun org-caldav-skip-function (backend)
+  (when (eq backend 'icalendar)
+    (org-map-entries
+     (lambda ()
+       (let ((pt (save-excursion (lytex/org-agenda-skip-entry-if-non-work))))
+		 (when pt (delete-region (point) (- pt 1)))))))))
 
 (if WORK_ENV
   (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags nil)
