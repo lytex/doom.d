@@ -30,7 +30,8 @@
 
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
-(setq org-caldav-skip-conditions '(notregexp ":work:"))
+(if WORK_ENV
+  (setq org-caldav-skip-conditions '(notregexp ":work:")))
 
 (if WORK_ENV
 (defun org-caldav-skip-function (backend)
@@ -42,4 +43,4 @@
 
 (if WORK_ENV
   (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags nil)
-  (setq org-caldav-calendar-id "personal" org-caldav-select-tags nil org-caldav-exclude-tags '("work")))
+  (setq org-caldav-calendar-id "personal" org-caldav-exclude-tags '("work")))
