@@ -31,7 +31,7 @@
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
 (if WORK_ENV
-  (setq org-caldav-skip-conditions '(notregexp ":work:")))
+  (setq org-caldav-skip-conditions '(regexp "randomstring")))
 
 (if WORK_ENV
 (defun org-caldav-skip-function (backend)
