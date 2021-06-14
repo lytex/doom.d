@@ -48,7 +48,7 @@
   (package! excorporate))
 (if WORK_ENV
   (package! org-trello :recipe
-        (:host github :repo "org-trello/org-trello")))
+        (:host github :repo "org-trello/org-trello") :pin "56c519a"))
 (package! activity-watch-mode :recipe
         (:host github :repo "pauldub/activity-watch-mode"))
 
