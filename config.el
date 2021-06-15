@@ -171,7 +171,7 @@
 (global-activity-watch-mode)
 
 
-(load! "~/.doom.d/modules/org-transclusion.el")
+(load! "~/.doom.d/modules/org-transclusion.el"  )
 
 ;; (load! "~/.doom.d/modules/excorporate.el")
 
@@ -181,6 +181,10 @@
 (load! "~/.doom.d/modules/org-export.el")
 
 (load! "~/.doom.d/modules/org-caldav.el")
+
+(use-package! emojify)
+
+(add-hook 'after-init-hook #'global-emojify-mode)
 
 (defun lytex/disable-emojify (match &rest ignored)
   (or (string= match "↔") (string= match "↖") (string= match "↗") (string= match "↘") (string= match "↙")))

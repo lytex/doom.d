@@ -63,6 +63,9 @@
 
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
+
+(package! emojify :recipe
+        (:host github :repo "iqbalansari/emacs-emojify"))
 ;(package! org-vcard)
 
 ;; If the package you are trying to install does not contain a PACKAGENAME.el
