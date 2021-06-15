@@ -40,7 +40,7 @@
 ;; \! → log when entering the state and also when leaving it
 ;; https://orgmode.org/manual/Tracking-TODO-state-changes.html#Tracking-TODO-state-changes
 (setq org-todo-keywords
-	'((sequence  "TODO(t!)" "MAYBE(m)" "SOMEDAY(s)" "REFILE(r)" "NEXT(n)" "BLOCK(b\!)" "ONGOING(o!)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d!)" "CANCELLED(c)" )))
+  '((sequence  "TODO(t!)" "ONGOING(o!)" "NEXT(n)" "BLOCK(b\!)" "SOMEDAY(s)" "MAYBE(m)" "REFILE(r)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d!)" "CANCELLED(c)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
