@@ -58,6 +58,9 @@
 ;; blank
 #+end_src
 * Doom config
+:PROPERTIES:
+:ID:       4a36ba05-1c32-4766-a889-8e79b9a49c13
+:END:
 #+begin_src emacs-lisp
 ;; blank
 (setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
