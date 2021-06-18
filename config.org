@@ -57,6 +57,12 @@
 (load! "~/.doom.d/modules/xournalpp.el")
 ;; blank
 #+end_src
+* Doom config
+#+begin_src emacs-lisp
+;; blank
+(setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
+;; blank
+#+end_src
 * org-roam
 :PROPERTIES:
 :ID:       9ad88b67-8280-4871-8967-2dc4b6c20773

@@ -26,6 +26,9 @@
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
 
+
+(setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
+
 (load! "~/.doom.d/modules/org-roam.el")
 
 (map!
