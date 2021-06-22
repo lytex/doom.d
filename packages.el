@@ -22,7 +22,7 @@
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe
-        (:host github :repo "nobiot/org-transclusion" :branch "dev/0.2.0"))
+        (:host github :repo "nobiot/org-transclusion" :branch "dev/0.2.1"))
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! org-ql :recipe
@@ -48,7 +48,7 @@
   (package! excorporate))
 (if WORK_ENV
   (package! org-trello :recipe
-        (:host github :repo "org-trello/org-trello") :pin "56c519a"))
+        (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
 (package! activity-watch-mode :recipe
         (:host github :repo "pauldub/activity-watch-mode"))
 
