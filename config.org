@@ -1,6 +1,4 @@
-:PROPERTIES:
-:ID:       78772c0a-5383-4399-814d-b04630324f90
-:END:
+#+title: doom emacs config.el
 #+PROPERTY: header-args :tangle yes :padline no :noweb yes
 #+STARTUP: nohideblocks
 
