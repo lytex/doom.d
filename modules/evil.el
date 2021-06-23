@@ -11,3 +11,7 @@
 (map! :after evil-quickscope
       :leader
       "eq" #'global-evil-quickscope-always-mode)
+
+;; Snipe also in visual mode with z
+(evil-define-key 'visual evil-snipe-local-mode-map "z" 'evil-snipe-s)
+(evil-define-key 'visual evil-snipe-local-mode-map "Z" 'evil-snipe-S)
