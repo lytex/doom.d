@@ -22,11 +22,11 @@
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe
-        (:host github :repo "nobiot/org-transclusion" :branch "dev/0.2.1"))
+        (:host github :repo "nobiot/org-transclusion"))
 (package! helm-org-rifle)
 (package! org-recent-headings)
 (package! org-ql :recipe
-        (:host github :repo "balaramadurai/org-ql" :branch "patch-1"))
+        (:host github :repo "alphapapa/org-ql"))
 (package! org-sticky-header :recipe
         (:host github :repo "alphapapa/org-sticky-header"))
 (package! pdf-tools)
