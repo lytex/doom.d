@@ -467,6 +467,25 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 #+end_src
+* Personal/Work profiles
+:PROPERTIES:
+:ID:       ebcc0f30-fc86-461d-be3c-185c9a297d42
+:END:
+#+begin_src emacs-lisp
+(defun lytex/toggle-work ()
+  "Toggle work profile"
+  (interactive)
+  (setq WORK_ENV (not WORK_ENV))
+  (lytex/reload-org-ql))
+(map!
+      :after org-ql
+      :leader
+      :desc (documentation 'lytex/toggle-work) "ii" #'lytex/toggle-work)
+#+end_src
+
+#+RESULTS:
+: lytex/toggle-work
+
 * Convenience functions
 ** Remove advice from functions
 :PROPERTIES:

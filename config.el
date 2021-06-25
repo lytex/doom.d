@@ -195,6 +195,15 @@
 (add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+(defun lytex/toggle-work ()
+  "Toggle work profile"
+  (interactive)
+  (setq WORK_ENV (not WORK_ENV))
+  (lytex/reload-org-ql))
+(map!
+      :after org-ql
+      :leader
+      :desc (documentation 'lytex/toggle-work) "ii" #'lytex/toggle-work)
 ;; From https://emacs.stackexchange.com/a/33344:
 (defun yf/advice-list (symbol)
   (let (result)
