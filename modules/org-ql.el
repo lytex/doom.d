@@ -3,7 +3,7 @@
 
 (setq org-super-agenda-groups '((:auto-planning)))
 
-(load concat org-directory "org-ql-queries.el")
+(load (concat org-directory "org-ql-queries.el"))
 
 (map!
  :after org-ql
