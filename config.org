@@ -480,7 +480,7 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 (map!
       :after org-ql
       :leader
-      :desc (documentation 'lytex/toggle-work) "ii" #'lytex/toggle-work)
+      :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
 #+end_src
 
 #+RESULTS:

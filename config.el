@@ -203,7 +203,7 @@
 (map!
       :after org-ql
       :leader
-      :desc (documentation 'lytex/toggle-work) "ii" #'lytex/toggle-work)
+      :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
 ;; From https://emacs.stackexchange.com/a/33344:
 (defun yf/advice-list (symbol)
   (let (result)
