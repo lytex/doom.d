@@ -57,6 +57,8 @@
       (org-previous-visible-heading 2))
     (lytex/join-org-headline-next))
 
+(use-package! org-noter
+  :config (setq org-noter-always-create-frame nil))
 
 (use-package! org-noter-pdftools
   :after org-noter
