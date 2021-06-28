@@ -483,9 +483,6 @@ The idea is to use the left hand to select an annotation and use the mouse on th
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
 #+end_src
 
-#+RESULTS:
-: lytex/toggle-work
-
 * Convenience functions
 ** Remove advice from functions
 :PROPERTIES:
