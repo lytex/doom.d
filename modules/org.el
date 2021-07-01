@@ -191,6 +191,9 @@
 (setq org-babel-noweb-wrap-start "{{ ")
 (setq org-babel-noweb-wrap-end " }}")
 
+;; Evaluate arbitrary local variables, prompting before executing
+(setq enable-local-variables t)
+
 ;; Replace all ocurrences of ";; blank" with blank space
 ;; There is no way to control blank space AFAIK
 ;; https://emacs.stackexchange.com/questions/31738/org-mode-babel-ensure-more-than-one-empty-line-between-tangled-code-blocks-fo
