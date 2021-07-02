@@ -45,6 +45,13 @@
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
     (setq org-priority-default ?E)
+    (setq  org-priority-faces
+    '((?A :foreground "red" :background "yellow")
+      (?B . "dark orange")
+      (?C . "yellow")
+      (?D . "green")
+      (?E . "blue")
+      (?F . "dark magenta")))
     (org-indent-mode)
     (map! :leader
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto
