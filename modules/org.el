@@ -50,7 +50,7 @@
       (?B . "dark orange")
       (?C . "yellow")
       (?D . "green")
-      (?E . "blue")
+      (?E . "cyan")
       (?F . "dark magenta")))
     (org-indent-mode)
     (map! :leader
