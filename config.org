@@ -342,7 +342,14 @@ Open org roam sidebar
 :ID:       d70c55a7-7fb8-41d6-bc0b-351b5ce21d88
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree)
+      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
+#+end_src
+**** r
+:PROPERTIES:
+:ID:       2b2bef69-1796-46f8-8760-193214819b08
+:END:
+#+begin_src emacs-lisp
+      :desc (documentation 'lytex/reload-org-ql)  "w" #'lytex/reload-org-ql)
 #+end_src
 *** rt
 :PROPERTIES:

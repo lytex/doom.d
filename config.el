@@ -102,7 +102,8 @@
       :prefix ("oq" . "org-ql-search")
       :desc (documentation 'org-ql-view)  "w" #'org-ql-view
       :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
-      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree)
+      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
+      :desc (documentation 'lytex/reload-org-ql)  "w" #'lytex/reload-org-ql)
 
 (map! :after org-ql
       :leader
