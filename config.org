@@ -349,7 +349,7 @@ Open org roam sidebar
 :ID:       2b2bef69-1796-46f8-8760-193214819b08
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'lytex/reload-org-ql)  "w" #'lytex/reload-org-ql)
+      :desc (documentation 'lytex/reload-org-ql)  "r" #'lytex/reload-org-ql)
 #+end_src
 *** rt
 :PROPERTIES:
