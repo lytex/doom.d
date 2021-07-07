@@ -27,6 +27,8 @@
 (package! org-recent-headings)
 (package! org-ql :recipe
         (:host github :repo "alphapapa/org-ql"))
+(package! origami :recipe
+        (:host github :repo "gregsexton/origami.el"))
 (package! org-sticky-header :recipe
         (:host github :repo "alphapapa/org-sticky-header"))
 (package! pdf-tools)
