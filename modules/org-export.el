@@ -19,7 +19,8 @@
             (org-html-export-to-html)
             (unless old-transclusion-mode (org-transclusion-mode -1))))))
 
-(add-hook 'after-save-hook #'lytex/org-export-on-save)
+;; This is managed by orgzly-integrations, enable if needed
+;; (add-hook 'after-save-hook #'lytex/org-export-on-save)
 
 ;; (defun lytex/ox-html-format-drawer (name content backend)
 ;;   "Export :NOTES: and :LOGBOOK: drawers to HTML class"
