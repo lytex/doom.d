@@ -116,7 +116,7 @@
         :jump-to-captured t))))
 
 (after! org-roam
-(setq org-roam-completion-everywhere t))
+(setq org-roam-completion-everywhere nil))
 
 (after! company
 (add-to-list 'company-backends 'company-capf))
