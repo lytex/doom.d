@@ -2,6 +2,7 @@
 (setq org-export-with-broken-links t)
 (setq org-export-preserve-breaks t)
 (setq org-export-with-archived-trees t)
+(setq org-export-with-sub-superscripts nil)
 (setq org-export-with-properties '("NEXT" "BLOCK" "GOAL"))
 
 (defun lytex/org-export-on-save ()
