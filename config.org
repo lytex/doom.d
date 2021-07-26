@@ -345,6 +345,7 @@ Open org roam sidebar
       :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
 #+end_src
 **** q
+q is for query
 :PROPERTIES:
 :ID:       9457d7ef-161b-45b5-b3d4-68027eda3e21
 :END:
