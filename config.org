@@ -344,6 +344,13 @@ Open org roam sidebar
 #+begin_src emacs-lisp
       :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
 #+end_src
+**** q
+:PROPERTIES:
+:ID:       9457d7ef-161b-45b5-b3d4-68027eda3e21
+:END:
+#+begin_src emacs-lisp
+      :desc (documentation 'org-ql-search)  "q" #'org-ql-search
+#+end_src
 **** r
 :PROPERTIES:
 :ID:       2b2bef69-1796-46f8-8760-193214819b08
