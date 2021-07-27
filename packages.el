@@ -15,15 +15,12 @@
         (:host github :repo "gregsexton/origami.el"))
 (package! org-sticky-header :recipe
         (:host github :repo "alphapapa/org-sticky-header"))
-(package! pdf-tools)
 (package! pdf-continuous-scroll-mode :recipe
         (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! pdf-view-restore)
-(package! org-pdftools)
 (package! nov)
 (package! org-noter-pdftools :recipe
         (:host github :repo "fuxialexander/org-pdftools"))
-(package! org-noter)
 (package! org-web-tools)
 (package! fzf :recipe
         (:host github :repo "seenaburns/fzf.el"))
@@ -37,6 +34,9 @@
         (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
 (package! activity-watch-mode :recipe
         (:host github :repo "pauldub/activity-watch-mode"))
+
+(package! org-caldav :recipe
+        (:host github :repo "dengste/org-caldav"))
 
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
