@@ -3,6 +3,9 @@
 
 (load! "~/.doom.d/work.el")
 
+(package! org-roam :recipe
+        (:host github :repo "org-roam/org-roam")
+        :pin "9065f6a999b98d4b495e3d8fa1fa4424eddd25a8")
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe
