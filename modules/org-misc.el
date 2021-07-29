@@ -1,10 +1,3 @@
-(use-package! helm-org-rifle)
-
-
-;; (map! :after helm-org-rifle
-;;       :desc (documentation 'helm-org-rifle-occur-goto-entry) [return]  #'helm-org-rifle-occur-goto-entry)
-
-
 (use-package! org-sticky-header
     :config
     (add-hook 'org-mode-hook (lambda () (org-sticky-header-mode 1))))
