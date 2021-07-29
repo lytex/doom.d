@@ -385,6 +385,9 @@ q is for query
 (use-package! helm-rg)
 #+end_src
 ** SPC nrg
+:PROPERTIES:
+:ID:       3045fcd3-6951-4f27-959d-f8c63cfc2b0c
+:END:
 #+begin_src emacs-lisp
 (setq helm-rg-default-directory org-directory)
 (map! :after helm
