@@ -11,7 +11,6 @@
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion"))
 (package! helm-org-rifle)
-(package! org-recent-headings)
 (package! org-ql :recipe
         (:host github :repo "alphapapa/org-ql"))
 (package! origami :recipe

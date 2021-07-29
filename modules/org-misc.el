@@ -4,11 +4,6 @@
 ;; (map! :after helm-org-rifle
 ;;       :desc (documentation 'helm-org-rifle-occur-goto-entry) [return]  #'helm-org-rifle-occur-goto-entry)
 
-(require 'helm-source)
-(after! helm-source
-(use-package! org-recent-headings
-  :config (org-recent-headings-mode)))
-
 
 (use-package! org-sticky-header
     :config
