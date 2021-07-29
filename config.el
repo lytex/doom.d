@@ -116,13 +116,9 @@
 
 (use-package! helm-rg)
 (setq helm-rg-default-directory org-directory)
-(map! :after helm-org-rifle
+(map! :after helm
       :leader
-      :prefix ("nr" . "helm-org-rifle")
-      :desc (documentation 'helm-org-rifle)  "r" #'helm-org-rifle
-      :desc (documentation 'helm-org-rifle-directories)  "d" #'helm-org-rifle-directories
-      :desc (documentation 'helm-org-rifle-occur)  "o" #'helm-org-rifle-occur
-      :desc (documentation 'helm-rg) "g" #'helm-rg)
+      :desc (documentation 'helm-rg) "nrg" #'helm-rg)
 
 (load! "~/.doom.d/modules/pdf.el")
 
