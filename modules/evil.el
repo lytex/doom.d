@@ -12,6 +12,10 @@
       :leader
       "eq" #'global-evil-quickscope-always-mode)
 
+(map! :after evil-commands
+      :desc (documentation 'evil-copy-from-below)
+      :map evil-insert-state-map "C-e" #'evil-copy-from-below)
+
 ;; Snipe also in visual mode with z
 (evil-define-key 'visual evil-snipe-local-mode-map "z" 'evil-snipe-s)
 (evil-define-key 'visual evil-snipe-local-mode-map "Z" 'evil-snipe-S)

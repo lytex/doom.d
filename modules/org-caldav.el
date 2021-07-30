@@ -26,6 +26,7 @@
       m)
       (and 
 					(not (string-match-p "work" (substring-no-properties (org-make-tag-string (org-get-tags)))))
+          (string-match-p "mantenimiento" (substring-no-properties (org-make-tag-string (org-get-tags))))
 					(re-search-forward org-heading-regexp))))
 
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298

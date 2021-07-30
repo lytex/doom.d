@@ -60,12 +60,12 @@
 (use-package! org-noter
   :config (setq org-noter-always-create-frame nil))
 
-(use-package! org-noter-pdftools
-  :after org-noter
-  :config
-  (with-eval-after-load 'pdf-annot
-    (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note))
-  (setq org-noter-pdftools-insert-content-heading nil))
+;; (use-package! org-noter-pdftools
+;;   :after org-noter
+;;   :config
+;;   (with-eval-after-load 'pdf-annot
+;;     (add-hook 'pdf-annot-activate-handler-functions #'org-noter-pdftools-jump-to-note))
+;;   (setq org-noter-pdftools-insert-content-heading nil))
 
 
 (defun lytex/clean-pdf-fontifications ()
