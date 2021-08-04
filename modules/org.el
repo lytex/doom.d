@@ -61,6 +61,7 @@
   '(("TODO"  . org-todo)
   ("MAYBE" . +org-todo-project)
   ("SOMEDAY" . +org-todo-project)
+  ("DEFINED" . +org-todo-project)
   ("REFILE"  . org-todo)
   ("NEXT"  . org-todo)
   ("BLOCK"  . org-todo)
