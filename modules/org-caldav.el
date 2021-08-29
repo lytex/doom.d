@@ -3,12 +3,14 @@
       org-icalendar-use-deadline '(event-if-todo event-if-not-todo todo-due)
       org-icalendar-use-scheduled '(event-if-todo event-if-not-todo todo-start)
       org-icalendar-with-timestamps t)
+(setq org-icalendar-alarm-time 5) ;; Alert 5 min before
 (use-package! org-caldav)
 (setq org-caldav-sync-direction 'org->cal)
 
 (setq org-files-without-id (seq-filter (lambda (x) (not (member x
                                            `(,(expand-file-name "~/org/0.org")
-                                              ,(expand-file-name "~/org/1custom_id.org")))))
+                                              ,(expand-file-name "~/org/1custom_id.org")
+                                              ,(expand-file-name "~/org/LectureNotes.org")))))
                   (org-agenda-files)))
 
 (setq org-caldav-files org-files-without-id)
