@@ -9,6 +9,8 @@
   (interactive)
   (replace-regexp "\n\n+" "\n"))
 
+(use-package! org-tree-slide)
+
 (map! :after org-web-tools
       :leader
       :prefix "m"

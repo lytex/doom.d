@@ -16,6 +16,7 @@
         (:host github :repo "gregsexton/origami.el"))
 (package! org-sticky-header :recipe
         (:host github :repo "alphapapa/org-sticky-header"))
+(package! org-tree-slide)
 (package! pdf-continuous-scroll-mode :recipe
         (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
 (package! pdf-view-restore)
