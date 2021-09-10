@@ -21,7 +21,8 @@
     (widen)
     (let ((parent-task (save-excursion (org-back-to-heading 'invisible-ok) (point))))
       (while (org-up-heading-safe)
-        (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+        (when t ;; overrides condition below
+        ;; (member (nth 2 (org-heading-components)) org-todo-keywords-1)        ;; condition to go to parent task
           (setq parent-task (point))))
       (goto-char parent-task)
       parent-task)))
@@ -81,7 +82,8 @@ as the default task."
       (save-restriction
         (widen)
         (while (and (not parent-task) (org-up-heading-safe))
-          (when (member (nth 2 (org-heading-components)) org-todo-keywords-1)
+          (when t ;; overrides condition below
+          ;; (member (nth 2 (org-heading-components)) org-todo-keywords-1)      ;; condition to go to parent task
             (setq parent-task (point))))
         (if parent-task
             (org-with-point-at parent-task
