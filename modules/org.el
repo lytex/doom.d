@@ -195,6 +195,22 @@
 ; remove REFILE keyword before refiling a headline
 (advice-add 'org-refile :before 'lytex/remove-refile)
 
+;; Rich copy from HTML
+;; from https://xiangji.me/2015/07/13/a-few-of-my-org-mode-customizations/
+;; https://emacs.stackexchange.com/questions/12121/org-mode-parsing-rich-html-directly-when-pasting
+(defun kdm/html2org-clipboard ()
+  "Convert clipboard contents from HTML to Org and then paste (yank)."
+  (interactive)
+  (kill-new (shell-command-to-string
+  ;; Default to regular xclip if the clipboard doesn't contain html
+    "echo ${$(xclip -loop 0 -selection clipboard -o -t text/html):-$(xclip -o)} 2>/dev/null | pandoc -f html -t json | pandoc -f json -t org --wrap=none"))
+    (yank))
+
+;; This one is for the beginning char
+(setcar org-emphasis-regexp-components " \t('\" {")
+;; This one is for the ending char.
+(setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,: !?;'\")}\\")
+
 ;; Make org-bable templates jinja-like
 (setq org-babel-noweb-wrap-start "{{ ")
 (setq org-babel-noweb-wrap-end " }}")
