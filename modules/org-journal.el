@@ -6,20 +6,21 @@
         (setq orgzly-org-journal-file-format "%Y-%m-%dW.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
         ;; All work journal files have the tag "work"
-        (setq org-journal-file-header "#+FILETAGS: :work:")
+        (setq org-journal-file-header "#+TITLE:%Y-%m-%dW\n#+FILETAGS: :work:")
         (setq org-journal-date-format "%A, %d de %B de %Y :work:"))
 
 (defun lytex/set-personal-journal ()
         (setq org-journal-dir (concat org-directory "journal/"))
         (setq orgzly-org-journal-file-format "%Y-%m-%d.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
-        (setq org-journal-file-header "")
+        (setq org-journal-file-header "#+TITLE: %Y-%m-%d")
         (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (defun lytex/set-introspection-journal ()
         (setq orgzly-org-journal-file-format "%Y-%m-%dI.org")
         (setq org-journal-file-format orgzly-org-journal-file-format)
         (setq org-journal-dir (concat org-directory "Introspección/"))
+        (setq org-journal-file-header "#+TITLE: %Y-%m-%dI")
         (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (if WORK_ENV
