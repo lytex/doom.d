@@ -111,7 +111,10 @@
       :prefix ("rt" . "lytex/org-sparse-tree")
       :desc (documentation 'lytex/org-sparse-tree-full) "j" #'lytex/org-sparse-tree-full
       :desc (documentation 'lytex/org-sparse-tree-almost-full) "k" #'lytex/org-sparse-tree-almost-full
-      :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed)
+      :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed
+      :desc (documentation 'lytex/org-sparse-sparse-tree) ";" #'lytex/org-sparse-sparse-tree
+      :desc (documentation 'lytex/org-sparse-sparse-sparse-tree) "'" #'lytex/org-sparse-sparse-sparse-tree
+)
 
 
 (use-package! helm-rg)
