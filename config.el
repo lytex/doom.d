@@ -157,7 +157,8 @@
       :desc (documentation 'org-noter-sync-current-note) "s" #'org-noter-sync-current-note
       :desc (documentation 'org-noter-sync-prev-note) "p" #'org-noter-sync-prev-note
       :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
-      :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note))
+      :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
+      :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))
 
 (use-package! highlight-indent-guides
   :hook (prog-mode . highlight-indent-guides-mode)
