@@ -211,6 +211,8 @@
 ;; This one is for the ending char.
 (setcar (nthcdr 1 org-emphasis-regexp-components) "- \t.,: !?;'\")}\\")
 
+(evil-define-key 'normal org-mode-map "gp" 'kdm/html2org-clipboard)
+
 ;; Make org-bable templates jinja-like
 (setq org-babel-noweb-wrap-start "{{ ")
 (setq org-babel-noweb-wrap-end " }}")
