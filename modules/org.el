@@ -33,14 +33,15 @@
 
 (after! org-journal
 (setq org-journal-carryover-items
-"TODO=\"TODO\"|TODO=\"MAYBE\"|TODO=\"SOMEDAY\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\""))
+"TODO=\"TODO\"|TODO=\"MAYBE\"|TODO=\"SOMEDAY\"|TODO=\"REFILE\"|TODO=\"NEXT\"|TODO=\"BLOCK\"|TODO=\"ONGOING\"|TODO=\"TICKLER\"|TODO=\"VERIFY\"|TODO=\"HOLD\""))
+
 
 (after! org
 ;; ! →  log when entering the state
 ;; \! → log when entering the state and also when leaving it
 ;; https://orgmode.org/manual/Tracking-TODO-state-changes.html#Tracking-TODO-state-changes
 (setq org-todo-keywords
-  '((sequence  "TODO(t!)" "ONGOING(o!)" "NEXT(n)" "BLOCK(b\!)" "SOMEDAY(s)" "MAYBE(m)" "DEFINED(e)" "REFILE(r)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d!)" "CANCELLED(c)" )))
+  '((sequence  "TODO(t!)" "ONGOING(o!)" "NEXT(n)" "BLOCK(b\!)" "SOMEDAY(s)" "MAYBE(m)" "DEFINED(e)" "HOLD(h)" "REFILE(r)" "TICKLER(k)" "VERIFY(v)" "|" "DONE(d!)" "CANCELLED(c)" )))
     (setq org-priority-highest ?A)
     (setq org-priority-lowest ?F)
     (setq org-default-priority ?E)
