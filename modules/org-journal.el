@@ -56,3 +56,29 @@
     (interactive)
     (lytex/set-org-journal "W"))
 
+;; https://systemcrafters.net/build-a-second-brain-in-emacs/5-org-roam-hacks/#automatically-copy-or-move-completed-tasks-to-dailies
+
+(defun lytex/org-roam-copy-todo-to-today ()
+  (interactive)
+  (let ((org-refile-keep nil) ;; Set this to nil to delete the original!
+        (org-roam-dailies-capture-templates
+          '(("t" "tasks" entry "%?"
+             :if-new (file+head+olp "%<%Y-%m-%d>.org" "#+title: %<%Y-%m-%d>\n" ("Tasks")))))
+        (org-after-refile-insert-hook #'save-buffer)
+        today-file
+        pos)
+    (save-window-excursion
+      (org-journal-new-entry nil)
+      (setq today-file (buffer-file-name))
+      (setq pos (point)))
+
+    ;; Only refile if the target file is different than the current file
+    (unless (equal (file-truename today-file)
+                   (file-truename (buffer-file-name)))
+      (org-refile nil nil (list "Tasks" today-file nil pos)))))
+(if WORK_ENV
+    (add-to-list 'org-after-todo-state-change-hook
+                (lambda ()
+                (when (equal org-state "DONE")
+                    (lytex/org-roam-copy-todo-to-today)))))
+
