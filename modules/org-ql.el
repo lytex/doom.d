@@ -46,3 +46,34 @@
 
   :hook ((org-agenda-mode . origami-mode)
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
+
+;; Modified from https://hungyi.net/posts/org-mode-subtree-contents/
+(defun lytex/org-return-subtree-contents ()
+  "Get the content text of the subtree at point"
+  (interactive)
+  (if (org-before-first-heading-p)
+      (message "Not in or on an org heading")
+    (save-excursion
+      ;; If inside heading contents, move the point back to the heading
+      ;; otherwise `org-agenda-get-some-entry-text' won't work.
+      (unless (org-on-heading-p) (org-previous-visible-heading 1))
+      ;; Copy it with no properties
+      (setq beginning-of-subtree-copy (point))
+      (if (org-get-next-sibling)
+          (prog2 (previous-line) (end-of-line)))
+      (setq end-of-subtree-copy (point))
+      (substring-no-properties
+            (buffer-substring beginning-of-subtree-copy end-of-subtree-copy)))))
+
+(use-package! cl-seq)
+
+(defun lytex/tempate-fill ()
+(interactive)
+  (setq candidates
+        (org-ql-query :select
+                      '(list
+                        (lytex/org-return-subtree-contents))
+                      :from
+                      (org-agenda-files)
+                      :where
+                      '(ltags "template"))))
