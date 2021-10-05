@@ -101,7 +101,7 @@
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
         :unnarrowed t)
         ("i" "inbox" plain (function org-roam-capture--get-point)
         "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}\n%?"
@@ -110,7 +110,7 @@
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
