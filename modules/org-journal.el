@@ -73,8 +73,9 @@
       (setq pos (point)))
 
     ;; Only refile if the target file is different than the current file
-    (unless (equal (file-truename today-file)
+    (unless  (or (equal (file-truename today-file)
                    (file-truename (buffer-file-name)))
+                  (org-get-repeat)) ;; If task repeats, do not refile
       (org-refile nil nil (list "Tasks" today-file nil pos)))))
 (if WORK_ENV
     (add-to-list 'org-after-todo-state-change-hook
