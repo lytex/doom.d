@@ -47,33 +47,29 @@
   :hook ((org-agenda-mode . origami-mode)
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
-;; Modified from https://hungyi.net/posts/org-mode-subtree-contents/
-(defun lytex/org-return-subtree-contents ()
-  "Get the content text of the subtree at point"
-  (interactive)
-  (if (org-before-first-heading-p)
-      (message "Not in or on an org heading")
-    (save-excursion
-      ;; If inside heading contents, move the point back to the heading
-      ;; otherwise `org-agenda-get-some-entry-text' won't work.
-      (unless (org-on-heading-p) (org-previous-visible-heading 1))
-      ;; Copy it with no properties
-      (setq beginning-of-subtree-copy (point))
-      (if (org-get-next-sibling)
-          (prog2 (previous-line) (end-of-line)))
-      (setq end-of-subtree-copy (point))
-      (substring-no-properties
-            (buffer-substring beginning-of-subtree-copy end-of-subtree-copy)))))
+(defun lytex/process-template-subtree ()
+    (org-set-tags (remove "template" (org-get-tags nil t)))
+    (org-insert-drawer nil "TEMPLATE")
+    (insert (substring-no-properties (org-store-link nil))))
+
+(defun lytex/org-return-subtree-contents nil
+"Get the content text of the subtree at point"
+       (cons
+                  (substring-no-properties
+                   (org-get-heading))
+                  (substring-no-properties
+                   (org-get-entry))))
+
+;; To get the values (cdr (assoc "Headline :template:" (car candidates))) 
+
 
 (use-package! cl-seq)
 
 (defun lytex/tempate-fill ()
 (interactive)
-  (setq candidates
-        (org-ql-query :select
-                      '(list
-                        (lytex/org-return-subtree-contents))
-                      :from
-                      (org-agenda-files)
-                      :where
-                      '(ltags "template"))))
+(completing-read "Template:" (org-ql-query :select
+              '(list (prog2 (lytex/process-template-subtree) (lytex/org-return-subtree-contents) (revert-buffer t t t) ))
+          :from
+          (org-agenda-files)
+          :where
+          '(ltags "template"))))
