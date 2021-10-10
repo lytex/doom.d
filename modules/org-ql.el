@@ -48,9 +48,7 @@
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
 (defun lytex/process-template-subtree ()
-    (org-set-tags (remove "template" (org-get-tags nil t)))
-    (org-insert-drawer nil "TEMPLATE")
-    (insert (substring-no-properties (org-store-link nil))))
+    (org-set-tags (remove "template" (org-get-tags nil t))))
 
 (defun lytex/org-return-subtree-contents nil
 "Get the content text of the subtree at point"
@@ -59,17 +57,18 @@
                    (org-get-heading))
                   (substring-no-properties
                    (org-get-entry))))
+(use-package! asoc)
 
-;; To get the values (cdr (assoc "Headline :template:" (car candidates))) 
-
-
-(use-package! cl-seq)
-
-(defun lytex/tempate-fill ()
+(defun lytex/insert-template ()
 (interactive)
-(completing-read "Template:" (org-ql-query :select
+(setq candidates 
+(org-ql-query :select
               '(list (prog2 (lytex/process-template-subtree) (lytex/org-return-subtree-contents) (revert-buffer t t t) ))
           :from
           (org-agenda-files)
           :where
-          '(ltags "template"))))
+          '(ltags "template")))
+(setq headline (completing-read "template: " (mapcar 'caar candidates)))
+(setq stars (make-string (org-reduced-level (org-outline-level)) ?*))
+(setq candidates (apply 'asoc-merge candidates))
+(org-paste-subtree nil (concat stars " " headline "\n" (cdr (assoc headline candidates)))))
