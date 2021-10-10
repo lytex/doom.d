@@ -46,3 +46,39 @@
 
   :hook ((org-agenda-mode . origami-mode)
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
+
+(defun lytex/process-template-subtree ()
+    (org-set-tags (remove "template" (org-get-tags nil t))))
+
+(defun lytex/org-return-subtree-contents nil
+"Get the content text of the subtree at point as an alist"
+       (cons
+                  (substring-no-properties
+                   (org-get-heading))
+                  (substring-no-properties
+                   (org-get-entry))))
+(use-package! asoc)
+
+(defun lytex/insert-template ()
+(interactive)
+(setq candidates 
+(org-ql-query :select
+              '(list (prog2 (lytex/process-template-subtree) (lytex/org-return-subtree-contents) (revert-buffer t t t) ))
+          :from
+          (org-agenda-files)
+          :where
+          '(ltags "template")))
+(setq headline (completing-read "template: " (mapcar 'caar candidates)))
+(setq stars (make-string (org-reduced-level (org-outline-level)) ?*))
+(setq candidates (apply 'asoc-merge candidates))
+(org-paste-subtree nil (concat stars " " headline "\n" (cdr (assoc headline candidates)))))
+
+
+(defun lytex/org-return-subtree-contents-string ()
+"Get the content text of the subtree at point"
+       (concat
+                  (substring-no-properties
+                   (org-get-heading))
+                   "\n"
+                  (substring-no-properties
+                   (org-get-entry))))

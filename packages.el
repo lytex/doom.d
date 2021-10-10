@@ -40,6 +40,9 @@
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
 
+(package! asoc :recipe
+        (:host github :repo "troyp/asoc.el"))
+
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
 

@@ -91,7 +91,10 @@
 (setq org-capture-templates
       '(("i" "inbox" entry (file "Inbox.org")
           "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
-        :unnarrowed t))))
+        :unnarrowed t)
+        ;; Empty entry to be filed later
+        ;; https://helpdeskheadesk.net/help-desk-head-desk/sub-menus-in-org/
+        ("t" "templates"))))
 
 
 (after! org-roam
