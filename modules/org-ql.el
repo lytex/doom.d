@@ -51,7 +51,7 @@
     (org-set-tags (remove "template" (org-get-tags nil t))))
 
 (defun lytex/org-return-subtree-contents nil
-"Get the content text of the subtree at point"
+"Get the content text of the subtree at point as an alist"
        (cons
                   (substring-no-properties
                    (org-get-heading))
@@ -72,3 +72,13 @@
 (setq stars (make-string (org-reduced-level (org-outline-level)) ?*))
 (setq candidates (apply 'asoc-merge candidates))
 (org-paste-subtree nil (concat stars " " headline "\n" (cdr (assoc headline candidates)))))
+
+
+(defun lytex/org-return-subtree-contents-string ()
+"Get the content text of the subtree at point"
+       (concat
+                  (substring-no-properties
+                   (org-get-heading))
+                   "\n"
+                  (substring-no-properties
+                   (org-get-entry))))
