@@ -47,3 +47,19 @@
   :hook ((org-agenda-mode . origami-mode)
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
+(setq org-templates (org-ql-query :select
+              '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
+          :from
+          (org-agenda-files)
+          :where
+          '(ltags "template")))
+
+
+(setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
+(setq iterating-list (substring keyboard-list 0 (length org-templates)))
+(appendq! org-capture-templates (mapcar* #'(lambda (key template)
+`(,(concat "t" (make-string 1 key)) ,(car template) entry
+  (file "Inbox.org")
+  (id ,(cdr template))
+   :unnarrowed t))
+      iterating-list org-templates))
