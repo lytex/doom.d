@@ -47,6 +47,8 @@
   :hook ((org-agenda-mode . origami-mode)
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
+
+;; Get all headlines that have :template:
 (setq org-templates (org-ql-query :select
               '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
           :from
@@ -54,12 +56,52 @@
           :where
           '(ltags "template")))
 
+(defun lytex/org-get-subtree-contents ()
+"Get the content text of the subtree at point"
+       (concat
+        (make-string (org-reduced-level (org-outline-level)) ?*)
+        " "
+        (substring-no-properties
+         (org-get-heading))
+        "\n"
+        (substring-no-properties
+         (org-get-entry))))
+
+(defvar id nil) 
+
+(let (_)
+  (defvar x)      ; Let-bindings of x will be dynamic within this let.
+  (let ((x -99))  ; This is a dynamic binding of x.
+    (defun get-dynamic-x ()
+      x)))
+
+(defun lytex/get-template-by-id (id)
+(eval `(defun ,(make-symbol id) ()
+,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
+  ":ID:.*\n"
+  ""
+    (replace-regexp-in-string
+    ;; Template is in the middle of two tags :left:template:right:
+    ":template:" ":"
+      (replace-regexp-in-string
+        ;; There is one tag or more before template: :tag:template:
+        "template:$" ""
+        (replace-regexp-in-string
+          ;; There is one tag or more after template: :template:tag:
+          " :template" " "
+          (replace-regexp-in-string
+            ;; There is only one tag :template:
+            " :template:$" ""
+            (lytex/org-get-subtree-contents))))))))))
+
 
 (setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
 (setq iterating-list (substring keyboard-list 0 (length org-templates)))
+
 (appendq! org-capture-templates (mapcar* #'(lambda (key template)
-`(,(concat "t" (make-string 1 key)) ,(car template) entry
+  (setq id  (cdr template))
+`(,(concat "t" (make-string 1 key)) ,(car template) plain
   (file "Inbox.org")
-  (id ,(cdr template))
+  (function ,(lytex/get-template-by-id id))
    :unnarrowed t))
       iterating-list org-templates))
