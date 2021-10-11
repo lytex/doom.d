@@ -78,6 +78,7 @@
 (defun lytex/get-template-by-id (id)
 (eval `(defun ,(make-symbol id) ()
 ,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
+  ;; Remove ID to avoid duplicates
   ":ID:.*\n"
   ""
     (replace-regexp-in-string
