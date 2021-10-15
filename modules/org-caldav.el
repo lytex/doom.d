@@ -45,5 +45,5 @@
 		 (when pt (delete-region (point) (- pt 1)))))))))
 
 (if WORK_ENV
-  (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags '("mantenimiento" "tareas"))
-  (setq org-caldav-calendar-id "personal" org-caldav-exclude-tags '("work")))
+  (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags '("mantenimiento" "tareas" "habit"))
+  (setq org-caldav-calendar-id "personal" org-caldav-exclude-tags '("work" "habit")))
