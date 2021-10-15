@@ -210,7 +210,7 @@
   (interactive)
   (kill-new (shell-command-to-string
   ;; Default to regular xclip if the clipboard doesn't contain html
-    "echo ${$(xclip -loop 0 -selection clipboard -o -t text/html):-$(xclip -o)} 2>/dev/null | pandoc -f html -t json | pandoc -f json -t org --wrap=none"))
+    "echo $(xclip -loop 0 -selection clipboard -o -t text/html) 2>/dev/null | pandoc -f html -t json | pandoc -f json -t org --wrap=none"))
     (yank))
 
 ;; This one is for the beginning char
