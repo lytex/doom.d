@@ -194,6 +194,9 @@
 (if WORK_ENV
   (use-package! org-trello))
 
+(if WORK_ENV
+  (load! "~/.doom.d/jira.el"))
+
 (load! "~/.doom.d/modules/org-export.el")
 
 (load! "~/.doom.d/modules/org-caldav.el")

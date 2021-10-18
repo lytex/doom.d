@@ -2,7 +2,7 @@
 
 (use-package ejira
   :init
-  (setq jiralib2-url              "https://accionacalidad.atlassian.net"
+  (setq jiralib2-url              "https://subdomain.atlassian.net"
         jiralib2-auth             'token
         jiralib2-user-login-name  "email@example.com"
         jiralib2-token            "secret_token"
