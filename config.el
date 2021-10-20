@@ -125,6 +125,7 @@
       :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed
       :desc (documentation 'lytex/org-sparse-sparse-tree) ";" #'lytex/org-sparse-sparse-tree
       :desc (documentation 'lytex/org-sparse-sparse-sparse-tree) "'" #'lytex/org-sparse-sparse-sparse-tree
+      :desc (documentation 'lytex/org-jira-assigned) "e" #'lytex/org-jira-assigned
 )
 
 
