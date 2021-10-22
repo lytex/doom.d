@@ -10,7 +10,7 @@
 (use-package! org-roam
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "\\(0\\|1|j\\)\\(custom_id\\)?\\(ira\\)?.*\\.org")
+      (org-roam-file-exclude-regexp  "0.org\|1custom_id.org\|jira")
       (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
 
 
