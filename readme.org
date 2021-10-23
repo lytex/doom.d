@@ -10,16 +10,7 @@ After installing run =~/.emacs.d/bin/doom sync=
 *** org-roam
 - [[https://github.com/org-roam/org-roam/issues/1064][ripgrep custom]]
 - sqlite
-* Setup
-I use hard links, so that links are not followed (may clash with your directory structure if already has links)
-#+BEGIN_SRC elisp
-;;; Allow hardlinks to be opened in its own directory
-(setq find-file-existing-other-name nil)
-(setq find-file-visit-truename nil)
-#+END_SRC
-The purpose of that is two-fold:
-- If do a soft link Documents -> org, then org-noter doesn't work because it cannot open the .org file associated with the .pdf  properly
-- If do a soft link org -> Documents, then org-roam doesn't work because it cannot create a new roam file if you write a non-existing link
-- The solution is to create hard links of both .org and associated .pdf files, so that:
-  1. org-noter works because the .pdf file is in the same folder
-  2. org-roam works because it can recognize org files without following a link
+* plantuml
+#+begin_src bash
+sudo apt-get install -y plantuml
+#+end_src
