@@ -64,7 +64,7 @@
         today-file
         pos)
     (save-window-excursion
-      (org-journal-new-entry nil)
+      (org-journal-new-entry t)
       (setq today-file (buffer-file-name))
       (setq pos (point)))
 
