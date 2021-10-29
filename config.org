@@ -256,7 +256,7 @@ Open org roam sidebar
       "om" #'org-mode)
 ;; blank
 #+end_src
-*** mj
+*** mj/mJ
 :PROPERTIES:
 :ID:       218c3935-6094-459d-92a7-0b8709de9a78
 :END:
@@ -265,6 +265,7 @@ Open org roam sidebar
       :after org-journal
       :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry
+      :desc (documentation 'org-journal-new-scheduled-entry)  "mJ " #'org-journal-new-scheduled-entry
 #+end_src
 *** j
 **** j

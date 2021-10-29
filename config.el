@@ -94,6 +94,7 @@
       :after org-journal
       :leader
       :desc (documentation 'org-journal-new-entry)  "mj" #'org-journal-new-entry
+      :desc (documentation 'org-journal-new-scheduled-entry)  "mJ " #'org-journal-new-scheduled-entry
       "jj" #'lytex/set-org-journal-J
       "ji" #'lytex/set-org-journal-I
       "jw" #'lytex/set-org-journal-W)
