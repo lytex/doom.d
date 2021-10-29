@@ -106,3 +106,43 @@
   (function ,(lytex/get-template-by-id id))
    :unnarrowed t))
       iterating-list org-templates))
+
+
+(defun lytex/insert-query-links (query)
+(org-ql-query :select
+          '(concat "[["
+                    (if
+                        (cdar (org-entry-properties nil "ID"))
+                        (concat "id:" (cdar (org-entry-properties nil "ID")))
+                      (concat "file:" (buffer-file-name) "::*"
+                              (substring-no-properties
+                              (org-get-heading :no-tags :no-todo :no-priority :no-comment))))
+                    "]["
+                    (substring-no-properties
+                    (org-get-heading :no-tags :no-todo :no-priority :no-comment))
+                    "]]\n")
+          :from
+          (org-agenda-files)
+          :where
+          query))
+
+(defun lytex/insert-query-transclusion (query level)
+(org-ql-query :select
+          '(concat "\n#+transclude: [["
+                    (if
+                        (cdar (org-entry-properties nil "ID"))
+                        (concat "id:" (cdar (org-entry-properties nil "ID")))
+                      (concat "file:" (buffer-file-name) "::*"
+                              (substring-no-properties
+                              (org-get-heading :no-tags :no-todo :no-priority :no-comment)))
+                      )
+                    "]["
+                    (substring-no-properties
+                    (org-get-heading :no-tags :no-todo :no-priority :no-comment))
+                    (concat "]] :level" (number-to-string level) "\n"))
+
+          :from
+          (org-agenda-files)
+          :where
+          query))
+
