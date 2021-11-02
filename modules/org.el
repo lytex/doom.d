@@ -22,6 +22,11 @@
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'lytex/org-mode-hook)
 
+(defun lytex/fix-bad-fonts ()
+  (interactive)
+  (setq org-bullets-bullet-list '("◉" "✸" "✿"))
+  (setq org-ellipsis "…"))
+
 (if WORK_ENV
 (setq org-agenda-files
   '("~/org"  "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
