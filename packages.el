@@ -35,10 +35,8 @@
   (package! org-trello :recipe
         (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
 (if WORK_ENV
-    (prog2
-    (package! dash-functional) ;; Dependency of ejira
-    (package! ejira :recipe
-            (:host github :repo "nyyManni/ejira"))))
+  (package! org-jira :recipe
+        (:host github :repo "ahungry/org-jira")))
 (package! activity-watch-mode :recipe
         (:host github :repo "pauldub/activity-watch-mode"))
 
