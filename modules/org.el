@@ -110,10 +110,10 @@
   "Annotation-2")
 
 (font-lock-add-keywords 'org-mode
-  '(("\\W\\(«[^\n\r\t]+»\\)\\W" 1 '(face annotation-1 invisible nil) prepend)) 'append)
+  '(("\\W\\(«[^»]+»\\)\\W" 1 '(face annotation-1 invisible nil) prepend)) 'append)
 
 (font-lock-add-keywords 'org-mode
-  '(("\\W\\(“[^\n\r\t]+”\\)\\W" 1 '(face annotation-2 invisible nil) prepend)) 'append)
+  '(("\\W\\(“[^”]+”\\)\\W" 1 '(face annotation-2 invisible nil) prepend)) 'append)
 
 ;; Add evil-surround with these new characters
 (use-package! evil-surround)
