@@ -51,8 +51,8 @@
 
 (setq org-jira-custom-jqls
       '((:jql "project = 'JIR'" :limit 1000 :filename "DM")
-        (:jql "project = 'JIR' AND sprint in openSprints()" :limit 1000 :filename "current_script")
-        (:jql "project = 'JIR' AND sprint in openSprints() and asignee = currentUser()" :limit 1000 :filename "current_script")
+        (:jql "project = 'JIR' AND sprint in openSprints()" :limit 1000 :filename "current_sprint")
+        (:jql "project = 'JIR' AND sprint in openSprints() and assignee = currentUser()" :limit 1000 :filename "assigned")
         ))
 
 (use-package! org-jira)

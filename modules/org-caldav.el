@@ -2,7 +2,7 @@
 (setq org-icalendar-include-todo t
       org-icalendar-use-deadline '(event-if-todo event-if-not-todo todo-due)
       org-icalendar-use-scheduled '(event-if-todo event-if-not-todo todo-start)
-      org-icalendar-with-timestamps t)
+      org-icalendar-with-timestamps nil)
 (setq org-icalendar-alarm-time 5) ;; Alert 5 min before
 (use-package! org-caldav)
 (setq org-caldav-sync-direction 'org->cal)
