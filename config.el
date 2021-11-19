@@ -10,6 +10,9 @@
     (setq user-mail-address "julopezc@acciona.com")
     (setq user-mail-address "julianlpc15@gmail.com"))
 
+ ;; Calendar starts on monday
+(setq calendar-week-start-day 1)
+
 
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
 (setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))

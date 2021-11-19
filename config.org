@@ -26,6 +26,9 @@
     (setq user-mail-address "julopezc@acciona.com")
     (setq user-mail-address "julianlpc15@gmail.com"))
 
+ ;; Calendar starts on monday
+(setq calendar-week-start-day 1)
+
 ;; blank
 #+end_src
 * Fonts and color themes
