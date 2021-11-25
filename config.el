@@ -215,6 +215,9 @@
 
 (add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
+(use-package! vimrc-mode)
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 (defun lytex/toggle-work ()
   "Toggle work profile"

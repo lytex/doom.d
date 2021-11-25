@@ -506,6 +506,9 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 
 (add-hook 'emojify-inhibit-functions #'lytex/disable-emojify)
 
+(use-package! vimrc-mode)
+(add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
+
 (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 #+end_src
 * Personal/Work profiles

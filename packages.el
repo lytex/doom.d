@@ -43,6 +43,8 @@
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
 
+(package! vimrc-mode)
+
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
 
