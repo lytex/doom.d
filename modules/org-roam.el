@@ -78,23 +78,33 @@
         :head "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
         :unnarrowed t))))
 
-(defun lytex/org-capture-inbox ()
-  (interactive)
-  (org-capture nil "i"))
+(defun lytex/org-capture-inbox (n)
+  (interactive "p")
+  (org-capture n "i"))
+
+(defun lytex/org-capture-inbox-clock (n)
+  (interactive "p")
+  (org-capture n "k"))
 
 (map! 
       :after org-capture
       :leader
-      :desc (documentation 'lytex/org-capture-inbox) "ii" #'lytex/org-capture-inbox)
+      :desc (documentation 'lytex/org-capture-inbox) "ii" #'lytex/org-capture-inbox
+      :desc (documentation 'lytex/org-capture-inbox-clock) "ik" #'lytex/org-capture-inbox-clock)
 
 (after! org-capture
 (setq org-capture-templates
       '(("i" "inbox" entry (file "Inbox.org")
           "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
         :unnarrowed t)
+        ("k" "clock" entry (file "Inbox.org")
+                "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
+                :unnarrowed t :clock-in t :clock-keep t)
         ;; Empty entry to be filed later
         ;; https://helpdeskheadesk.net/help-desk-head-desk/sub-menus-in-org/
-        ("t" "templates"))))
+        ("t" "templates")
+        ("c" "cleanup" item (id "b6463bd3-3069-424c-94f5-23be3ce8e2cd") "[ ] Clean %a"
+          :unnarrowed t))))
 
 
 (after! org-roam
