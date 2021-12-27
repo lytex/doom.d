@@ -33,6 +33,8 @@
 (setq org-agenda-files
   '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects")))
 
+(setq org-agenda-dim-blocked-tasks nil) ;; Do not grey out items that hava a children with a TODO state
+
 (setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK
 (setq org-log-done 'time)
 
@@ -179,7 +181,7 @@
 
 (add-hook 'org-checkbox-statistics-hook (function aggregate-org-cookies))
 
-;;;;;;;;;;;;;; org mode id autocompletion in all org-agenda files ;;;;;;;;;;;;;;
+;;;;;;;;;;;;;; org mode id autocompletion in all org-ggenda files ;;;;;;;;;;;;;;
 ;; https://emacs.stackexchange.com/questions/12391/insert-org-id-link-at-point-via-outline-path-completion
 ;; autocomplete with all links by setting the targets as org-refile-targets
 (defun org-id-complete-link (&optional arg)
