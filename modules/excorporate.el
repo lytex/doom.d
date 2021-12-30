@@ -1,3 +1,4 @@
+;;; excorporate.el -*- lexical-binding: t; -*-
 
 ;; from https://emacs.stackexchange.com/a/46022
 (if WORK_ENV

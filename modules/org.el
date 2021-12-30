@@ -1,3 +1,4 @@
+;;; org.el -*- lexical-binding: t; -*-
 
 (use-package! org)
 
@@ -90,6 +91,8 @@
 ; global STYLE property values for completion
 (setq org-global-properties (quote (("Effort_ALL" . "0:15 0:30 0:45 1:00 2:00 3:00 4:00 5:00 6:00 0:00")
                                     ("STYLE_ALL" . "habit"))))
+
+(setq org-habit-show-habits-only-for-today nil)
 
 ;; Disable autoindents when pressing RET on a list
 (add-hook 'org-mode-hook (lambda () (electric-indent-local-mode -1)))

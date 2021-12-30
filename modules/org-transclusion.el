@@ -1,3 +1,4 @@
+;;; org-transclusion.el -*- lexical-binding: t; -*-
 
 (auto-save-mode nil)
 (setq make-backup-files nil)

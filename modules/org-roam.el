@@ -1,3 +1,4 @@
+;;; org-roam.el -*- lexical-binding: t; -*-
 
 (defun lytex/revert-buffer-reload-roam ()
     (interactive)

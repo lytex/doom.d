@@ -1,3 +1,5 @@
+;;; org-journal.el -*- lexical-binding: t; -*-
+
 ;; org-journal with three different journals
 
 (defun lytex/set-work-journal ()
