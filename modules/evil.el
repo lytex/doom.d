@@ -18,6 +18,13 @@
       :desc (documentation 'evil-copy-from-below)
       :map evil-insert-state-map "C-e" #'evil-copy-from-below)
 
+(map! :after evil-commands
+      :desc (documentation 'evil-copy-from-below)
+      :map evil-insert-state-map "C-e" #'evil-copy-from-below)
+
+;; To use xcape + Sticky Keys at the same time
+(define-key! "C-<escape>" 'evil-force-normal-state)
+
 ;; Snipe also in visual mode with z
 (evil-define-key 'visual evil-snipe-local-mode-map "z" 'evil-snipe-s)
 (evil-define-key 'visual evil-snipe-local-mode-map "Z" 'evil-snipe-S)
