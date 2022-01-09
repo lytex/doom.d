@@ -1,6 +1,4 @@
-;;; .org-caldav.el -*- lexical-binding: t; -*-
-
-;; Sync absoultely everything
+;; Sync absoultely everything 
 (setq org-icalendar-include-todo t
       org-icalendar-use-deadline '(event-if-todo event-if-not-todo todo-due)
       org-icalendar-use-scheduled '(event-if-todo event-if-not-todo todo-start)

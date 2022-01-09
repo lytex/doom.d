@@ -1,5 +1,3 @@
-;;; org-clock.el -*- lexical-binding: t; -*-
-
 ;; From http://doc.norang.ca/org-mode.html#Clocking
 ;; Resume clocking task when emacs is restarted
 (org-clock-persistence-insinuate)

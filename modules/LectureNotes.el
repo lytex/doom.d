@@ -1,4 +1,3 @@
-;;; LectureNotes.el -*- lexical-binding: t; -*-
 ;; https://emacs.stackexchange.com/questions/20574/default-inline-image-background-in-org-mode/37927#3792
 
 (defcustom org-inline-image-background nil

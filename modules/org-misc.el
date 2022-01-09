@@ -1,5 +1,3 @@
-;;; org-misc.el -*- lexical-binding: t; -*-
-
 (use-package! org-sticky-header
     :config
     (add-hook 'org-mode-hook (lambda () (org-sticky-header-mode 1))))

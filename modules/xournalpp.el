@@ -1,4 +1,3 @@
-;;; xournalpp.el -*- lexical-binding: t; -*-
 
 (defun lytex/org-edit-sketch (sketch-name)
   (setq global-sketch sketch-name)

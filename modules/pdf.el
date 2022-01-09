@@ -1,4 +1,3 @@
-;;; pdf.el -*- lexical-binding: t; -*-
 
 (use-package! pdf-view-restore
   :after pdf-tools

@@ -1,5 +1,3 @@
-;;; evil.el -*- lexical-binding: t; -*-
-
 (setq display-line-numbers-type 'relative)
 
 (use-package! evil-quickscope)
