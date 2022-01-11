@@ -82,6 +82,8 @@
       :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
       :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
+; (load! "~/.doom.d/modules/org-edna.el")
+
 
 (load! "~/.doom.d/modules/org-journal.el")
 

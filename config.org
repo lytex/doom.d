@@ -235,6 +235,17 @@ Open org roam sidebar
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 #+end_src
+* org-edna
+#+begin_src emacs-lisp
+(load! "~/.doom.d/modules/org-edna.el")
+;; blank
+#+end_src
+** SPC ee
+#+begin_src emacs-lisp
+(map!
+      :after org-linker-edna
+      :leader
+      :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 * org-journal
 :PROPERTIES:
 :ID:       24da4b74-f292-4fa1-b83f-4e3d9670d47e
