@@ -49,6 +49,9 @@
 ;;       (org-roam-file-exclude-regexp  "home/julian/org/jira/*"))
 
 
+(setq jiralib-url "https://subdomain.atlassian.net")
+(setq org-jira-working-dir "~/org/jira")
+(setq org-jira-default-jql "project = 'JIR'")
 (setq org-jira-custom-jqls
       '((:jql "project = 'JIR'" :limit 1000 :filename "DM")
         (:jql "project = 'JIR' AND sprint in openSprints()" :limit 1000 :filename "current_sprint")
