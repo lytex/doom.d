@@ -32,10 +32,12 @@
 ;;       (t nil)))
 ;;     (t nil)))
 
+(setq org-html-htmlize-output-type 'css)
 
-  (setq org-html-head-extra
-"<style> #content{max-width:79%;}</style>
-<style> p{max-width:99%;}</style>
-<style> li{max-width:99%;}</style>
-<link rel=\"stylesheet\" type=\"text/css\" href=\"src/readtheorg_theme/css/htmlize.css\"/>")
+(setq org-html-head-extra
+        "<style> #content{max-width:79%;}</style>
+        <style> p{max-width:99%;}</style>
+        <style> li{max-width:99%;}</style>
+        <link rel=\"stylesheet\" type=\"text/css\" href=\"src/readtheorg_theme/css/htmlize.css\"/>")
+
 ;;   (setq org-html-format-drawer-function 'lytex/ox-html-format-drawer))
