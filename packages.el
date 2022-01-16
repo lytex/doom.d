@@ -24,8 +24,7 @@
 (package! org-noter-pdftools :recipe
         (:host github :repo "fuxialexander/org-pdftools"))
 (package! org-web-tools)
-(package! fzf :recipe
-        (:host github :repo "seenaburns/fzf.el"))
+(package! fzf :recipe)
 (package! beacon)
 (package! evil-quickscope :recipe 
         (:host github :repo "blorbx/evil-quickscope"))
