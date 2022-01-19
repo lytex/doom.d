@@ -246,6 +246,7 @@ Open org roam sidebar
       :after org-linker-edna
       :leader
       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
+#+end_src
 * org-journal
 :PROPERTIES:
 :ID:       24da4b74-f292-4fa1-b83f-4e3d9670d47e
