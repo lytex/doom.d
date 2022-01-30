@@ -32,6 +32,17 @@
 ;;       (t nil)))
 ;;     (t nil)))
 
+(setq org-html-postamble-format
+      '(("en" "<p class=\"author\">Author: %a (%e)</p>
+<p class=\"date\">Date: 123 %d</p>
+<p class=\"creator\">%c</p>
+<p class=\"creator\" Except where otherwise noted, content on this wiki is licensed under the following license:
+<a href=\"https://www.gnu.org/licenses/fdl-1.3.html\"> GNU Free Documentation License 1.3 </a></p>
+<p class=\"validation\">%v</p>")))
+
+(setq org-export-headline-levels 4)
+
+
 (setq org-html-htmlize-output-type 'css)
 
 (setq org-html-head-extra
