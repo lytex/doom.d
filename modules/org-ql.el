@@ -139,7 +139,7 @@
                     "]["
                     (substring-no-properties
                     (org-get-heading :no-tags :no-todo :no-priority :no-comment))
-                    (concat "]] :level" (number-to-string level) "\n"))
+                    (concat "]] :level " (number-to-string level) "\n"))
 
           :from
           (org-agenda-files)
