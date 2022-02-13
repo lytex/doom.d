@@ -8,3 +8,5 @@
 (use-package! org-linker-edna
   ;; follows org-super-link binding patterns
   :bind (("C-c s e" . org-linker-edna)))
+
+(use-package! org-graph-edna)

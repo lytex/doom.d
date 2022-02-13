@@ -51,6 +51,8 @@
 (package! org-linker-edna :recipe
         (:host github :repo "toshism/org-linker-edna"))
 
+(package! org-graph-edna :recipe
+        (:host github :repo "lytex/org-graph-edna"))
 
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
