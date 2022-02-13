@@ -83,6 +83,7 @@
       :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 (load! "~/.doom.d/modules/org-edna.el")
+(load! "~/.doom.d/org-graph-edna/org-graph-edna.el")
 
 (map!
       :leader
