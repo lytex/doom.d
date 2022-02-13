@@ -243,7 +243,6 @@ Open org roam sidebar
 ** SPC ee
 #+begin_src emacs-lisp
 (map!
-      :after org-linker-edna
       :leader
       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 #+end_src

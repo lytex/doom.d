@@ -85,7 +85,6 @@
 (load! "~/.doom.d/modules/org-edna.el")
 
 (map!
-      :after org-linker-edna
       :leader
       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 
