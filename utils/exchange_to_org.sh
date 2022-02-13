@@ -7,4 +7,4 @@ docker run \
        ettomatic/organised-exchange:latest \
        > $ORGANISED_EXCHANGE_DESTINATION
 
-sed -i -e "s/#+STARTUP: overview/&\n#+FILETAGS: :work:/ " "$ORGANISED_EXCHANGE_DESTINATION"
+sed -i -e "s/#+STARTUP: overview/&\n#+FILETAGS: :work:/ #+TITLE: Outlook Calendar" "$ORGANISED_EXCHANGE_DESTINATION"
