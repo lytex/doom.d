@@ -75,7 +75,8 @@
   (replace-regexp "ﬃ" "ffi") 
   (replace-regexp "ﬁ" "fi") 
   (replace-regexp "ﬀ" "ff")
-  (replace-regexp "ﬂ" "fl"))
+  (replace-regexp "ﬂ" "fl")
+  (replace-regexp "…" "..."))
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
