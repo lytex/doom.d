@@ -33,16 +33,39 @@
 
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
-(if WORK_ENV
-  (setq org-caldav-skip-conditions '(regexp "randomstring")))
+;; (if WORK_ENV
+;;   (setq org-caldav-skip-conditions '(regexp "randomstring")))
 
-(if WORK_ENV
-(defun org-caldav-skip-function (backend)
-  (when (eq backend 'icalendar)
-    (org-map-entries
-     (lambda ()
-       (let ((pt (save-excursion (lytex/org-agenda-skip-entry-if-non-work))))
-		 (when pt (delete-region (point) (- pt 1)))))))))
+;; (if WORK_ENV
+;; (defun org-caldav-skip-function (backend)
+;;   (when (eq backend 'icalendar)
+;;     (org-map-entries
+;;      (lambda ()
+;;        (let ((pt (save-excursion (lytex/org-agenda-skip-entry-if-non-work))))
+;; 		 (when pt (delete-region (point) (- pt 1)))))))))
+;;
+
+;; From https://d12frosted.io/posts/2021-04-08-straight-el-retries.html
+(defvar lytex/retry-count 3
+  "Amount of retries for lytex/call-with-retry")
+
+(defun lytex/call-with-retry (orig-fn &rest args)
+  "Wrapper around ORIG-FN supporting retries.
+
+ORIG-FN is called with ARGS and retried
+`elpa-straight-retry-count' times."
+  (let ((n lytex/retry-count)
+        (res nil))
+    (while (> n 0)
+      (condition-case err
+          (progn
+            (setq res (apply orig-fn args)
+                  n 0)
+            res)
+        (error
+         (setq n (- n 1))
+         (unless (> n 0)
+           (signal (car err) (cdr err))))))))
 
 (if WORK_ENV
   (setq org-caldav-calendar-id "work" org-caldav-select-tags '("work") org-caldav-exclude-tags '("mantenimiento" "tareas" "habit"))
