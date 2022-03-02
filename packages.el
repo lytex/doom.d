@@ -10,6 +10,9 @@
 (package! org-bullets)
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion"))
+
+(package! org-remark :recipe
+        (:host github :repo "nobiot/org-remark"))
 (package! org-ql :recipe
         (:host github :repo "alphapapa/org-ql"))
 (package! origami :recipe

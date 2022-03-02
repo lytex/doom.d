@@ -45,6 +45,7 @@
 
 (load! "~/.doom.d/modules/org-roam.el")
 
+(load! "~/.doom.d/modules/org-remark.el"  )
 (map!
       :after org-roam
       :leader
@@ -61,7 +62,12 @@
       :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
       :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
       :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
-      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
+      :desc (documentation 'org-remark-mark) "m" #'org-remark-mark
+      :desc (documentation 'org-remark-view-prev) "," #'org-remark-view-prev
+      :desc (documentation 'org-remark-view-next) "." #'org-remark-view-next
+      :desc (documentation 'org-remark-remove) "/" #'org-remark-remove
+      :desc (documentation 'org-remark-open) ";" #'org-remark-open)
 
 (map! :after org-roam
       :leader

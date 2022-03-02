@@ -86,6 +86,10 @@
 (load! "~/.doom.d/modules/org-roam.el")
 ;; blank
 #+end_src
+** org-remark
+#+begin_src emacs-lisp
+(load! "~/.doom.d/modules/org-remark.el"  )
+#+end_src
 ** SPC
 *** bo
 :PROPERTIES:
@@ -129,25 +133,50 @@ Open org roam sidebar
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
 #+end_src
+**** i
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
 #+end_src
+**** r
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
 #+end_src
+**** j
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
 #+end_src
+**** n
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
 #+end_src
+**** v
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
 #+end_src
+**** g
 #+begin_src emacs-lisp
-      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph)
+      :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
 #+end_src
-
+**** m
+#+begin_src emacs-lisp
+      :desc (documentation 'org-remark-mark) "m" #'org-remark-mark
+#+end_src
+**** ,
+#+begin_src emacs-lisp
+      :desc (documentation 'org-remark-view-prev) "," #'org-remark-view-prev
+#+end_src
+**** .
+#+begin_src emacs-lisp
+      :desc (documentation 'org-remark-view-next) "." #'org-remark-view-next
+#+end_src
+**** /
+#+begin_src emacs-lisp
+      :desc (documentation 'org-remark-remove) "/" #'org-remark-remove
+#+end_src
+**** ;
+#+begin_src emacs-lisp
+      :desc (documentation 'org-remark-open) ";" #'org-remark-open)
+#+end_src
 *** rp
 :PROPERTIES:
 :ID:       a1710a4e-700b-4aab-86f5-572886418f4f
@@ -474,7 +503,6 @@ The idea is to use the left hand to select an annotation and use the mouse on th
       :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))
 ;; blank
 #+end_src
-
 * misc
 :PROPERTIES:
 :ID:       65f85022-c981-43f8-bd53-b2c691bb00be
