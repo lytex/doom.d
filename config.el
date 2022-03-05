@@ -54,11 +54,11 @@
 (map! :after org-roam
       :leader
       :prefix ("r" . "org-roam")
-      :desc (documentation 'org-roam) "o" #'org-roam
-      :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
+      :desc (documentation 'org-roam-buffer-toggle) "o" #'org-roam-buffer-toggle
+      ;; :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
-      :desc (documentation 'org-roam-insert) "i" #'org-roam-insert
-      :desc (documentation 'org-roam-find-file) "r" #'org-roam-find-file
+      :desc (documentation 'org-roam-node-insert) "i" #'org-roam-node-insert
+      :desc (documentation 'org-roam-node-find) "r" #'org-roam-node-find
       :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
       :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
       :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
@@ -87,7 +87,7 @@
       :prefix ("rh" . "lytex/org-roam-heading")
 
       :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
-      :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
+      ;; :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 (load! "~/.doom.d/modules/org-edna.el")
 

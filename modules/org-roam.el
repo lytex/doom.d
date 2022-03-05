@@ -2,18 +2,26 @@
 (defun lytex/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
-    (org-roam)
-    (org-bullets-mode)
+    (org-roam-buffer-toggle)
     (org-mode)
-    (org-bullets-mode)
-    (org-roam))
+    (org-roam-buffer-toggle))
 
 
 (use-package! org-roam
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "0.org\|1custom_id.org\|jira")
-      (add-hook 'org-mode-hook (lambda () (org-roam-mode 1))))
+      (org-roam-file-exclude-regexp  "\\(0\\|1\\)\\(custom_id\\)?.org")
+      (add-hook 'org-mode-hook (lambda () (org-roam-mode 1)))
+      (org-roam-mode-section-functions
+              (list #'org-roam-backlinks-section
+              #'org-roam-reflinks-section
+              ;; #'org-roam-unlinked-references-section
+              ))
+      (org-roam-db-gc-threshold most-positive-fixnum)
+      (org-roam-db-node-include-function (lambda () (and (eq (org-current-level) 1))
+        ;; It's not part of an org-trello file
+        (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
+          (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
 
 
 (defun lytex/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
@@ -80,33 +88,20 @@
         :head "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
         :unnarrowed t))))
 
-(defun lytex/org-capture-inbox (n)
-  (interactive "p")
-  (org-capture n "i"))
-
-(defun lytex/org-capture-inbox-clock (n)
-  (interactive "p")
-  (org-capture n "k"))
+(defun lytex/org-capture-inbox ()
+  (interactive)
+  (org-capture nil "i"))
 
 (map! 
       :after org-capture
       :leader
-      :desc (documentation 'lytex/org-capture-inbox) "ii" #'lytex/org-capture-inbox
-      :desc (documentation 'lytex/org-capture-inbox-clock) "ik" #'lytex/org-capture-inbox-clock)
+      :desc (documentation 'lytex/org-capture-inbox) "ii" #'lytex/org-capture-inbox)
 
 (after! org-capture
 (setq org-capture-templates
       '(("i" "inbox" entry (file "Inbox.org")
           "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
-        :unnarrowed t)
-        ("k" "clock" entry (file "Inbox.org")
-                "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
-                :unnarrowed t :clock-in t :clock-keep t)
-        ;; Empty entry to be filed later
-        ;; https://helpdeskheadesk.net/help-desk-head-desk/sub-menus-in-org/
-        ("t" "templates")
-        ("c" "cleanup" item (id "b6463bd3-3069-424c-94f5-23be3ce8e2cd") "[ ] Clean %a"
-          :unnarrowed t))))
+        :unnarrowed t))))
 
 
 (after! org-roam
@@ -116,7 +111,7 @@
       '(("r" "ref" plain (function org-roam-capture--get-point)
         "* ${title}\n%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n"
         :unnarrowed t)
         ("i" "inbox" plain (function org-roam-capture--get-point)
         "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}\n%?"
@@ -125,7 +120,7 @@
         ("c" "content" plain (function org-roam-capture--get-point)
         "%?"
         :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :head "#+title: ${title}\n#+roam_key: ${ref}\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
@@ -160,7 +155,7 @@
   (interactive)
   (setq id (org-id-copy))
   (setq old-buffer (buffer-name))
-  (unless (org-roam) (org-roam))
+  (unless (org-roam-buffer-toggle) (org-roam-buffer-toggle))
   (switch-to-buffer-other-window (get-buffer "*org-roam*"))
   (org-occur id)
   (switch-to-buffer-other-window old-buffer))
@@ -177,7 +172,7 @@
 (defun lytex/org-roam-open-buffer-at (position)
   (setq old-org-roam-buffer-position org-roam-buffer-position)
   (setq org-roam-buffer-position position)
-  (org-roam)
+  (org-roam-buffer-toggle)
   (setq org-roam-buffer-position old-org-roam-buffer-position))
 
 (defun lytex/org-roam-open-buffer-at-bottom ()
@@ -200,13 +195,13 @@
   (org-open-at-point)
   (setq old-org-roam-buffer-height org-roam-buffer-height)
   (setq org-roam-buffer-height 0.35)
-  (if (org-roam)
+  (if (org-roam-buffer-toggle)
     ; if org-roam-buffer is closed, keep it closed
-    (org-roam)
+    (org-roam-buffer-toggle)
     ; if org-roam-buffer is opened, reopen at bottom
     (progn
-      (org-roam)
-      (org-roam)
+      (org-roam-buffer-toggle)
+      (org-roam-buffer-toggle)
       (lytex/org-roam-open-buffer-at 'bottom)))
   (setq org-roam-buffer-height old-org-roam-buffer-height))
 
