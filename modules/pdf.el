@@ -10,13 +10,6 @@
   :hook ((org-load . org-pdftools-setup-link))
           (pdf-tools-enable-minor-mode))
 
-
-;; (use-package! pdf-continuous-scroll-mode
-;;   :after pdf-tools
-;;   :config
-;;   (add-hook 'pdf-view-mode-hook #'(lambda () (setq pdf-view-display-size 'fit-width))))
-
-
 (use-package! pdf-history
   :after pdf-tools
   :config
