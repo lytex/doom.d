@@ -9,13 +9,13 @@
 (use-package! org-pdftools
   :hook ((org-load . org-pdftools-setup-link))
           (pdf-tools-enable-minor-mode))
-(pdf-loader-install)
 
-(use-package! pdf-continuous-scroll-mode
-  :after pdf-tools
-  :config
-  (add-hook 'pdf-view-mode-hook #'(lambda () (setq pdf-view-display-size 'fit-width)))
-  (add-hook 'pdf-view-mode-hook 'pdf-continuous-scroll-mode))
+
+;; (use-package! pdf-continuous-scroll-mode
+;;   :after pdf-tools
+;;   :config
+;;   (add-hook 'pdf-view-mode-hook #'(lambda () (setq pdf-view-display-size 'fit-width))))
+
 
 (use-package! pdf-history
   :after pdf-tools
@@ -80,3 +80,4 @@
 
 (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 (use-package! nov)
+
