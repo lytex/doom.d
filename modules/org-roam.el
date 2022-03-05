@@ -20,10 +20,20 @@
               ;; #'org-roam-unlinked-references-section
               ))
       (org-roam-db-gc-threshold most-positive-fixnum)
-      (org-roam-db-node-include-function (lambda () (and (eq (org-current-level) 1))
-        ;; It's not part of an org-trello file
-        (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
-          (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
+
+      (org-roam-db-node-include-function (lambda () (require 'org)
+                (and
+                        ;; It's a level 1 top heading
+                        (eq (org-current-level) 1)
+                        ;; It's not part of an org-trello file
+                        (not (org-entry-properties nil "orgtrello_id"))
+                        ;; Unless it has an explicit property ROAM_INCLUDE
+                        (org-entry-properties nil "ROAM_INCLUDE")))))
+
+      ;; (org-roam-db-node-include-function (lambda () (and (eq (org-current-level) 1))
+      ;;   ;; It's not part of an org-trello file
+      ;;   (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
+      ;;     (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
 
 
 (defun lytex/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
@@ -58,7 +68,7 @@
     (if old-org-link-descriptive (org-toggle-link-display))
     (org-insert-link))
 
-(advice-add 'org-roam-insert :after 'lytex/replace-link-file-with-id)
+;; (advice-add 'org-roam-insert :after 'lytex/replace-link-file-with-id)
 
 
 
