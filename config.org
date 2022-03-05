@@ -124,7 +124,7 @@ Open org roam sidebar
 :ID:       f5852e15-fb1f-4fd1-8bfb-6ecb3039cc40
 :END:
 #+begin_src emacs-lisp
-      ;;:desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
+      ;; :desc (documentation 'org-roam-unlinked-references) "u" #'org-roam-unlinked-references
 #+end_src
 **** c
 :PROPERTIES:
@@ -256,7 +256,7 @@ Open org roam sidebar
 :ID:       4eedc3e4-2431-48d8-9dd7-b859379bd9f3
 :END:
 #+begin_src emacs-lisp
-      ;;:desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
+      ;; :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
 #+end_src
 **** l
 :PROPERTIES:
