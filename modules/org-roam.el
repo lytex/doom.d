@@ -157,7 +157,7 @@
         :target (file+head "roam/${slug}.org"
         "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
-        ("i" "inbox" plain
+        ("i" "inbox" entry
         "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}\n%?"
         :target (file "Inbox.org")
         :unnarrowed t)
