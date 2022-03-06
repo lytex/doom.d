@@ -3,8 +3,7 @@
 
 (load! "~/.doom.d/work.el")
 
-(package! org-roam :recipe
-        (:host github :repo "org-roam/org-roam"))
+(package! org-roam-ui)
 (package! org-wild-notifier)
 (package! org-bullets)
 (package! org-transclusion :recipe

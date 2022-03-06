@@ -2,11 +2,11 @@
 (defun lytex/revert-buffer-reload-roam ()
     (interactive)
     (revert-buffer)
-    (org-roam)
+    (org-roam-buffer-toggle)
     (org-bullets-mode)
-    (org-mode)
+    (org-roam-buffer-toggle)
     (org-bullets-mode)
-    (org-roam))
+    (org-roam-buffer-toggle))
 
 
 (use-package! org-roam
@@ -22,18 +22,40 @@
       (org-roam-db-gc-threshold most-positive-fixnum)
 
       (org-roam-db-node-include-function (lambda () (require 'org)
+           (or
                 (and
-                        ;; It's a level 1 top heading
-                        (eq (org-current-level) 1)
+                        ;; It's a level 1 top heading and not a file-level id
+                        (eq (org-current-level) 1) (not (eq (org-current-level) nil))
+                        ;; Has not a REFILE todo-state
+                        (not (equal (substring-no-properties (concat "" (org-get-todo-state))) "REFILE"))
+                        ;; Has not a ROAM_EXCLUDE property
+                        (not (org-entry-properties nil "ROAM_EXCLUDE"))
                         ;; It's not part of an org-trello file
-                        (not (org-entry-properties nil "orgtrello_id"))
-                        ;; Unless it has an explicit property ROAM_INCLUDE
-                        (org-entry-properties nil "ROAM_INCLUDE")))))
+                        (not (org-entry-properties nil "orgtrello_id")))
+                        ;; Unless it has an explicit property ROAM_INCLUDE set to t
+                        (equal (concat "" (cdr (assoc "ROAM_INCLUDE"
+                                         (org-entry-properties nil "ROAM_INCLUDE")))) "t")
+                        ))))
 
       ;; (org-roam-db-node-include-function (lambda () (and (eq (org-current-level) 1))
       ;;   ;; It's not part of an org-trello file
       ;;   (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
       ;;     (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
+
+(use-package! websocket
+    :after org)
+
+(use-package! org-roam-ui
+    :after org ;; or :after org
+;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+;;         a hookable mode anymore, you're advised to pick something yourself
+;;         if you don't care about startup time, use
+;;  :hook (after-init . org-roam-ui-mode)
+    :config
+    (setq org-roam-ui-sync-theme t
+          org-roam-ui-follow t
+          org-roam-ui-update-on-save t
+          org-roam-ui-open-on-start t))
 
 
 (defun lytex/replace-link-file-with-id (&optional lowercase completions filter-fn description link-type)
@@ -81,23 +103,20 @@
 
 (after! org-roam
 (setq org-roam-capture-templates
-    '(("d" "default" plain (function org-roam-capture--get-point)
+    '(("d" "default" plain
         "* ${title}\n%?"
-        :file-name "roam/%<%Y%m%d%H%M%S>-${slug}"
-        :head "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
+        :target (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org"
+        "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
-      ("r" "refile" plain (function org-roam-capture--get-point)
-        "%?"
-        :unnarrowed t)
-      ("p" "project" plain (function org-roam-capture--get-point)
+      ("p" "project" plain
         "* ${title} :project:\n%?"
-        :file-name "projects/${slug}" 
-        :head "#+title: ${title}\n#+filetags: :project:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
+        :target (file+head "projects/${slug}.org" 
+        "#+title: ${title}\n#+filetags: :project:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
-      ("a" "area" plain (function org-roam-capture--get-point)
+      ("a" "area" plain
         "* ${title} :area:\n%?"
-        :file-name "areas/${slug}" 
-        :head "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
+        :target (file+head "areas/${slug}.org"
+        "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t))))
 
 (defun lytex/org-capture-inbox (n)
@@ -133,19 +152,19 @@
 ;; Use a standard template for ref without content
 ;; For ref with content, save and focus on the new note
 (setq org-roam-capture-ref-templates
-      '(("r" "ref" plain (function org-roam-capture--get-point)
+      '(("r" "ref" plain 
         "* ${title}\n%?"
-        :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n"
+        :target (file+head "roam/${slug}.org"
+        "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
-        ("i" "inbox" plain (function org-roam-capture--get-point)
+        ("i" "inbox" plain
         "* REFILE ${title}\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:\n${ref}\n%?"
-        :file-name "Inbox"
+        :target (file "Inbox.org")
         :unnarrowed t)
-        ("c" "content" plain (function org-roam-capture--get-point)
+        ("c" "content" plain
         "%?"
-        :file-name "roam/${slug}"
-        :head "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n%(org-web-tools--url-as-readable-org \"${ref}\")"
+        :target (file+head "roam/${slug}.org"
+        "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n%(org-web-tools--url-as-readable-org \"${ref}\")")
         :unnarrowed t
         :immediate-finish t
         :jump-to-captured t))))
