@@ -209,6 +209,10 @@
 ; remove REFILE keyword before refiling a headline
 (advice-add 'org-refile :before 'lytex/remove-refile)
 
+;; Fix counter sometimes not updating
+(advice-add '+org/insert-item-below :after #'(lambda (&rest args) (org-shiftright) (org-shiftleft)))
+(advice-add '+org/insert-item-above :after #'(lambda (&rest args) (org-shiftright) (org-shiftleft)))
+
 ;; Rich copy from HTML
 ;; from https://xiangji.me/2015/07/13/a-few-of-my-org-mode-customizations/
 ;; https://emacs.stackexchange.com/questions/12121/org-mode-parsing-rich-html-directly-when-pasting
