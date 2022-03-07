@@ -210,8 +210,9 @@
 (advice-add 'org-refile :before 'lytex/remove-refile)
 
 ;; Fix counter sometimes not updating
-(advice-add '+org/insert-item-below :after #'(lambda (&rest args) (org-shiftright) (org-shiftleft)))
-(advice-add '+org/insert-item-above :after #'(lambda (&rest args) (org-shiftright) (org-shiftleft)))
+;; Call first shiftleft because on headlines calling shifleft first triggers a transition to TODO and creates a :LOGBOOK:
+(advice-add '+org/insert-item-below :after #'(lambda (&rest args) (org-shiftleft) (org-shiftright)))
+(advice-add '+org/insert-item-above :after #'(lambda (&rest args) (org-shiftleft) (org-shiftright)))
 
 ;; Rich copy from HTML
 ;; from https://xiangji.me/2015/07/13/a-few-of-my-org-mode-customizations/
