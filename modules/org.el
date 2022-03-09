@@ -211,8 +211,13 @@
 
 ;; Fix counter sometimes not updating
 ;; Call first shiftleft because on headlines calling shifleft first triggers a transition to TODO and creates a :LOGBOOK:
-(advice-add '+org/insert-item-below :after #'(lambda (&rest args) (org-shiftleft) (org-shiftright)))
-(advice-add '+org/insert-item-above :after #'(lambda (&rest args) (org-shiftleft) (org-shiftright)))
+(defun lytex/fix-counter (&rest args)
+( if (eq (car (org-element-at-point-no-context)) 'item)
+    (progn
+        (org-shiftleft) (org-shiftright))))
+
+(advice-add '+org/insert-item-below :after #'lytex/fix-counter)
+(advice-add '+org/insert-item-above :after #'lytex/fix-counter)
 
 ;; Rich copy from HTML
 ;; from https://xiangji.me/2015/07/13/a-few-of-my-org-mode-customizations/
