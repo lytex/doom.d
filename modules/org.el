@@ -253,3 +253,7 @@
             (while (search-forward ";; blank" nil t)
                   (replace-match ""))
           (save-buffer))))
+
+
+(setq spookfox-saved-tabs-target `(file+headline ,(expand-file-name "spookfox.org" org-directory) "Tabs"))`
+(use-package! spookfox)
