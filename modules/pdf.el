@@ -15,7 +15,7 @@
   :after pdf-tools)
 
 
-  (evil-define-key 'normal 'pdf-view-mode-map
+  (evil-define-key 'normal pdf-view-mode-map
     "j" #'pdf-continuous-scroll-forward
     "k" #'pdf-continuous-scroll-backward
     (kbd "C-d") #'(lambda () (interactive) (pdf-continuous-scroll-forward (/ (window-pixel-height) 2)))
