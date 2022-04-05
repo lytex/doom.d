@@ -1,4 +1,5 @@
 (setq org-export-exclude-tags '("private" "area"))
+(setq org-export-babel-evaluate nil)
 (setq org-export-with-broken-links t)
 (setq org-export-preserve-breaks t)
 (setq org-export-with-archived-trees t)
@@ -19,37 +20,38 @@
             (org-html-export-to-html)
             (unless old-transclusion-mode (org-transclusion-mode -1))))))
 
+(after! ox-html
 ;; From https://gist.github.com/jethrokuan/d6f80caaec7f49dedffac7c4fe41d132
-(defun org-html--reference (datum info &optional named-only)
-  "Return an appropriate reference for DATUM.
-DATUM is an element or a `target' type object.  INFO is the
-current export state, as a plist.
-When NAMED-ONLY is non-nil and DATUM has no NAME keyword, return
-nil.  This doesn't apply to headlines, inline tasks, radio
-targets and targets."
-  (let* ((type (org-element-type datum))
-	 (user-label
-	  (org-element-property
-	   (pcase type
-	     ((or `headline `inlinetask) :CUSTOM_ID)
-	     ((or `radio-target `target) :value)
-	     (_ :name))
-	   datum))
-         (user-label (or user-label
-                         (when-let ((path (org-element-property :ID datum)))
-                           (concat "ID-" path)))))
-    (cond
-     ((and user-label
-	   (or (plist-get info :html-prefer-user-labels)
-	       ;; Used CUSTOM_ID property unconditionally.
-	       (memq type '(headline inlinetask))))
-      user-label)
-     ((and named-only
-	   (not (memq type '(headline inlinetask radio-target target)))
-	   (not user-label))
-      nil)
-     (t
-      (org-export-get-reference datum info)))))
+  (defun org-html--reference (datum info &optional named-only)
+    "Return an appropriate reference for DATUM.
+  DATUM is an element or a `target' type object.  INFO is the
+  current export state, as a plist.
+  When NAMED-ONLY is non-nil and DATUM has no NAME keyword, return
+  nil.  This doesn't apply to headlines, inline tasks, radio
+  targets and targets."
+    (let* ((type (org-element-type datum))
+  	 (user-label
+  	  (org-element-property
+  	   (pcase type
+  	     ((or `headline `inlinetask) :CUSTOM_ID)
+  	     ((or `radio-target `target) :value)
+  	     (_ :name))
+  	   datum))
+           (user-label (or user-label
+                           (when-let ((path (org-element-property :ID datum)))
+                             (concat "ID-" path)))))
+      (cond
+       ((and user-label
+  	   (or (plist-get info :html-prefer-user-labels)
+  	       ;; Used CUSTOM_ID property unconditionally.
+  	       (memq type '(headline inlinetask))))
+        user-label)
+       ((and named-only
+  	   (not (memq type '(headline inlinetask radio-target target)))
+  	   (not user-label))
+        nil)
+       (t
+        (org-export-get-reference datum info))))))
 
 ;; This is managed by orgzly-integrations, enable if needed
 ;; (add-hook 'after-save-hook #'lytex/org-export-on-save)
