@@ -25,8 +25,6 @@
 (package! org-noter-pdftools :recipe
         (:host github :repo "fuxialexander/org-pdftools"))
 (package! org-web-tools)
-(package! spookfox :recipe
-        (:host github :repo "bitspook/spookfox"))
 (package! fzf :recipe)
 (package! beacon)
 (package! evil-quickscope :recipe 
