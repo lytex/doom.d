@@ -27,6 +27,8 @@
   (setq org-bullets-bullet-list '("◉" "✸" "✿"))
   (setq org-ellipsis "…"))
 
+(setq org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("1." . "a.") ("1)" . "a)")))
+
 (if WORK_ENV
 (setq org-agenda-files
   '("~/org"  "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))

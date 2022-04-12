@@ -1,5 +1,5 @@
 (setq org-export-exclude-tags '("private" "area"))
-(setq org-export-babel-evaluate nil)
+(setq org-export-use-babel nil)
 (setq org-export-with-broken-links t)
 (setq org-export-preserve-breaks t)
 (setq org-export-with-archived-trees t)

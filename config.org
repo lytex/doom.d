@@ -64,6 +64,13 @@
       :desc (documentation 'bh/punch-out) "mcpo" #'bh/punch-out
       )
 
+(map! :map evil-org-mode-map
+      :after evil-org
+      :n "g l" #'org-down-element
+      :n "]]" #'org-next-visible-heading
+      :n "[[" #'org-previous-visible-heading
+)
+
 
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
