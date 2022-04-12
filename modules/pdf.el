@@ -15,10 +15,6 @@
   :after pdf-tools)
 
 
-(after! evil-collection-pdf
-  (evil-define-key 'normal pdf-view-mode-map
-)
-
 (map! :map pdf-view-mode-map
       :after evil-collection-pdf
       :n "j" #'pdf-continuous-scroll-forward
@@ -26,7 +22,7 @@
       :n (kbd "C-d") #'(lambda () (interactive) (pdf-continuous-scroll-forward (/ (window-pixel-height) 2)))
       :n (kbd "C-u") #'(lambda () (interactive) (pdf-continuous-scroll-backward (/ (window-pixel-height) 2)))
       :n (kbd "C-f") #'(lambda () (interactive) (pdf-continuous-scroll-forward (window-pixel-height)))
-      :n (kbd "C-b") #'(lambda () (interactive) (pdf-continuous-scroll-backward (window-pixel-height))))
+      :n (kbd "C-b") #'(lambda () (interactive) (pdf-continuous-scroll-backward (window-pixel-height)))
 )
 
 
