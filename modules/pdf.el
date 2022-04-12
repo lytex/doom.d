@@ -14,15 +14,21 @@
 (use-package! pdf-continuous-scroll-mode
   :after pdf-tools)
 
+
 (after! evil-collection-pdf
   (evil-define-key 'normal pdf-view-mode-map
-    "j" #'pdf-continuous-scroll-forward
-    "k" #'pdf-continuous-scroll-backward
-    (kbd "C-d") #'(lambda () (interactive) (pdf-continuous-scroll-forward (/ (window-pixel-height) 2)))
-    (kbd "C-u") #'(lambda () (interactive) (pdf-continuous-scroll-backward (/ (window-pixel-height) 2)))
-    (kbd "C-f") #'(lambda () (interactive) (pdf-continuous-scroll-forward (window-pixel-height)))
-    (kbd "C-b") #'(lambda () (interactive) (pdf-continuous-scroll-backward (window-pixel-height))))
 )
+
+(map! :map pdf-view-mode-map
+      :after evil-collection-pdf
+      :n "j" #'pdf-continuous-scroll-forward
+      :n "k" #'pdf-continuous-scroll-backward
+      :n (kbd "C-d") #'(lambda () (interactive) (pdf-continuous-scroll-forward (/ (window-pixel-height) 2)))
+      :n (kbd "C-u") #'(lambda () (interactive) (pdf-continuous-scroll-backward (/ (window-pixel-height) 2)))
+      :n (kbd "C-f") #'(lambda () (interactive) (pdf-continuous-scroll-forward (window-pixel-height)))
+      :n (kbd "C-b") #'(lambda () (interactive) (pdf-continuous-scroll-backward (window-pixel-height))))
+)
+
 
 (use-package! pdf-history
   :after pdf-tools
