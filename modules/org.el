@@ -255,7 +255,27 @@
             (while (search-forward ";; blank" nil t)
                   (replace-match ""))
           (save-buffer))))
+;; Also for languages which have another type of comment characters:
+ (add-hook 'org-babel-post-tangle-hook
+      #'(lambda () (progn
+          (goto-char 0)
+            (while (search-forward "# blank" nil t)
+                  (replace-match ""))
+          (save-buffer))))
 
+ (add-hook 'org-babel-post-tangle-hook
+      #'(lambda () (progn
+          (goto-char 0)
+            (while (search-forward "// blank" nil t)
+                  (replace-match ""))
+          (save-buffer))))
+
+ (add-hook 'org-babel-post-tangle-hook
+      #'(lambda () (progn
+          (goto-char 0)
+            (while (search-forward "% blank" nil t)
+                  (replace-match ""))
+          (save-buffer))))
 
 (setq spookfox-saved-tabs-target `(file+headline ,(expand-file-name "spookfox.org" org-directory) "Tabs"))`
 (use-package! spookfox)
