@@ -43,6 +43,9 @@
       :n "[[" #'org-previous-visible-heading
 )
 
+;; From https://github.com/tecosaur/emacs-config/blob/master/config.org#the-utility-of-zero-width-spaces
+(map! :map org-mode-map
+      :nie "M-SPC M-SPC" (cmd! (insert "\u200B")))
 
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
