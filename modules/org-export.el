@@ -6,6 +6,16 @@
 (setq org-export-with-sub-superscripts nil)
 (setq org-export-with-properties '("NEXT" "BLOCK" "GOAL"))
 
+;; From https://github.com/tecosaur/emacs-config/blob/master/config.org#the-utility-of-zero-width-spaces
+;; Avoid exporting zero-width spaces
+(defun +org-export-remove-zero-width-space (text _backend _info)
+  "Remove zero width spaces from TEXT."
+  (unless (org-export-derived-backend-p 'org)
+    (replace-regexp-in-string "\u200B" "" text)))
+
+(after! ox
+  (add-to-list 'org-export-filter-final-output-functions #'+org-export-remove-zero-width-space t))
+
 (defun lytex/org-export-on-save ()
       ;; Widen if the buffer is narrowed
       (save-restriction
