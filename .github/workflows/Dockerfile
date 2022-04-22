@@ -1,3 +1,5 @@
+# Modified from:
+# https://github.com/tecosaur/emacs-config/blob/master/.github/workflows/Dockerfile
 FROM ubuntu:22.04
 LABEL maintainer="lytex <julianlpc15@gmail.com>"
 
