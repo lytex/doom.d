@@ -3,6 +3,7 @@
 
 
 (load! "~/.doom.d/work.el")
+(load! "~/.doom.d/headless.el")
 
 
 (setq user-full-name "Julian Lopez Carballal")
@@ -132,6 +133,10 @@
 
 (load! "~/.doom.d/modules/org-misc.el")
 
+
+(if (not HEADLESS)
+  (load! "~/.doom.d/modules/pdf.el")
+
 (load! "~/.doom.d/modules/org-ql.el")
 
 (map!
@@ -161,9 +166,6 @@
 (map! :after helm
       :leader
       :desc (documentation 'helm-rg) "nrg" #'helm-rg)
-
-(load! "~/.doom.d/modules/pdf.el")
-
 (after! (pdf-tools)
 (map! :leader
       :mode (pdf-view-mode)
@@ -199,23 +201,24 @@
       :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
       :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))
 
-(use-package! highlight-indent-guides
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :init
-  (setq highlight-indent-guides-method 'character))
+    (use-package! highlight-indent-guides
+      :hook (prog-mode . highlight-indent-guides-mode)
+      :init
+      (setq highlight-indent-guides-method 'character))
 
-(add-hook 'ediff-load-hook
-               (lambda ()
-                 (set-face-background
-                   ediff-current-diff-face-A  "red")
-                 (set-face-background
-                   ediff-current-diff-face-B "blue")))
+    (add-hook 'ediff-load-hook
+                  (lambda ()
+                    (set-face-background
+                      ediff-current-diff-face-A  "red")
+                    (set-face-background
+                      ediff-current-diff-face-B "blue")))
 
-(use-package! activity-watch-mode)
-(global-activity-watch-mode)
-
-
+    (use-package! activity-watch-mode)
+    (global-activity-watch-mode)
+)
 (load! "~/.doom.d/modules/org-transclusion.el"  )
+
+(load! "~/.doom.d/habitica.el")
 
 ;; (load! "~/.doom.d/modules/excorporate.el")
 

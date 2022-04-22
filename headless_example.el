@@ -1,0 +1,1 @@
+(setq HEADLESS nil)

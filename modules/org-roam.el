@@ -42,6 +42,9 @@
       ;;   (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
       ;;     (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
 
+(load! "~/.doom.d/headless.el")
+
+(if (not HEADLESS)
 (use-package! websocket
     :after org)
 
@@ -176,6 +179,7 @@
 (add-to-list 'company-backends 'company-capf))
 
 (use-package! org-roam-protocol)
+)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

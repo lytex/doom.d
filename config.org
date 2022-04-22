@@ -19,6 +19,7 @@
 #+begin_src emacs-lisp
 
 (load! "~/.doom.d/work.el")
+(load! "~/.doom.d/headless.el")
 
 
 (setq user-full-name "Julian Lopez Carballal")
@@ -375,6 +376,12 @@ Open org roam sidebar
 :ID:       a9a417e5-1971-4669-ba71-96249341c7b9
 :END:
 #+begin_src emacs-lisp
+;; blank
+(if (not HEADLESS)
+  (load! "~/.doom.d/modules/pdf.el")
+;; blank
+#+end_src
+#+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-ql.el")
 ;; blank
 #+end_src
@@ -469,11 +476,6 @@ q is for query
 :PROPERTIES:
 :ID:       81a0d29e-e514-4cc1-8f98-8c6f9181a5af
 :END:
-#+begin_src emacs-lisp
-;; blank
-(load! "~/.doom.d/modules/pdf.el")
-;; blank
-#+end_src
 All =pdf-annot-add-*-markup= keybindings are in the left hand.
 The idea is to use the left hand to select an annotation and use the mouse on the right hand to select where to place it
 #+begin_src emacs-lisp
@@ -518,23 +520,30 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 :ID:       65f85022-c981-43f8-bd53-b2c691bb00be
 :END:
 #+begin_src emacs-lisp
-(use-package! highlight-indent-guides
-  :hook (prog-mode . highlight-indent-guides-mode)
-  :init
-  (setq highlight-indent-guides-method 'character))
+    (use-package! highlight-indent-guides
+      :hook (prog-mode . highlight-indent-guides-mode)
+      :init
+      (setq highlight-indent-guides-method 'character))
 
-(add-hook 'ediff-load-hook
-               (lambda ()
-                 (set-face-background
-                   ediff-current-diff-face-A  "red")
-                 (set-face-background
-                   ediff-current-diff-face-B "blue")))
+    (add-hook 'ediff-load-hook
+                  (lambda ()
+                    (set-face-background
+                      ediff-current-diff-face-A  "red")
+                    (set-face-background
+                      ediff-current-diff-face-B "blue")))
 
-(use-package! activity-watch-mode)
-(global-activity-watch-mode)
+    (use-package! activity-watch-mode)
+    (global-activity-watch-mode)
+#+end_src
+#+begin_src emacs-lisp
+)
+#+end_src
+#+begin_src emacs-lisp
 
 
 (load! "~/.doom.d/modules/org-transclusion.el"  )
+
+(load! "~/.doom.d/habitica.el")
 
 ;; (load! "~/.doom.d/modules/excorporate.el")
 

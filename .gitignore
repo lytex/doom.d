@@ -1,7 +1,9 @@
 *~
 .vscode/
 jira.el
+habitica.el
 work.el
 custom.el
 config.html
 modules/org-ql-queries.*
+headless.el

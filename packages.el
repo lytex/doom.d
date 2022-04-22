@@ -2,33 +2,35 @@
 ;;; $DOOMDIR/packages.el
 
 (load! "~/.doom.d/work.el")
+(load! "~/.doom.d/headless.el")
 
-(package! org-roam-ui)
-(package! org-wild-notifier)
-(package! org-bullets)
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion"))
 
-(package! org-remark :recipe
-        (:host github :repo "nobiot/org-remark"))
-(package! org-ql :recipe
-        (:host github :repo "alphapapa/org-ql"))
-(package! origami :recipe
-        (:host github :repo "gregsexton/origami.el"))
-(package! org-sticky-header :recipe
-        (:host github :repo "alphapapa/org-sticky-header"))
-(package! org-tree-slide)
-(package! pdf-continuous-scroll-mode :recipe
-        (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
-(package! pdf-view-restore)
-(package! nov)
-(package! org-noter-pdftools :recipe
-        (:host github :repo "fuxialexander/org-pdftools"))
-(package! org-web-tools)
-(package! fzf :recipe)
-(package! beacon)
-(package! evil-quickscope :recipe 
-        (:host github :repo "blorbx/evil-quickscope"))
+(if (not HEADLESS)
+        (package! org-roam-ui)
+        (package! org-wild-notifier)
+        (package! org-bullets)
+        (package! org-remark :recipe
+                (:host github :repo "nobiot/org-remark"))
+        (package! org-ql :recipe
+                (:host github :repo "alphapapa/org-ql"))
+        (package! origami :recipe
+                (:host github :repo "gregsexton/origami.el"))
+        (package! org-sticky-header :recipe
+                (:host github :repo "alphapapa/org-sticky-header"))
+        (package! org-tree-slide)
+        (package! pdf-continuous-scroll-mode :recipe
+                (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
+        (package! pdf-view-restore)
+        (package! nov)
+        (package! org-noter-pdftools :recipe
+                (:host github :repo "fuxialexander/org-pdftools"))
+        (package! org-web-tools)
+        (package! fzf :recipe)
+        (package! beacon)
+        (package! evil-quickscope :recipe
+                (:host github :repo "blorbx/evil-quickscope")))
 (if WORK_ENV
   (package! excorporate))
 (if WORK_ENV
@@ -37,24 +39,31 @@
 (if WORK_ENV
   (package! org-jira :recipe
         (:host github :repo "ahungry/org-jira")))
-(package! activity-watch-mode :recipe
-        (:host github :repo "pauldub/activity-watch-mode"))
 
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
 
-(package! vimrc-mode)
-(package! ob-go)
+(if (not HEADLESS)
 
-(package! org-linker :recipe
-        (:host github :repo "toshism/org-linker"))
+        (package! activity-watch-mode :recipe
+                (:host github :repo "pauldub/activity-watch-mode"))
 
-(package! org-linker-edna :recipe
-        (:host github :repo "toshism/org-linker-edna"))
 
-(package! org-graph-edna :recipe
-        (:host github :repo "lytex/org-graph-edna"))
+        (package! vimrc-mode)
+        (package! ob-go)
 
+        (package! org-linker :recipe
+                (:host github :repo "toshism/org-linker"))
+
+        (package! org-linker-edna :recipe
+                (:host github :repo "toshism/org-linker-edna"))
+
+        (package! org-graph-edna :recipe
+                (:host github :repo "lytex/org-graph-edna"))
+
+        (package! habitica)
+
+        )
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
 
