@@ -45,6 +45,7 @@
 (load! "~/.doom.d/headless.el")
 
 (if (not HEADLESS)
+(progn
 (use-package! websocket
     :after org)
 
@@ -179,7 +180,7 @@
 (add-to-list 'company-backends 'company-capf))
 
 (use-package! org-roam-protocol)
-)
+))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;; org-roam by headings ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

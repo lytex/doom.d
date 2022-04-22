@@ -7,12 +7,14 @@
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion"))
 
+(package! org-remark :recipe
+        (:host github :repo "nobiot/org-remark"))
+
 (if (not HEADLESS)
+    (progn
         (package! org-roam-ui)
         (package! org-wild-notifier)
         (package! org-bullets)
-        (package! org-remark :recipe
-                (:host github :repo "nobiot/org-remark"))
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
         (package! origami :recipe
@@ -30,7 +32,8 @@
         (package! fzf :recipe)
         (package! beacon)
         (package! evil-quickscope :recipe
-                (:host github :repo "blorbx/evil-quickscope")))
+                (:host github :repo "blorbx/evil-quickscope"))))
+
 (if WORK_ENV
   (package! excorporate))
 (if WORK_ENV
@@ -43,7 +46,7 @@
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
 
-(if (not HEADLESS)
+(if (not HEADLESS) (progn
 
         (package! activity-watch-mode :recipe
                 (:host github :repo "pauldub/activity-watch-mode"))
@@ -60,10 +63,9 @@
 
         (package! org-graph-edna :recipe
                 (:host github :repo "lytex/org-graph-edna"))
-
         (package! habitica)
 
-        )
+        ))
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
 

@@ -19,14 +19,21 @@
 (setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
 
+(if (not HEADLESS)
 (beacon-mode 1)
 (setq beacon-color "dark orange")
 
+(load! "~/.doom.d/modules/LectureNotes.el"))
+
 (setq doom-theme 'doom-one)
 
-(load! "~/.doom.d/modules/LectureNotes.el")
+
+
+(setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
 
 (load! "~/.doom.d/modules/org.el")
+
+(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 
 (load! "~/.doom.d/modules/org-clock.el")
 
@@ -51,12 +58,12 @@
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
 
+(load! "~/.doom.d/modules/org-export.el")
 
-(setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
+(load! "~/.doom.d/modules/org-caldav.el")
 
 (load! "~/.doom.d/modules/org-roam.el")
 
-(load! "~/.doom.d/modules/org-remark.el"  )
 (map!
       :after org-roam
       :leader
@@ -100,6 +107,10 @@
       :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
       ;; :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
+(load! "~/.doom.d/modules/org-transclusion.el"  )
+(load! "~/.doom.d/modules/org-remark.el"  )
+(if (not HEADLESS)
+(progn
 (load! "~/.doom.d/modules/org-edna.el")
 
 (map!
@@ -134,8 +145,6 @@
 (load! "~/.doom.d/modules/org-misc.el")
 
 
-(if (not HEADLESS)
-  (load! "~/.doom.d/modules/pdf.el")
 
 (load! "~/.doom.d/modules/org-ql.el")
 
@@ -166,6 +175,7 @@
 (map! :after helm
       :leader
       :desc (documentation 'helm-rg) "nrg" #'helm-rg)
+(load! "~/.doom.d/modules/pdf.el")
 (after! (pdf-tools)
 (map! :leader
       :mode (pdf-view-mode)
@@ -215,8 +225,6 @@
 
     (use-package! activity-watch-mode)
     (global-activity-watch-mode)
-)
-(load! "~/.doom.d/modules/org-transclusion.el"  )
 
 (load! "~/.doom.d/habitica.el")
 
@@ -227,10 +235,6 @@
 
 (if WORK_ENV
   (load! "~/.doom.d/jira.el"))
-
-(load! "~/.doom.d/modules/org-export.el")
-
-(load! "~/.doom.d/modules/org-caldav.el")
 
 (use-package! emojify)
 
@@ -243,8 +247,6 @@
 
 (use-package! vimrc-mode)
 (add-to-list 'auto-mode-alist '("\\.vim\\(rc\\)?\\'" . vimrc-mode))
-
-(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
 (defun lytex/toggle-work ()
   "Toggle work profile"
   (interactive)
@@ -254,6 +256,7 @@
       :after org-ql
       :leader
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
+))
 ;; From https://emacs.stackexchange.com/a/33344:
 (defun yf/advice-list (symbol)
   (let (result)
