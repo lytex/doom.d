@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-for file in $(find . -iname "*.org"); do
+for file in $(find . -iname "*.org" -not -path "./doom.d/*" -not -path ".emacs.d/*"); do
     echo "Exporting file"
 
     echo "\033[1;34mExporting file $file...\033[0m"
