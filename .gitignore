@@ -7,3 +7,5 @@ custom.el
 config.html
 modules/org-ql-queries.*
 headless.el
+.dir-locals.el
+org-roam.db
