@@ -10,6 +10,9 @@ After installing run =~/.emacs.d/bin/doom sync=
 *** org-roam
 - [[https://github.com/org-roam/org-roam/issues/1064][ripgrep custom]]
 - sqlite
+* org
+** dependencies
+xclip to use =kdm/html2org-clipboard=
 * plantuml
 #+begin_src bash
 sudo apt-get install -y plantuml
