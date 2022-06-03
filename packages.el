@@ -14,7 +14,8 @@
     (progn
         (package! org-roam-ui)
         (package! org-wild-notifier)
-        (package! org-bullets)
+        (package! org-superstar :disable t)
+        (package! org-modern)
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
         (package! origami :recipe

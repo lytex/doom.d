@@ -40,6 +40,7 @@
 
 ;; org-bullets has to be loaded AFTER org-roam
 ;; otherwise it breaks org-roam
-(use-package! org-bullets
+(use-package! org-modern
     :config
-    (add-hook 'org-mode-hook (lambda () (org-bullets-mode t))))
+    (add-hook 'org-mode-hook #'org-modern-mode)
+    (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))

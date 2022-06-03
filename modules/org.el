@@ -82,6 +82,8 @@
  	("DONE"  . org-done)
  	("CANCELLED"  . org-done)))
 
+(setq org-modern-todo-faces org-todo-keyword-faces)
+
 (setq org-log-done nil)             ;; Do not log CLOSED time when DONE
 (setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file

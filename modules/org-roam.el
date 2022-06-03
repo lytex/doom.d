@@ -3,9 +3,7 @@
     (interactive)
     (revert-buffer)
     (org-roam-buffer-toggle)
-    (org-bullets-mode)
     (org-roam-buffer-toggle)
-    (org-bullets-mode)
     (org-roam-buffer-toggle))
 
 
