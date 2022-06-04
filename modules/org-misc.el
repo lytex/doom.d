@@ -43,4 +43,21 @@
 (use-package! org-modern
     :config
     (add-hook 'org-mode-hook #'org-modern-mode)
-    (add-hook 'org-agenda-finalize-hook #'org-modern-agenda))
+    (add-hook 'org-agenda-finalize-hook #'org-modern-agenda)
+    (set-face-attribute 'org-modern-symbol nil :family "Fantasque Sans Mono" :height 100)
+    :custom
+    (org-modern-star ["✳" "◉" "○" "◈" "◇"])
+    (org-modern-timestamp nil)
+    (org-modern-table nil)
+    (org-modern-priority nil)
+    (org-modern-list nil)
+    (org-modern-checkbox nil)
+    (org-modern-todo nil)
+    (org-modern-tag nil)
+    (org-modern-block nil)
+    (org-modern-keyword nil)
+    (org-modern-internal-link nil)
+    (org-modern-radio-link nil)
+    (org-modern-statistics nil)
+    (org-modern-progress nil)
+    )

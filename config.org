@@ -40,6 +40,8 @@
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
 (setq doom-unicode-font (font-spec :name "Fantasque Sans Mono" :size 14))
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
+(set-face-attribute 'default nil :family "Fantasque Sans Mono" :height 120)
+(set-face-attribute 'variable-pitch nil :family "Fantasque Sans Mono" :height 120)
 
 (if (not HEADLESS)
 (beacon-mode 1)
