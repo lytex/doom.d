@@ -143,7 +143,7 @@
         ("k" "clock" entry (file "Inbox.org")
                 "* REFILE %?\n:PROPERTIES:\n:CREATED: [%<%Y-%m-%d %a %H:%M>]\n:END:"
                 :unnarrowed t :clock-in t :clock-keep t)
-        ;; Empty entry to be filed later
+        ;; Empty entry to be filled later
         ;; https://helpdeskheadesk.net/help-desk-head-desk/sub-menus-in-org/
         ("t" "templates")
         ("c" "cleanup" item (id "b6463bd3-3069-424c-94f5-23be3ce8e2cd") "[ ] Clean %a"

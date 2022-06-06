@@ -67,6 +67,17 @@
       :desc (documentation 'org-mark-ring-goto)  "m[" #'org-mark-ring-goto
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
 
+
+(add-to-list 'org-after-todo-state-change-hook (lambda ()
+        (org-set-tags (remove "idea" (remove "learn" (remove "process" (remove "read" (remove "research" (remove "track" (remove "try"
+                (remove "" (split-string (substring-no-properties (org-make-tag-string (org-get-tags nil t))) ":")) ))))))))
+ )
+(add-to-list 'org-after-tags-change-hook (lambda ()
+        (if (seq-intersection
+        (remove "" (split-string (substring-no-properties (org-make-tag-string (org-get-tags nil t))) ":"))
+        '("idea" "learn" "process" "read" "research" "track" "try"))
+        (org-todo "")))))
+
 (setq org-todo-keyword-faces
   '(("TODO"  . org-todo)
   ("MAYBE" . +org-todo-project)
