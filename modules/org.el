@@ -6,6 +6,8 @@
 (setq org-link-file-path-type 'absolute) ;; Absolute links with ~ when possible
 (setq org-display-remote-inline-images 'cache)
 
+(setq org-read-date-force-compatible-dates nil) ;; Get ready for Y2K38
+
 (setq org-cycle-open-archived-trees t)
 
 (defun lytex/org-mode-hook ()
