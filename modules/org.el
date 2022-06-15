@@ -100,6 +100,7 @@
 (setq org-log-done nil)             ;; Do not log CLOSED time when DONE
 (setq org-todo-repeat-to-state t)   ;; Do not repeat to TODO if previous state was not TODO
 (setq org-id-link-to-org-use-id t)  ;; Always use id instead of file
+(setq org-link-search-must-match-exact-headline nil) ;; file:notes.org::search performs a search inside notes.org instead of querying to create a heading
 (setq  org-startup-folded t)        ;; Start with folded view
 (setq org-ellipsis "↴")
 
