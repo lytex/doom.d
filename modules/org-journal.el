@@ -1,23 +1,26 @@
 ;; org-journal with three different journals
 
 (defun lytex/set-work-journal ()
+        (setq org-journal-file-type 'monthly)
         (setq org-journal-dir (concat org-directory "work_journal/"))
-        ;; Workaround to work with orgzly -> each file must have a unique name
-        (setq org-journal-file-format "%Y-%m-%dW.org")
+        (setq org-journal-file-format "%Y%mW.org")
         ;; All work journal files have the tag "work"
-        (setq org-journal-file-header "#+TITLE:%Y-%m-%dW\n#+FILETAGS: :work:")
+        (setq org-journal-file-header "#+TITLE:%Y%mW\n#+FILETAGS: :work:\n\n")
         (setq org-journal-date-format "%A, %d de %B de %Y :work:"))
 
 (defun lytex/set-personal-journal ()
+        (setq org-journal-file-type 'daily)
         (setq org-journal-dir (concat org-directory "journal/"))
         (setq org-journal-file-format "%Y-%m-%d.org")
-        (setq org-journal-file-header "#+TITLE: %Y-%m-%d")
+        (setq org-journal-file-header "#+TITLE: %Y-%m-%d\n\n")
         (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (defun lytex/set-introspection-journal ()
+        (setq org-journal-file-type 'daily)
+        ;; Workaround to work with orgzly -> each file must have a unique name
         (setq org-journal-file-format "%Y-%m-%dI.org")
         (setq org-journal-dir (concat org-directory "Introspección/"))
-        (setq org-journal-file-header "#+TITLE: %Y-%m-%dI")
+        (setq org-journal-file-header "#+TITLE: %Y-%m-%dI\n\n")
         (setq org-journal-date-format "%A, %d de %B de %Y"))
 
 (if WORK_ENV
