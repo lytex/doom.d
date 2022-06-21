@@ -39,7 +39,19 @@ now="$(date +'%Y%m%d%H%M%S')"
 echo "date,path" > "last_commit_$now.csv"
 find -iname '*.org' -exec git --no-pager log -1 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' > "last_commit_$now.csv"
 
-# find last commit for each file (sorted desc by date)
+# find last commit for each file (sorted asc by date)
 now="$(date +'%Y%m%d%H%M%S')"
 echo "date,path" > "last_commit_$now.csv"
-find -iname '*.org' -exec git --no-pager log -1 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' > "last_commit_$now.csv"
+find -iname '*.org' -exec git --no-pager log -1 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' | sort -n > "last_commit_$now.csv"
+
+
+# find 100th most recent commit for each file
+now="$(date +'%Y%m%d%H%M%S')"
+echo "date,path" > "last_commit_$now.csv"
+find -iname '*.org' -exec git --no-pager log -1 --skip=100 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' > "last_commit_$now.csv"
+
+# find 100th most recent commit for each file (sorted desc by date)
+now="$(date +'%Y%m%d%H%M%S')"
+echo "date,path" > "last_commit_$now.csv"
+find -iname '*.org' -exec git --no-pager log -1 --skip 100 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' | sort -n > "last_commit_$now.csv"
+
