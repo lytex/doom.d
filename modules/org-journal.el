@@ -3,7 +3,8 @@
 (defun lytex/set-work-journal ()
         (setq org-journal-file-type 'monthly)
         (setq org-journal-dir (concat org-directory "work_journal/"))
-        (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a %H:%M]")
+        (setq org-journal-after-entry-create-hook (lambda ()
+                (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
         (setq org-journal-file-format "%Y%mW.org")
         ;; All work journal files have the tag "work"
         (setq org-journal-file-header "#+TITLE:%Y%mW\n#+FILETAGS: :work:\n\n")
@@ -12,6 +13,8 @@
 (defun lytex/set-personal-journal ()
         (setq org-journal-file-type 'daily)
         (setq org-journal-dir (concat org-directory "journal/"))
+        (setq org-journal-after-entry-create-hook (lambda ()
+                (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
         (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a %H:%M]")
         (setq org-journal-file-format "%Y-%m-%d.org")
         (setq org-journal-file-header "#+TITLE: %Y-%m-%d\n\n")
@@ -22,7 +25,8 @@
         ;; Workaround to work with orgzly -> each file must have a unique name
         (setq org-journal-file-format "%Y-%m-%dI.org")
         (setq org-journal-dir (concat org-directory "Introspección/"))
-        (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a %H:%M]")
+        (setq org-journal-after-entry-create-hook (lambda ()
+                (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
         (setq org-journal-file-header "#+TITLE: %Y-%m-%dI\n\n")
         (setq org-journal-date-format "%A, %d de %B de %Y"))
 
@@ -39,8 +43,6 @@
 
   (setq org-extend-today-until 4)
 
-  (setq org-journal-after-entry-create-hook (lambda ()
-    (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
 
 (defun lytex/set-org-journal (option)
 (if (string= option "J")
