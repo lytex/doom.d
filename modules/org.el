@@ -129,6 +129,15 @@
     (t (:bold t :italic t)))
   "Annotation-2")
 
+;; Explanation of syntax
+;;
+;; (font-lock-add-keywords MODE KEYWORDS &optional HOW)
+;; KEYWORDS should be a list see the variable font-lock-keywords.
+;; 1 means first subexpression
+;; FACENAME can evaluate to a property list of
+;; the form (face FACE PROP1 VAL1 PROP2 VAL2 ...)  in which case all
+;; the listed text-properties will be set rather than just FACE
+
 (font-lock-add-keywords 'org-mode
   '(("\\W\\(«[^»]+»\\)\\W" 1 '(face annotation-1) prepend)) 'append)
 
