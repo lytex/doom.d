@@ -115,7 +115,7 @@
 ;; highlight words between ! ... !
 ;; https://dev.to/gonsie/highlighting-in-org-mode-291h
 (font-lock-add-keywords 'org-mode
-  '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight invisible nil) prepend)) 'append)
+  '(("\\W\\(![^\n\r\t]+!\\)\\W" 1 '(face highlight) prepend)) 'append)
 
 (defface annotation-1
   '((((class color) (min-colors 88) (background dark)) (:foreground "chocolate1"))
@@ -130,10 +130,10 @@
   "Annotation-2")
 
 (font-lock-add-keywords 'org-mode
-  '(("\\W\\(«[^»]+»\\)\\W" 1 '(face annotation-1 invisible nil) prepend)) 'append)
+  '(("\\W\\(«[^»]+»\\)\\W" 1 '(face annotation-1) prepend)) 'append)
 
 (font-lock-add-keywords 'org-mode
-  '(("\\W\\(“[^”]+”\\)\\W" 1 '(face annotation-2 invisible nil) prepend)) 'append)
+  '(("\\W\\(“[^”]+”\\)\\W" 1 '(face annotation-2) prepend)) 'append)
 
 ;; Add evil-surround with these new characters
 (use-package! evil-surround)
@@ -194,7 +194,7 @@
                 current_total (count-one)
                 denominator (+ denominator (cadr current_total))
                 numerator (+ numerator (car current_total))))
-          
+
         `(,numerator ,denominator))))
 
 (add-hook 'org-checkbox-statistics-hook (function aggregate-org-cookies))
