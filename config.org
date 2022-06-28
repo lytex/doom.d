@@ -497,41 +497,45 @@ q is for query
 All =pdf-annot-add-*-markup= keybindings are in the left hand.
 The idea is to use the left hand to select an annotation and use the mouse on the right hand to select where to place it
 #+begin_src emacs-lisp
-(load! "~/.doom.d/modules/pdf.el")
-(after! (pdf-tools)
-(map! :leader
-      :mode (pdf-view-mode)
-      :prefix ("a" . "annotations in pdf")
-      :desc (documentation 'pdf-annot-add-markup-annotation)
-      "a" #'lytex/pdf-annot-add-markup-annotation
-      :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)
-      "g" #'lytex/pdf-annot-add-squiggly-markup-annotation
-      :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
-      "f" #'lytex/pdf-annot-add-highlight-markup-annotation
-      :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
-      "s" #'lytex/pdf-annot-add-strikeout-markup-annotation
-      :desc (documentation 'pdf-annot-add-underline-markup-annotation)
-      "d" #'lytex/pdf-annot-add-underline-markup-annotation
-      :desc (documentation 'lytex/join-org-headline-previous)
-      "p" #'lytex/join-org-headline-previous
-      :desc (documentation 'lytex/join-org-headline-next)
-      "n" #'lytex/join-org-headline-next)
+(use-package! pdf-info)
+(if
+  (file-executable-p pdf-info-epdfinfo-program)
+(progn
+  (load! "~/.doom.d/modules/pdf.el")
+  (after! (pdf-tools)
+  (map! :leader
+        :mode (pdf-view-mode)
+        :prefix ("a" . "annotations in pdf")
+        :desc (documentation 'pdf-annot-add-markup-annotation)
+        "a" #'lytex/pdf-annot-add-markup-annotation
+        :desc (documentation 'pdf-annot-add-squiggly-markup-annotation)
+        "g" #'lytex/pdf-annot-add-squiggly-markup-annotation
+        :desc (documentation 'pdf-annot-add-highlight-markup-annotation)
+        "f" #'lytex/pdf-annot-add-highlight-markup-annotation
+        :desc (documentation 'pdf-annot-add-strikeout-markup-annotation)
+        "s" #'lytex/pdf-annot-add-strikeout-markup-annotation
+        :desc (documentation 'pdf-annot-add-underline-markup-annotation)
+        "d" #'lytex/pdf-annot-add-underline-markup-annotation
+        :desc (documentation 'lytex/join-org-headline-previous)
+        "p" #'lytex/join-org-headline-previous
+        :desc (documentation 'lytex/join-org-headline-next)
+        "n" #'lytex/join-org-headline-next)
 
 
-(map! :leader
-      :mode (pdf-view-mode)
-      :prefix "p"
-      :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
-      :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
+  (map! :leader
+        :mode (pdf-view-mode)
+        :prefix "p"
+        :desc (documentation 'pdf-history-backward)  "[" #'pdf-history-backward
+        :desc (documentation 'pdf-history-forward)  "]" #'pdf-history-forward))
 
-(after! org-noter
-      (map! :leader
-      :prefix ("on" . "org-noter")
-      :desc (documentation 'org-noter-sync-current-note) "s" #'org-noter-sync-current-note
-      :desc (documentation 'org-noter-sync-prev-note) "p" #'org-noter-sync-prev-note
-      :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
-      :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
-      :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))
+  (after! org-noter
+        (map! :leader
+        :prefix ("on" . "org-noter")
+        :desc (documentation 'org-noter-sync-current-note) "s" #'org-noter-sync-current-note
+        :desc (documentation 'org-noter-sync-prev-note) "p" #'org-noter-sync-prev-note
+        :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
+        :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
+        :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))))
 ;; blank
 #+end_src
 * misc
