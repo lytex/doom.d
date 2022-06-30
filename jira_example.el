@@ -59,3 +59,18 @@
         ))
 
 (use-package! org-jira)
+(use-package! async)
+
+(async-start
+ `(lambda nil ,(async-inject-variables "auth-sources")
+    (load "/home/julian/.emacs.d/early-init.el")
+    (load "/home/julian/.emacs.d/init.el")
+    (require 'org)
+    (require 'org-jira)
+    (add-to-list 'auth-sources "/home/julian/.authinfo")
+    (setq org-element-use-cache nil)
+    (call-interactively 'org-jira-get-issues)
+    (org-save-all-org-buffers))
+ (lambda
+   (&rest args)
+   (message "Jira issues saved")))
