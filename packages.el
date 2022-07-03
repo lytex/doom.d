@@ -36,8 +36,6 @@
                 (:host github :repo "blorbx/evil-quickscope"))))
 
 (if WORK_ENV
-  (package! excorporate))
-(if WORK_ENV
   (package! org-trello :recipe
         (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
 (if WORK_ENV
