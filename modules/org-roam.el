@@ -290,10 +290,15 @@
   "Refile a heading to a new file using org-roam-capture"
   (interactive)
   (org-roam-capture)
-  (setq new-file (org-roam-capture--get :file-path))
-  (save-buffer)
-  (delete-window)
-  (lytex/refile new-file ""))
+  (setq new-file (org-roam-capture--get :new-file))
+  (org-capture-finalize)
+  (org-backward-heading-same-level 1)
+  (ignore-errors
+        ;; The line below will create org-roam duplicates, ignore errors for now
+        (lytex/refile new-file "")
+        ;; Remove the previous headline inserted by org-roam
+        (org-backward-heading-same-level 1)
+        (delete-region (line-beginning-position) (line-end-position))))
 
 (defun lytex/org-link-and-refile-to-capture ()
   "Replace a heading with a link and refile to a new file using org-roam-capture"
@@ -301,5 +306,4 @@
   (call-interactively 'org-store-link)
   (org-insert-heading)
   (org-insert-link)
-  (org-previous-visible-heading 1)
   (lytex/org-refile-to-capture))
