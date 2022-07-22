@@ -48,13 +48,6 @@
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
 
-;; Get all headlines that have :template:
-(setq org-templates (org-ql-query :select
-              '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
-          :from
-          (org-agenda-files)
-          :where
-          '(ltags "template")))
 
 (defun lytex/org-get-subtree-contents ()
 "Get the content text of the subtree at point"
@@ -67,13 +60,6 @@
         (substring-no-properties
          (org-get-entry))))
 
-(defvar id nil) 
-
-(let (_)
-  (defvar x)      ; Let-bindings of x will be dynamic within this let.
-  (let ((x -99))  ; This is a dynamic binding of x.
-    (defun get-dynamic-x ()
-      x)))
 
 (defun lytex/get-template-by-id (id)
 (eval `(defun ,(make-symbol id) ()
@@ -96,16 +82,14 @@
             (lytex/org-get-subtree-contents))))))))))
 
 
-(setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
-(setq iterating-list (substring keyboard-list 0 (length org-templates)))
+(load! "~/.doom.d/modules/org-ql-templates.el")
 
-(appendq! org-capture-templates (mapcar* #'(lambda (key template)
-  (setq id  (cdr template))
-`(,(concat "t" (make-string 1 key)) ,(car template) plain
-  (file "Inbox.org")
-  (function ,(lytex/get-template-by-id id))
-   :unnarrowed t))
-      iterating-list org-templates))
+;; (lytex/set-org-templates (read-from-file "/home/julian/data.el"))
+
+;; (use-package! async)
+;; (async-start
+;;  (print-to-file "/home/julian/data.el"
+;;                 (lytex/get-org-templates)) nil)
 
 
 (defun lytex/insert-query-links (query)
@@ -145,4 +129,3 @@
           (org-agenda-files)
           :where
           query))
-

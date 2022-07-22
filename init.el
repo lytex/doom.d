@@ -15,6 +15,8 @@
 ;;      directory (for easy access to its source code).
 
 ;; evil mode config
+
+(setq unicode-fonts--instructions nil)
 (use-package-hook! evil
   :pre-init
   (setq evil-cross-lines t)
@@ -93,7 +95,7 @@
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;;rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
+       ;; snippets         ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
 
        :emacs
@@ -380,3 +382,11 @@
        ;;literate
        (default +bindings +smartparens))
 )
+
+(when doom-debug-p
+  (require 'benchmark-init)
+  (add-hook 'doom-first-input-hook #'benchmark-init/deactivate))
+
+(setq unicode-fonts--instructions nil)
+
+(setq unicode-fonts--instructions nil)

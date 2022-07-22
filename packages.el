@@ -10,6 +10,8 @@
 (package! org-remark :recipe
         (:host github :repo "nobiot/org-remark"))
 
+;; (package! org-auto-tangle)
+
 (if (not HEADLESS)
     (progn
         (package! org-roam-ui)
@@ -64,6 +66,10 @@
                 (:host github :repo "lytex/org-graph-edna"))
         (package! habitica)
 
+        ;; (package! emacs-async :recipe
+        ;;         (:host github :repo "jwiegley/emacs-async"
+        ;;          :files ("async.el")))
+
         ))
 ;; (package! calfw :recipe
 ;;         (:host github :repo "kiwanami/emacs-calfw"))
@@ -75,3 +81,5 @@
 ;;         (:host github :repo "Fuco1/org-timeline"))
 
 ;; (package! org-vcard)
+
+(package! benchmark-init)
