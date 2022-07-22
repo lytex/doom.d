@@ -96,7 +96,7 @@
 (add-to-list 'org-after-tags-change-hook (lambda ()
         (if (seq-intersection
         (remove "" (split-string (substring-no-properties (org-make-tag-string (org-get-tags nil t))) ":"))
-        '("idea" "learn" "process" "read" "research" "track" "try"))
+        '("idea" "learn" "process" "read" "research" "try"))
         (org-todo "")))))
 
 (setq org-todo-keyword-faces
