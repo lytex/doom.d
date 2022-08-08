@@ -1,4 +1,5 @@
 (setq display-line-numbers-type 'relative)
+(setq evil-kill-on-visual-paste nil)
 
 
 (if (not HEADLESS)
