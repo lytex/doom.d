@@ -36,7 +36,7 @@
 
 (use-package! ob-plantuml
   :config
-  (setq org-plantuml-jar-path "/usr/share/plantuml/plantuml.jar"))
+  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
 
 ;; org-bullets has to be loaded AFTER org-roam
 ;; otherwise it breaks org-roam
