@@ -4,7 +4,7 @@
 # emacsclient -c opens a client even if none is running
 [Desktop Entry]
 Name=Org-Protocol
-Exec= quick_emacs_capture.sh %u
+Exec=emacsclient -a "" -c "%u"
 Icon=emacs-icon
 Type=Application
 Terminal=false
