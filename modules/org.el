@@ -35,7 +35,7 @@
 (setq org-agenda-files
   '("~/org"  "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
 (setq org-agenda-files
-  '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects")))
+  '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/Introspección")))
 
 (setq org-agenda-dim-blocked-tasks nil) ;; Do not grey out items that hava a children with a TODO state
 
