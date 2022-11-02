@@ -653,6 +653,13 @@ The idea is to use the left hand to select an annotation and use the mouse on th
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
 #+end_src
+** Activate org-rainbow-tags
+#+BEGIN_SRC emacs-lisp
+;; This needs to be called at the end, otherwise I get this error:
+;; Error (org-mode-hook): Error running hook "org-rainbow-tags-mode" because: (wrong-number-of-arguments #<subr min> 0)
+;; File mode specification error: (doom-hook-error org-mode-hook org-rainbow-tags-mode (wrong-number-of-arguments #<subr min> 0))
+(add-hook 'org-mode-hook 'org-rainbow-tags-mode)
+#+END_SRC
 * Local Variables
 Replace all ocurrences of ";; blank" with blank space
 There is no way to control blank space AFAIK:

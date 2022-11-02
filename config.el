@@ -292,3 +292,7 @@
   (let ((face (or (get-char-property (point) 'read-face-name)
                   (get-char-property (point) 'face))))
     (if face (message "Face: %s" face) (message "No face at %d" pos))))
+;; This needs to be called at the end, otherwise I get this error:
+;; Error (org-mode-hook): Error running hook "org-rainbow-tags-mode" because: (wrong-number-of-arguments #<subr min> 0)
+;; File mode specification error: (doom-hook-error org-mode-hook org-rainbow-tags-mode (wrong-number-of-arguments #<subr min> 0))
+(add-hook 'org-mode-hook 'org-rainbow-tags-mode)
