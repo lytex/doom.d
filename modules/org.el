@@ -24,6 +24,9 @@
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'lytex/org-mode-hook)
 
+(use-package! org-rainbow-tags
+  :hook (org-mode . org-rainbow-tags-mode))
+
 (defun lytex/fix-bad-fonts ()
   (interactive)
   (setq org-bullets-bullet-list '("◉" "✸" "✿"))

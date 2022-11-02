@@ -15,6 +15,8 @@
         (package! org-roam-ui)
         (package! org-wild-notifier)
         (package! org-superstar :disable t)
+        (package! org-rainbow-tags :recipe
+                (:host github :repo "KaratasFurkan/org-rainbow-tags"))
         (package! org-modern)
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
