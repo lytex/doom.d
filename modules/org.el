@@ -290,6 +290,12 @@
 (setq org-babel-noweb-wrap-start "{{ ")
 (setq org-babel-noweb-wrap-end " }}")
 
+(use-package! ob-docker-build
+  :config
+  (add-to-list 'org-babel-load-languages '(docker-build . t))
+  (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
+)
+
 ;; Evaluate arbitrary local variables, prompting before executing
 (setq enable-local-variables t)
 

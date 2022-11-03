@@ -47,6 +47,9 @@
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
 
+(package! ob-docker-build :recipe
+  (:host github :repo "ifitzpat/ob-docker-build"))
+
 (if (not HEADLESS) (progn
 
         (package! activity-watch-mode :recipe
