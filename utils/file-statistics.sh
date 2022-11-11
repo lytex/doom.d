@@ -55,3 +55,5 @@ now="$(date +'%Y%m%d%H%M%S')"
 echo "date,path" > "last_commit_$now.csv"
 find -iname '*.org' -exec git --no-pager log -1 --skip 100 --date=iso8601 --pretty='%aI,{}' -- '{}' \; | sed 's#./##' | sort -n > "last_commit_$now.csv"
 
+# find number of unique ids
+rg -I ":ID:" | wc -l
