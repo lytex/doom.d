@@ -237,11 +237,11 @@
 
 ;; (load! "~/.doom.d/modules/excorporate.el")
 
-(if WORK_ENV
-  (use-package! org-trello))
+;; (if WORK_ENV
+;;   (use-package! org-trello))
 
-(if WORK_ENV
-  (load! "~/.doom.d/jira.el"))
+;; (if WORK_ENV
+;;   (load! "~/.doom.d/jira.el"))
 
 (use-package! emojify)
 
