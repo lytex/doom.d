@@ -61,3 +61,8 @@
     (org-modern-statistics nil)
     (org-modern-progress nil)
     )
+
+
+(use-package! ox-reveal
+        :custom
+        (org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))

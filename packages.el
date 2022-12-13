@@ -20,6 +20,8 @@
         (package! org-modern)
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
+        (package! org-reveal :recipe
+                (:host github :repo "yjwen/org-reveal"))
         (package! origami :recipe
                 (:host github :repo "gregsexton/origami.el"))
         (package! org-sticky-header :recipe
