@@ -1,3 +1,36 @@
+ (defun org-metaup-universal ()
+
+   (interactive)
+   (condition-case nil
+        (org-metaup)
+        (user-error
+                (save-excursion (forward-line 1) (transpose-lines -1)) (forward-line -1))))
+
+ (defun org-metadown-universal ()
+   (interactive)
+   (condition-case nil
+        (org-metadown)
+        (user-error
+                (save-excursion (forward-line 1) (transpose-lines 1)) (forward-line 1))))
+
+
+(map!
+        :after org
+        :map org-mode-map
+        "M-j"      #'org-metadown-universal
+        "M-k"      #'org-metadown-universal)
+
+
+(map!
+        :after evil-org
+        :map evil-org-mode-map
+        "M-j"      #'org-metadown-universal
+        "M-k"      #'org-metadown-universal)
+
+
+(evil-define-key '(normal visual insert) 'evil-org-mode
+        (kbd "M-j") #'org-metadown-universal
+        (kbd "M-k") #'org-metaup-universal)
 
 (use-package! org)
 
@@ -73,23 +106,25 @@
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
 
 
-(if (not WORK_ENV)
-  (progn
-        (defun fix+org/insert-item-below ()
-                (interactive)
-                (+org/insert-item-above 1)
-                (org-metadown 1))
+;; (if (not WORK_ENV)
+;;   (progn
+;;         (defun fix+org/insert-item-below ()
+;;                 (interactive)
+;;                 (+org/insert-item-above 1)
+;;                 (org-metadown 1))
 
-        (map!
-                :after evil-org
-                :map evil-org-mode-map
-                :ni [C-return]   #'fix+org/insert-item-below)
+;;         (map!
+;;                 :after evil-org
+;;                 :map evil-org-mode-map
+;;                 :ni [C-return]   #'fix+org/insert-item-below)
 
-        (map!
-                :after org
-                :map org-mode-map
-                "C-RET"      #'fix+org/insert-item-below
-                [C-return]   #'fix+org/insert-item-below)))
+;;         (map!
+;;                 :after org
+;;                 :map org-mode-map
+;;                 "C-RET"      #'fix+org/insert-item-below
+;;                 [C-return]   #'fix+org/insert-item-below))
+;;   )
+
 
 
 (add-to-list 'org-after-todo-state-change-hook (lambda ()
@@ -171,7 +206,12 @@
 (add-hook 'org-mode-hook (lambda ()
 (let
     ((pairs
-      '((?« "« " . " »")
+      '((?~ "~" . "~")
+        (?* "*" . "*")
+        (?/ "/" . "/")
+        (?+ "+" . "+")
+        (?= "=" . "=")
+        (?« "« " . " »")
         (?» "«" . "»")
         (?“ "“ " . " ”")
         (?” "“" . "”"))))

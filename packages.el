@@ -37,7 +37,9 @@
         (package! fzf :recipe)
         (package! beacon)
         (package! evil-quickscope :recipe
-                (:host github :repo "blorbx/evil-quickscope"))))
+                (:host github :repo "blorbx/evil-quickscope"))
+        (package! targets :recipe
+                (:host github :repo "noctuid/targets.el"))))
 
 (if WORK_ENV
   (package! org-trello :recipe
