@@ -15,11 +15,9 @@
 ;;      directory (for easy access to its source code).
 
 ;; evil mode config
-(use-package-hook! evil
-  :pre-init
-  (setq evil-cross-lines t)
-  (setq evil-move-cursor-back nil)
-  (setq evil-want-fine-undo t))
+(setq evil-cross-lines t)
+(setq evil-move-cursor-back nil)
+(setq evil-want-fine-undo t)
 
 (load! "~/.doom.d/headless.el")
 
