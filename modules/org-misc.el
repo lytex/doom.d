@@ -67,3 +67,9 @@
 (use-package! ox-reveal
         :custom
         (org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+
+(use-package! org-download
+  :config
+  (add-hook 'org-mode-hook #'org-download-enable)
+  (setq-default org-download-image-dir "~/org/roam")
+  )

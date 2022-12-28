@@ -34,6 +34,8 @@
         (package! org-noter-pdftools :recipe
                 (:host github :repo "fuxialexander/org-pdftools"))
         (package! org-web-tools)
+        (package! org-download :recipe
+                (:host github :repo "abo-abo/org-download"))
         (package! fzf :recipe)
         (package! beacon)
         (package! evil-quickscope :recipe
