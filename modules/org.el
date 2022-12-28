@@ -314,10 +314,13 @@
 (defun kdm/html2org-clipboard ()
   "Convert clipboard contents from HTML to Org and then paste (yank)."
   (interactive)
+(if (shell-command "[ -z \"$(timeout 0.05 xclip -loop 0 -selection clipboard -o -t image/png)\" ]")
+    (org-download-clipboard)
+  (progn
   (kill-new (shell-command-to-string
   ;; Default to regular xclip if the clipboard doesn't contain html
     "echo $(xclip -loop 0 -selection clipboard -o -t text/html) 2>/dev/null | pandoc -f html -t json | pandoc -f json -t org --wrap=none"))
-    (yank))
+    (yank))))
 
 ;; This one is for the beginning char
 (setcar org-emphasis-regexp-components " \t('\" {")
