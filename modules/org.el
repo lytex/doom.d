@@ -314,7 +314,7 @@
 (defun kdm/html2org-clipboard ()
   "Convert clipboard contents from HTML to Org and then paste (yank)."
   (interactive)
-(if (shell-command "[ -z \"$(timeout 0.05 xclip -loop 0 -selection clipboard -o -t image/png)\" ]")
+(if (eq (shell-command "[ -z \"$(timeout 0.05 xclip -loop 0 -selection clipboard -o -t image/png)\" ]") 1)
     (org-download-clipboard)
   (progn
   (kill-new (shell-command-to-string
