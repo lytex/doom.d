@@ -43,12 +43,12 @@
         (package! targets :recipe
                 (:host github :repo "noctuid/targets.el"))))
 
-(if WORK_ENV
-  (package! org-trello :recipe
-        (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
-(if WORK_ENV
-  (package! org-jira :recipe
-        (:host github :repo "ahungry/org-jira")))
+;; (if WORK_ENV
+;;   (package! org-trello :recipe
+;;         (:host github :repo "org-trello/org-trello" :build (:not native-compile))))
+;; (if WORK_ENV
+;;   (package! org-jira :recipe
+;;         (:host github :repo "ahungry/org-jira")))
 
 (package! org-caldav :recipe
         (:host github :repo "dengste/org-caldav"))
