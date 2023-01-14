@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Julian Lopez Carballal
+# name: transclude
+# key: tra
+# --
+
+#+transclude: $1 :level $2
