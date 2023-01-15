@@ -20,6 +20,7 @@
         (package! org-modern)
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
+        (package! helm-ag)
         (package! org-reveal :recipe
                 (:host github :repo "yjwen/org-reveal"))
         (package! origami :recipe

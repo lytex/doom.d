@@ -174,10 +174,16 @@
 
 
 (use-package! helm-rg)
+(use-package! helm-ag
+  :custom
+ (helm-ag-base-command "rg --no-heading")
+ (helm-ag-success-exit-status '(0 2)))
 (setq helm-rg-default-directory org-directory)
+(setq helm-ag--default-directory org-directory)
 (map! :after helm
       :leader
-      :desc (documentation 'helm-rg) "nrg" #'helm-rg)
+      :desc (documentation 'helm-rg) "nrg" #'helm-rg
+      :desc (documentation 'helm-ag) "nrh" #'helm-ag)
 (use-package! pdf-info)
 (if
   (file-executable-p pdf-info-epdfinfo-program)
