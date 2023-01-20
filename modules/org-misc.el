@@ -22,6 +22,8 @@
 (after! org-wild-notifier
   (org-wild-notifier-mode))
 (setq alert-user-configuration '((nil libnotify ((:persistent . t)))))
+(setq org-wild-notifier-alert-time '(10))
+(setq org-wild-notifier-keyword-whitelist nil)
 
 (if WORK_ENV
     (setq org-wild-notifier-tags-blacklist '("mantenimiento" "tareas" "relaciones")))
