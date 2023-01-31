@@ -10,6 +10,8 @@
 (setq org-clock-out-when-done t)
 ;; Include current clocking task in clock reports
 (setq org-clock-report-include-clocking-task t)
+;; Do not load all org-agenda-files when clocking in
+(setq org-clock-auto-clock-resolution nil)
 
 
 (setq bh/keep-clock-running nil)
