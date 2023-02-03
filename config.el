@@ -85,8 +85,8 @@
       :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
       :desc (documentation 'org-remark-mark) "m" #'org-remark-mark
-      :desc (documentation 'org-remark-view-prev) "," #'org-remark-view-prev
-      :desc (documentation 'org-remark-view-next) "." #'org-remark-view-next
+      :desc (documentation 'org-remark-view-prev) "," #'(lambda () (interactive) (org-remark-view-prev) (evil-scroll-line-to-center (line-number-at-pos)))
+      :desc (documentation 'org-remark-view-next) "." #'(lambda () (interactive) (org-remark-view-next) (evil-scroll-line-to-center (line-number-at-pos)))
       :desc (documentation 'org-remark-remove) "/" #'org-remark-remove
       :desc (documentation 'org-remark-open) ";" #'org-remark-open)
 

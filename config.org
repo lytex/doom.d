@@ -184,11 +184,11 @@ Open org roam sidebar
 #+end_src
 **** ,
 #+begin_src emacs-lisp
-      :desc (documentation 'org-remark-view-prev) "," #'org-remark-view-prev
+      :desc (documentation 'org-remark-view-prev) "," #'(lambda () (interactive) (org-remark-view-prev) (evil-scroll-line-to-center (line-number-at-pos)))
 #+end_src
 **** .
 #+begin_src emacs-lisp
-      :desc (documentation 'org-remark-view-next) "." #'org-remark-view-next
+      :desc (documentation 'org-remark-view-next) "." #'(lambda () (interactive) (org-remark-view-next) (evil-scroll-line-to-center (line-number-at-pos)))
 #+end_src
 **** /
 #+begin_src emacs-lisp
