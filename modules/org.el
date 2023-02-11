@@ -13,6 +13,30 @@
         (user-error
                 (save-excursion (forward-line 1) (transpose-lines 1)) (forward-line 1))))
 
+;; From https://stackoverflow.com/questions/61621608/how-to-open-multiple-urls-at-the-same-time-in-an-emacs-buffer
+
+(defun lytex/get-link (x)
+  "Assuming x is a LINK node in an Org mode parse tree,
+   return a list consisting of its type (e.g. \"http\")
+   and its path."
+  (let* ((link (cadr x))
+         (type (plist-get link :type))
+         (path (plist-get link :path)))
+   (if (or (string= type "http") (string= type "https"))
+     (list type path))))
+
+(defun lytex/format-url (x)
+  "Take a (TYPE PATH) list and return a proper URL. Note
+   the following works for http- and https-type links, but
+   might need modification for other types."
+  (format "%s:%s" (nth 0 x) (nth 1 x)))
+
+(defun lytex/visit-all-http-links ()
+  (interactive)
+  (let* ((parse-tree (org-element-parse-buffer))
+         (links (org-element-map parse-tree 'link #'lytex/get-link)))
+    (mapcar #'browse-url (mapcar #'lytex/format-url links))))
+
 
 (map!
         :after org
