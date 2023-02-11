@@ -57,7 +57,8 @@
     (setq tab-width 2))
 (add-hook 'org-mode-hook 'lytex/org-mode-hook)
 
-(use-package! org-rainbow-tags)
+(if (not HEADLESS)
+        (use-package! org-rainbow-tags))
 ;; (add-hook 'org-mode-hook 'org-rainbow-tags-mode)
 
 (defun lytex/fix-bad-fonts ()
