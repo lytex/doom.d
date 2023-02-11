@@ -4,23 +4,23 @@
 
 (if (not HEADLESS)
 (progn
-(use-package! evil-quickscope)
-;; TODO Activate only when NOT in evil-insert-state
-;; Alternatively, enable only on evil-normal-state or evil-visual-state
-(global-evil-quickscope-always-mode 1)
-))
+        (use-package! evil-quickscope)
+        ;; TODO Activate only when NOT in evil-insert-state
+        ;; Alternatively, enable only on evil-normal-state or evil-visual-state
+        (global-evil-quickscope-always-mode 1)
 
-(use-package! targets
-  :init
-  (setq targets-user-text-objects '((pipe "|" nil separator)
-                                    (paren "(" ")" pair :more-keys "b")
-                                    (bracket "[" "]" pair :more-keys "r")
-                                    (curly "{" "}" pair :more-keys "c")))
-  :config
-  (targets-setup t
-                 :inside-key nil
-                 :around-key nil
-                 :remote-key nil))
+        (use-package! targets
+        :init
+        (setq targets-user-text-objects '((pipe "|" nil separator)
+                                        (paren "(" ")" pair :more-keys "b")
+                                        (bracket "[" "]" pair :more-keys "r")
+                                        (curly "{" "}" pair :more-keys "c")))
+        :config
+        (targets-setup t
+                        :inside-key nil
+                        :around-key nil
+                        :remote-key nil))
+))
 
 ;; On large org files, the text flickers on evil-insert-state
 ;; Either narrow to subtree or disable quickscope to avoid it
