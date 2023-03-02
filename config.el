@@ -45,6 +45,9 @@
       :desc (documentation 'bh/punch-in) "mcpi" #'bh/punch-in
       :desc (documentation 'bh/punch-out) "mcpo" #'bh/punch-out
       :desc (documentation 'org-timer-set-timer) "mcpp" #'org-timer-set-timer
+      :desc (documentation 'org-timer-start) "mcpr" #'org-timer-start
+      :desc (documentation 'org-timer-pause-or-continue) "mcps" #'org-timer-pause-or-continue
+      :desc (documentation 'org-timer-stop) "mcpk" #'org-timer-stop
       )
 
 (map! :map evil-org-mode-map
