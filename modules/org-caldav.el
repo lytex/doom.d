@@ -4,6 +4,23 @@
       org-icalendar-use-scheduled '(event-if-todo event-if-not-todo todo-start)
       org-icalendar-with-timestamps nil)
 (setq org-icalendar-alarm-time 5) ;; Alert 5 min before
+(setq org-caldav-todo-percent-states
+      '(
+       (0 "TODO")
+       (50 "ONGOING")
+       (0 "NEXT")
+       (25 "BLOCK")
+       (0 "SOMEDAY")
+       (0 "MAYBE")
+       (0 "DEFINED")
+       (25 "HOLD")
+       (0 "REFILE")
+       (0 "TICKLER")
+       (75 "VERIFY")
+       (100 "DONE")
+       (100 "CANCELLED")
+       ))
+
 (use-package! org-caldav)
 (setq org-caldav-sync-direction 'org->cal)
 
