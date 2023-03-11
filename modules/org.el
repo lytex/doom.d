@@ -13,8 +13,11 @@
         (user-error
                 (save-excursion (forward-line 1) (transpose-lines 1)) (forward-line 1))))
 
-;; From https://stackoverflow.com/questions/61621608/how-to-open-multiple-urls-at-the-same-time-in-an-emacs-buffer
+(advice-add #'+org/insert-item-above :after #'(lambda (count) (org-id-get-create)))
+(advice-add #'+org/insert-item-below :after #'(lambda (count) (org-id-get-create)))
+(advice-add #'org-insert-subheading :after  #'(lambda (count) (org-id-get-create)))
 
+;; From https://stackoverflow.com/questions/61621608/how-to-open-multiple-urls-at-the-same-time-in-an-emacs-buffer
 (defun lytex/get-link (x)
   "Assuming x is a LINK node in an Org mode parse tree,
    return a list consisting of its type (e.g. \"http\")
