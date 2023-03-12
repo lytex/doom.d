@@ -22,12 +22,16 @@
 (set-face-attribute 'variable-pitch nil :family "Fantasque Sans Mono" :height 120)
 
 (if (not HEADLESS)
-(beacon-mode 1)
-(setq beacon-color "dark orange")
+(progn
+        (beacon-mode 1)
+        (setq beacon-color "dark orange")
+        (load! "~/.doom.d/modules/LectureNotes.el")))
 
-(load! "~/.doom.d/modules/LectureNotes.el"))
 
-(setq doom-theme 'doom-one)
+(if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes | grep current | grep light || true") "")
+        (setq doom-theme 'doom-one)
+        (setq doom-theme 'doom-one-light)
+        )
 
 
 
