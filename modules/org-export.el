@@ -76,6 +76,14 @@
 ;;       (t nil)))
 ;;     (t nil)))
 
+(setq org-publish-project-alist
+  '(("org"
+     :base-directory "~/org/"
+     :recursive t
+     :publishing-function org-html-publish-to-html
+     :publishing-directory "~/org"
+     )))
+
 (setq org-html-postamble-format
       '(("en" "<p class=\"author\">Author: %a (%e)</p>
 <p class=\"date\">Date: 123 %d</p>
