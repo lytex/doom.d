@@ -44,13 +44,16 @@
 (set-face-attribute 'variable-pitch nil :family "Fantasque Sans Mono" :height 120)
 
 (if (not HEADLESS)
-(beacon-mode 1)
-(setq beacon-color "dark orange")
-
-(load! "~/.doom.d/modules/LectureNotes.el"))
-
-(setq doom-theme 'doom-one)
-
+(progn
+        (beacon-mode 1)
+        (setq beacon-color "dark orange")
+        (load! "~/.doom.d/modules/LectureNotes.el")))
+;; blank
+(if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes | grep current | grep light || true") "")
+        (setq doom-theme 'doom-one)
+        (setq doom-theme 'doom-one-light)
+        )
+;; blank
 ;; blank
 #+end_src
 * Doom config
@@ -647,6 +650,16 @@ The idea is to use the left hand to select an annotation and use the mouse on th
   (advice-remove symbol advice))
 
 ;; blank
+#+end_src
+** Remove overlays
+:PROPERTIES:
+:ID:       24df105e-abcf-4ee3-b195-b48d1578a0c1
+:END:
+#+begin_src elisp
+(defun lytex/remove-all-overlays ()
+  "Remove all overlays in the current buffer."
+  (interactive)
+  (remove-overlays (point-min) (point-max)))
 #+end_src
 ** Get face at point
 :PROPERTIES:

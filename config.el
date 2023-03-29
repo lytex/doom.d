@@ -27,7 +27,6 @@
         (setq beacon-color "dark orange")
         (load! "~/.doom.d/modules/LectureNotes.el")))
 
-
 (if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes | grep current | grep light || true") "")
         (setq doom-theme 'doom-one)
         (setq doom-theme 'doom-one-light)
@@ -300,6 +299,10 @@
   (advice-remove symbol advice))
 
 
+(defun lytex/remove-all-overlays ()
+  "Remove all overlays in the current buffer."
+  (interactive)
+  (remove-overlays (point-min) (point-max)))
 ;; Disable hl-mode or all faces will be the same!
 (defun what-face (pos)
   (interactive "d")
