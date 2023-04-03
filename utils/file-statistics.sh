@@ -2,6 +2,8 @@
 
 # Number of total org files
 find . -iname "*.org" | wc -l
+# Number of total org files (sorted desc by lines)
+find . -iname "*.org" | wc -l | sort -nr
 
 # Create a csv file with information about each file
 now="$(date +'%Y-%m-%d %H:%M:%S')"
