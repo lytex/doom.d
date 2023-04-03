@@ -4,7 +4,7 @@
   :config
   (add-hook 'pdf-view-mode-hook 'pdf-view-restore-mode))
 
-(setq pdf-view-restore-filename "~/.emacs.d/.pdf-view-restore")
+(setq pdf-view-restore-filename "~/.config/emacs/.pdf-view-restore")
 
 (use-package! org-pdftools
   :hook ((org-load . org-pdftools-setup-link))

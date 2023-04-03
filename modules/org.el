@@ -61,7 +61,7 @@
 
 (use-package! org)
 
-(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+(setq org-id-locations-file "~/.config/emacs/.org-id-locations")
 (setq org-directory "~/org/")
 (setq org-link-file-path-type 'absolute) ;; Absolute links with ~ when possible
 (setq org-display-remote-inline-images 'cache)

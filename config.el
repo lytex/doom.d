@@ -38,7 +38,7 @@
 
 (load! "~/.doom.d/modules/org.el")
 
-(setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+(setq org-id-locations-file "~/.config/emacs/.org-id-locations")
 
 (load! "~/.doom.d/modules/org-clock.el")
 
