@@ -166,6 +166,7 @@
       :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
       :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
       :desc (documentation 'org-ql-search)  "q" #'org-ql-search
+      :desc (documentation 'org-hyperscheduler-open)  "h" #'org-hyperscheduler-open
       :desc (documentation 'lytex/reload-org-ql)  "r" #'lytex/reload-org-ql)
 
 (map! :after org-ql

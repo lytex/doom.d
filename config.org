@@ -458,6 +458,13 @@ q is for query
 #+begin_src emacs-lisp
       :desc (documentation 'org-ql-search)  "q" #'org-ql-search
 #+end_src
+**** h
+:PROPERTIES:
+:ID:       417db2c0-927c-4bca-b623-cfa404b87b04
+:END:
+#+begin_src emacs-lisp
+      :desc (documentation 'org-hyperscheduler-open)  "h" #'org-hyperscheduler-open
+#+end_src
 **** r
 :PROPERTIES:
 :ID:       2b2bef69-1796-46f8-8760-193214819b08
@@ -482,7 +489,7 @@ q is for query
       :desc (documentation 'lytex/org-jira-assigned) "e" #'lytex/org-jira-assigned
 )
 #+end_src
-* helm-rg
+* helm-rg/helm-ag
 :PROPERTIES:
 :ID:       f2074ffa-8907-42f4-9205-7d52ebc31d19
 :END:
@@ -495,7 +502,7 @@ q is for query
  (helm-ag-base-command "rg --no-heading")
  (helm-ag-success-exit-status '(0 2)))
 #+end_src
-** SPC nrg
+** SPC nrg / nrh
 :PROPERTIES:
 :ID:       3045fcd3-6951-4f27-959d-f8c63cfc2b0c
 :END:
