@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# contributor: Julian Lopez Carballal
+# name: name (org-babel)
+# key: na
+# --
+#+name: `%`$0
