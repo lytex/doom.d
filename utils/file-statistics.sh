@@ -69,10 +69,14 @@ def quantile(q):
     quantile.__name__ = f'q{q}'
     return quantile
 df = pd.read_csv('all_commits_$now.csv', sep='|')
+df = df[~(df['path'].str.contains('zz-ice-cube/') | df['path'].str.contains('snowflake/'))]
 df['date'] = (pd.Timestamp.utcnow() - pd.to_datetime(df['date'], utc=True)).dt.total_seconds()
-df.transform({'date': lambda x: np.log10(x/3600), 'path': lambda x: x}).groupby('path')\
-.agg([quantile(n) for n in np.logspace(-5, 0, 6)]).style.background_gradient(cmap='coolwarm_r')\
-.to_excel("coolwarm_$now.xlsx", engine="openpyxl")
+df = df.transform({'date': lambda x: np.log10(x/3600), 'path': lambda x: x}).groupby('path') \
+.agg([quantile(n) for n in np.logspace(-5, 0, 6)])
+df['mean_date'] = df['date'].apply(np.mean, axis=1)
+df['std_date'] = df['date'].apply(np.std, axis=1)
+df.columns = [first if first != '' else second for first, second in zip(df.columns.get_level_values(1), df.columns.get_level_values(0))]
+df.style.background_gradient(cmap='coolwarm_r').to_excel("coolwarm_$now.xlsx", engine="openpyxl")
 EOF
 
 # find number of unique ids
