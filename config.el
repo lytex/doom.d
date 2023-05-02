@@ -278,7 +278,14 @@
       :after org-ql
       :leader
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
-))
+)
+(progn
+  ;; Packages I want to have in headless mode too
+(use-package! ob-plantuml
+  :config
+  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+  )
+)
 ;; From https://emacs.stackexchange.com/a/33344:
 (defun yf/advice-list (symbol)
   (let (result)

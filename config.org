@@ -625,10 +625,18 @@ The idea is to use the left hand to select an annotation and use the mouse on th
       :after org-ql
       :leader
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
+)
 #+end_src
-
 #+begin_src emacs-lisp
-))
+(progn
+  ;; Packages I want to have in headless mode too
+(use-package! ob-plantuml
+  :config
+  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar"))
+  )
+#+end_src
+#+begin_src emacs-lisp
+)
 #+end_src
 * Convenience functions
 ** Remove advice from functions
