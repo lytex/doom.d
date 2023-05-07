@@ -261,6 +261,13 @@ Open org roam sidebar
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-refile-to-capture) "c" #'lytex/org-refile-to-capture
 #+end_src
+**** o
+:PROPERTIES:
+:ID:       2e2ce0da-cebc-42fb-9ab9-cbf6a56cac10
+:END:
+#+begin_src emacs-lisp
+      :desc (documentation 'lytex/org-refile-transclude-own) "o" #'lytex/org-refile-transclude-own
+#+end_src
 **** b
 :PROPERTIES:
 :ID:       b9ab6261-ec50-46fe-b4f1-adef65df33b4

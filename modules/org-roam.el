@@ -279,6 +279,24 @@
       (org-insert-link))
   (call-interactively 'org-refile))
 
+(defun lytex/org-refile-transclude-own ()
+  "Replace a heading with a link and refile it"
+  (interactive)
+  (call-interactively 'org-store-link)
+  (save-excursion
+      (setq old-org-heading (substring-no-properties (org-get-heading)))
+      (org-insert-heading)
+      (insert old-org-heading)
+      (insert "\n#+transclude: ")
+      (org-insert-link)
+      (insert " :level " (number-to-string (car (org-heading-components))))
+      )
+  (let
+    ((org-refile-targets '((buffer-file-name . (:maxlevel . 9)))))
+    (call-interactively 'org-refile)
+  )
+  )
+
 ;; From https://emacs.stackexchange.com/questions/8045/org-refile-to-a-known-fixed-location
 (defun lytex/refile (file headline)
   (let ((pos (save-excursion

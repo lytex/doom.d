@@ -109,6 +109,7 @@
       :desc (documentation 'lytex/org-link-and-refile) "l" #'lytex/org-link-and-refile
       :desc (documentation #'org-roam-refile) "f" #'org-roam-refile
       :desc (documentation 'lytex/org-refile-to-capture) "c" #'lytex/org-refile-to-capture
+      :desc (documentation 'lytex/org-refile-transclude-own) "o" #'lytex/org-refile-transclude-own
       :desc (documentation 'lytex/org-link-and-refile-to-capture) "b" #'lytex/org-link-and-refile-to-capture)
 
 (map! :after org-roam
