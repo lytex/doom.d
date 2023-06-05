@@ -156,7 +156,7 @@
 
 
 (add-to-list 'org-after-todo-state-change-hook (lambda ()
-        (if (not (string= (substring-no-properties (org-get-todo-state)) "TICKLER"))
+        (if (not (string= (concat (substring-no-properties (org-get-todo-state)) "") "TICKLER"))
         (org-set-tags (remove "idea" (remove "learn" (remove "process" (remove "read" (remove "research" (remove "track" (remove "try"
                 (remove "" (split-string (substring-no-properties (org-make-tag-string (org-get-tags nil t))) ":")) ))))))))
  )))
@@ -368,6 +368,13 @@
   (add-to-list 'org-babel-load-languages '(docker-build . t))
   (org-babel-do-load-languages 'org-babel-load-languages org-babel-load-languages)
 )
+
+   (setenv "NODE_PATH"
+      (concat
+       (getenv "HOME") "/node_modules"  ":"
+       (getenv "NODE_PATH")))
+
+  (add-to-list 'org-babel-load-languages '(js . t))
 
 ;; Evaluate arbitrary local variables, prompting before executing
 (setq enable-local-variables t)
