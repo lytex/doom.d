@@ -376,6 +376,8 @@
 
   (add-to-list 'org-babel-load-languages '(js . t))
 
+  (add-to-list 'org-babel-load-languages '(dot . t))
+
 ;; Evaluate arbitrary local variables, prompting before executing
 (setq enable-local-variables t)
 
