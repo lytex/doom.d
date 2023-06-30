@@ -61,6 +61,27 @@
 
 (use-package! org)
 
+(defun logseq-link-follow (s &optional avoid-pos stealth)
+  (let* ((case-fold-search t)
+	 (origin (point))
+	 (normalized (replace-regexp-in-string "\n[ \t]*" " " s))
+	 (starred (eq (string-to-char normalized) ?*))
+	 (words (split-string (if starred (substring s 1) s)))
+	 (s-multi-re (mapconcat #'regexp-quote words "\\(?:[ \t\n]+\\)"))
+	 (s-single-re (mapconcat #'regexp-quote words "[ \t]+"))
+	 type)
+
+    (cond
+    ;; Logseq id support
+     ((string-match "\\`(\\(\\(.*\\)\\))\\'" normalized)
+      ;; Look for coderef targets if S is enclosed within parenthesis.
+      (let ((coderef (match-string-no-properties 1 normalized))
+	    (re (substring s-single-re 2 -2)))
+        (org-id-goto re)))))
+  t)
+
+(advice-add #'org-link-search :before-until #'logseq-link-follow)
+
 (setq org-id-locations-file "~/.config/emacs/.org-id-locations")
 (setq org-directory "~/org/")
 (setq org-link-file-path-type 'absolute) ;; Absolute links with ~ when possible
