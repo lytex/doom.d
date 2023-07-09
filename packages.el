@@ -44,7 +44,7 @@
         (package! pdf-view-restore)
         (package! nov)
         (package! org-noter-pdftools :recipe
-                (:host github :repo "fuxialexander/org-pdftools"))
+                (:host github :repo "lytex/org-pdftools"))
         (package! org-web-tools)
         (package! org-download :recipe
                 (:host github :repo "abo-abo/org-download"))
