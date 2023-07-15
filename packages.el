@@ -39,6 +39,8 @@
         (package! org-tree-slide)
         (package! org-hyperscheduler :recipe
                 (:host github :repo "dmitrym0/org-hyperscheduler"))
+        (package! anki-editor :recipe
+                (:host github :repo "orgtre/anki-editor"))
         (package! pdf-continuous-scroll-mode :recipe
                 (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
         (package! pdf-view-restore)
