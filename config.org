@@ -632,6 +632,23 @@ The idea is to use the left hand to select an annotation and use the mouse on th
       :after org-ql
       :leader
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
+#+end_src
+* Toggle mappings
+:PROPERTIES:
+:ID:       4e4beb0c-0c22-4fc5-8b54-3a371fe9e716
+:END:
+#+begin_src emacs-lisp
+
+(map!
+      :leader
+      :desc (documentation #'org-fold-hide-drawer-all) "tp" #'(lambda () (interactive) (org-fold-hide-drawer-all))
+      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'hide)))
+#+end_src
+* Headless mode
+:PROPERTIES:
+:ID:       826753e3-0193-461e-92d9-eed655cd7d40
+:END:
+#+begin_src emacs-lisp
 )
 #+end_src
 #+begin_src emacs-lisp

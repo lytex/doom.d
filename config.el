@@ -279,6 +279,10 @@
       :after org-ql
       :leader
       :desc (documentation 'lytex/toggle-work) "tw" #'lytex/toggle-work)
+(map!
+      :leader
+      :desc (documentation #'org-fold-hide-drawer-all) "tp" #'(lambda () (interactive) (org-fold-hide-drawer-all))
+      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'hide)))
 )
 (progn
   ;; Packages I want to have in headless mode too
