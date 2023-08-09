@@ -50,7 +50,7 @@
         (package! org-web-tools)
         (package! org-download :recipe
                 (:host github :repo "abo-abo/org-download"))
-        (package! fzf :recipe)
+        (package! fzf)
         (package! beacon)
         (package! evil-quickscope :recipe
                 (:host github :repo "blorbx/evil-quickscope"))
