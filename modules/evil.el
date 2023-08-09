@@ -25,9 +25,9 @@
 ;; On large org files, the text flickers on evil-insert-state
 ;; Either narrow to subtree or disable quickscope to avoid it
 
-(map! :after evil-quickscope
-      :leader
-      "eq" #'global-evil-quickscope-always-mode)
+;; (map! :after evil-quickscope
+;;       :leader
+;;       "eq" #'global-evil-quickscope-always-mode)
 
 (map! :after evil-commands
       :desc (documentation 'evil-copy-from-below)

@@ -125,9 +125,9 @@
 (progn
 (load! "~/.doom.d/modules/org-edna.el")
 
-(map!
-      :leader
-      :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
+;; (map!
+;;       :leader
+;;       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 
 
 (load! "~/.doom.d/modules/org-journal.el")
