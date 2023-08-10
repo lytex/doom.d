@@ -18,6 +18,7 @@
 :END:
 #+begin_src emacs-lisp
 
+(load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 (load! "~/.doom.d/work.el")
 (load! "~/.doom.d/headless.el")
 
@@ -325,9 +326,9 @@ Open org roam sidebar
 #+end_src
 ** SPC ee
 #+begin_src emacs-lisp
-(map!
-      :leader
-      :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
+;; (map!
+;;       :leader
+;;       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 ;; blank
 #+end_src
 * org-journal
@@ -422,7 +423,7 @@ Open org roam sidebar
 ;; blank
 #+end_src
 #+begin_src emacs-lisp
-(load! "~/.doom.d/modules/org-ql.el")
+;; (load! "~/.doom.d/modules/org-ql.el")
 ;; blank
 #+end_src
 ** SPC
@@ -431,10 +432,10 @@ Open org roam sidebar
 :ID:       12c2c90c-a7a7-4f5d-a8c7-86b5dc72f489
 :END:
 #+begin_src emacs-lisp
-(map!
-      :after org-ql
-      :leader
-      :prefix ("oq" . "org-ql-search")
+;; (map!
+;;       :after org-ql
+;;       :leader
+;;       :prefix ("oq" . "org-ql-search")
 
 #+end_src
 **** w
@@ -442,21 +443,21 @@ Open org roam sidebar
 :ID:       bf63d88d-8623-4636-ac2b-cf28984202f5
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'org-ql-view)  "w" #'org-ql-view
+      ;; :desc (documentation 'org-ql-view)  "w" #'org-ql-view
 #+end_src
 **** s
 :PROPERTIES:
 :ID:       c6d877ff-2a21-42ba-801b-ea1d8abffbe5
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
+      ;; :desc (documentation 'org-ql-view-sidebar)  "s" #'org-ql-view-sidebar
 #+end_src
 **** t
 :PROPERTIES:
 :ID:       d70c55a7-7fb8-41d6-bc0b-351b5ce21d88
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
+      ;; :desc (documentation 'org-ql-sparse-tree)  "t" #'org-ql-sparse-tree
 #+end_src
 **** q
 :PROPERTIES:
@@ -464,21 +465,21 @@ Open org roam sidebar
 :END:
 q is for query
 #+begin_src emacs-lisp
-      :desc (documentation 'org-ql-search)  "q" #'org-ql-search
+      ;; :desc (documentation 'org-ql-search)  "q" #'org-ql-search
 #+end_src
 **** h
 :PROPERTIES:
 :ID:       417db2c0-927c-4bca-b623-cfa404b87b04
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'org-hyperscheduler-open)  "h" #'org-hyperscheduler-open
+      ;; :desc (documentation 'org-hyperscheduler-open)  "h" #'org-hyperscheduler-open
 #+end_src
 **** r
 :PROPERTIES:
 :ID:       2b2bef69-1796-46f8-8760-193214819b08
 :END:
 #+begin_src emacs-lisp
-      :desc (documentation 'lytex/reload-org-ql)  "r" #'lytex/reload-org-ql)
+      ;; :desc (documentation 'lytex/reload-org-ql)  "r" #'lytex/reload-org-ql)
 #+end_src
 *** rt
 :PROPERTIES:
@@ -486,16 +487,16 @@ q is for query
 :END:
 #+begin_src emacs-lisp
 ;; blank
-(map! :after org-ql
-      :leader
-      :prefix ("rt" . "lytex/org-sparse-tree")
-      :desc (documentation 'lytex/org-sparse-tree-full) "j" #'lytex/org-sparse-tree-full
-      :desc (documentation 'lytex/org-sparse-tree-almost-full) "k" #'lytex/org-sparse-tree-almost-full
-      :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed
-      :desc (documentation 'lytex/org-sparse-sparse-tree) ";" #'lytex/org-sparse-sparse-tree
-      :desc (documentation 'lytex/org-sparse-sparse-sparse-tree) "'" #'lytex/org-sparse-sparse-sparse-tree
-      :desc (documentation 'lytex/org-jira-assigned) "e" #'lytex/org-jira-assigned
-)
+;; (map! :after org-ql
+;;       :leader
+;;       :prefix ("rt" . "lytex/org-sparse-tree")
+;;       :desc (documentation 'lytex/org-sparse-tree-full) "j" #'lytex/org-sparse-tree-full
+;;       :desc (documentation 'lytex/org-sparse-tree-almost-full) "k" #'lytex/org-sparse-tree-almost-full
+;;       :desc (documentation 'lytex/org-sparse-tree-trimmed) "l" #'lytex/org-sparse-tree-trimmed
+;;       :desc (documentation 'lytex/org-sparse-sparse-tree) ";" #'lytex/org-sparse-sparse-tree
+;;       :desc (documentation 'lytex/org-sparse-sparse-sparse-tree) "'" #'lytex/org-sparse-sparse-sparse-tree
+;;       :desc (documentation 'lytex/org-jira-assigned) "e" #'lytex/org-jira-assigned
+;; )
 #+end_src
 * helm-rg/helm-ag
 :PROPERTIES:
