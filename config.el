@@ -237,7 +237,13 @@
 
 (load! "~/.doom.d/modules/anki.el")
 (after! org
-  (use-package! org-anki))
+  (use-package! org-anki)
+  (map! :leader
+        :mode (org-mode)
+        :prefix ("a" . "anki")
+        :desc (documentation 'org-anki-cloze-dwim) "RET" #'org-anki-cloze-dwim
+        :desc (documentation 'org-anki-sync-entry) "S" #'org-anki-sync-entry
+        :desc (documentation 'org-anki-sync-all) "S" #'org-anki-sync-all))
     (use-package! highlight-indent-guides
       :hook (prog-mode . highlight-indent-guides-mode)
       :init
