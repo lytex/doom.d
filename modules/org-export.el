@@ -104,3 +104,17 @@
         <link rel=\"stylesheet\" type=\"text/css\" href=\"src/readtheorg_theme/css/htmlize.css\"/>")
 
 ;;   (setq org-html-format-drawer-function 'lytex/ox-html-format-drawer))
+
+
+(defun lytex/cloze-removal
+    (backend)
+  "Remove anki clozes from the export.\nBACKEND is the export back-end being used, as a symbol."
+  (org-map-entries
+   (lambda nil
+     (replace-regexp-in-region "{{c[0-9]+::\\(.*\\)}}" "\\1"
+                               (point-min)
+                               (point-max))
+     "+anki")))
+
+
+(add-hook 'org-export-before-parsing-functions #'lytex/cloze-removal)

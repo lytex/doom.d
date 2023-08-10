@@ -235,6 +235,9 @@
         :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
         :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))))
 
+(load! "~/.doom.d/modules/anki.el")
+(after! org
+  (use-package! org-anki))
     (use-package! highlight-indent-guides
       :hook (prog-mode . highlight-indent-guides-mode)
       :init

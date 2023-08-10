@@ -571,6 +571,15 @@ The idea is to use the left hand to select an annotation and use the mouse on th
         :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))))
 ;; blank
 #+end_src
+* anki
+:PROPERTIES:
+:ID:       b7500972-9f61-4889-9e09-4d132708e954
+:END:
+#+begin_src emacs-lisp
+(load! "~/.doom.d/modules/anki.el")
+(after! org
+  (use-package! org-anki))
+#+end_src
 * misc
 :PROPERTIES:
 :ID:       65f85022-c981-43f8-bd53-b2c691bb00be
