@@ -49,12 +49,12 @@
 
 
 ;; Get all headlines that have :template:
-(setq org-templates (org-ql-query :select
-              '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
-          :from
-          (org-agenda-files)
-          :where
-          '(ltags "template")))
+;; (setq org-templates (org-ql-query :select
+;;               '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
+;;           :from
+;;           (org-agenda-files)
+;;           :where
+;;           '(ltags "template")))
 
 (defun lytex/org-get-subtree-contents ()
 "Get the content text of the subtree at point"
@@ -97,15 +97,15 @@
 
 
 (setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
-(setq iterating-list (substring keyboard-list 0 (length org-templates)))
+;; (setq iterating-list (substring keyboard-list 0 (length org-templates)))
 
-(appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
-  (setq id  (cdr template))
-`(,(concat "t" (make-string 1 key)) ,(car template) plain
-  (file "Inbox.org")
-  (function ,(lytex/get-template-by-id id))
-   :unnarrowed t))
-      iterating-list org-templates))
+;; (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
+;;   (setq id  (cdr template))
+;; `(,(concat "t" (make-string 1 key)) ,(car template) plain
+;;   (file "Inbox.org")
+;;   (function ,(lytex/get-template-by-id id))
+;;    :unnarrowed t))
+;;       iterating-list org-templates))
 
 
 (defun lytex/insert-query-links (query)
