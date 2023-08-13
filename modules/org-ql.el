@@ -48,13 +48,13 @@
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
 
-;; Get all headlines that have :template:
-;; (setq org-templates (org-ql-query :select
-;;               '(cons (substring-no-properties (org-get-heading)) (org-id-get-create))
-;;           :from
-;;           (org-agenda-files)
-;;           :where
-;;           '(ltags "template")))
+;; (start-process "emacs" "org-templates" "emacs" "--batch" "--no-splash"
+;; "--load" "$HOME/.config/emacs/lisp/doom-lib.el"
+;; "--load" "$HOME/.config/emacs/lisp/doom.el"
+;; "--load" "$HOME/.config/emacs/early-init.el"
+;; "--load" "/home/julian/.config/emacs/lisp/doom-start.el"
+;; "--load" "$HOME/.doom.d/utils/org-templates.el")
+
 
 (defun lytex/org-get-subtree-contents ()
 "Get the content text of the subtree at point"
@@ -95,17 +95,29 @@
             " :template:$" ""
             (lytex/org-get-subtree-contents))))))))))
 
+(defun read-from-file (filename)
+  (with-temp-buffer
+    (insert-file-contents filename)
+    (cl-assert (eq (point) (point-min)))
+    (read (current-buffer))))
 
 (setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
-;; (setq iterating-list (substring keyboard-list 0 (length org-templates)))
+(if (setq org-templates
+      (with-demoted-errors "Error loading org-templates: %S"
+        (read-from-file "/home/julian/.cache/org-templates")))
+    (progn
 
-;; (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
-;;   (setq id  (cdr template))
-;; `(,(concat "t" (make-string 1 key)) ,(car template) plain
-;;   (file "Inbox.org")
-;;   (function ,(lytex/get-template-by-id id))
-;;    :unnarrowed t))
-;;       iterating-list org-templates))
+        (setq iterating-list (substring keyboard-list 0 (length org-templates)))
+
+        (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
+        (setq id  (cdr template))
+        `(,(concat "t" (make-string 1 key)) ,(car template) plain
+        (file "Inbox.org")
+        (function ,(lytex/get-template-by-id id))
+        :unnarrowed t))
+        iterating-list org-templates))
+        )
+    )
 
 
 (defun lytex/insert-query-links (query)
