@@ -48,12 +48,12 @@
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
 
-;; (start-process "emacs" "org-templates" "emacs" "--batch" "--no-splash"
-;; "--load" "$HOME/.config/emacs/lisp/doom-lib.el"
-;; "--load" "$HOME/.config/emacs/lisp/doom.el"
-;; "--load" "$HOME/.config/emacs/early-init.el"
-;; "--load" "/home/julian/.config/emacs/lisp/doom-start.el"
-;; "--load" "$HOME/.doom.d/utils/org-templates.el")
+(start-process "emacs" "org-templates" "emacs" "--batch" "--no-splash"
+"--load" "$HOME/.config/emacs/lisp/doom-lib.el"
+"--load" "$HOME/.config/emacs/lisp/doom.el"
+"--load" "$HOME/.config/emacs/early-init.el"
+"--load" "/home/julian/.config/emacs/lisp/doom-start.el"
+"--load" "$HOME/.doom.d/utils/org-templates.el")
 
 
 (defun lytex/org-get-subtree-contents ()
