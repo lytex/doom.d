@@ -12,6 +12,7 @@
 ;;         (princ "Before print-to-file\n")
 ;;         )
 
+;; https://stackoverflow.com/questions/2321904/elisp-how-to-save-data-in-a-file/44834833#44834833
 (defun print-to-file (filename data)
   (with-temp-file filename
     (prin1 data (current-buffer))))
@@ -25,6 +26,7 @@
           (org-agenda-files)
           :where
           '(ltags "template")))
+(org-save-all-org-buffers)
 
 ;; (run! "export-notes")
 

@@ -75,7 +75,14 @@
     (defun get-dynamic-x ()
       x)))
 
+
 (defun lytex/get-template-by-id (id)
+(unless (file-exists-p "/home/julian/org-templates-elements/")
+        (make-directory "/home/julian/org-templates-elements/"))
+(if (file-exists-p (concat "/home/julian/org-templates-elements/" id))
+    (read-from-file (concat "/home/julian/org-templates-elements/" id))
+
+(print-to-file (concat "/home/julian/org-templates-elements/" id)
 (eval `(defun ,(make-symbol id) ()
 ,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
   ;; Remove ID to avoid duplicates
@@ -93,13 +100,18 @@
           (replace-regexp-in-string
             ;; There is only one tag :template:
             " :template:$" ""
-            (lytex/org-get-subtree-contents))))))))))
+            (lytex/org-get-subtree-contents))))))))))))
 
+;; https://stackoverflow.com/questions/2321904/elisp-how-to-save-data-in-a-file/44834833#44834833
 (defun read-from-file (filename)
   (with-temp-buffer
     (insert-file-contents filename)
     (cl-assert (eq (point) (point-min)))
     (read (current-buffer))))
+
+(defun print-to-file (filename data)
+  (with-temp-file filename
+    (prin1 data (current-buffer))))
 
 (setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
 (if (setq org-templates
