@@ -77,12 +77,12 @@
 
 
 (defun lytex/get-template-by-id (id)
-(unless (file-exists-p "/home/julian/org-templates-elements/")
-        (make-directory "/home/julian/org-templates-elements/"))
-(if (file-exists-p (concat "/home/julian/org-templates-elements/" id))
-    (read-from-file (concat "/home/julian/org-templates-elements/" id))
+(unless (file-exists-p "/home/julian/.cache/org-templates-elements/")
+        (make-directory "/home/julian/.cache/org-templates-elements/"))
+(if (file-exists-p (concat "/home/julian/.cache/org-templates-elements/" id))
+    (read-from-file (concat "/home/julian/.cache/org-templates-elements/" id))
 
-(print-to-file (concat "/home/julian/org-templates-elements/" id)
+(print-to-file (concat "/home/julian/.cache/org-templates-elements/" id)
 (eval `(defun ,(make-symbol id) ()
 ,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
   ;; Remove ID to avoid duplicates
