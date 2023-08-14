@@ -47,6 +47,11 @@
         (package! nov)
         (package! org-noter-pdftools :recipe
                 (:host github :repo "lytex/org-pdftools"))
+        ;; https://github.com/fuxialexander/org-pdftools/issues/93
+        (package! org-noter 
+                :pin "1190d0262d8306b0a5d088c77f203d77e0f27384"
+                :recipe
+                (:host github :repo "org-noter/org-noter"))
         (package! org-web-tools)
         (package! org-download :recipe
                 (:host github :repo "abo-abo/org-download"))
