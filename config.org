@@ -12,17 +12,46 @@
 
 ;; blank
 #+end_src
+* Config toggles
+:PROPERTIES:
+:ID:       6954237f-707f-4eaa-862b-e0bd19e452a5
+:END:
+#+begin_src emacs-lisp
+(load! "~/.doom.d/work.el")
+(load! "~/.doom.d/headless.el")
+#+end_src
+* Fixes
+:PROPERTIES:
+:ID:       6796419d-bd3e-4e58-b4a2-6ff379bb97e5
+:END:
+#+begin_src emacs-lisp
+(if (not WORK_ENV)
+  (progn
+        (defun fix+org/insert-item-below ()
+                (interactive)
+                (+org/insert-item-above 1)
+                (org-metadown 1))
+
+        (map!
+                :after evil-org
+                :map evil-org-mode-map
+                :ni [C-return]   #'fix+org/insert-item-below)
+
+        (map!
+                :after org
+                :map org-mode-map
+                "C-RET"      #'fix+org/insert-item-below
+                [C-return]   #'fix+org/insert-item-below))
+  )
+
+
+(load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
+#+end_src
 * Personal information
 :PROPERTIES:
 :ID:       a2f58232-1e91-4f02-8d19-4265b6eb02e4
 :END:
 #+begin_src emacs-lisp
-
-(load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
-(load! "~/.doom.d/work.el")
-(load! "~/.doom.d/headless.el")
-
-
 (setq user-full-name "Julian Lopez Carballal")
 (if WORK_ENV
     (setq user-mail-address "julopezc@acciona.com")

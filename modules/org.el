@@ -156,27 +156,6 @@
       :desc (documentation 'org-insert-drawer) "nid" #'org-insert-drawer))
 
 
-;; (if (not WORK_ENV)
-;;   (progn
-;;         (defun fix+org/insert-item-below ()
-;;                 (interactive)
-;;                 (+org/insert-item-above 1)
-;;                 (org-metadown 1))
-
-;;         (map!
-;;                 :after evil-org
-;;                 :map evil-org-mode-map
-;;                 :ni [C-return]   #'fix+org/insert-item-below)
-
-;;         (map!
-;;                 :after org
-;;                 :map org-mode-map
-;;                 "C-RET"      #'fix+org/insert-item-below
-;;                 [C-return]   #'fix+org/insert-item-below))
-;;   )
-
-
-
 (add-to-list 'org-after-todo-state-change-hook (lambda ()
         (if (not (string= (concat (substring-no-properties (org-get-todo-state)) "") "TICKLER"))
         (org-set-tags (remove "idea" (remove "learn" (remove "process" (remove "read" (remove "research" (remove "track" (remove "try"

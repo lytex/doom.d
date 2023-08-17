@@ -2,11 +2,29 @@
 
 
 
-(load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 (load! "~/.doom.d/work.el")
 (load! "~/.doom.d/headless.el")
+(if (not WORK_ENV)
+  (progn
+        (defun fix+org/insert-item-below ()
+                (interactive)
+                (+org/insert-item-above 1)
+                (org-metadown 1))
+
+        (map!
+                :after evil-org
+                :map evil-org-mode-map
+                :ni [C-return]   #'fix+org/insert-item-below)
+
+        (map!
+                :after org
+                :map org-mode-map
+                "C-RET"      #'fix+org/insert-item-below
+                [C-return]   #'fix+org/insert-item-below))
+  )
 
 
+(load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 (setq user-full-name "Julian Lopez Carballal")
 (if WORK_ENV
     (setq user-mail-address "julopezc@acciona.com")
