@@ -12,7 +12,7 @@
 
 (defun lytex/set-personal-journal ()
         (setq org-journal-file-type 'daily)
-        (setq org-journal-dir (concat org-directory "journal/"))
+        (setq org-journal-dir (concat org-directory "journals/"))
         (setq org-journal-after-entry-create-hook (lambda ()
                 (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
         (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a %H:%M]")

@@ -119,9 +119,9 @@
 
 (if WORK_ENV
 (setq org-agenda-files
-  '("~/org"  "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/work_journal"))
+  '("~/org"  "~/org/areas" "~/org/pages" "~/org/journals" "~/org/projects" "~/org/work_journal"))
 (setq org-agenda-files
-  '("~/org" "~/org/areas" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/Introspección")))
+  '("~/org" "~/org/areas" "~/org/pages" "~/org/journals" "~/org/projects" "~/org/Introspección")))
 
 (setq org-agenda-dim-blocked-tasks nil) ;; Do not grey out items that hava a children with a TODO state
 

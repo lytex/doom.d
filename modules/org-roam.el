@@ -107,7 +107,7 @@
 (setq org-roam-capture-templates
     '(("d" "default" plain
         "* ${title}\n%?"
-        :target (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org"
+        :target (file+head "pages/%<%Y%m%d%H%M%S>-${slug}.org"
         "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
       ("p" "project" plain
@@ -156,7 +156,7 @@
 (setq org-roam-capture-ref-templates
       '(("r" "ref" plain 
         "* ${title}\n%?"
-        :target (file+head "roam/${slug}.org"
+        :target (file+head "pages/${slug}.org"
         "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
         :unnarrowed t)
         ("i" "inbox" entry
@@ -165,7 +165,7 @@
         :unnarrowed t)
         ("c" "content" plain
         "%?"
-        :target (file+head "roam/${slug}.org"
+        :target (file+head "pages/${slug}.org"
         "#+title: ${title}\n#+roam_key: ${ref}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n%(org-web-tools--url-as-readable-org \"${ref}\")")
         :unnarrowed t
         :immediate-finish t

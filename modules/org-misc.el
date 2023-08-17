@@ -73,5 +73,5 @@
 (use-package! org-download
   :config
   (add-hook 'org-mode-hook #'org-download-enable)
-  (setq-default org-download-image-dir "~/org/roam")
+  (setq-default org-download-image-dir "~/org/assets")
   )
