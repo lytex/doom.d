@@ -310,7 +310,7 @@
 (map!
       :leader
       :desc (documentation #'org-fold-hide-drawer-all) "tp" #'(lambda () (interactive) (org-fold-hide-drawer-all))
-      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'hide)))
+      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'all)))
 )
 (progn
   ;; Packages I want to have in headless mode too

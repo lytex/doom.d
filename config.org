@@ -687,7 +687,7 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 (map!
       :leader
       :desc (documentation #'org-fold-hide-drawer-all) "tp" #'(lambda () (interactive) (org-fold-hide-drawer-all))
-      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'hide)))
+      :desc (documentation #'org-cycle-hide-drawers)  "tP" #'(lambda () (interactive) (org-cycle-hide-drawers 'all)))
 #+end_src
 * Headless mode
 :PROPERTIES:
