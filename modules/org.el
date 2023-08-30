@@ -302,6 +302,7 @@
 (add-hook 'org-checkbox-statistics-hook (function aggregate-org-cookies))
 
 
+(if (not HEADLESS)
 ;; https://www.reddit.com/r/emacs/comments/6tewyl/hide_properties_drawer/
 (defun org-cycle-hide-drawers (state)
   "Re-hide all drawers after a visibility state change."
@@ -338,6 +339,7 @@
                 (if (re-search-forward "^[ \t]*:END:" limit t)
                   (outline-flag-region start (point-at-eol) t)
                   (user-error msg))))))))))
+)
 
 ;;;;;;;;;;;;;; org mode id autocompletion in all org-ggenda files ;;;;;;;;;;;;;;
 ;; https://emacs.stackexchange.com/questions/12391/insert-org-id-link-at-point-via-outline-path-completion
