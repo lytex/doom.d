@@ -5,6 +5,7 @@
         (setq org-journal-dir (concat org-directory "work_journal/"))
         (setq org-journal-after-entry-create-hook (lambda ()
                 (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
+        (setq org-journal-created-property-timestamp-format "%Y%m%d")
         (setq org-journal-file-format "%Y%mW.org")
         ;; All work journal files have the tag "work"
         (setq org-journal-file-header "#+TITLE:%Y%mW\n#+FILETAGS: :work:\n\n")
