@@ -48,6 +48,7 @@
           (string-match-p "mantenimiento" (substring-no-properties (org-make-tag-string (org-get-tags))))
 					(re-search-forward org-heading-regexp))))
 
+(if (not HEADLESS)
 (defun lytex/reload-org-hyperscheduler ()
   (interactive)
   (setq org-hyperscheduler-agenda-filter
@@ -66,6 +67,7 @@
     (org-hyperscheduler-root-dir org-directory)
     (org-hyperscheduler-readonly-mode nil)
   ))
+)
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
 ;; (if WORK_ENV
