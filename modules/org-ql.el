@@ -15,9 +15,9 @@
   (load! "~/.doom.d/modules/org-ql.el"))
 
 ;; Follow link using RET, not only mouse-1
-(map!
- :after org-ql
- :n "RET" #'org-ql-view-switch)
+;; (map!
+;;  :after org-ql
+;;  :n "RET" #'org-ql-view-switch)
 
 ;; Tweaks to make hjkl work over a date in org-ql agenda
 (define-key org-super-agenda-header-map "j" nil)

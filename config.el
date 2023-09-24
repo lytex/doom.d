@@ -355,3 +355,11 @@
 ;; Error (org-mode-hook): Error running hook "org-rainbow-tags-mode" because: (wrong-number-of-arguments #<subr min> 0)
 ;; File mode specification error: (doom-hook-error org-mode-hook org-rainbow-tags-mode (wrong-number-of-arguments #<subr min> 0))
 (add-hook 'org-mode-hook 'org-rainbow-tags-mode)
+  (progn
+
+        (map!
+                :after evil-org
+                :map evil-org-mode-map
+                :n [return]   #'+org/dwim-at-point)
+
+        )
