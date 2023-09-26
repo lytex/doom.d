@@ -55,19 +55,19 @@
         (format-time-string "TIMESTAMP>=\"<%Y-%m-%d>\"|SCHEDULED>=\"<%Y-%m-%d>\"|DEADLINE>=\"<%Y-%m-%d>\""
                 ;; Seven days into the future
                     (time-add (current-time) (* 8 24 3600))))
-)
+))
 
 (lytex/reload-org-hyperscheduler)
 
-(with-demoted-errors "org-hyperscheduler error: %S"
-  (use-package! org-hyperscheduler
-    :custom
-    (org-hyperscheduler-inbox-file (concat org-directory "/Inbox.org"))
-    (org-hyperscheduler-hide-done-tasks t)
-    (org-hyperscheduler-root-dir org-directory)
-    (org-hyperscheduler-readonly-mode nil)
-  ))
-)
+;; (with-demoted-errors "org-hyperscheduler error: %S"
+;;   (use-package! org-hyperscheduler
+;;     :custom
+;;     (org-hyperscheduler-inbox-file (concat org-directory "/Inbox.org"))
+;;     (org-hyperscheduler-hide-done-tasks t)
+;;     (org-hyperscheduler-root-dir org-directory)
+;;     (org-hyperscheduler-readonly-mode nil)
+;;   ))
+;; )
 ;; https://github.com/dengste/org-caldav/blob/master/org-caldav.el#L1297-L1298
 ;; Also set org-caldav-skip-conditions even if it's unused
 ;; (if WORK_ENV
