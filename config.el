@@ -1,28 +1,25 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 
-
+;; blank
 (load! "~/.doom.d/work.el")
 (load! "~/.doom.d/headless.el")
-(if (not WORK_ENV)
-  (progn
-        (defun fix+org/insert-item-below ()
-                (interactive)
-                (+org/insert-item-above 1)
-                (org-metadown 1))
+(progn
+      (defun fix+org/insert-item-below ()
+              (interactive)
+              (+org/insert-item-above 1)
+              (org-metadown 1))
 
-        (map!
-                :after evil-org
-                :map evil-org-mode-map
-                :ni [C-return]   #'fix+org/insert-item-below)
+      (map!
+              :after evil-org
+              :map evil-org-mode-map
+              :ni [C-return]   #'fix+org/insert-item-below)
 
-        (map!
-                :after org
-                :map org-mode-map
-                "C-RET"      #'fix+org/insert-item-below
-                [C-return]   #'fix+org/insert-item-below))
-  )
-
+      (map!
+              :after org
+              :map org-mode-map
+              "C-RET"      #'fix+org/insert-item-below
+              [C-return]   #'fix+org/insert-item-below))
 
 (load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 (setq user-full-name "Julian Lopez Carballal")
@@ -33,7 +30,7 @@
  ;; Calendar starts on monday
 (setq calendar-week-start-day 1)
 
-
+;; blank
 (setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
 (setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 14))
 (setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
@@ -46,16 +43,16 @@
         (beacon-mode 1)
         (setq beacon-color "dark orange")
         (load! "~/.doom.d/modules/LectureNotes.el")))
-
+;; blank
 (if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes | grep current | grep light || true") "")
         (setq doom-theme 'doom-one)
         (setq doom-theme 'doom-one-light)
         )
-
-
-
+;; blank
+;; blank
+;; blank
 (setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
-
+;; blank
 (load! "~/.doom.d/modules/org.el")
 
 (setq org-id-locations-file "~/.config/emacs/.org-id-locations")
@@ -86,18 +83,18 @@
 
 (load! "~/.doom.d/modules/evil.el")
 (load! "~/.doom.d/modules/xournalpp.el")
-
+;; blank
 (load! "~/.doom.d/modules/org-export.el")
 
 (load! "~/.doom.d/modules/org-caldav.el")
-
+;; blank
 (load! "~/.doom.d/modules/org-roam.el")
-
+;; blank
 (map!
       :after org-roam
       :leader
       "bo" #'lytex/revert-buffer-reload-roam)
-
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("r" . "org-roam")
@@ -115,13 +112,13 @@
       :desc (documentation 'org-remark-view-next) "." #'(lambda () (interactive) (org-remark-view-next) (evil-scroll-line-to-center (line-number-at-pos)))
       :desc (documentation 'org-remark-remove) "/" #'org-remark-remove
       :desc (documentation 'org-remark-open) ";" #'org-remark-open)
-
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rp" . "lytex/xournalpp")
       :desc (documentation 'lytex/insert-global-sketch) "i" #'lytex/insert-global-sketch
       :desc (documentation 'lytex/reset-sketch) "p" #'lytex/reset-sketch)
-
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rf" . "lytex/org-roam-refile")
@@ -130,11 +127,11 @@
       :desc (documentation 'lytex/org-refile-to-capture) "c" #'lytex/org-refile-to-capture
       :desc (documentation 'lytex/org-refile-transclude-own) "o" #'lytex/org-refile-transclude-own
       :desc (documentation 'lytex/org-link-and-refile-to-capture) "b" #'lytex/org-link-and-refile-to-capture)
-
+;; blank
 (map! :after org-roam
       :leader
       :prefix ("rh" . "lytex/org-roam-heading")
-
+;; blank
       :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
       ;; :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
@@ -143,14 +140,14 @@
 (if (not HEADLESS)
 (progn
 (load! "~/.doom.d/modules/org-edna.el")
-
+;; blank
 ;; (map!
 ;;       :leader
 ;;       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
-
-
+;; blank
+;; blank
 (load! "~/.doom.d/modules/org-journal.el")
-
+;; blank
 (map!
       :after org-journal
       :leader
@@ -158,7 +155,7 @@
 (map!
       :leader
       "om" #'org-mode)
-
+;; blank
 (map!
       :after org-journal
       :leader
@@ -167,18 +164,18 @@
       "jj" #'lytex/set-org-journal-J
       "ji" #'lytex/set-org-journal-I
       "jw" #'lytex/set-org-journal-W)
-
+;; blank
 (map! :after org-journal
       :leader
       :desc (documentation 'org-journal-previous-entry) "jp" #'org-journal-previous-entry
       :desc (documentation 'org-journal-next-entry) "jn" #'org-journal-next-entry)
-
+;; blank
 (load! "~/.doom.d/modules/org-misc.el")
-
-
-
+;; blank
+;; blank
+;; blank
 (load! "~/.doom.d/modules/org-ql.el")
-
+;; blank
 (map!
       :after org-ql
       :leader
@@ -189,7 +186,7 @@
       :desc (documentation 'org-ql-search)  "q" #'org-ql-search
       :desc (documentation 'org-hyperscheduler-open)  "h" #'org-hyperscheduler-open
       :desc (documentation 'lytex/reload-org-ql)  "r" #'lytex/reload-org-ql)
-
+;; blank
 (map! :after org-ql
       :leader
       :prefix ("rt" . "lytex/org-sparse-tree")
@@ -200,7 +197,7 @@
       :desc (documentation 'lytex/org-sparse-sparse-sparse-tree) "'" #'lytex/org-sparse-sparse-sparse-tree
       :desc (documentation 'lytex/org-jira-assigned) "e" #'lytex/org-jira-assigned
 )
-
+;; blank
 
 (use-package! helm-rg)
 (use-package! helm-ag
@@ -252,7 +249,7 @@
         :desc (documentation 'org-noter-sync-next-note) "n" #'org-noter-sync-next-note
         :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
         :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))))
-
+;; blank
 (load! "~/.doom.d/modules/anki.el")
 (after! org
   (use-package! org-anki)
@@ -340,7 +337,7 @@
                  (list sym advice)))
   (advice-remove symbol advice))
 
-
+;; blank
 (defun lytex/remove-all-overlays ()
   "Remove all overlays in the current buffer."
   (interactive)

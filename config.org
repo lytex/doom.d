@@ -25,25 +25,22 @@
 :ID:       6796419d-bd3e-4e58-b4a2-6ff379bb97e5
 :END:
 #+begin_src emacs-lisp
-(if (not WORK_ENV)
-  (progn
-        (defun fix+org/insert-item-below ()
-                (interactive)
-                (+org/insert-item-above 1)
-                (org-metadown 1))
+(progn
+      (defun fix+org/insert-item-below ()
+              (interactive)
+              (+org/insert-item-above 1)
+              (org-metadown 1))
 
-        (map!
-                :after evil-org
-                :map evil-org-mode-map
-                :ni [C-return]   #'fix+org/insert-item-below)
+      (map!
+              :after evil-org
+              :map evil-org-mode-map
+              :ni [C-return]   #'fix+org/insert-item-below)
 
-        (map!
-                :after org
-                :map org-mode-map
-                "C-RET"      #'fix+org/insert-item-below
-                [C-return]   #'fix+org/insert-item-below))
-  )
-
+      (map!
+              :after org
+              :map org-mode-map
+              "C-RET"      #'fix+org/insert-item-below
+              [C-return]   #'fix+org/insert-item-below))
 
 (load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 #+end_src
@@ -134,6 +131,9 @@
 ;; blank
 #+end_src
 * org-export and org-caldav
+:PROPERTIES:
+:ID:       02280a29-349f-4ceb-8c92-107978262a14
+:END:
 #+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-export.el")
 
@@ -192,46 +192,79 @@ Open org roam sidebar
       :desc (documentation 'org-roam-capture) "c" #'org-roam-capture
 #+end_src
 **** i
+:PROPERTIES:
+:ID:       87d1f000-c2f8-4015-9a0c-588771e71694
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-node-insert) "i" #'org-roam-node-insert
 #+end_src
 **** r
+:PROPERTIES:
+:ID:       88367ab9-f518-45e6-beaa-8600702536b3
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-node-find) "r" #'org-roam-node-find
 #+end_src
 **** j
+:PROPERTIES:
+:ID:       8ac61973-5fc4-4e65-8836-6ebcbcb3545f
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-roam-open-buffer-at-bottom) "j" #'lytex/org-roam-open-buffer-at-bottom
 #+end_src
 **** n
+:PROPERTIES:
+:ID:       fa1c9604-e0b5-45b9-ba4b-f918d2464d04
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-open-new-buffer) "n" #'lytex/org-open-new-buffer
 #+end_src
 **** v
+:PROPERTIES:
+:ID:       4bcb5bde-195d-4845-b486-08f240313f9e
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'lytex/org-follow-link-vsplit) "v" #'lytex/org-follow-link-vsplit
 #+end_src
 **** g
+:PROPERTIES:
+:ID:       d2f1ea15-aed2-4e85-8803-8cb9bf0cdec6
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-roam-graph) "g" #'org-roam-graph
 #+end_src
 **** m
+:PROPERTIES:
+:ID:       317bc9e5-e44f-41be-83cb-69c9c735073e
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-remark-mark) "m" #'org-remark-mark
 #+end_src
 **** ,
+:PROPERTIES:
+:ID:       0b83a266-ae0f-4699-afe5-21873593e78e
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-remark-view-prev) "," #'(lambda () (interactive) (org-remark-view-prev) (evil-scroll-line-to-center (line-number-at-pos)))
 #+end_src
 **** .
+:PROPERTIES:
+:ID:       1434d322-c18c-41ed-a518-6b12da0ca9ae
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-remark-view-next) "." #'(lambda () (interactive) (org-remark-view-next) (evil-scroll-line-to-center (line-number-at-pos)))
 #+end_src
 **** /
+:PROPERTIES:
+:ID:       36aaed9b-cfce-41bd-bb85-10120c9bddd4
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-remark-remove) "/" #'org-remark-remove
 #+end_src
 **** ;
+:PROPERTIES:
+:ID:       7aa1fb04-e93b-429d-8a01-710e1e560db9
+:END:
 #+begin_src emacs-lisp
       :desc (documentation 'org-remark-open) ";" #'org-remark-open)
 #+end_src
@@ -338,15 +371,24 @@ Open org roam sidebar
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
 #+end_src
 * org-transclusion
+:PROPERTIES:
+:ID:       0cb9603b-a760-4c8f-8ef6-5021526cd71a
+:END:
 #+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-transclusion.el"  )
 
 #+end_src
 * org-remark
+:PROPERTIES:
+:ID:       5a5a6168-020f-4a3c-a252-f41407772bc6
+:END:
 #+begin_src emacs-lisp
 (load! "~/.doom.d/modules/org-remark.el"  )
 #+end_src
 * org-edna
+:PROPERTIES:
+:ID:       8d1c0391-455e-4903-890d-e3876d794c7f
+:END:
 #+begin_src emacs-lisp
 (if (not HEADLESS)
 (progn
@@ -354,6 +396,9 @@ Open org roam sidebar
 ;; blank
 #+end_src
 ** SPC ee
+:PROPERTIES:
+:ID:       ae2ae410-3b98-44ee-b223-292ca9717ba4
+:END:
 #+begin_src emacs-lisp
 ;; (map!
 ;;       :leader
