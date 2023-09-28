@@ -21,6 +21,13 @@
               "C-RET"      #'fix+org/insert-item-below
               [C-return]   #'fix+org/insert-item-below))
 
+(defun my-demoted-errors-wrapper (orig-func &rest args)
+  "Wrapper function to call FUNC with 'with-demoted-errors'."
+  (with-demoted-errors "Error in 'func': %S"
+    (apply orig-func args)))
+
+(advice-add 'org-element-at-point :around #'my-demoted-errors-wrapper)
+
 (load! "~/.config/emacs/modules/config/default/+evil-bindings.el")
 (setq user-full-name "Julian Lopez Carballal")
 (if WORK_ENV
