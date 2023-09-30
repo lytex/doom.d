@@ -66,9 +66,8 @@
     )
 
 
-(use-package! ox-reveal
-        :custom
-        (org-reveal-root "https://cdn.jsdelivr.net/npm/reveal.js"))
+(setq org-re-reveal-root "~/.local/share/reveal.js")
+(use-package! org-re-reveal)
 
 (use-package! org-download
   :config
