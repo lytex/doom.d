@@ -47,6 +47,7 @@
 (use-package! websocket
     :after org)
 
+
 (use-package! org-roam-ui
     :after org ;; or :after org
 ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
@@ -104,22 +105,41 @@
   (org-journal-new-entry t))
 
 (after! org-roam
-(setq org-roam-capture-templates
-    '(("d" "default" plain
-        "* ${title}\n%?"
-        :target (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org"
-        "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
-        :unnarrowed t)
-      ("p" "project" plain
-        "* ${title} :project:\n%?"
-        :target (file+head "projects/${slug}.org" 
-        "#+title: ${title}\n#+filetags: :project:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
-        :unnarrowed t)
-      ("a" "area" plain
-        "* ${title} :area:\n%?"
-        :target (file+head "areas/${slug}.org"
-        "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
-        :unnarrowed t))))
+        (if WORK_ENV
+                (setq org-roam-capture-templates
+                '(("d" "default" plain
+                        "* ${title}\n%?"
+                        :target (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org"
+                        "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ("p" "project" plain
+                        "* ${title} :project:\n%?"
+                        :target (file+head "projects/${slug}.org"
+                        "#+title: ${title}\n#+filetags: :project:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ))
+        (setq org-roam-capture-templates
+                '(("d" "default" plain
+                        "* ${title}\n%?"
+                        :target (file+head "roam/%<%Y%m%d%H%M%S>-${slug}.org"
+                        "#+title: ${title}\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ("p" "project" plain
+                        "* ${title} :project:\n%?"
+                        :target (file+head "projects/${slug}.org"
+                        "#+title: ${title}\n#+filetags: :project:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ("a" "area" plain
+                        "* ${title} :area:\n%?"
+                        :target (file+head "areas/${slug}.org"
+                        "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ("a" "area-random" plain
+                        "* ${title} :area:\n%?"
+                        :target (file+head "areas/random/${slug}.org"
+                        "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
+                        :unnarrowed t)
+                ))))
 
 (defun lytex/org-capture-inbox (n)
   (interactive "p")

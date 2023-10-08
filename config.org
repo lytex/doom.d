@@ -684,8 +684,8 @@ The idea is to use the left hand to select an annotation and use the mouse on th
                     (set-face-background
                       ediff-current-diff-face-B "blue")))
 
-    (use-package! activity-watch-mode)
-    (global-activity-watch-mode)
+    ;; (use-package! activity-watch-mode)
+    ;; (global-activity-watch-mode)
 #+end_src
 #+begin_src emacs-lisp
 #+end_src
