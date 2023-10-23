@@ -71,12 +71,12 @@
 :ID:       e67365d5-3d6a-429f-9d0d-90a2fa5eddc7
 :END:
 #+begin_src emacs-lisp
-(setq doom-font (font-spec :family "Fantasque Sans Mono" :size 14))
-(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 14))
-(setq org-emph-face (font-spec :family "Fantasque Sans Mono" :size 14))
-(set-face-attribute 'default nil :family "Fantasque Sans Mono" :height 120)
-(set-face-attribute 'variable-pitch nil :family "Fantasque Sans Mono" :height 120)
-(setq doom-emoji-fallback-font-families '("Noto Color Emoji" "Noto Emoji" "Apple Color Emoji" "Segoe UI Emoji"))
+(setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 14))
+(setq doom-unicode-font (font-spec :name "FantasqueSansM Nerd Font" :size 14))
+(setq org-emph-face (font-spec :family "FantasqueSansM Nerd Font" :size 14))
+(set-face-attribute 'default nil :family "FantasqueSansM Nerd Font" :height 120)
+(set-face-attribute 'variable-pitch nil :family "FantasqueSansM Nerd Font" :height 120)
+(setq doom-emoji-fallback-font-families '("FantasqueSansM Nerd Font" "Noto Color Emoji" "Noto Emoji" "Apple Color Emoji" "Segoe UI Emoji"))
 
 (if (not HEADLESS)
 (progn
