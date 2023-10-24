@@ -1,15 +1,23 @@
 ;; org-journal with three different journals
 
+(defun lytex/update-org-journal-created ()
+
+        (org-journal--open-entry)
+        (org-up-heading-safe)
+        (org-set-property "CREATED" (format-time-string "%Y%m%d")))
+
 (defun lytex/set-work-journal ()
         (setq org-journal-file-type 'monthly)
         (setq org-journal-dir (concat org-directory "work_journal/"))
         (setq org-journal-after-entry-create-hook (lambda ()
                 (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
         (setq org-journal-created-property-timestamp-format "%Y%m%d")
-        (setq org-journal-file-format "%Y%mW.org")
+        (setq org-journal-file-format "%YW.org")
         ;; All work journal files have the tag "work"
-        (setq org-journal-file-header "#+TITLE:%Y%mW\n#+FILETAGS: :work:\n\n")
-        (setq org-journal-date-format "%A, %d de %B de %Y :work:"))
+        (setq org-journal-file-header "#+TITLE:%YW\n#+FILETAGS: :work:\n\n")
+        (setq org-journal-date-format "%Y-W%W :work:")
+        ;; (setq org-journal-date-format "%G-W%V :work:")
+        (setq org-journal-time-format "%A, %d de %B de %Y %R :work: "))
 
 (defun lytex/set-personal-journal ()
         (setq org-journal-file-type 'daily)
@@ -19,7 +27,8 @@
         (setq org-journal-created-property-timestamp-format "[%Y-%m-%d %a %H:%M]")
         (setq org-journal-file-format "%Y-%m-%d.org")
         (setq org-journal-file-header "#+TITLE: %Y-%m-%d\n\n")
-        (setq org-journal-date-format "%A, %d de %B de %Y"))
+        (setq org-journal-date-format "%A, %d de %B de %Y")
+        (setq org-journal-time-format "%R "))
 
 (defun lytex/set-introspection-journal ()
         (setq org-journal-file-type 'daily)
@@ -29,7 +38,8 @@
         (setq org-journal-after-entry-create-hook (lambda ()
                 (org-set-property "CREATED" (format-time-string "[%Y-%m-%d %a %H:%M]"))))
         (setq org-journal-file-header "#+TITLE: %Y-%m-%dI\n\n")
-        (setq org-journal-date-format "%A, %d de %B de %Y"))
+        (setq org-journal-date-format "%A, %d de %B de %Y")
+        (setq org-journal-time-format "%R "))
 
 (if WORK_ENV
     (lytex/set-work-journal)

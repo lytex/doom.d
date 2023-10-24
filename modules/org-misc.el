@@ -68,6 +68,7 @@
 
 (setq org-re-reveal-root "~/.local/share/reveal.js")
 (use-package! org-re-reveal)
+(add-to-list 'org-structure-template-alist '("n" . "notes" ))
 
 (use-package! org-download
   :config
