@@ -39,11 +39,11 @@
 
 
 (setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 14))
-(setq doom-unicode-font (font-spec :name "FantasqueSansM Nerd Font" :size 14))
+(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 14))
 (setq org-emph-face (font-spec :family "FantasqueSansM Nerd Font" :size 14))
 (set-face-attribute 'default nil :family "FantasqueSansM Nerd Font" :height 120)
 (set-face-attribute 'variable-pitch nil :family "FantasqueSansM Nerd Font" :height 120)
-(setq doom-emoji-fallback-font-families '("FantasqueSansM Nerd Font" "Noto Color Emoji" "Noto Emoji" "Apple Color Emoji" "Segoe UI Emoji"))
+(setq doom-emoji-fallback-font-families '("Noto Color Emoji" "Noto Emoji" "Apple Color Emoji" "Segoe UI Emoji"))
 
 (if (not HEADLESS)
 (progn
