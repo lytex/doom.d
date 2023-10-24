@@ -1,6 +1,6 @@
 ;; org-journal with three different journals
 
-(defun lytex/update-org-journal-created ()
+(defun lytex/update-org-journal-created (&rest args)
 
         (org-journal--open-entry)
         (org-up-heading-safe)
@@ -65,12 +65,15 @@
 
 (defun lytex/set-org-journal-J ()
     (interactive)
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created )
     (lytex/set-org-journal "J"))
 (defun lytex/set-org-journal-I ()
     (interactive)
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created )
     (lytex/set-org-journal "I"))
 (defun lytex/set-org-journal-W ()
     (interactive)
+    (advice-add #'org-journal-new-entry :before #'lytex/update-org-journal-created )
     (lytex/set-org-journal "W"))
 
 ;; https://systemcrafters.net/build-a-second-brain-in-emacs/5-org-roam-hacks/#automatically-copy-or-move-completed-tasks-to-dailies
