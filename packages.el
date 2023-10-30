@@ -45,11 +45,16 @@
                 (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
         (package! pdf-view-restore)
         (package! nov)
-        (package! org-noter-pdftools :recipe
+        ;; (disable-packages! org-noter-pdftools)
+        (unpin! org-noter-pdftools)
+        (package! org-noter-pdftools
+                :pin "5618b6c9176db11daf0208aa538ddf2c4c2aa5fd"
+                :recipe
                 (:host github :repo "lytex/org-pdftools"))
         ;; https://github.com/fuxialexander/org-pdftools/issues/93
+        (unpin! org-noter)
         (package! org-noter 
-                :pin "1190d0262d8306b0a5d088c77f203d77e0f27384"
+                :pin "ab838691f0d6ae281597451de311f71a50ba8da6"
                 :recipe
                 (:host github :repo "org-noter/org-noter"))
         (package! org-web-tools)

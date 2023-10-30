@@ -6,10 +6,10 @@
 
 (setq pdf-view-restore-filename "~/.config/emacs/.pdf-view-restore")
 
-(use-package! org-pdftools
-  :hook ((org-load . org-pdftools-setup-link))
-          (pdf-tools-enable-minor-mode))
 
+(use-package! org-pdftools
+  :hook (org-mode . org-pdftools-setup-link)
+          (pdf-tools-enable-minor-mode))
 
 ;; (use-package! pdf-continuous-scroll-mode
 ;;   :after pdf-tools)
@@ -48,6 +48,11 @@
                 (call-interactively 'pdf-annot-add-underline-markup-annotation))
 (defun lytex/pdf-annot-add-text-annotation () (interactive)
                 (call-interactively 'pdf-annot-add-text-annotation))
+
+
+(defun lytex/import-notes-from-current (offset)
+  (interactive "nEnter offset from current page: ")
+(org-noter-pdftools-create-skeleton (pdf-info-normalize-page-range (list (pdf-view-current-page) (+ offset (pdf-view-current-page))))))
 
 (defun lytex/join-org-headline-next ()
   ;; ]] j daE k D
