@@ -46,6 +46,11 @@
         (package! pdf-view-restore)
         (package! nov)
         ;; (disable-packages! org-noter-pdftools)
+        (unpin! org-pdftools)
+        (package! org-pdftools
+                :pin "5618b6c9176db11daf0208aa538ddf2c4c2aa5fd"
+                :recipe
+                (:host github :repo "lytex/org-pdftools"))
         (unpin! org-noter-pdftools)
         (package! org-noter-pdftools
                 :pin "5618b6c9176db11daf0208aa538ddf2c4c2aa5fd"
