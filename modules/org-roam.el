@@ -134,7 +134,7 @@
                         :target (file+head "areas/${slug}.org"
                         "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
                         :unnarrowed t)
-                ("a" "area-random" plain
+                ("r" "area-random" plain
                         "* ${title} :area:\n%?"
                         :target (file+head "areas/random/${slug}.org"
                         "#+title: ${title}\n#+filetags: :area:\n#+SETUPFILE: /home/julian/.doom.d/org-html-themes/org/theme-readtheorg-local.setup\n\n")
@@ -300,7 +300,7 @@
   (call-interactively 'org-refile))
 
 (defun lytex/org-refile-transclude-own ()
-  "Replace a heading with a link and refile it"
+  "Replace a heading with a transclusion and refile it"
   (interactive)
   (call-interactively 'org-store-link)
   (save-excursion
