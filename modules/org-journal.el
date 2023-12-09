@@ -20,6 +20,10 @@
                 (zap-up-to-char 1 ?*)
                 ))
         (org-set-property "CREATED" (format-time-string "%Y%m%d"))
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created2 )
+
+        (setq org-journal-after-entry-create-hook (lambda ()
+                (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
         )
 
 
