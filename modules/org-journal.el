@@ -2,15 +2,36 @@
 
 (defun lytex/update-org-journal-created (&rest args)
 
-        (org-journal--open-entry)
-        (org-up-heading-safe)
+        (if (not (eq (decoded-time-weekday (decode-time)) 1))
+            (progn
+                (princ "hola")
+                (org-up-heading-safe)
+                (org-backward-element)
+                ;; (org-kill-line)
+                ))
         (org-set-property "CREATED" (format-time-string "%Y%m%d")))
+
+(defun lytex/update-org-journal-created2 (&rest args)
+
+        (if (not (eq (decoded-time-weekday (decode-time)) 1))
+            (progn
+                (princ "after")
+                (org-forward-element)
+                (zap-up-to-char 1 ?*)
+                ))
+        (org-set-property "CREATED" (format-time-string "%Y%m%d"))
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created2 )
+
+        (setq org-journal-after-entry-create-hook (lambda ()
+                (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
+        )
+
 
 (defun lytex/set-work-journal ()
         (setq org-journal-file-type 'monthly)
         (setq org-journal-dir (concat org-directory "work_journal/"))
         (setq org-journal-after-entry-create-hook (lambda ()
-                (org-set-property "CREATED" (format-time-string "%Y%m%d"))))
+                (lytex/update-org-journal-created)))
         (setq org-journal-created-property-timestamp-format "%Y%m%d")
         (setq org-journal-file-format "%YW.org")
         ;; All work journal files have the tag "work"
@@ -65,15 +86,15 @@
 
 (defun lytex/set-org-journal-J ()
     (interactive)
-    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created )
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created2 )
     (lytex/set-org-journal "J"))
 (defun lytex/set-org-journal-I ()
     (interactive)
-    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created )
+    (advice-remove #'org-journal-new-entry #'lytex/update-org-journal-created2 )
     (lytex/set-org-journal "I"))
 (defun lytex/set-org-journal-W ()
     (interactive)
-    (advice-add #'org-journal-new-entry :before #'lytex/update-org-journal-created )
+    (advice-add #'org-journal-new-entry :after #'lytex/update-org-journal-created2 )
     (lytex/set-org-journal "W"))
 
 ;; https://systemcrafters.net/build-a-second-brain-in-emacs/5-org-roam-hacks/#automatically-copy-or-move-completed-tasks-to-dailies
