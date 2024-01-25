@@ -95,7 +95,17 @@
 ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 ;; (use-package! nov)
 
+(use-package! s)
 (defun lytex/okular-open (link)
-      (async-start-process "okular" "okular" nil link))
+      (setq find-expr (cadr (split-string link "--find ")))
+      (if (equal find-expr nil)
+        (progn
+          (message (concat "okular " link))
+          (async-start-process "okular" "okular" nil link))
+        (progn
+          (setq find-expr (s-replace "'" "" find-expr))
+          (setq link (car (split-string link "--find ")))
+          (message (concat "okular " link " --find " find-expr))
+          (async-start-process "okular" "okular" nil link "--find" find-expr))))
 
 (org-link-set-parameters "okular" :follow 'lytex/okular-open)
