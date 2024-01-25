@@ -94,3 +94,8 @@
 
 ;; (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
 ;; (use-package! nov)
+
+(defun lytex/okular-open (link)
+      (async-start-process "okular" "okular" nil link))
+
+(org-link-set-parameters "okular" :follow 'lytex/okular-open)

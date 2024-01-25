@@ -10,7 +10,7 @@
 (use-package! org-roam
       :custom
       (org-roam-directory "~/org/")
-      (org-roam-file-exclude-regexp  "\\(0\\|1custom_id\\|Documents\\|calendar\\).org")
+      (org-roam-file-exclude-regexp  "\\(0\\|1custom_id\\|Documents\\|work_journal/.*W\\).org")
       (add-hook 'org-mode-hook (lambda () (org-roam-mode 1)))
       (org-roam-mode-section-functions
               (list #'org-roam-backlinks-section
