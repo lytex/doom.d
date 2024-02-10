@@ -379,6 +379,24 @@
 (advice-add '+org/insert-item-below :after #'lytex/fix-counter)
 (advice-add '+org/insert-item-above :after #'lytex/fix-counter)
 
+;; https://emacs-china.org/t/org-mode-narrow-to-sublist/24682
+(defun org-narrow-to-list ()
+  (interactive)
+  (save-excursion
+    (narrow-to-region
+	 (progn (org-beginning-of-item-list) (point))
+	 (progn (org-end-of-item-list) (point)))))
+
+(defun org-narrow-to-item ()
+  "Narrow buffer to the current item.
+
+Throw an error when not in a list."
+  (interactive)
+  (save-excursion
+    (narrow-to-region
+	 (progn (org-beginning-of-item) (point))
+	 (progn (org-end-of-item) (1- (point))))))
+
 ;; Rich copy from HTML
 ;; from https://xiangji.me/2015/07/13/a-few-of-my-org-mode-customizations/
 ;; https://emacs.stackexchange.com/questions/12121/org-mode-parsing-rich-html-directly-when-pasting
