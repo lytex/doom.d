@@ -44,7 +44,7 @@
         (package! pdf-continuous-scroll-mode :recipe
                 (:host github :repo "dalanicolai/pdf-continuous-scroll-mode.el"))
         (package! pdf-view-restore)
-        (package! nov)
+        ;; (package! nov)
         ;; (disable-packages! org-noter-pdftools)
         (unpin! org-pdftools)
         (package! org-pdftools
