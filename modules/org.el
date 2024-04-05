@@ -123,6 +123,8 @@
 (setq org-agenda-files
   '("~/org" "~/org/areas" "~/org/areas/random" "~/org/roam" "~/org/journal" "~/org/projects" "~/org/Introspección")))
 
+(setq org-agenda-inhibit-startup nil)
+
 (setq org-agenda-dim-blocked-tasks nil) ;; Do not grey out items that hava a children with a TODO state
 
 (setq org-log-into-drawer "LOGBOOK") ;; Log state changes in LOGBOOK
