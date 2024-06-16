@@ -48,16 +48,16 @@
          (org-agenda-finalize . ap/org-super-agenda-origami-fold-default)))
 
 
-#| (start-process "emacs" "org-templates" "emacs" "--batch" "--no-splash"
- "--load" "$HOME/.config/emacs/lisp/doom-lib.el"
- "--load" "$HOME/.config/emacs/lisp/doom.el"
- "--load" "$HOME/.config/emacs/early-init.el"
- "--load" "/home/julian/.config/emacs/lisp/doom-start.el"
- "--load" "$HOME/.doom.d/utils/org-templates.el") |#
+(start-process "emacs" "org-templates" "emacs" "--batch" "--no-splash"
+"--load" "$HOME/.config/emacs/lisp/doom-lib.el"
+"--load" "$HOME/.config/emacs/lisp/doom.el"
+"--load" "$HOME/.config/emacs/early-init.el"
+"--load" "/home/julian/.config/emacs/lisp/doom-start.el"
+"--load" "$HOME/.doom.d/utils/org-templates.el")
 
 
 (defun lytex/org-get-subtree-contents ()
- "Get the content text of the subtree at point"
+"Get the content text of the subtree at point"
        (concat
         (make-string (org-reduced-level (org-outline-level)) ?*)
         " "
@@ -77,30 +77,30 @@
 
 
 (defun lytex/get-template-by-id (id)
- (unless (file-exists-p "/home/julian/.cache/org-templates-elements/")
-         (make-directory "/home/julian/.cache/org-templates-elements/"))
- (if (file-exists-p (concat "/home/julian/.cache/org-templates-elements/" id))
-     (read-from-file (concat "/home/julian/.cache/org-templates-elements/" id))
+(unless (file-exists-p "/home/julian/.cache/org-templates-elements/")
+        (make-directory "/home/julian/.cache/org-templates-elements/"))
+(if (file-exists-p (concat "/home/julian/.cache/org-templates-elements/" id))
+    (read-from-file (concat "/home/julian/.cache/org-templates-elements/" id))
 
-  (print-to-file (concat "/home/julian/.cache/org-templates-elements/" id)
-   (eval `(defun ,(make-symbol id) ()
-           ,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
-             ;; Remove ID to avoid duplicates
-                                                     ":ID:.*\n"
-                                                     ""
-                                                     (replace-regexp-in-string
-               ;; Template is in the middle of two tags :left:template:right:
-                                                      ":template:" ":"
-                                                       (replace-regexp-in-string
-                                                         ;; There is one tag or more before template: :tag:template:
-                                                         "template:$" ""
-                                                         (replace-regexp-in-string
-                                                           ;; There is one tag or more after template: :template:tag:
-                                                           " :template" " "
-                                                           (replace-regexp-in-string
-                                                             ;; There is only one tag :template:
-                                                             " :template:$" ""
-                                                             (lytex/org-get-subtree-contents))))))))))))
+(print-to-file (concat "/home/julian/.cache/org-templates-elements/" id)
+(eval `(defun ,(make-symbol id) ()
+,(save-window-excursion (org-id-goto id) (replace-regexp-in-string
+  ;; Remove ID to avoid duplicates
+  ":ID:.*\n"
+  ""
+    (replace-regexp-in-string
+    ;; Template is in the middle of two tags :left:template:right:
+    ":template:" ":"
+      (replace-regexp-in-string
+        ;; There is one tag or more before template: :tag:template:
+        "template:$" ""
+        (replace-regexp-in-string
+          ;; There is one tag or more after template: :template:tag:
+          " :template" " "
+          (replace-regexp-in-string
+            ;; There is only one tag :template:
+            " :template:$" ""
+            (lytex/org-get-subtree-contents))))))))))))
 
 ;; https://stackoverflow.com/questions/2321904/elisp-how-to-save-data-in-a-file/44834833#44834833
 (defun read-from-file (filename)
@@ -122,51 +122,51 @@
         (setq iterating-list (substring keyboard-list 0 (length org-templates)))
 
         (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
-                                                      (setq id  (cdr template))
-                                                      `(,(concat "t" (make-string 1 key)) ,(car template) plain
-                                                        (file "Inbox.org")
-                                                        (function ,(lytex/get-template-by-id id))
-                                                        :unnarrowed t))
-                                         iterating-list org-templates))))
-        
-    
+        (setq id  (cdr template))
+        `(,(concat "t" (make-string 1 key)) ,(car template) plain
+        (file "Inbox.org")
+        (function ,(lytex/get-template-by-id id))
+        :unnarrowed t))
+        iterating-list org-templates))
+        )
+    )
 
 
 (defun lytex/insert-query-links (query)
- (org-ql-query :select
-           '(concat "[["
-                     (if
-                         (cdar (org-entry-properties nil "ID"))
-                         (concat "id:" (cdar (org-entry-properties nil "ID")))
-                       (concat "file:" (buffer-file-name) "::*"
-                               (substring-no-properties
-                                (org-get-heading :no-tags :no-todo :no-priority :no-comment))))
-                     "]["
-                     (substring-no-properties
-                      (org-get-heading :no-tags :no-todo :no-priority :no-comment))
-                     "]]\n")
-           :from
-           (org-agenda-files)
-           :where
-           query))
+(org-ql-query :select
+          '(concat "[["
+                    (if
+                        (cdar (org-entry-properties nil "ID"))
+                        (concat "id:" (cdar (org-entry-properties nil "ID")))
+                      (concat "file:" (buffer-file-name) "::*"
+                              (substring-no-properties
+                              (org-get-heading :no-tags :no-todo :no-priority :no-comment))))
+                    "]["
+                    (substring-no-properties
+                    (org-get-heading :no-tags :no-todo :no-priority :no-comment))
+                    "]]\n")
+          :from
+          (org-agenda-files)
+          :where
+          query))
 
 (defun lytex/insert-query-transclusion (query level)
- (org-ql-query :select
-           '(concat "\n#+transclude: [["
-                     (if
-                         (cdar (org-entry-properties nil "ID"))
-                         (concat "id:" (cdar (org-entry-properties nil "ID")))
-                       (concat "file:" (buffer-file-name) "::*"
-                               (substring-no-properties
-                                (org-get-heading :no-tags :no-todo :no-priority :no-comment))))
-                      
-                     "]["
-                     (substring-no-properties
-                      (org-get-heading :no-tags :no-todo :no-priority :no-comment))
-                     (concat "]] :level " (number-to-string level) "\n"))
+(org-ql-query :select
+          '(concat "\n#+transclude: [["
+                    (if
+                        (cdar (org-entry-properties nil "ID"))
+                        (concat "id:" (cdar (org-entry-properties nil "ID")))
+                      (concat "file:" (buffer-file-name) "::*"
+                              (substring-no-properties
+                              (org-get-heading :no-tags :no-todo :no-priority :no-comment)))
+                      )
+                    "]["
+                    (substring-no-properties
+                    (org-get-heading :no-tags :no-todo :no-priority :no-comment))
+                    (concat "]] :level " (number-to-string level) "\n"))
 
-           :from
-           (org-agenda-files)
-           :where
-           query))
+          :from
+          (org-agenda-files)
+          :where
+          query))
 
