@@ -20,6 +20,8 @@
         (package! org-modern)
         (package! org-ql :recipe
                 (:host github :repo "alphapapa/org-ql"))
+        (package! ob-async :recipe
+                (:host github :repo "astahlman/ob-async"))
         ;; org-ql breaks in emacs28 because of transient
         ;; https://emacs.stackexchange.com/questions/75827/doom-emacs-error-running-hook-global-git-commit-mode-because-void-variable
         (package! transient

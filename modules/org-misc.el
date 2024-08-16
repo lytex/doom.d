@@ -4,6 +4,8 @@
 
 (use-package! org-web-tools)
 
+(use-package! ob-async)
+
 
 (defun lytex/clean-xtra-newlines ()
   (interactive)
