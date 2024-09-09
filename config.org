@@ -673,6 +673,7 @@ The idea is to use the left hand to select an annotation and use the mouse on th
 :END:
 #+begin_src elisp
  (setq tex-fontify-script nil)
+ (setq font-latex-fontify-script nil)
 #+end_src
 * misc
 :PROPERTIES:

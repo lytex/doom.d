@@ -267,6 +267,7 @@
         :desc (documentation 'org-anki-sync-entry) "s" #'org-anki-sync-entry
         :desc (documentation 'org-anki-sync-all) "S" #'org-anki-sync-all))
  (setq tex-fontify-script nil)
+ (setq font-latex-fontify-script nil)
     (use-package! highlight-indent-guides
       :hook (prog-mode . highlight-indent-guides-mode)
       :init
