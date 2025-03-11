@@ -667,6 +667,14 @@ The idea is to use the left hand to select an annotation and use the mouse on th
         :desc (documentation 'org-anki-sync-entry) "s" #'org-anki-sync-entry
         :desc (documentation 'org-anki-sync-all) "S" #'org-anki-sync-all))
 #+end_src
+* latex
+:PROPERTIES:
+:ID:       684cc0bf-2ff4-487b-9909-5188998e7f2c
+:END:
+#+begin_src elisp
+ (setq tex-fontify-script nil)
+ (setq font-latex-fontify-script nil)
+#+end_src
 * misc
 :PROPERTIES:
 :ID:       65f85022-c981-43f8-bd53-b2c691bb00be
