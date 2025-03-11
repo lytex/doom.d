@@ -34,6 +34,7 @@
    might need modification for other types."
   (format "%s:%s" (nth 0 x) (nth 1 x)))
 
+;; Also: C-c C-o → org-open-at-point
 (defun lytex/visit-all-http-links ()
   (interactive)
   (let* ((parse-tree (org-element-parse-buffer))
