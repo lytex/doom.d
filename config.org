@@ -841,6 +841,8 @@ The idea is to use the left hand to select an annotation and use the mouse on th
                 :n [return]   #'+org/dwim-at-point)
 
         )
+
+(advice-add 'org-mode :after #'(lambda ()  (setq evil-shift-width 2) (setq tab-width 2)))
 #+end_src
 
 #+RESULTS:

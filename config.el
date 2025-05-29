@@ -369,3 +369,5 @@
                 :n [return]   #'+org/dwim-at-point)
 
         )
+
+(advice-add 'org-mode :after #'(lambda ()  (setq evil-shift-width 2) (setq tab-width 2)))
