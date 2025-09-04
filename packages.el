@@ -69,6 +69,7 @@
                 (:host github :repo "abo-abo/org-download"))
         (package! fzf)
         (package! beacon)
+	(package! highlight-indent-guides)
         (package! evil-quickscope :recipe
                 (:host github :repo "blorbx/evil-quickscope"))
         (package! targets :recipe
