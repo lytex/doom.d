@@ -51,7 +51,7 @@
         (setq beacon-color "dark orange")
         (load! "~/.doom.d/modules/LectureNotes.el")))
 
-(if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes | grep current | grep light || true") "")
+(if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes 2>/dev/null | grep current | grep light || true") "")
         (setq doom-theme 'doom-moonlight)
         (setq doom-theme 'doom-solarized-light)
         )
