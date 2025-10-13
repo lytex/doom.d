@@ -1,8 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; $DOOMDIR/packages.el
 
-(load! "~/.doom.d/work.el")
-(load! "~/.doom.d/headless.el")
+(load! "~/.config/doom/work.el")
+(load! "~/.config/doom/headless.el")
 
 (package! org-transclusion :recipe
         (:host github :repo "nobiot/org-transclusion"))

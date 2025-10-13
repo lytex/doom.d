@@ -4,7 +4,7 @@
 ;; The queries are kept in a org-ql-queries.org, change quite often and are unrelated to emacs
 ;; They contain info about specific projects, for example
 ;; Symlink to wherever you may find useful (I kept mine in org-directory)
-(load! "~/.doom.d/modules/org-ql-queries.el")
+(load! "~/.config/doom/modules/org-ql-queries.el")
 
 (defun lytex/reload-org-ql ()
   (interactive)
@@ -12,7 +12,7 @@
   (unload-feature 'org-ql-view :force)
   (unload-feature 'org-ql-search :force)
 
-  (load! "~/.doom.d/modules/org-ql.el"))
+  (load! "~/.config/doom/modules/org-ql.el"))
 
 ;; Follow link using RET, not only mouse-1
 ;; (map!

@@ -2,8 +2,8 @@
 
 
 
-(load! "~/.doom.d/work.el")
-(load! "~/.doom.d/headless.el")
+(load! "~/.config/doom/work.el")
+(load! "~/.config/doom/headless.el")
 (progn
       (defun fix+org/insert-item-below ()
               (interactive)
@@ -49,22 +49,24 @@
 (progn
         (beacon-mode 1)
         (setq beacon-color "dark orange")
-        (load! "~/.doom.d/modules/LectureNotes.el")))
+        (load! "~/.config/doom/modules/LectureNotes.el")))
 
 (if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes 2>/dev/null | grep current | grep light || true") "")
         (setq doom-theme 'doom-moonlight)
         (setq doom-theme 'doom-solarized-light)
         )
 
+(setq doom-theme 'doom-solarized-light)
+
 
 
 (setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
 
-(load! "~/.doom.d/modules/org.el")
+(load! "~/.config/doom/modules/org.el")
 
 (setq org-id-locations-file "~/.config/emacs/.org-id-locations")
 
-(load! "~/.doom.d/modules/org-clock.el")
+(load! "~/.config/doom/modules/org-clock.el")
 
 (map!
       :after org
@@ -88,14 +90,14 @@
 (map! :map org-mode-map
       :nie "M-SPC M-SPC" (cmd! (insert "\u200B")))
 
-(load! "~/.doom.d/modules/evil.el")
-(load! "~/.doom.d/modules/xournalpp.el")
+(load! "~/.config/doom/modules/evil.el")
+(load! "~/.config/doom/modules/xournalpp.el")
 
-(load! "~/.doom.d/modules/org-export.el")
+(load! "~/.config/doom/modules/org-export.el")
 
-(load! "~/.doom.d/modules/org-caldav.el")
+(load! "~/.config/doom/modules/org-caldav.el")
 
-(load! "~/.doom.d/modules/org-roam.el")
+(load! "~/.config/doom/modules/org-roam.el")
 
 (map!
       :after org-roam
@@ -142,18 +144,18 @@
       :desc (documentation 'lytex/org-roam-heading-backlinks) "o" #'lytex/org-roam-heading-backlinks
       ;; :desc (documentation 'lytex/org-roam-heading-unlinked-references) "u" #'lytex/org-roam-heading-unlinked-references
       :desc (documentation 'lytex/org-roam-headings-all) "l" #'lytex/org-roam-headings-all)
-(load! "~/.doom.d/modules/org-transclusion.el"  )
-(load! "~/.doom.d/modules/org-remark.el"  )
+(load! "~/.config/doom/modules/org-transclusion.el"  )
+(load! "~/.config/doom/modules/org-remark.el"  )
 (if (not HEADLESS)
 (progn
-(load! "~/.doom.d/modules/org-edna.el")
+(load! "~/.config/doom/modules/org-edna.el")
 
 ;; (map!
 ;;       :leader
 ;;       :desc (documentation 'org-linker-edna) "ee" #'org-linker-edna)
 
 
-(load! "~/.doom.d/modules/org-journal.el")
+(load! "~/.config/doom/modules/org-journal.el")
 
 (map!
       :after org-journal
@@ -177,11 +179,11 @@
       :desc (documentation 'org-journal-previous-entry) "jp" #'org-journal-previous-entry
       :desc (documentation 'org-journal-next-entry) "jn" #'org-journal-next-entry)
 
-(load! "~/.doom.d/modules/org-misc.el")
+(load! "~/.config/doom/modules/org-misc.el")
 
 
 
-(load! "~/.doom.d/modules/org-ql.el")
+(load! "~/.config/doom/modules/org-ql.el")
 
 (map!
       :after org-ql
@@ -221,7 +223,7 @@
 (if
   (file-executable-p pdf-info-epdfinfo-program)
 (progn
-  (load! "~/.doom.d/modules/pdf.el")
+  (load! "~/.config/doom/modules/pdf.el")
   (after! (pdf-tools)
   (map! :leader
         :mode (pdf-view-mode)
@@ -257,7 +259,7 @@
         :desc (documentation 'org-noter-insert-precise-note) "i" #'org-noter-insert-precise-note
         :desc (documentation 'org-noter-kill-session) "q" #'org-noter-kill-session))))
 
-(load! "~/.doom.d/modules/anki.el")
+(load! "~/.config/doom/modules/anki.el")
 (after! org
   (use-package! org-anki)
   (map! :leader
@@ -283,15 +285,15 @@
     ;; (use-package! activity-watch-mode)
     ;; (global-activity-watch-mode)
 
-(load! "~/.doom.d/habitica.el")
+;; (load! "~/.config/doom/habitica.el")
 
-;; (load! "~/.doom.d/modules/excorporate.el")
+;; (load! "~/.config/doom/modules/excorporate.el")
 
 ;; (if WORK_ENV
 ;;   (use-package! org-trello))
 
 ;; (if WORK_ENV
-;;   (load! "~/.doom.d/jira.el"))
+;;   (load! "~/.config/doom/jira.el"))
 
 (use-package! emojify)
 

@@ -40,7 +40,7 @@
       ;;   (not (seq-filter (lambda (x) (string= (car x) "orgtrello_user_me"))
       ;;     (cdr (mapcar (lambda (prop) (split-string prop " ")) (car (org-collect-keywords '("PROPERTY"))))))))))
 
-(load! "~/.doom.d/headless.el")
+(load! "~/.config/doom/headless.el")
 
 (if (not HEADLESS)
 (progn

@@ -19,7 +19,7 @@
 (setq evil-move-cursor-back nil)
 (setq evil-want-fine-undo t)
 
-(load! "~/.doom.d/headless.el")
+(load! "~/.config/doom/headless.el")
 
 
 ;; (defun lytex/ox-html-format-drawer (name content backend)
