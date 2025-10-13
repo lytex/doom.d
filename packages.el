@@ -32,6 +32,9 @@
         ;;           :pin "bbc60f68ac190f02da8a100b6fb67cf1c27c53ab"
         ;;           :recipe (:host github :repo "magit/with-editor"))
         (package! helm-ag)
+        (package! helm-rg
+                :recipe
+                (:host github :repo "imiric/helm-rg" :branch "fix/tests-emacs-30"))
         (package! org-re-reveal :recipe
                 (:host gitlab :repo "oer/org-re-reveal"))
         (package! origami :recipe

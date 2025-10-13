@@ -15,6 +15,7 @@
 ;;      directory (for easy access to its source code).
 
 ;; evil mode config
+(setq w32-recognize-altgr t)
 (setq evil-cross-lines t)
 (setq evil-move-cursor-back nil)
 (setq evil-want-fine-undo t)

@@ -39,7 +39,7 @@
 
 
 (setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 14))
-(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 14))
+(setq doom-unicode-font (font-spec :name "Segoe UI Emoji" :size 14))
 (setq org-emph-face (font-spec :family "FantasqueSansM Nerd Font" :size 14))
 (set-face-attribute 'default nil :family "FantasqueSansM Nerd Font" :height 120)
 (set-face-attribute 'variable-pitch nil :family "FantasqueSansM Nerd Font" :height 120)
@@ -282,8 +282,8 @@
                     (set-face-background
                       ediff-current-diff-face-B "blue")))
 
-    ;; (use-package! activity-watch-mode)
-    ;; (global-activity-watch-mode)
+    (use-package! activity-watch-mode)
+    (global-activity-watch-mode)
 
 ;; (load! "~/.config/doom/habitica.el")
 

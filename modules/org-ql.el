@@ -114,22 +114,22 @@
     (prin1 data (current-buffer))))
 
 (setq keyboard-list "jkl;asdfghuiopqwertynm,.zxcvbJKL:ASDFGHUIOPQWERTYNM<>ZXCVB1234567890-=!@#$%^&*()_+[]'/{}?")
-(if (setq org-templates
-      (with-demoted-errors "Error loading org-templates: %S"
-        (read-from-file "/home/julian/.cache/org-templates")))
-    (progn
-
-        (setq iterating-list (substring keyboard-list 0 (length org-templates)))
-
-        (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
-                                                      (setq id  (cdr template))
-                                                      `(,(concat "t" (make-string 1 key)) ,(car template) plain
-                                                        (file "Inbox.org")
-                                                        (function ,(lytex/get-template-by-id id))
-                                                        :unnarrowed t))
-                                         iterating-list org-templates))))
-        
-    
+;; (if (setq org-templates
+;;       (with-demoted-errors "Error loading org-templates: %S"
+;;         (read-from-file "/home/julian/.cache/org-templates")))
+;;     (progn
+;; 
+;;         (setq iterating-list (substring keyboard-list 0 (length org-templates)))
+;; 
+;;         (appendq! org-capture-templates (cl-mapcar #'(lambda (key template)
+;;                                                       (setq id  (cdr template))
+;;                                                       `(,(concat "t" (make-string 1 key)) ,(car template) plain
+;;                                                         (file "Inbox.org")
+;;                                                         (function ,(lytex/get-template-by-id id))
+;;                                                         :unnarrowed t))
+;;                                          iterating-list org-templates))))
+;;         
+;;     
 
 
 (defun lytex/insert-query-links (query)
