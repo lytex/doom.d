@@ -59,8 +59,6 @@
         (setq doom-theme 'doom-solarized-light)
         )
 
-(setq doom-theme 'doom-solarized-light)
-
 
 
 (setq  persp-save-dir (expand-file-name (concat org-directory ".sessions")))
