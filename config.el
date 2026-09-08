@@ -39,7 +39,7 @@
 
 
 (setq doom-font (font-spec :family "FantasqueSansM Nerd Font" :size 14))
-(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 14))
+(setq doom-symbol-font (font-spec :name "Noto Color Emoji" :size 14))
 (setq org-emph-face (font-spec :family "FantasqueSansM Nerd Font" :size 14))
 (set-face-attribute 'default nil :family "FantasqueSansM Nerd Font" :height 120)
 (set-face-attribute 'variable-pitch nil :family "FantasqueSansM Nerd Font" :height 120)
@@ -50,6 +50,9 @@
         (beacon-mode 1)
         (setq beacon-color "dark orange")
         (load! "~/.config/doom/modules/LectureNotes.el")))
+
+(with-eval-after-load 'gnus
+  (set-face-attribute 'gnus-group-news-low nil :inherit 'unspecified))
 
 (if (string= (shell-command-to-string "/usr/bin/plasma-apply-desktoptheme --list-themes 2>/dev/null | grep current | grep light || true") "")
         (setq doom-theme 'doom-moonlight)
